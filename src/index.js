@@ -15,8 +15,9 @@ window.onload = () => {
   takeControlOfInputs(bus)
   const display = initDisplay()
   
-  const world = new World(bus, display, width, height)
-  const character = new Player(bus, display)
+  const worldGenerator = new ROT.Map.Cellular(width - 1, height - 1)
+  const world = new World(bus, display, worldGenerator, width, height)
+  const character = new Player(bus, display, world)
 
   new Game(bus, display, world, character).init();
 }

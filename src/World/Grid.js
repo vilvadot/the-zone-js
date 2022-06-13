@@ -3,8 +3,14 @@ export class Grid {
     this.map = preFillMatrixWithNulls(width, height)
   }
 
+  get(x,y){
+    if(!this.map[x]) return
+    return this.map[x][y] 
+  }
+
   add(x, y, value) {
     this.map[x][y] = value
+    return this
   }
 
   forEach(callback) {

@@ -1,13 +1,17 @@
 import { Player } from "./Player"
 import { Bus, EVENTS } from "./Bus"
-import { displaystub } from './_test_/stubs'
+import { displaystub, worldStub } from './_test_/stubs'
+import { World } from "./World"
+
+jest.mock('./World')
 
 describe('Player', () => {
     let player
     const bus = new Bus()
 
     beforeEach(() => {
-        player = new Player(bus, displaystub())
+        player = new Player(bus, displaystub(), new World())
+        World.prototype.isBlocked = jest.fn().mockReturnValue(false)
     })
 
     it("starts at coordinates origin", () => {
@@ -37,5 +41,15 @@ describe('Player', () => {
         bus.emit(EVENTS.INPUT_PRESSED, "ArrowDown")
 
         expect(player.y).toEqual(1)
+    })
+
+    it("cant move through walls", () => {
+        World.prototype.isBlocked = jest.fn().mockReturnValue(true)
+
+        bus.emit(EVENTS.INPUT_PRESSED, "ArrowRight")
+        bus.emit(EVENTS.INPUT_PRESSED, "ArrowDown")
+
+        expect(player.x).toEqual(0)
+        expect(player.y).toEqual(0)
     })
 })

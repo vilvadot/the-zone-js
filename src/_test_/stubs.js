@@ -4,10 +4,3 @@ export const displaystub = () => {
         draw: jest.fn()
     }
 }
-
-export const worldStub = () => {
-    return {
-        generate: jest.fn(),
-        draw: jest.fn()
-    }
-}

@@ -2,11 +2,11 @@ import {Grid} from './Grid.js'
 import { TILES, COLORS } from '../config.js'
 
 export class World {
-  constructor(bus, display, width, height) {
+  constructor(bus, display, generator, width, height) {
     this.bus = bus
     this.display = display
     this.map = new Grid(width, height)
-    this.generator = new ROT.Map.Cellular(width - 1, height - 1)
+    this.generator = generator
   }
 
   generate() {
@@ -14,8 +14,16 @@ export class World {
       .randomize(0.4)
       .create((x, y, isFilled) => {
         const tile = isFilled ? TILES.world : TILES.empty
-        this.map.add(x + 1, y + 1, tile)
+        this.map.add(x, y, tile)
       })
+  }
+
+  isBlocked(x, y){
+    const tile = this.map.get(x,y)
+    if (!tile) return true
+
+    const isFree = tile === TILES.empty
+    return !isFree
   }
 
   draw() {

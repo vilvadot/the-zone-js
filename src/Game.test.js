@@ -1,9 +1,14 @@
 import { Game } from "./Game"
+import { Bus } from "./Bus"
+import { World } from "./World"
+import {displaystub} from './_test_/stubs'
+
+jest.mock('./World')
 
 describe('Game', () => {
     it("generates a new world on load", () => {
-        const fakeWorld = worldStub()
-        const game = new Game(displaystub(), fakeWorld)
+        const fakeWorld = new World()
+        const game = new Game(new Bus(), displaystub(), fakeWorld, characterStub())
 
         game.init()
 
@@ -11,16 +16,8 @@ describe('Game', () => {
     })
 })
 
-const displaystub = () => {
+const characterStub = () => {
     return {
-        clear: jest.fn(),
-        draw: jest.fn()
-    }
-}
-
-const worldStub = () => {
-    return {
-        generate: jest.fn(),
         draw: jest.fn()
     }
 }
