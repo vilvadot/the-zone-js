@@ -2,7 +2,8 @@ import {Grid} from './Grid.js'
 import { TILES, COLORS } from '../config.js'
 
 export class World {
-  constructor(display, width, height) {
+  constructor(bus, display, width, height) {
+    this.bus = bus
     this.display = display
     this.map = new Grid(width, height)
     this.generator = new ROT.Map.Cellular(width - 1, height - 1)

@@ -1,13 +1,20 @@
-const Keys = {
-  ArrowUp: Symbol("ArrowUp"),
-  ArrowDown: Symbol("ArrowDown"),
-  ArrowLeft: Symbol("ArrowLeft"),
-  ArrowRight: Symbol("ArrowRight"),
-  Space: Symbol("Space")
+import { EVENTS } from "./Bus.js";
+
+export const INPUTS = {
+  ArrowUp: "ArrowUp",
+  ArrowDown: "ArrowDown",
+  ArrowLeft: "ArrowLeft",
+  ArrowRight: "ArrowRight",
+  Space: "Space"
 }
 
-export const takeControlOfInputs = () => {
+export const isInputKey = (code) => INPUTS[code]
+
+export const takeControlOfInputs = (bus) => {
   window.addEventListener("keydown", (event) => {
-    if (Keys[event.code]) event.preventDefault();
+    if (isInputKey(event.code)) {
+      bus.emit(EVENTS.INPUT_PRESSED, INPUTS[event.code])
+      event.preventDefault();
+    }
   });
 }

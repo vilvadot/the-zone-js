@@ -2,15 +2,16 @@ export const OPTIONS = {
   bg: "white",
   fg: "dimGrey",
   fontFamily: "Fira Mono",
-  width: 200,
-  height: 200,
-  fontSize: 6,
+  width: 15,
+  height: 15,
+  fontSize: 20,
   forceSquareRatio: true,
 };
 
 export const TILES = {
   world: "+",
-  empty : "."
+  empty : ".",
+  character: "🚀"
 }
 
 export const COLORS = {
