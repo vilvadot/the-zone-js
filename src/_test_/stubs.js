@@ -5,4 +5,10 @@ export const displaystub = () => {
     }
 }
 
+export const stubGameContainer = () => {
+    const $game = document.createElement("div")
+    $game.id = "game"
+    document.querySelector('body').appendChild($game)
+}
+
 export class GeneratorStub{}

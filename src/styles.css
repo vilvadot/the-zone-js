@@ -6,23 +6,20 @@ body {
   box-sizing: border-box;
 }
 
-#header {
-  text-align: center;
-  font-family: "Faster One", cursive;
-  font-size: 5vh;
-  color: REBECCAPURPLE;
-}
-
-.center {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
 .ui{
   position:absolute;
   bottom: 30px;
   right: 30px;
+}
+
+#player {
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  position:absolute;
+  transition: all linear .1s;
+}
+
+#game{
+  position:relative;
 }

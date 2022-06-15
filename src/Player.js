@@ -8,12 +8,24 @@ export class Player {
     this.display = display;
     this.world = world;
     this.position = this.world.getCenter()
+    this.$node = this.create()
+    this.draw()
     this._subscribe()
   }
 
+  create(){
+    const $game = document.querySelector("#game")
+    const $player = document.createElement('div')
+    $player.id = 'player'
+
+    $game.appendChild($player)
+    
+    return $player
+  }
+
   draw() {
-    const { x, y } = this.position
-    this.display.draw(x, y, TILES.character, "black");
+    this.$node.style.top = this.position.y * 20
+    this.$node.style.left = this.position.x * 20
   }
 
   move(action) {

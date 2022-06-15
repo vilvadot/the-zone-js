@@ -1,18 +1,26 @@
 import { Player } from "./Player"
 import { Bus, EVENTS } from "./Bus"
-import { displaystub } from './_test_/stubs'
+import { displaystub, stubGameContainer } from './_test_/stubs'
 import { World } from "./World"
+
 
 describe('Player', () => {
     let player
-    const worldCenter = {x: 12, y: 12}
+    const worldCenter = { x: 12, y: 12 }
     const bus = new Bus()
+    stubGameContainer()
 
 
     beforeEach(() => {
         World.prototype.isBlocked = jest.fn().mockReturnValue(false)
-        const world = new World(new Bus(), displaystub(), () => {}, 25, 25) // Todo inyectar la grid con el mapa que quiera
+        const world = new World(new Bus(), displaystub(), () => { }, 25, 25) // Todo inyectar la grid con el mapa que quiera
         player = new Player(bus, displaystub(), world)
+    })
+
+    it("renders a DOM node when created", () => {
+        const $player = getPlayerNode()
+
+        expect($player).toBeTruthy()
     })
 
     it("starts at worlds center", () => {
@@ -46,7 +54,7 @@ describe('Player', () => {
 
     it("cant move through walls", () => {
         World.prototype.isBlocked = jest.fn().mockReturnValue(true)
-        const world = new World(new Bus(), displaystub(), () => {}, 25, 25) // Todo
+        const world = new World(new Bus(), displaystub(), () => { }, 25, 25) // Todo
         player = new Player(bus, displaystub(), world)
 
         bus.emit(EVENTS.INPUT_PRESSED, "ArrowRight")
@@ -56,3 +64,5 @@ describe('Player', () => {
         expect(player.y).toEqual(12)
     })
 })
+
+const getPlayerNode = () => document.querySelector("#player")
