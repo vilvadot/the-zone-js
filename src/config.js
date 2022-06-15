@@ -2,7 +2,7 @@ export const OPTIONS = {
   bg: "white",
   fg: "dimGrey",
   fontFamily: "Fira Mono",
-  width: 40,
+  width: 20,
   height: 20,
   fontSize: 20,
   forceSquareRatio: true,
@@ -11,7 +11,7 @@ export const OPTIONS = {
 export const TILES = {
   world: "+",
   empty : ".",
-  character: "🚀"
+  character: "@"
 }
 
 export const COLORS = {
