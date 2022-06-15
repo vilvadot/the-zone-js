@@ -1,13 +1,24 @@
 import { World } from "./World"
 import { Bus } from "../Bus"
 import { Grid } from "./Grid"
-import { displaystub } from '../_test_/stubs'
+import { displaystub, GeneratorStub } from '../_test_/stubs'
 
 describe('World', () => {
     let world
 
     beforeEach(() => {
-        world = new World(new Bus(), displaystub(), new FakeGenerator(), 1, 1)
+        world = new World(new Bus(), displaystub(),new GeneratorStub(), 1, 1)
+    })
+
+    it("knows its center", () => {
+        const height = 25
+        const width = 25
+        world = new World(new Bus(), displaystub(),new GeneratorStub(), width, height)
+
+        const center = world.getCenter()
+
+        expect(center.x).toEqual(12)
+        expect(center.y).toEqual(12)
     })
 
     it("knows if a tile is blocked", () => {
@@ -26,7 +37,3 @@ describe('World', () => {
         expect(world.isBlocked(0, 0)).toBeFalsy()
     })
 })
-
-class FakeGenerator {
-
-}

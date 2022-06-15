@@ -3,10 +3,19 @@ import { TILES, COLORS } from '../config.js'
 
 export class World {
   constructor(bus, display, generator, width, height) {
+    this.width = width
+    this.height = height
     this.bus = bus
     this.display = display
-    this.map = new Grid(width, height)
+    this.map = new Grid(this.width, this.height)
     this.generator = generator
+  }
+
+  getCenter(){
+    return {
+      x: Math.floor(this.width / 2),
+      y: Math.floor(this.height / 2) 
+    }
   }
 
   generate() {

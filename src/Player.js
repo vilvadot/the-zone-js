@@ -7,15 +7,13 @@ export class Player {
     this.bus = bus;
     this.display = display;
     this.world = world;
-    this.position = {
-      x: 0,
-      y: 0
-    };
+    this.position = this.world.getCenter()
     this._subscribe()
   }
 
   draw() {
-    this.display.draw(this.x, this.y, TILES.character, "black");
+    const { x, y } = this.position
+    this.display.draw(x, y, TILES.character, "black");
   }
 
   move(action) {

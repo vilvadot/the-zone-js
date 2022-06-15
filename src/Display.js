@@ -1,4 +1,4 @@
-import {OPTIONS} from './config.js'
+import { OPTIONS } from './config.js'
 
 export const initDisplay = () => {
   const asciiDisplay = new ROT.Display(OPTIONS)

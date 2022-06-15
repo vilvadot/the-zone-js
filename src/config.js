@@ -3,7 +3,8 @@ export const OPTIONS = {
   fg: "dimGrey",
   fontFamily: "Fira Mono",
   width: 20,
-  height: 20,
+  width: 30,
+  height: 30,
   fontSize: 20,
   forceSquareRatio: true,
 };

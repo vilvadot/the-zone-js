@@ -4,3 +4,5 @@ export const displaystub = () => {
         draw: jest.fn()
     }
 }
+
+export class GeneratorStub{}
