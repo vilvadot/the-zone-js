@@ -1,6 +1,6 @@
 import { takeControlOfInputs } from "./input.js";
 import { Game } from './Game.js'
-import { World } from './World/index.js'
+import { World, Grid } from './World/index.js'
 import { initDisplay } from './Display.js'
 import { Bus, EVENTS } from "./Bus.js";
 import { Player } from "./Player.js";
@@ -16,7 +16,8 @@ window.onload = () => {
   const display = initDisplay()
 
   const worldGenerator = new ROT.Map.Cellular(width - 1, height - 1)
-  const world = new World(bus, display, worldGenerator, width, height)
+  const map = new Grid(width, height)
+  const world = new World(bus, display, map, worldGenerator, width, height)
   const character = new Player(bus, display, world)
 
   new Game(bus, display, world, character).init();

@@ -1,19 +1,9 @@
-import { World } from "./World"
-import { Bus } from "../Bus"
 import { Grid } from "./Grid"
-import { displaystub, GeneratorStub } from '../_test_/stubs'
+import { createWorld } from '../_test_/stubs'
 
 describe('World', () => {
-    let world
-
-    beforeEach(() => {
-        world = new World(new Bus(), displaystub(),new GeneratorStub(), 1, 1)
-    })
-
     it("knows its center", () => {
-        const height = 25
-        const width = 25
-        world = new World(new Bus(), displaystub(),new GeneratorStub(), width, height)
+        const world = createWorld({ width: 25, height: 25})
 
         const center = world.getCenter()
 
@@ -22,7 +12,8 @@ describe('World', () => {
     })
 
     it("knows if a tile is blocked", () => {
-        world.map = new Grid(1, 1).add(0, 0, 'x')
+        const map = new Grid(1, 1).add(0, 0, 'x')
+        const world = createWorld({ map })
 
         world.isBlocked(0, 0)
 
@@ -30,7 +21,8 @@ describe('World', () => {
     })
 
     it("knows if a tile is free", () => {
-        world.map = new Grid(1, 1).add(0, 0, '.')
+        const map = new Grid(1, 1).add(0, 0, '.')
+        const world = createWorld({ map })
 
         world.isBlocked(0, 0)
 

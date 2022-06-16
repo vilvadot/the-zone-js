@@ -1,19 +1,17 @@
 import { Player } from "./Player"
 import { Bus, EVENTS } from "./Bus"
-import { displaystub, stubGameContainer } from './_test_/stubs'
-import { World } from "./World"
-
+import { createWorld, displaystub, stubGameContainer } from './_test_/stubs'
+import { World, Grid } from "./World"
+import { TILES } from "./config"
 
 describe('Player', () => {
     let player
-    const worldCenter = { x: 12, y: 12 }
     const bus = new Bus()
+    const world = createWorld({ height: 3, width: 3 })
+    const worldCenter = world.getCenter()
     stubGameContainer()
 
-
     beforeEach(() => {
-        World.prototype.isBlocked = jest.fn().mockReturnValue(false)
-        const world = new World(new Bus(), displaystub(), () => { }, 25, 25) // Todo inyectar la grid con el mapa que quiera
         player = new Player(bus, displaystub(), world)
     })
 
@@ -53,15 +51,18 @@ describe('Player', () => {
     })
 
     it("cant move through walls", () => {
-        World.prototype.isBlocked = jest.fn().mockReturnValue(true)
-        const world = new World(new Bus(), displaystub(), () => { }, 25, 25) // Todo
+        const map = new Grid(2, 2)
+            .add(0, 0, TILES.wall)
+            .add(0, 1, TILES.wall)
+            .add(1, 0, TILES.wall)
+        const world = createWorld({ map, width: 2, height: 2 })
         player = new Player(bus, displaystub(), world)
 
-        bus.emit(EVENTS.INPUT_PRESSED, "ArrowRight")
-        bus.emit(EVENTS.INPUT_PRESSED, "ArrowDown")
+        bus.emit(EVENTS.INPUT_PRESSED, "ArrowLeft")
+        bus.emit(EVENTS.INPUT_PRESSED, "ArrowTop")
 
-        expect(player.x).toEqual(12)
-        expect(player.y).toEqual(12)
+        expect(player.x).toEqual(1)
+        expect(player.y).toEqual(1)
     })
 })
 

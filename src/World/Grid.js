@@ -1,6 +1,8 @@
+import { TILES } from "../config.js"
+
 export class Grid {
-  constructor(width, height) {
-    this.map = preFillMatrixWithNulls(width, height)
+  constructor(columns, rows) {
+    this.map = preFillMatrixWithNulls(columns, rows)
   }
 
   get(x,y){
@@ -8,8 +10,8 @@ export class Grid {
     return this.map[x][y] 
   }
 
-  add(x, y, value) {
-    this.map[x][y] = value
+  add(y, x, value) {
+    this.map[y][x] = value
     return this
   }
 
@@ -27,7 +29,7 @@ const preFillMatrixWithNulls = (rows, columns) => {
   for (let row = 0; row < rows; row++) {
     matrix[row] = [];
     for (let column = 0; column < columns; column++) {
-      matrix[row][column] = null;
+      matrix[row][column] = TILES.empty;
     }
   }
   return matrix

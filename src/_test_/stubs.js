@@ -1,3 +1,6 @@
+import { World, Grid } from '../World'
+import { Bus } from '../Bus'
+
 export const displaystub = () => {
     return {
         clear: jest.fn(),
@@ -11,4 +14,8 @@ export const stubGameContainer = () => {
     document.querySelector('body').appendChild($game)
 }
 
-export class GeneratorStub{}
+class GeneratorStub { }
+export const createWorld = ({ width = 1, height = 1, map = new Grid(width, height) }) => {
+    return new World(new Bus(), displaystub(), map, new GeneratorStub(), width, height)
+}
+
