@@ -1,11 +1,13 @@
 import { TILES } from "../config.js"
 
 export class Grid {
-  constructor(columns, rows) {
+  constructor(columns = 0, rows = 0) {
+    this.width = columns
+    this.height = rows
     this.map = preFillMatrixWithNulls(columns, rows)
   }
 
-  get(x,y){
+  getTile(x,y){
     if(!this.map[x]) return
     return this.map[x][y] 
   }

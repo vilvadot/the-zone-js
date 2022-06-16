@@ -16,7 +16,6 @@ window.onload = () => {
   const display = initDisplay()
 
   const worldGenerator = new ROT.Map.Cellular(width - 1, height - 1)
-  const map = new Grid(width, height)
   const world = new World(bus, display, map, worldGenerator, width, height)
   const character = new Player(bus, display, world)
 

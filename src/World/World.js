@@ -1,13 +1,19 @@
 import { TILES, COLORS } from '../config.js'
 
 export class World {
-  constructor(bus, display, map, generator, width, height) {
-    this.width = width
-    this.height = height
+  constructor(bus, display, map, generator) {
     this.bus = bus
     this.display = display
     this.map = map
     this.generator = generator
+  }
+
+  get width(){
+    return this.map.width
+  }
+
+  get height(){
+    return this.map.height
   }
 
   getCenter(){
@@ -25,9 +31,9 @@ export class World {
         this.map.add(x, y, tile)
       })
   }
-q
+
   isBlocked(x, y){
-    const tile = this.map.get(x,y)
+    const tile = this.map.getTile(x,y)
     if (!tile) return true
 
     const isFree = tile === TILES.empty
