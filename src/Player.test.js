@@ -50,6 +50,14 @@ describe('Player', () => {
         expect(player.y).toEqual(worldCenter.y + 1)
     })
 
+    it("broadcasts its position when moving", () => {
+        const handleMovement = jest.fn()
+        bus.subscribe(EVENTS.PLAYER_MOVED, handleMovement)
+        bus.emit(EVENTS.INPUT_PRESSED, "ArrowDown")
+
+        expect(handleMovement).toHaveBeenCalledWith({y: worldCenter.y + 1, x: worldCenter.x})
+    })
+
     it("cant move through walls", () => {
         const map = new Grid(2, 2)
             .add(0, 0, TILES.wall)

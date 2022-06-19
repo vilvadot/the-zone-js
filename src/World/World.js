@@ -6,8 +6,7 @@ export class World {
     this.display = display
     this.map = map
     this.generator = generator
-  }
-
+  } 
   get width(){
     return this.map.width
   }
