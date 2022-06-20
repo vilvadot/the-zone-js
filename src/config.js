@@ -8,11 +8,21 @@ export const OPTIONS = {
   forceSquareRatio: true,
 };
 
-export const TILES = {
+const emojiSet = {
+  wall: "⬛️",
+  empty : ".",
+  enemy: "💀",
+  player: "🐸"
+}
+
+const asciiSet = {
   wall: "+",
   empty : ".",
-  character: "@"
+  player: "@",
+  enemy: "E"
 }
+
+export const TILES = asciiSet
 
 export const COLORS = {
   ".": "lightgrey"

@@ -1,6 +1,7 @@
 import { EVENTS } from "./Bus.js";
 import { INPUTS } from "./input.js";
 import { addTileNodeToGame } from "./utils.js";
+import { TILES } from "./config.js";
 
 export const PLAYER_STEP = 1;
 
@@ -9,7 +10,7 @@ export class Player {
     this.bus = bus;
     this.world = world;
     this.position = this.world.getCenter();
-    this.$node = addTileNodeToGame("player");
+    this.$node = addTileNodeToGame("player", TILES.player);
     this.draw();
     this._subscribe();
   }

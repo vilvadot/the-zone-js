@@ -1,12 +1,13 @@
 import { addTileNodeToGame } from "./utils.js";
 import { EVENTS } from "./Bus.js";
+import { TILES } from "./config.js";
 
 export class Enemy {
   constructor(bus, world) {
     this.bus = bus;
     this.world = world;
     this.position = this.world.getRandomFreeCell();
-    this.$node = addTileNodeToGame("enemy");
+    this.$node = addTileNodeToGame("enemy", TILES.enemy);
     this._subscribe();
   }
 
