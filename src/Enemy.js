@@ -5,7 +5,7 @@ export class Enemy {
   constructor(bus, world) {
     this.bus = bus;
     this.world = world;
-    this.position = this.world.getFreeCell();
+    this.position = this.world.getRandomFreeCell();
     this.$node = addTileNodeToGame("enemy");
     this._subscribe();
   }
@@ -29,22 +29,30 @@ export class Enemy {
     // - Normalizacion normalizar
     // - Adicion enemy+diferencia
 
-    // TODO: Hacer que no ande en diagonal
-
     // TODO: Hacer que evite obstáculos
     const xDifference = playerX - this.x;
     const yDifference = playerY - this.y;
+    const newPosition = { ...this.position}
     if(xDifference < 0 ){
-      this.position.x--
+      newPosition.x--
     }else if(xDifference > 0 ){
-      this.position.x++
+      newPosition.x++
     }
 
     if(yDifference < 0 ){
-      this.position.y--
+      newPosition.y--
     }else if(yDifference > 0 ){
-      this.position.y++
+      newPosition.y++
     }
+
+    console.log(this.world.isBlocked(newPosition))
+
+    if(this.world.isBlocked(newPosition.x, newPosition.y)){
+      return
+    }
+    console.log("not blocked!")
+
+    this.position = {...newPosition}
   }
 
   _subscribe() {

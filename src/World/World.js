@@ -15,13 +15,6 @@ export class World {
     return this.map.height
   }
 
-  getCenter(){
-    return {
-      x: Math.floor(this.width / 2),
-      y: Math.floor(this.height / 2) 
-    }
-  }
-
   generate() {
     this.generator
       .randomize(0.4)
@@ -29,6 +22,23 @@ export class World {
         const tile = isFilled ? TILES.wall : TILES.empty
         this.map.add(x, y, tile)
       })
+  }
+
+  addWall(x,y){
+    this.map.add(x,y, TILES.wall)
+  }
+
+  draw() {
+    this.map.forEach((x, y, value) => {
+      this.display.draw(x, y, value, COLORS[value]);
+    });
+  }
+
+  getCenter(){
+    return {
+      x: Math.floor(this.width / 2),
+      y: Math.floor(this.height / 2) 
+    }
   }
 
   isBlocked(x, y){
@@ -39,15 +49,11 @@ export class World {
     return !isFree
   }
 
-  draw() {
-    this.map.forEach((x, y, value) => {
-      this.display.draw(x, y, value, COLORS[value]);
-    });
-  }
-
-  getFreeCell(){
+  getRandomFreeCell(){
     let tile = this.map.getRandomCellCoordinates()
-    if(this.isBlocked(tile.x, tile.y)) return this.getFreeCell()
+    if(this.isBlocked(tile.x, tile.y)) return this.getRandomFreeCell()
     return tile
   }
+
+  
 };

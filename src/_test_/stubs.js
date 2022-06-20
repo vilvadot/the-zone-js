@@ -19,6 +19,6 @@ export const createWorld = ({
   width = 1,
   height = 1,
   map = new Grid(width, height),
-}) => {
+} = {}) => {
   return new World(new Bus(), displaystub(), map, new GeneratorStub());
 };

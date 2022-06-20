@@ -14,31 +14,30 @@ describe("World", () => {
   });
 
   it("knows if a cell is blocked", () => {
-    const map = new Grid(1, 1).add(0, 0, "x");
-    const world = createWorld({ map });
+    const world = createWorld();
+
+    world.addWall(0,0)
 
     expect(world.isBlocked(0, 0)).toBe(true);
   });
 
   it("knows where the world ends", () => {
-    const map = new Grid(1, 1).add(0, 0, "x");
-    const world = createWorld({ map });
+    const world = createWorld({ map: new Grid(1, 1) });
 
     expect(world.isBlocked(3, 3)).toBe(true);
   });
 
   it("knows if a cell is free", () => {
-    const map = new Grid(1, 1).add(0, 0, ".");
-    const world = createWorld({ map });
+    const world = createWorld({ map: new Grid(1, 1) });
 
     expect(world.isBlocked(0, 0)).toBe(false);
   });
 
   it("[recursive] provides free tiles", () => {
-    const map = new Grid(3, 3).add(0, 0, "x")
-    const world = createWorld({ map });
+    const world = createWorld({ map: new Grid(3, 3) });
+    world.addWall(0,0)
 
-    const {x, y} = world.getFreeCell()
+    const {x, y} = world.getRandomFreeCell()
 
     expect(world.isBlocked(x, y)).toBe(false);
   });

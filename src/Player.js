@@ -2,6 +2,8 @@ import { EVENTS } from "./Bus.js";
 import { INPUTS } from "./input.js";
 import { addTileNodeToGame } from "./utils.js";
 
+export const PLAYER_STEP = 1;
+
 export class Player {
   constructor(bus, world) {
     this.bus = bus;
@@ -19,10 +21,10 @@ export class Player {
 
   move(action) {
     const candidate = { ...this.position };
-    if (action === INPUTS.ArrowRight) candidate.x++;
-    if (action === INPUTS.ArrowLeft) candidate.x--;
-    if (action === INPUTS.ArrowUp) candidate.y--;
-    if (action === INPUTS.ArrowDown) candidate.y++;
+    if (action === INPUTS.ArrowRight) candidate.x += PLAYER_STEP;
+    if (action === INPUTS.ArrowLeft) candidate.x -= PLAYER_STEP;
+    if (action === INPUTS.ArrowUp) candidate.y -= PLAYER_STEP;
+    if (action === INPUTS.ArrowDown) candidate.y += PLAYER_STEP;
 
     this._updatePostion(candidate);
 
