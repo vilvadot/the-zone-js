@@ -22,7 +22,7 @@ const asciiSet = {
   enemy: "E"
 }
 
-export const TILES = asciiSet
+export const TILES = emojiSet
 
 export const COLORS = {
   ".": "lightgrey"

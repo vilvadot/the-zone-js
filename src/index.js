@@ -21,7 +21,7 @@ window.onload = () => {
   const world = new World(bus, display, map, worldGenerator)
   const character = new Player(bus, world)
 
-  const actors = [character, new Enemy(bus, world)]
+  const actors = [character, new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world)]
 
   new Game(bus, display, world, actors).init();
 
