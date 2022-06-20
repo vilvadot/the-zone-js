@@ -26,6 +26,7 @@ export class World {
 
   addWall(x,y){
     this.map.add(x,y, TILES.wall)
+    return this
   }
 
   draw() {

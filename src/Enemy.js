@@ -34,6 +34,7 @@ export class Enemy {
     const xDifference = playerX - this.x;
     const yDifference = playerY - this.y;
     const newPosition = { ...this.position}
+
     if(xDifference < 0 ){
       newPosition.x--
     }else if(xDifference > 0 ){
@@ -46,12 +47,13 @@ export class Enemy {
       newPosition.y++
     }
 
-    console.log(this.world.isBlocked(newPosition))
-
     if(this.world.isBlocked(newPosition.x, newPosition.y)){
       return
     }
-    console.log("not blocked!")
+
+    if(newPosition.x === playerX && newPosition.y === playerY){
+      return
+    }
 
     this.position = {...newPosition}
   }

@@ -8,6 +8,10 @@ describe("Enemy", () => {
   const world = createWorld({ height: 3, width: 3 });
   stubGameContainer();
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it("renders a DOM node when created", () => {
     new Enemy(bus, world);
 
@@ -23,19 +27,17 @@ describe("Enemy", () => {
     expect(enemy.y).toBeDefined();
   });
 
-  it("moves right towards player", () => {
+  it("moves towards player", () => {
+    stubAppearAt(0,0)
     const enemy = new Enemy(bus, world);
-    const initialPosition = { x: enemy.x, y: enemy.y };
-    bus.emit(EVENTS.PLAYER_MOVED, { x: enemy.x + 2, y: enemy.y + 2 });
+    bus.emit(EVENTS.PLAYER_MOVED, { x: 3, y: 3 });
 
-    expect(enemy.x).toEqual(initialPosition.x + 1);
-    expect(enemy.y).toEqual(initialPosition.y + 1);
+    expect(enemy.x).toEqual(1);
+    expect(enemy.y).toEqual(1);
   });
 
   it("does not go through walls", () => {
-    World.prototype.getRandomFreeCell = jest
-      .fn()
-      .mockReturnValue({ x: 0, y: 0 });
+    stubAppearAt(0,0)
     const world = createWorld({ height: 1, width: 3 });
     const enemy = new Enemy(bus, world);
     world.addWall(1, 0);
@@ -45,4 +47,22 @@ describe("Enemy", () => {
     expect(enemy.x).toEqual(0);
     expect(enemy.y).toEqual(0);
   });
+
+  it("does not step on player", () => {
+    stubAppearAt(0,0)
+    const world = createWorld({ height: 1, width: 3 });
+    const enemy = new Enemy(bus, world);
+    world.addWall(1, 0);
+
+    bus.emit(EVENTS.PLAYER_MOVED, { x: 1, y: 0 });
+
+    expect(enemy.x).toEqual(0);
+    expect(enemy.y).toEqual(0);
+  });
 });
+
+const stubAppearAt = (x = 0, y = 0) => {
+  return World.prototype.getRandomFreeCell = jest
+      .fn()
+      .mockReturnValue({ x, y });
+}

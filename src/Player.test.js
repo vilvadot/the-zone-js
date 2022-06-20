@@ -61,7 +61,7 @@ describe("Player", () => {
   });
 
   it("cant move through walls", () => {
-    const world = createWorld({ map, width: 2, height: 2 });
+    const world = createWorld({ width: 2, height: 2 });
     world
       .addWall(0, 0, TILES.wall)
       .addWall(0, 1, TILES.wall)
