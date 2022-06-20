@@ -1,26 +1,15 @@
-import { TILES } from "./config.js";
 import { EVENTS } from "./Bus.js";
 import { INPUTS } from "./input.js";
+import { addTileNodeToGame } from "./utils.js";
 
 export class Player {
-  constructor(bus, display, world) {
+  constructor(bus, world) {
     this.bus = bus;
-    this.display = display;
     this.world = world;
     this.position = this.world.getCenter();
-    this.$node = this.create();
+    this.$node = addTileNodeToGame("player");
     this.draw();
     this._subscribe();
-  }
-
-  create() {
-    const $game = document.querySelector("#game");
-    const $player = document.createElement("div");
-    $player.id = "player";
-
-    $game.appendChild($player);
-
-    return $player;
   }
 
   draw() {

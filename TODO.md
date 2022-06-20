@@ -1,6 +1,15 @@
-// Abstract Display
+## Ideas
 
-## IDEAS
+- Use vectors for positions
+- Encapsulate Tile or coordinate (or both?)
+- Encapsulate Display
 
-- Be part of words.vilva. When it is persisted, once you visit a world it is a map genereated with ROTJS
-    - You can hover over tiles to see their name/description. In the future picture etc...
+## TODO
+
+- Enemy:
+    - Don't step on player
+    - Avoid obstacles
+    - Follow player only if player in FOV
+
+## Thoughts
+- I it worth it migrating to Typescript?

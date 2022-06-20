@@ -1,11 +1,11 @@
 import { EVENTS } from "./Bus.js";
 
 export class Game {
-  constructor(bus, display, world, character) {
+  constructor(bus, display, world, actors) {
     this.bus = bus;
     this.display = display;
     this.world = world;
-    this.character = character;
+    this.actors = actors;
     this.world.generate()
   }
 
@@ -23,6 +23,6 @@ export class Game {
   draw() {
     this.display.clear();
     this.world.draw();
-    this.character.draw();
+    this.actors.forEach(actor => actor.draw())
   }
 }

@@ -4,6 +4,7 @@ import { World, Grid } from './World/index.js'
 import { initDisplay } from './Display.js'
 import { Bus, EVENTS } from "./Bus.js";
 import { Player } from "./Player.js";
+import { Enemy } from "./Enemy.js";
 
 import { OPTIONS } from './config.js'
 
@@ -18,9 +19,11 @@ window.onload = () => {
   const worldGenerator = new ROT.Map.Cellular(width - 1, height - 1)
   const map = new Grid(width, height)
   const world = new World(bus, display, map, worldGenerator)
-  const character = new Player(bus, display, world)
+  const character = new Player(bus, world)
 
-  new Game(bus, display, world, character).init();
+  const actors = [character, new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world)]
+
+  new Game(bus, display, world, actors).init();
 
   bus.subscribe(EVENTS.PLAYER_MOVED, () => {
     const $turns = document.querySelector("#turns")

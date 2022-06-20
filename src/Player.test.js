@@ -1,7 +1,7 @@
 import { Player } from "./Player"
 import { Bus, EVENTS } from "./Bus"
-import { createWorld, displaystub, stubGameContainer } from './_test_/stubs'
-import { World, Grid } from "./World"
+import { createWorld, stubGameContainer } from './_test_/stubs'
+import { Grid } from "./World"
 import { TILES } from "./config"
 
 describe('Player', () => {
@@ -12,11 +12,11 @@ describe('Player', () => {
     stubGameContainer()
 
     beforeEach(() => {
-        player = new Player(bus, displaystub(), world)
+        player = new Player(bus, world)
     })
 
     it("renders a DOM node when created", () => {
-        const $player = getPlayerNode()
+        const $player = document.querySelector("#player")
 
         expect($player).toBeTruthy()
     })
@@ -64,7 +64,7 @@ describe('Player', () => {
             .add(0, 1, TILES.wall)
             .add(1, 0, TILES.wall)
         const world = createWorld({ map, width: 2, height: 2 })
-        player = new Player(bus, displaystub(), world)
+        player = new Player(bus, world)
 
         bus.emit(EVENTS.INPUT_PRESSED, "ArrowLeft")
         bus.emit(EVENTS.INPUT_PRESSED, "ArrowTop")
@@ -73,5 +73,3 @@ describe('Player', () => {
         expect(player.y).toEqual(1)
     })
 })
-
-const getPlayerNode = () => document.querySelector("#player")

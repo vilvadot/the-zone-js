@@ -44,4 +44,10 @@ export class World {
       this.display.draw(x, y, value, COLORS[value]);
     });
   }
+
+  getFreeCell(){
+    let tile = this.map.getRandomCellCoordinates()
+    if(this.isBlocked(tile.x, tile.y)) return this.getFreeCell()
+    return tile
+  }
 };
