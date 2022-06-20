@@ -9,14 +9,3 @@ Lightweight Roguelike built using [Rotjs](https://ondras.github.io/rot.js/hp/).
 
 1. Run npm install
 2. Run npm test
-
----
-
-## Ideas 💡
-
-- Use vectors for positions
-- Encapsulate Tile or coordinate (or both?)
-- Encapsulate Display
-
-## Thoughts 🧠
-- I it worth it migrating to Typescript?
