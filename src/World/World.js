@@ -55,6 +55,4 @@ export class World {
     if(this.isBlocked(tile.x, tile.y)) return this.getRandomFreeCell()
     return tile
   }
-
-  
 };

@@ -14,7 +14,7 @@ export class Game {
 
   runMainLoop() {
     this.bus.subscribe(EVENTS.INPUT_PRESSED, () => {
-      InputMovement.run(this.entities);
+      InputMovement.run(this.entities, this.world);
       this.draw();
     });
   }

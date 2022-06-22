@@ -1,26 +1,30 @@
 export class Drawing {
-  static run(entities){
+  static run(entities) {
     for (const { sprite, position } of entities) {
-    if (!sprite || !position) return;
+      if (!sprite || !position) return;
 
-    const $node = sprite.node || addTileNodeToGame(sprite.id, sprite.tile);
-    $node.style.top = position.y * 20;
-    $node.style.left = position.x * 20;
+      const $node = sprite.node || addTileNodeToGame(sprite.id, sprite.tile);
+      $node.style.top = `${canvasCoordinates(position.y)}px`;
+      $node.style.left = `${canvasCoordinates(position.x)}px`;
 
-    sprite.node = $node;
-  }
+      sprite.node = $node;
+    }
   }
 }
 
+export const canvasCoordinates = (value) => {
+  const CELL_SIZE = 20;
+  return value * CELL_SIZE;
+};
 
-export const addTileNodeToGame = (id, character = "") => {
+const addTileNodeToGame = (id, character = "") => {
   const $game = document.querySelector("#game");
-  const $enemy = document.createElement("div");
-  $enemy.className = 'tile';
-  $enemy.innerHTML = character;
-  $enemy.id = id;
+  const $tile = document.createElement("div");
+  $tile.className = "tile";
+  $tile.innerHTML = character;
+  $tile.id = id;
 
-  $game.appendChild($enemy);
+  $game.appendChild($tile);
 
-  return $enemy
+  return $tile;
 };
