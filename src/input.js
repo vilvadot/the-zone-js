@@ -1,4 +1,4 @@
-import { EVENTS } from "./Bus.js";
+import { EVENTS } from "./events.js";
 
 export const INPUTS = {
   ArrowUp: "ArrowUp",

@@ -2,9 +2,8 @@ import { takeControlOfInputs } from "./input.js";
 import { Game } from './Game.js'
 import { World, Grid } from './World/index.js'
 import { initDisplay } from './Display.js'
-import { Bus, EVENTS } from "./Bus.js";
-import { Player } from "./Player.js";
-import { Enemy } from "./Enemy.js";
+import { Bus, EVENTS } from "./events.js";
+import { Enemy, Player } from "./entities/index.js";
 
 import { OPTIONS } from './config.js'
 
@@ -21,9 +20,9 @@ window.onload = () => {
   const world = new World(bus, display, map, worldGenerator)
   const character = new Player(bus, world)
 
-  const actors = [character, new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world), new Enemy(bus, world)]
+  const entities = [character, new Enemy(bus, world)]
 
-  new Game(bus, display, world, actors).init();
+  new Game(bus, display, world, entities).runMainLoop();
 
   bus.subscribe(EVENTS.PLAYER_MOVED, () => {
     const $turns = document.querySelector("#turns")

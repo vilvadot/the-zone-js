@@ -1,28 +1,25 @@
-import { EVENTS } from "./Bus.js";
+import { EVENTS } from "./events.js";
+import { InputMovement, Drawing } from "./systems/index.js";
 
 export class Game {
-  constructor(bus, display, world, actors) {
+  constructor(bus, display, world, entities) {
     this.bus = bus;
     this.display = display;
     this.world = world;
-    this.actors = actors;
-    this.world.generate()
+    this.entities = entities;
+    this.world.generate();
+    this.world.draw();
+    this.draw()
   }
 
   runMainLoop() {
-    this.bus.subscribe(EVENTS.PLAYER_MOVED, () => {
-      this.draw()
-    })
-  }
-
-  init() {
-    this.draw();
-    this.runMainLoop()
+    this.bus.subscribe(EVENTS.INPUT_PRESSED, () => {
+      InputMovement.run(this.entities);
+      this.draw();
+    });
   }
 
   draw() {
-    this.display.clear();
-    this.world.draw();
-    this.actors.forEach(actor => actor.draw())
+    Drawing.run(this.entities);
   }
 }

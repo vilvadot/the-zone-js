@@ -4,8 +4,51 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
-  <link rel="stylesheet" href="styles.css" />
   <script src="index.js" type="module"></script>
+  <style>
+    body {
+      font-family: monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .ui {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+    }
+
+    .tile {
+      width: 20px;
+      height: 20px;
+      /* border: 2px solid green; */
+      position: absolute;
+      transition: all linear 0.1s;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+    }
+
+    #game {
+      position: relative;
+    }
+
+    canvas {
+      position: relative;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
   <div class="container">
     <div id="game"></div>
   </div>

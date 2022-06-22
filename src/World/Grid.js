@@ -1,5 +1,4 @@
 import { TILES } from "../config.js";
-import { randomInteger } from "../utils.js";
 
 export class Grid {
   constructor(columns = 0, rows = 0) {
@@ -43,3 +42,7 @@ const preFillMatrixWithNulls = (rows, columns) => {
   }
   return matrix;
 };
+
+export const randomInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
