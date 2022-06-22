@@ -10,16 +10,18 @@ describe("Drawing system", () => {
     // TODO: How do I test this?
   });
 
-  it("draws an sprite in its position", () => {
+  it("draws a sprite in its position", () => {
     stubWorldDOM();
     const id = "myEntity";
+    const tile = "X";
     const x = 10;
     const y = 10;
-    const centeredEntity = new EntityAt(id, x, y);
+    const centeredEntity = new EntityAt(id, x, y, tile);
 
     Drawing.run([centeredEntity]);
 
     const sprite = document.querySelector(`#${id}`);
+    expect(sprite.innerHTML).toEqual(tile)
     expect(sprite.getAttribute("style")).toEqual(
       `top: ${canvasCoordinates(x)}px; left: ${canvasCoordinates(y)}px;`
     );
@@ -33,9 +35,9 @@ const stubWorldDOM = () => {
 };
 
 class EntityAt {
-  constructor(id, x, y) {
+  constructor(id, x, y, tile) {
     this.position = new Position(x, y);
-    this.sprite = new Sprite(id, "X");
+    this.sprite = new Sprite(id, tile);
   }
 }
 
