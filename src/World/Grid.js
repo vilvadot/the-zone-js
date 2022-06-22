@@ -1,4 +1,4 @@
-import { TILES } from "../config.js";
+import { TILES } from "../tiles.js";
 
 export class Grid {
   constructor(columns = 0, rows = 0) {

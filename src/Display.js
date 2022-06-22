@@ -1,4 +1,12 @@
-import { OPTIONS } from './config.js'
+const OPTIONS = {
+  bg: "white",
+  fg: "dimGrey",
+  fontFamily: "Fira Mono",
+  width: 30,
+  height: 30,
+  fontSize: 20,
+  forceSquareRatio: true,
+};
 
 export const initDisplay = () => {
   const asciiDisplay = new ROT.Display(OPTIONS)
@@ -8,3 +16,4 @@ export const initDisplay = () => {
 
   return asciiDisplay
 }
+

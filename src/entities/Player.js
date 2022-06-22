@@ -1,5 +1,5 @@
-import { Sprite, Position, InputControlled } from "../components.js";
-import { TILES } from "../config.js";
+import { Sprite, Position, InputControlled } from "../components/index.js";
+import { TILES } from "../tiles.js";
 
 export class Player {
   constructor(bus) {

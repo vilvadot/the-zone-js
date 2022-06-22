@@ -1,5 +1,5 @@
-import { Sprite, Position } from "../components.js";
-import { TILES } from "../config.js";
+import { Sprite, Position } from "../components/index.js";
+import { TILES } from "../tiles.js";
 
 export class Enemy {
   constructor(bus) {
