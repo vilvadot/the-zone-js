@@ -1,12 +1,10 @@
 import { INPUTS } from "../input.js";
 
 export class InputMovement {
-  static run(entities, world) {
+  static run(entities, action, world) {
     for (const { inputControlled, position } of entities) {
       if (!inputControlled || !position) continue;
       const PLAYER_STEP = 1;
-
-      const action = inputControlled.lastAction;
 
       const candidate = { x: position.x, y: position.y };
       if (action === INPUTS.ArrowRight) candidate.x += PLAYER_STEP;

@@ -14,8 +14,8 @@ export class Game {
     this.world.draw();
     Spawn.run(this.entities, this.world);
     Drawing.run(this.entities);
-    this.bus.subscribe(EVENTS.INPUT_PRESSED, () => {
-      InputMovement.run(this.entities, this.world);
+    this.bus.subscribe(EVENTS.INPUT_PRESSED, (action) => {
+      InputMovement.run(this.entities, action, this.world);
       FollowTarget.run(this.entities, this.world);
       Drawing.run(this.entities);
     });
