@@ -8,11 +8,12 @@ export class Game {
     this.world = world;
     this.entities = entities;
     this.world.generate();
-    this.world.draw();
-    this.draw()
   }
 
   runMainLoop() {
+    this.world.draw();
+    Spawn.run(this.entities, this.world);
+    this.draw();
     this.bus.subscribe(EVENTS.INPUT_PRESSED, () => {
       InputMovement.run(this.entities, this.world);
       this.draw();

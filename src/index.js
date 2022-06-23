@@ -18,9 +18,8 @@ window.onload = () => {
   const worldGenerator = new ROT.Map.Cellular(width - 1, height - 1)
   const map = new Grid(width, height)
   const world = new World(bus, display, map, worldGenerator)
-  const character = new Player(bus, world)
 
-  const entities = [character, new Enemy(bus, world)]
+  const entities = [new Enemy(), new Player(bus)]
 
   new Game(bus, display, world, entities).runMainLoop();
 
