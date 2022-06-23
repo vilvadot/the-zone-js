@@ -1,5 +1,5 @@
 import { EVENTS } from "./events.js";
-import { InputMovement, Drawing } from "./systems/index.js";
+import { InputMovement, Drawing, Spawn, FollowTarget } from "./systems/index.js";
 
 export class Game {
   constructor(bus, display, world, entities) {
@@ -16,6 +16,7 @@ export class Game {
     this.draw();
     this.bus.subscribe(EVENTS.INPUT_PRESSED, () => {
       InputMovement.run(this.entities, this.world);
+      FollowTarget.run(this.entities);
       this.draw();
     });
   }

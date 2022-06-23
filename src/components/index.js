@@ -30,12 +30,18 @@ export class InputControlled {
   }
 }
 
-export class Spawn{
-  constructor(where = "random"){
-    this.where = where
+export class Spawn {
+  constructor(where = "random") {
+    this.where = where;
   }
 
-  isRandom(){
-    return this.where === 'random';
+  isRandom() {
+    return this.where === "random";
+  }
+}
+
+export class Target {
+  constructor(id) {
+    this.id = id;
   }
 }
