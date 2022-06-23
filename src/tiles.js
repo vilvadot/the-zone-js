@@ -6,14 +6,15 @@ const emoji = {
 }
 
 const ascii = {
-  wall: "+",
+  wall: "◻︎",
   empty : ".",
   player: "@",
   enemy: "E"
 }
 
 export const COLORS = {
-  ".": "lightgrey"
+  ".": "lightgrey",
+  "": "lightgrey",
 };
 
-export const TILES = emoji
+export const TILES = ascii

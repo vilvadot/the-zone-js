@@ -14,6 +14,7 @@ export class InputMovement {
       if (action === INPUTS.ArrowUp) candidate.y -= PLAYER_STEP;
       if (action === INPUTS.ArrowDown) candidate.y += PLAYER_STEP;
 
+      if(entities.some(entity => entity.position.x === candidate.x && entity.position.y === candidate.y)) continue;
       if (world.isBlocked(candidate.x, candidate.y)) continue;
 
       position.x = candidate.x;

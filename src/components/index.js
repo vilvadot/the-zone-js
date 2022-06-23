@@ -1,47 +1,5 @@
-import { EVENTS } from "../events.js";
-
-export class Sprite {
-  constructor(id, tile) {
-    this.id = id;
-    this.tile = tile;
-    this.node = null;
-  }
-}
-
-export class Position {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
-
-export class InputControlled {
-  constructor(bus) {
-    this.lastAction = null;
-    this.bus = bus;
-
-    this._subscribeToInput();
-  }
-
-  _subscribeToInput() {
-    this.bus.subscribe(EVENTS.INPUT_PRESSED, (action) => {
-      this.lastAction = action;
-    });
-  }
-}
-
-export class Spawn {
-  constructor(where = "random") {
-    this.where = where;
-  }
-
-  isRandom() {
-    return this.where === "random";
-  }
-}
-
-export class Target {
-  constructor(id) {
-    this.id = id;
-  }
-}
+export { Target } from "./Target.js";
+export { Spawn } from "./Spawn.js";
+export { Sprite } from "./Sprite.js";
+export { Position } from "./Position.js";
+export { InputControlled } from "./InputControlled.js";

@@ -6,6 +6,7 @@ export class Drawing {
       const $node = sprite.node || addTileNodeToGame(sprite.id, sprite.tile);
       $node.style.top = `${canvasCoordinates(position.y)}px`;
       $node.style.left = `${canvasCoordinates(position.x)}px`;
+      $node.style.color = sprite.color;
 
       sprite.node = $node;
     }

@@ -7,13 +7,6 @@ export class FollowTarget {
       const victimX = victim.position.x;
       const victimY = victim.position.y;
 
-
-      // TODO: Convertir a vectores
-      // - Difencia player-enemy
-      // - Normalizacion normalizar
-      // - Adicion enemy+diferencia
-
-      // TODO: Hacer que evite obstáculos
       const xDifference = victimX - position.x;
       const yDifference = victimY - position.y;
       const candidate = { ...position };
@@ -33,6 +26,9 @@ export class FollowTarget {
       if (candidate.x === victimX && candidate.y === victimY) {
         return;
       }
+
+      if(entities.some(entity => entity.position.x === candidate.x && entity.position.y === candidate.y)) continue;
+      if(world.isBlocked(candidate.x, candidate.y)) continue;
 
       position.x = candidate.x;
       position.y = candidate.y;

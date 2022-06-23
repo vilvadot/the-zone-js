@@ -13,15 +13,11 @@ export class Game {
   runMainLoop() {
     this.world.draw();
     Spawn.run(this.entities, this.world);
-    this.draw();
+    Drawing.run(this.entities);
     this.bus.subscribe(EVENTS.INPUT_PRESSED, () => {
       InputMovement.run(this.entities, this.world);
-      FollowTarget.run(this.entities);
-      this.draw();
+      FollowTarget.run(this.entities, this.world);
+      Drawing.run(this.entities);
     });
-  }
-
-  draw() {
-    Drawing.run(this.entities);
   }
 }
