@@ -18,12 +18,16 @@
       position: absolute;
       bottom: 30px;
       right: 30px;
+      width: 250;
+      padding-top: 0;
+      border: 1px solid black;
+      padding: 20px;
+      text-align:center;
     }
 
     .tile {
       width: 20px;
       height: 20px;
-      /* border: 2px solid green; */
       position: absolute;
       transition: all linear 0.1s;
       z-index: 2;
@@ -53,8 +57,9 @@
     <div id="game"></div>
   </div>
   <div class="ui">
-    <h1 style="text-align: center; margin-top: 80px">
+    <h1 style="text-align: center;">
       Turns: <span id="turns">0</span>
     </h1>
+    <div id="stats"></div>
   </div>
 </body>

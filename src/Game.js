@@ -28,14 +28,15 @@ export class Game {
     this.world.draw();
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
+    UIRendering.run(this.entities, this.turns)
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
+      Death.run(this.entities, this);
       this.turns++
       KeyboardControl.run(this.entities, action);
       Targetting.run(this.entities)
       Combat.run(this.entities);
       FollowTarget.run(this.entities, this.world);
-      Death.run(this.entities, this);
       Movement.run(this.entities, this.world);
       Rendering.run(this.entities);
       UIRendering.run(this.entities, this.turns)
