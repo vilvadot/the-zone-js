@@ -9,7 +9,7 @@ import { OPTIONS } from "./config.js";
 
 const { width, height } = OPTIONS;
 
-const NUMBER_ENEMIES = 2;
+const NUMBER_ENEMIES = 10;
 
 window.onload = () => {
   const bus = new Bus();
@@ -21,17 +21,10 @@ window.onload = () => {
 
   const enemies = [];
   for (let i = 0; i < NUMBER_ENEMIES; i++) {
-    // enemies.push(new Enemy(`enemy-${i}`, `enemy-${i - 1}`));
     enemies.push(new Enemy(`enemy-${i}`, `player`));
   }
 
   const entities = [...enemies, new Player(bus)];
 
   new Game(bus, display, world, entities).runMainLoop();
-
-  bus.subscribe(EVENTS.PLAYER_MOVED, () => {
-    const $turns = document.querySelector("#turns");
-    const value = Number($turns.textContent);
-    $turns.innerHTML = value + 1;
-  });
 };
