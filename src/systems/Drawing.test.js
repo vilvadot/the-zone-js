@@ -2,14 +2,6 @@ import { Drawing, canvasCoordinates } from "./Drawing";
 import { Position, Sprite } from "../components";
 
 describe("Drawing system", () => {
-  it("only affects entities with position and sprite components", () => {
-    const emptyEntity = new EntityWithoutComponents();
-
-    const result = Drawing.run([emptyEntity]);
-
-    // TODO: How do I test this?
-  });
-
   it("draws a sprite in its position", () => {
     stubWorldDOM();
     const id = "myEntity";
@@ -22,9 +14,8 @@ describe("Drawing system", () => {
 
     const sprite = document.querySelector(`#${id}`);
     expect(sprite.innerHTML).toEqual(tile)
-    expect(sprite.getAttribute("style")).toEqual(
-      `top: ${canvasCoordinates(x)}px; left: ${canvasCoordinates(y)}px;`
-    );
+    expect(sprite.getAttribute("style")).toContain(`top: ${canvasCoordinates(x)}px`)
+    expect(sprite.getAttribute("style")).toContain(`left: ${canvasCoordinates(y)}px;`)
   });
 });
 
