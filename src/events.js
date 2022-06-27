@@ -19,6 +19,7 @@ export class Bus {
 }
 
 export const EVENTS = {
+  TURN_PASSED: "TURN_PASSED",
   PLAYER_MOVED: "PLAYER_MOVED",
   INPUT_PRESSED: "INPUT_PRESSED",
 }

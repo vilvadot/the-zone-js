@@ -5,8 +5,9 @@ export class Enemy {
   constructor() {
     this.id = "enemy";
     this.target = "player";
-    this.spawn = 'random'
-    this.sprite = new Sprite(this.id, TILES.enemy, 'green');
+    this.spawn = "random";
+    this.health = 1;
+    this.sprite = new Sprite(this.id, TILES.enemy, "green");
     this.position = new Position(10, 10);
   }
 }

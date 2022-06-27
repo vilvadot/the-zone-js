@@ -11,8 +11,6 @@ const { width, height } = OPTIONS
 
 window.onload = () => {
   const bus = new Bus()
-
-  takeControlOfInputs(bus)
   const display = initDisplay()
 
   const worldGenerator = new ROT.Map.Cellular(width - 1, height - 1)
