@@ -1,6 +1,6 @@
 import { INPUTS } from "../input.js";
 
-export class KeyboardMovement {
+export class KeyboardControl {
   static run(entities, action) {
     for (const { keyboardControlled, position, velocity } of entities) {
       if (!keyboardControlled || !position || !velocity) continue;
