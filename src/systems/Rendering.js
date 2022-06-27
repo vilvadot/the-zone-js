@@ -1,13 +1,14 @@
 export class Rendering {
   static run(entities) {
     for (const { sprite, position } of entities) {
-      if (!sprite || !position) return;
+      if (!sprite || !position) continue;
 
       const $node = sprite.node || addTileNodeToGame(sprite.id);
 
       if ($node.innerHTML !== sprite.tile) $node.innerHTML = sprite.tile
       $node.style.top = `${canvasCoordinates(position.y)}px`;
       $node.style.left = `${canvasCoordinates(position.x)}px`;
+      $node.style.zIndex = sprite.zIndex;
       $node.style.color = sprite.color;
 
       sprite.node = $node;

@@ -1,9 +1,12 @@
 export class Death {
-  static run(entities) {
-    for (const { health, sprite } of entities) {
+  static run(entities, game) {
+    for (const entity of entities) {
+      const { id, health, sprite } = entity;
+      if (!health || !sprite) continue;
+
       if (health <= 0) {
-        sprite.tile = "X";
-        sprite.color = "red";
+        sprite.node.remove()
+        game.kill(entity)
       }
     }
   }

@@ -1,7 +1,8 @@
 const emoji = {
-  wall: "⬛️",
+  wall: "◻︎",
   empty : ".",
-  enemy: "💀",
+  enemy: "😈",
+  corpse: "💀",
   player: "🐸"
 }
 
@@ -9,6 +10,7 @@ const ascii = {
   wall: "◻︎",
   empty : ".",
   player: "@",
+  corpse: "X",
   enemy: "E"
 }
 
@@ -17,4 +19,4 @@ export const COLORS = {
   "": "lightgrey",
 };
 
-export const TILES = ascii
+export const TILES = emoji

@@ -2,7 +2,7 @@ export class Movement {
   static run(entities, world) {
     for (const { position, velocity } of entities) {
       if (!velocity || !position) continue;
-      
+
       const candidate = { ...position };
 
       candidate.x = position.x + velocity.x;
@@ -22,8 +22,7 @@ export class Movement {
 
   static _tileOccupied = (entities, candidate, world) => {
     const isEntityPresent = entities.some(
-      (entity) =>
-        entity.position.x === candidate.x && entity.position.y === candidate.y
+      ({ position, isStatic }) => position.x === candidate.x && position.y === candidate.y && !isStatic
     );
     const isWall = world.isBlocked(candidate.x, candidate.y);
 

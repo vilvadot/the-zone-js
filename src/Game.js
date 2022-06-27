@@ -7,8 +7,11 @@ import {
   Spawn,
   FollowTarget,
   Movement,
+  Targetting,
+  UIRendering
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
+import { Corpse } from '../entities/index.js';
 
 export class Game {
   constructor(bus, display, world, entities) {
@@ -17,6 +20,7 @@ export class Game {
     this.world = world;
     this.entities = entities;
     this.world.generate();
+    this.turns = 0;
     takeControlOfInputs(bus);
   }
 
@@ -26,12 +30,20 @@ export class Game {
     Rendering.run(this.entities);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
+      this.turns++
       KeyboardControl.run(this.entities, action);
+      Targetting.run(this.entities)
       Combat.run(this.entities);
-      Death.run(this.entities);
       FollowTarget.run(this.entities, this.world);
+      Death.run(this.entities, this);
       Movement.run(this.entities, this.world);
       Rendering.run(this.entities);
+      UIRendering.run(this.entities, this.turns)
     });
+  }
+
+  kill(entity){
+    this.entities = this.entities.filter(({id}) => id !== entity.id)
+    this.entities.push(new Corpse(entity))
   }
 }

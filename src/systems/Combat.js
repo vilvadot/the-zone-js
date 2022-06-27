@@ -1,22 +1,20 @@
+import { isInrange } from "../util.js";
+
 export class Combat {
   static run(entities) {
-    for (const { position, target: targetId, damage } of entities) {
-      if (!position || !targetId || !damage)
-        return;
-      const target = entities.find(({ id }) => id === targetId);
+    for (const { id, position, target, damage } of entities) {
+      if (!position || !target || !damage) continue;
 
-      const distanceX = Math.abs(target.position.x - position.x);
-      const distanceY = Math.abs(target.position.y - position.y);
+      const targetEntity = entities.find(({ id }) => id === target.id);
+      if (!targetEntity) continue;
 
-      const horizontallyInRange = distanceX === 0 && distanceY === 1;
-      const verticallyInRange = distanceX === 1 && distanceY === 0;
-      if (horizontallyInRange || verticallyInRange)
-        this._attack(target, damage);
+      if (isInrange(targetEntity.position, position))
+        this._attack(id, targetEntity, damage);
     }
   }
 
-  static _attack(target, damage) {
+  static _attack(id, target, damage) {
     target.health -= damage;
-    console.log(`Attacked ${target.id} for ${damage} points!`);
+    console.log(`⚔️ | ${id} Attacked ${target.id} for ${damage} points!`);
   }
 }
