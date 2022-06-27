@@ -1,37 +1,17 @@
 export class FollowTarget {
-  static run(entities, world) {
-    for (const { target, position } of entities) {
-      if (!target || !position) continue;
+  static run(entities) {
+    for (const { target: targetId, position, velocity } of entities) {
+      if (!targetId || !position || !velocity) continue;
       
-      const victim = entities.find(({ id }) => id === target);
-      const victimX = victim.position.x;
-      const victimY = victim.position.y;
+      const target = entities.find(({ id }) => id === targetId);
 
-      const xDifference = victimX - position.x;
-      const yDifference = victimY - position.y;
-      const candidate = { ...position };
+      const xDifference = target.position.x - position.x;
+      const yDifference = target.position.y - position.y;
 
-      if (xDifference < 0) {
-        candidate.x--;
-      } else if (xDifference > 0) {
-        candidate.x++;
-      }
-
-      if (yDifference < 0) {
-        candidate.y--;
-      } else if (yDifference > 0) {
-        candidate.y++;
-      }
-
-      if (candidate.x === victimX && candidate.y === victimY) {
-        return;
-      }
-
-      if(entities.some(entity => entity.position.x === candidate.x && entity.position.y === candidate.y)) continue;
-      if(world.isBlocked(candidate.x, candidate.y)) continue;
-
-      position.x = candidate.x;
-      position.y = candidate.y;
+      if (xDifference < 0) velocity.x--
+      if (xDifference > 0) velocity.x++
+      if (yDifference < 0) velocity.y--;
+      if (yDifference > 0) velocity.y++;
     }
   }
 }

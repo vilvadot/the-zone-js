@@ -1,4 +1,4 @@
-import { Position, Sprite } from "../components/index.js";
+import { Position, Sprite, Velocity } from "../components/index.js";
 import { TILES } from "../tiles.js";
 
 export class Player {
@@ -9,5 +9,6 @@ export class Player {
     this.health = 1;
     this.sprite = new Sprite(this.id, TILES.player, "blue");
     this.position = new Position(10, 10);
+    this.velocity = new Velocity(0, 0);
   }
 }

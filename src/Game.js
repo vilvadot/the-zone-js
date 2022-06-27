@@ -4,6 +4,7 @@ import {
   Drawing,
   Spawn,
   FollowTarget,
+  Movement
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
 
@@ -23,8 +24,9 @@ export class Game {
     Drawing.run(this.entities);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
-      KeyboardMovement.run(this.entities, action, this.world);
+      KeyboardMovement.run(this.entities, action);
       FollowTarget.run(this.entities, this.world);
+      Movement.run(this.entities, this.world);
       Drawing.run(this.entities);
     });
   }
