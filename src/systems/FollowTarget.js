@@ -3,7 +3,7 @@ export class FollowTarget {
     for (const { target, position } of entities) {
       if (!target || !position) continue;
       
-      const victim = entities.find(({ id }) => id === target.id);
+      const victim = entities.find(({ id }) => id === target);
       const victimX = victim.position.x;
       const victimY = victim.position.y;
 

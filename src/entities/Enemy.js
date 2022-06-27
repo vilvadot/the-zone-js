@@ -1,12 +1,12 @@
-import { Sprite, Position, Spawn, Target } from "../components/index.js";
+import { Sprite, Position } from "../components/index.js";
 import { TILES } from "../tiles.js";
 
 export class Enemy {
-  constructor(id = "enemy", targetId = "player") {
-    this.id = id;
+  constructor() {
+    this.id = "enemy";
+    this.target = "player";
+    this.spawn = 'random'
     this.sprite = new Sprite(this.id, TILES.enemy, 'green');
     this.position = new Position(10, 10);
-    this.spawn = new Spawn("random");
-    this.target = new Target(targetId);
   }
 }

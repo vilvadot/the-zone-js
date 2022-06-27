@@ -5,7 +5,7 @@ export class Spawn {
 
       let coordinates = { x: 0, y: 0 };
 
-      if (spawn.isRandom()) coordinates = world.getRandomFreeCell();
+      if (spawn === 'random') coordinates = world.getRandomFreeCell();
 
       position.x = coordinates.x;
       position.y = coordinates.y;
