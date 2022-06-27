@@ -1,10 +1,12 @@
 import { EVENTS } from "./events.js";
 import {
   KeyboardControl,
-  Drawing,
+  Rendering,
+  Death,
+  Combat,
   Spawn,
   FollowTarget,
-  Movement
+  Movement,
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
 
@@ -21,13 +23,15 @@ export class Game {
   runMainLoop() {
     this.world.draw();
     Spawn.run(this.entities, this.world);
-    Drawing.run(this.entities);
+    Rendering.run(this.entities);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       KeyboardControl.run(this.entities, action);
+      Combat.run(this.entities);
+      Death.run(this.entities);
       FollowTarget.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
-      Drawing.run(this.entities);
+      Rendering.run(this.entities);
     });
   }
 }

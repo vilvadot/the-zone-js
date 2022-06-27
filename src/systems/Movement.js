@@ -2,7 +2,7 @@ export class Movement {
   static run(entities, world) {
     for (const { position, velocity } of entities) {
       if (!velocity || !position) continue;
-
+      
       const candidate = { ...position };
 
       candidate.x = position.x + velocity.x;

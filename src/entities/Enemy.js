@@ -7,6 +7,7 @@ export class Enemy {
     this.target = "player";
     this.spawn = "random";
     this.health = 1;
+    this.damage = 1;
     this.sprite = new Sprite(this.id, TILES.enemy, "green");
     this.position = new Position(10, 10);
     this.velocity = new Velocity(0, 0);

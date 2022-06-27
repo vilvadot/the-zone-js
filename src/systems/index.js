@@ -1,4 +1,6 @@
-export { Drawing } from './Drawing.js'
+export { Rendering } from './Rendering.js'
+export { Death } from './Death.js'
+export { Combat } from './Combat.js'
 export { KeyboardControl } from './KeyboardControl.js'
 export { Spawn } from './Spawn.js'
 export { Movement } from './Movement.js'
