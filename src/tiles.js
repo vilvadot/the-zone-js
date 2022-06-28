@@ -14,9 +14,15 @@ const ascii = {
   enemy: "E"
 }
 
+export const TILES = ascii
+
 export const COLORS = {
-  ".": "lightgrey",
-  "": "lightgrey",
+  [TILES.empty]: "#e06464",
+  [TILES.wall]: "#970000",
+  [TILES.player]: "blue",
+  [TILES.enemy]: "Gold",
+  [TILES.corpse]: "black",
+  'background': "LightCoral",
 };
 
-export const TILES = emoji
+// DarkSlateGrey,Gold,Teal,Black,LightCoral

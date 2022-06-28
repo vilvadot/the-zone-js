@@ -1,6 +1,7 @@
+import { COLORS } from "./tiles.js";
+
 export const OPTIONS = {
-  bg: "white",
-  fg: "dimGrey",
+  bg: COLORS.background,
   fontFamily: "Fira Mono",
   width: 30,
   height: 30,
