@@ -2,10 +2,6 @@ import { Health, Position, Sprite, Target } from "../components";
 import { Combat } from "./Combat";
 
 describe("Combat system", () => {
-    afterEach(() => {
-        jest.clearAllMocks()
-    })
-
   it("an attacker hits a victim in range", () => {
     const attacker = new Attacker(10, new Position(0, 0))
     const victim = new Victim(10, new Position(0, 1))

@@ -12,6 +12,7 @@
     "babel-jest": "^28.1.1"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "setupFiles":[ "./src/tests-setup.js"]
   }
 }

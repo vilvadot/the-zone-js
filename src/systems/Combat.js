@@ -1,4 +1,5 @@
 import { isInrange } from "../util.js";
+import {logger} from '../logger'
 
 export class Combat {
   static run(entities) {
@@ -17,6 +18,6 @@ export class Combat {
 
   static _attack(id, target, damage) {
     target.health.value -= damage;
-    console.log(`⚔️ | ${id} Attacked ${target.id} for ${damage} points!`);
+    logger.log(`⚔️ | ${id} Attacked ${target.id} for ${damage} points!`);
   }
 }
