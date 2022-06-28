@@ -29,7 +29,6 @@ describe("Death system", () => {
 
 class Entity {
   constructor(health) {
-    this.id = "test entity"
     this.sprite = new Sprite()
     this.health = new Health(health)
   }

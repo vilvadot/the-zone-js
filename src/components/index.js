@@ -13,8 +13,8 @@ export class Velocity {
 }
 
 export class Spawn {
-  constructor(where = "random") {
-    this.where = where;
+  constructor(mode = "center") {
+    this.mode = mode;
   }
 }
 
