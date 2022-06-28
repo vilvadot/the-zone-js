@@ -12,7 +12,7 @@ export class Combat {
       if (!targetEntity) continue;
 
       if (isInrange(targetEntity.position, position))
-        this._attack(id, targetEntity, damage);
+        this._attack(id, targetEntity, damage.value);
     }
   }
 
