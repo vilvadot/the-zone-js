@@ -5,7 +5,7 @@ import {
   Death,
   Combat,
   Spawn,
-  FollowTarget,
+  Following,
   Movement,
   Targetting,
 } from "./systems/index.js";
@@ -35,7 +35,7 @@ export class Game {
       KeyboardControl.run(this.entities, action);
       Targetting.run(this.entities);
       Combat.run(this.entities);
-      FollowTarget.run(this.entities, this.world);
+      Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
       Rendering.run(this.entities);
       UIRendering.run(this.turns);
