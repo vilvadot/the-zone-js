@@ -1,10 +1,10 @@
-import { Sprite, Position, Velocity, Target, Health, Spawn, Damage } from "../components/index.js";
+import { Sprite, Position, Velocity, Health, Spawn, Damage, TargetManual } from "../components/index.js";
 import { TILES } from "../tiles.js";
 
 export class Enemy {
-  constructor(id = "enemy", targetId = "player") {
+  constructor(id = "enemy") {
     this.id = id;
-    this.target = new Target('automatic', targetId);
+    this.target = new TargetManual('player');
     this.spawn = new Spawn("random");
     this.health = new Health(1);
     this.damage = new Damage(1);

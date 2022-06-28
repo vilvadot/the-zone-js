@@ -1,4 +1,4 @@
-import { Position, Target, Velocity } from "../components";
+import { Position, TargetManual, Velocity } from "../components";
 import { Following } from "./Following";
 
 describe("Following system", () => {
@@ -7,7 +7,7 @@ describe("Following system", () => {
     const follower = new Entity(
       "enemy",
       new Position(0, 0),
-      new Target("automatic", targetId)
+      new TargetManual(targetId)
     );
     const target = new Entity(targetId, new Position(2, 2));
 
@@ -22,7 +22,7 @@ describe("Following system", () => {
     const follower = new KeyboardControlledEntity(
       "enemy",
       new Position(0, 0),
-      new Target("automatic", targetId)
+      new TargetManual(targetId)
     );
     const target = new Entity(targetId, new Position(2, 2));
 

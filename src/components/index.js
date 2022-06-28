@@ -40,9 +40,14 @@ export class Sprite {
   }
 }
 
-export class Target {
-    constructor(mode = "automatic", id){
+export class TargetClosest {
+    constructor(){
+        this.id = null;
+    }
+}
+
+export class TargetManual{
+  constructor(id){
         this.id = id;
-        this.mode = mode
     }
 }

@@ -1,4 +1,4 @@
-import { Damage, Health, Position, Target } from "../components";
+import { Damage, Health, Position, TargetManual } from "../components";
 import { Combat } from "./Combat";
 
 describe("Combat system", () => {
@@ -33,7 +33,7 @@ describe("Combat system", () => {
 class Victim {
   constructor(health, position) {
     this.id = "victim";
-    this.target = new Target("automatic");
+    this.target = new TargetManual();
     this.health = new Health(health);
     this.damage = new Damage(1);
     this.position = position;
@@ -43,7 +43,7 @@ class Victim {
 class Attacker {
   constructor(health, position) {
     this.id = "attacker";
-    this.target = new Target("automatic", "victim");
+    this.target = new TargetManual("victim");
     this.health = new Health(health);
     this.damage = new Damage(1);
     this.position = position;
