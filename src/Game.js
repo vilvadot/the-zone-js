@@ -8,10 +8,10 @@ import {
   FollowTarget,
   Movement,
   Targetting,
-  UIRendering
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
-import { Corpse } from '../entities/index.js';
+import { UIRendering } from "./ui.js";
+import { Corpse } from "../entities/index.js";
 
 export class Game {
   constructor(bus, display, world, entities) {
@@ -28,23 +28,22 @@ export class Game {
     this.world.draw();
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
-    UIRendering.run(this.entities, this.turns)
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       Death.run(this.entities, this);
-      this.turns++
+      this.turns++;
       KeyboardControl.run(this.entities, action);
-      Targetting.run(this.entities)
+      Targetting.run(this.entities);
       Combat.run(this.entities);
       FollowTarget.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
       Rendering.run(this.entities);
-      UIRendering.run(this.entities, this.turns)
+      UIRendering.run(this.turns);
     });
   }
 
-  kill(entity){
-    this.entities = this.entities.filter(({id}) => id !== entity.id)
-    this.entities.push(new Corpse(entity))
+  kill(entity) {
+    this.entities = this.entities.filter(({ id }) => id !== entity.id);
+    this.entities.push(new Corpse(entity));
   }
 }

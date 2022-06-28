@@ -1,5 +1,5 @@
 import { isInrange } from "../util.js";
-import {logger} from '../logger'
+import {logger} from '../logger.js'
 
 export class Combat {
   static run(entities) {
@@ -7,7 +7,7 @@ export class Combat {
       if (!position || !target || !damage) continue;
 
       const targetEntity = entities.find(({ id, health }) => {
-        return id === target.id && health.value > 0;
+        return id === target.id && health?.value > 0;
       });
       if (!targetEntity) continue;
 
