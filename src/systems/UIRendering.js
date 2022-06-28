@@ -10,7 +10,7 @@ export class UIRendering {
     $ui.appendChild($stats)
 
     entities.forEach((entity) => {
-      const health =  entity.health > 0 ? entity.health : 'dead'
+      const health =  entity.health.value > 0 ? entity.health.value : 'dead'
         const cardId = `${entity.id}-stats`
         const $card = document.querySelector(`#${cardId}`) || document.createElement("div")
         $card.id = cardId;
