@@ -1,7 +1,7 @@
-import { Drawing, canvasCoordinates } from "./Drawing";
+import { Rendering, canvasCoordinates } from "./Rendering";
 import { Position, Sprite } from "../components";
 
-describe("Drawing system", () => {
+describe("Rendering system", () => {
   it("draws a sprite in its position", () => {
     stubWorldDOM();
     const id = "myEntity";
@@ -10,7 +10,7 @@ describe("Drawing system", () => {
     const y = 10;
     const centeredEntity = new EntityAt(id, x, y, tile);
 
-    Drawing.run([centeredEntity]);
+    Rendering.run([centeredEntity]);
 
     const sprite = document.querySelector(`#${id}`);
     expect(sprite.innerHTML).toEqual(tile)
@@ -29,12 +29,5 @@ class EntityAt {
   constructor(id, x, y, tile) {
     this.position = new Position(x, y);
     this.sprite = new Sprite(id, tile);
-  }
-}
-
-class EntityWithoutComponents {
-  constructor() {
-    this.position = null;
-    this.sprite = null;
   }
 }
