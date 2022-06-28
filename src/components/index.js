@@ -18,6 +18,12 @@ export class Spawn {
   }
 }
 
+export class Health {
+  constructor(value = 0) {
+    this.value = value;
+  }
+}
+
 export class Sprite {
   constructor(id, tile, color = "black", zIndex = 2) {
     this.id = id;

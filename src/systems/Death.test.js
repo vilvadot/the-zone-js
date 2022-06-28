@@ -1,4 +1,4 @@
-import { Sprite } from "../components";
+import { Health, Sprite } from "../components";
 import { Death } from "./Death";
 
 describe("Death system", () => {
@@ -31,7 +31,7 @@ class Entity {
   constructor(health) {
     this.id = "test entity"
     this.sprite = new Sprite()
-    this.health = health;
+    this.health = new Health(health)
   }
 }
 
