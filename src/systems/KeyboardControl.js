@@ -2,8 +2,9 @@ import { INPUTS } from "../input.js";
 
 export class KeyboardControl {
   static run(entities, action) {
-    for (const { keyboardControlled, position, velocity } of entities) {
-      if (!keyboardControlled || !position || !velocity) continue;
+    for (const { keyboardControlled, velocity } of entities) {
+      if (!keyboardControlled || !velocity) continue;
+
       const STEP = 1;
 
       if (action.key === INPUTS.ArrowRight) velocity.x += STEP;
