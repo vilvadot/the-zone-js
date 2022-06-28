@@ -10,6 +10,14 @@
       font-family: monospace;
     }
 
+    body,
+    html {
+      width: 100%;
+      overflow: hidden;
+      background: "red";
+      background: lightcoral;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -22,7 +30,7 @@
       padding-top: 0;
       border: 1px solid black;
       padding: 20px;
-      text-align:center;
+      text-align: center;
     }
 
     .tile {
@@ -46,20 +54,19 @@
       z-index: 0;
     }
 
-    .container {
+    #game-container {
+      width: 100%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
     }
   </style>
-  <div class="container">
+  <div id="game-container">
     <div id="game"></div>
   </div>
   <div class="ui">
-    <h1 style="text-align: center;">
-      Turns: <span id="turns">0</span>
-    </h1>
+    <h1 style="text-align: center">Turns: <span id="turns">0</span></h1>
     <div id="stats"></div>
   </div>
 </body>

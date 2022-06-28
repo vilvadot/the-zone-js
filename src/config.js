@@ -1,10 +1,14 @@
 import { COLORS } from "./tiles.js";
 
+const fontSize = 20;
+const width = fontSize * 3;
+const height = fontSize * 2;
+
 export const OPTIONS = {
   bg: COLORS.background,
   fontFamily: "Fira Mono",
-  width: 30,
-  height: 30,
-  fontSize: 20,
+  width,
+  height,
+  fontSize,
   forceSquareRatio: true,
 };

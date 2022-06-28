@@ -24,5 +24,3 @@ export const COLORS = {
   [TILES.corpse]: "black",
   'background': "LightCoral",
 };
-
-// DarkSlateGrey,Gold,Teal,Black,LightCoral
