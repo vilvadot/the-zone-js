@@ -1,4 +1,4 @@
-import { Sprite, Position, Velocity, Target } from "../components/index.js";
+import { Sprite } from "../components/index.js";
 import { TILES } from "../tiles.js";
 
 export class Corpse {

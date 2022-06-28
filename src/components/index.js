@@ -1,5 +1,36 @@
-export { Spawn } from "./Spawn.js";
-export { Sprite } from "./Sprite.js";
-export { Position } from "./Position.js";
-export { Target } from "./Target.js"
-export { Velocity } from "./Velocity.js"
+export class Position {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+export class Velocity {
+  constructor(x = 0, y = 0) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+export class Spawn {
+  constructor(where = "random") {
+    this.where = where;
+  }
+}
+
+export class Sprite {
+  constructor(id, tile, color = "black", zIndex = 2) {
+    this.id = id;
+    this.tile = tile;
+    this.node = null;
+    this.color = color;
+    this.zIndex = zIndex;
+  }
+}
+
+export class Target {
+    constructor(mode = "automatic", id){
+        this.id = id;
+        this.mode = mode
+    }
+}

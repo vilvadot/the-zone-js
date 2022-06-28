@@ -4,7 +4,7 @@ export class Targetting {
   static run(entities) {
     for (const { id, position, target } of entities) {
       if (!position || !target) continue;
-      if (target.targetting != "manual") continue;
+      if (target.mode != "manual") continue;
 
       const enemyInContact = entities.find((entity) => {
         return isInrange(entity.position, position);
