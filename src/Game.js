@@ -12,6 +12,7 @@ import {
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui.js";
+import { initializeDebugSystem } from "./debug.js";
 import { Corpse } from "../entities/index.js";
 
 export class Game {
@@ -23,6 +24,7 @@ export class Game {
     this.world.generate();
     this.turns = 0;
     takeControlOfInputs(bus);
+    initializeDebugSystem(this.entities)
   }
 
   runMainLoop() {

@@ -26,6 +26,7 @@ const addTileNodeToGame = (id) => {
   const $tile = document.createElement("div");
   $tile.className = "tile";
   $tile.id = id;
+  $tile.title = id;
 
   $game.appendChild($tile);
 
