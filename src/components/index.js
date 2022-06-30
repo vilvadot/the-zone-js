@@ -40,12 +40,6 @@ export class Sprite {
   }
 }
 
-export class TargetClosest {
-    constructor(){
-        this.id = null;
-    }
-}
-
 export class TargetManual{
   constructor(id){
         this.id = id;
@@ -54,13 +48,14 @@ export class TargetManual{
 
 
 export class Collision {
-  constructor() {
+  constructor(areas) {
     this.areas = {
       west: [],
       east: [],
       south: [],
       north: [],
       overlap: [],
+      ...areas
     };
   }
 }

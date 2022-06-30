@@ -36,7 +36,7 @@ export class Game {
       Death.run(this.entities, this);
       this.turns++;
       KeyboardControl.run(this.entities, action);
-      Targetting.run(this.entities);
+      Targetting.run(this.entities, action);
       Combat.run(this.entities);
       Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);

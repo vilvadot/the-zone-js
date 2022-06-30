@@ -1,12 +1,11 @@
-import { Position, Sprite, Velocity, Health, Damage, TargetClosest } from "../components/index.js";
-import { Collision } from "../systems/Collision.js";
+import { Position, Sprite, Velocity, Health, Damage, TargetManual, Collision } from "../components/index.js";
 import { TILES, COLORS } from "../tiles.js";
 
 export class Player {
   constructor() {
     this.id = "player";
     this.spawn = "origin";
-    this.target = new TargetClosest()
+    this.target = new TargetManual()
     this.health = new Health(30);
     this.damage = new Damage(1);
     this.sprite = new Sprite(this.id, TILES.player, COLORS[TILES.player]);

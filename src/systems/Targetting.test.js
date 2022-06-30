@@ -1,48 +1,59 @@
-import { Position, TargetManual, TargetClosest } from "../components";
+import { Position, TargetManual, Collision } from "../components";
 import { Targetting } from "./Targetting";
+import { INPUTS } from "../input";
 
 describe("Targetting system", () => {
   it("respects hardcoded targets", () => {
     const targetId = 'victim'
-    const attacker = new Attacker(new TargetManual('victim'), new Position(0,0));
+    const attacker = new Attacker();
 
     Targetting.run([attacker]);
 
     expect(attacker.target.id).toEqual(targetId);
   });
 
-  it("finds closes target in range", () => {
-    const targetId = 'victim'
-    const victim = new Victim(new Position(0, 1))
-    const attacker = new Attacker(new TargetClosest(), new Position(0,0));
+  it("targets entity to the east if ArrowRight is pressed", () => {
+    const attacker = new Attacker({ east: ['east-id']});
 
-    Targetting.run([attacker, victim]);
+    Targetting.run([attacker], aKeyPress(INPUTS.ArrowRight));
 
-    expect(attacker.target.id).toEqual(targetId);
+    expect(attacker.target.id).toEqual('east-id');
   });
 
-  it("ignores targets out of range", () => {
-    const targetId = 'victim'
-    const victim = new Victim(new Position(0, 2))
-    const attacker = new Attacker(new TargetClosest(), new Position(0,0));
+  it("targets entity to the west if ArrowLeft is pressed", () => {
+    const attacker = new Attacker({ west: ['west-id']});
 
-    Targetting.run([attacker, victim]);
+    Targetting.run([attacker], aKeyPress(INPUTS.ArrowLeft));
 
-    expect(attacker.target.id).toEqual(null);
+    expect(attacker.target.id).toEqual('west-id');
+  });
+
+  it("targets entity to the north if ArrowUp is pressed", () => {
+    const attacker = new Attacker({ north: ['north-id']});
+
+    Targetting.run([attacker], aKeyPress(INPUTS.ArrowUp));
+
+    expect(attacker.target.id).toEqual('north-id');
+  });
+
+  it("targets entity to the south if ArrowUp is pressed", () => {
+    const attacker = new Attacker({ south: ['south-id']});
+
+    Targetting.run([attacker], aKeyPress(INPUTS.ArrowDown));
+
+    expect(attacker.target.id).toEqual('south-id');
   });
 });
 
-class Victim {
-  constructor(position) {
-    this.id = "victim";
-    this.position = position;
+class Attacker {
+  constructor(collisionAreas) {
+    this.id = "attacker";
+    this.target = new TargetManual('victim')
+    this.position = new Position(0,0);
+    this.collision = new Collision(collisionAreas)
   }
 }
 
-class Attacker {
-  constructor(target, position) {
-    this.id = "attacker";
-    this.target = target;
-    this.position = position;
-  }
+const aKeyPress = (key) => {
+  return {key}
 }
