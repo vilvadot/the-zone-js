@@ -1,4 +1,5 @@
 import { Position, Sprite, Velocity, Health, Damage, TargetClosest } from "../components/index.js";
+import { Collision } from "../systems/Collision.js";
 import { TILES, COLORS } from "../tiles.js";
 
 export class Player {
@@ -11,6 +12,7 @@ export class Player {
     this.sprite = new Sprite(this.id, TILES.player, COLORS[TILES.player]);
     this.position = new Position(10, 10);
     this.velocity = new Velocity(0, 0);
+    this.collision = new Collision();
     this.keyboardControlled = true;
   }
 }

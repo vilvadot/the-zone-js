@@ -51,3 +51,16 @@ export class TargetManual{
         this.id = id;
     }
 }
+
+
+export class Collision {
+  constructor() {
+    this.areas = {
+      west: [],
+      east: [],
+      south: [],
+      north: [],
+      overlap: [],
+    };
+  }
+}

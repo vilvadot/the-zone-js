@@ -7,6 +7,7 @@ import {
   Spawn,
   Following,
   Movement,
+  Collision,
   Targetting,
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
@@ -37,6 +38,7 @@ export class Game {
       Combat.run(this.entities);
       Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
+      Collision.run(this.entities);
       Rendering.run(this.entities);
       UIRendering.run(this.turns);
     });
