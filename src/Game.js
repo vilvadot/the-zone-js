@@ -11,7 +11,7 @@ import {
   Targetting,
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
-import { UIRendering } from "./ui.js";
+import { UIRendering } from "./ui/system.js";
 import { initializeDebugSystem } from "./debug.js";
 import { Corpse } from "../entities/index.js";
 
@@ -31,6 +31,7 @@ export class Game {
     this.world.draw();
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
+    UIRendering.run(this.entities, this.turns);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       Death.run(this.entities, this);
@@ -42,7 +43,7 @@ export class Game {
       Movement.run(this.entities, this.world);
       Collision.run(this.entities);
       Rendering.run(this.entities);
-      UIRendering.run(this.turns);
+      UIRendering.run(this.entities, this.turns);
     });
   }
 

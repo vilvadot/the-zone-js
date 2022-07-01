@@ -1,9 +1,11 @@
 import { Position, Sprite, Velocity, Health, Damage, TargetManual, Collision } from "../components/index.js";
 import { TILES, COLORS } from "../tiles.js";
 
+export const PLAYER_ID = 'player'
+
 export class Player {
   constructor() {
-    this.id = "player";
+    this.id = PLAYER_ID;
     this.spawn = "origin";
     this.target = new TargetManual()
     this.health = new Health(30);

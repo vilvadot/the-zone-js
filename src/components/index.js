@@ -21,6 +21,7 @@ export class Spawn {
 export class Health {
   constructor(value = 0) {
     this.value = value;
+    this.maxValue = value;
   }
 }
 
