@@ -34,14 +34,14 @@ export class Game {
     UIRendering.run(this.entities, this.turns);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
-      Death.run(this.entities, this);
       this.turns++;
       KeyboardControl.run(this.entities, action);
       Targetting.run(this.entities, action);
-      Combat.run(this.entities);
       Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
       Collision.run(this.entities);
+      Combat.run(this.entities);
+      Death.run(this.entities, this);
       Rendering.run(this.entities);
       UIRendering.run(this.entities, this.turns);
     });

@@ -8,3 +8,19 @@ export const isInrange = (positionA, positionB) => {
   
   return false
 };
+
+export const addNodeToGame = ($node) => {
+  const $game = document.querySelector("#game");
+
+  $game.appendChild($node);
+}
+
+export const positionNodeInCanvas = ($node, x, y) => {
+  $node.style.top = `${canvasCoordinates(y)}px`;
+  $node.style.left = `${canvasCoordinates(x)}px`;
+}
+
+const canvasCoordinates = (value) => {
+  const CELL_SIZE = 20;
+  return value * CELL_SIZE;
+};

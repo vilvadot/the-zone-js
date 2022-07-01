@@ -1,3 +1,5 @@
+import { addNodeToGame, positionNodeInCanvas } from "../util.js";
+
 export class Rendering {
   static run(entities) {
     for (const { sprite, position } of entities) {
@@ -5,9 +7,8 @@ export class Rendering {
 
       const $node = sprite.node || addTileNodeToGame(sprite.id);
 
-      if ($node.innerHTML !== sprite.tile) $node.innerHTML = sprite.tile
-      $node.style.top = `${canvasCoordinates(position.y)}px`;
-      $node.style.left = `${canvasCoordinates(position.x)}px`;
+      if ($node.innerHTML !== sprite.tile) $node.innerHTML = sprite.tile;
+      positionNodeInCanvas($node, position.x, position.y)
       $node.style.zIndex = sprite.zIndex;
       $node.style.color = sprite.color;
 
@@ -16,19 +17,13 @@ export class Rendering {
   }
 }
 
-export const canvasCoordinates = (value) => {
-  const CELL_SIZE = 20;
-  return value * CELL_SIZE;
-};
-
-const addTileNodeToGame = (id) => {
-  const $game = document.querySelector("#game");
+export const addTileNodeToGame = (id) => {
   const $tile = document.createElement("div");
-  $tile.className = "tile";
+  $tile.className = "tile animate--movement";
   $tile.id = id;
   $tile.title = id;
 
-  $game.appendChild($tile);
+  addNodeToGame($tile);
 
   return $tile;
 };
