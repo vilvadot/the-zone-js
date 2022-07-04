@@ -13,6 +13,11 @@ export class Velocity {
 }
 
 export class Spawn {
+
+  static random(){
+    return new Spawn("random")
+  }
+
   constructor(mode = "center") {
     this.mode = mode;
   }

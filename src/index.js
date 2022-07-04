@@ -1,15 +1,14 @@
-import { takeControlOfInputs } from "./input.js";
 import { Game } from "./Game.js";
 import { World, Grid } from "./World/index.js";
 import { initDisplay } from "./Display.js";
-import { Bus, EVENTS } from "./events.js";
-import { Enemy, Player } from "./entities/index.js";
+import { Bus } from "./events.js";
+import { Enemy, Player, Anomaly } from "./entities/index.js";
 
 import { OPTIONS } from "./config.js";
 
 const { width, height } = OPTIONS;
 
-const NUMBER_ENEMIES = 1;
+const NUMBER_ENEMIES = 3;
 
 window.onload = () => {
   const bus = new Bus();
@@ -24,7 +23,7 @@ window.onload = () => {
     enemies.push(new Enemy(`enemy-${i}`, `player`));
   }
 
-  const entities = [...enemies, new Player(bus)];
+  const entities = [...enemies, new Player(), new Anomaly()];
 
   new Game(bus, display, world, entities).runMainLoop();
 };

@@ -5,7 +5,7 @@ export class Enemy {
   constructor(id = "enemy") {
     this.id = id;
     this.target = new TargetManual('player');
-    this.spawn = new Spawn("random");
+    this.spawn = Spawn.random()
     this.health = new Health(2);
     this.damage = new Damage(1);
     this.sprite = new Sprite(this.id, TILES.enemy, COLORS[TILES.enemy]);

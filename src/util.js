@@ -20,7 +20,7 @@ export const positionNodeInCanvas = ($node, x, y) => {
   $node.style.left = `${canvasCoordinates(x)}px`;
 }
 
-const canvasCoordinates = (value) => {
+export const canvasCoordinates = (value) => {
   const CELL_SIZE = 20;
   return value * CELL_SIZE;
 };

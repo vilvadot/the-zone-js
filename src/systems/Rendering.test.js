@@ -1,5 +1,6 @@
-import { Rendering, canvasCoordinates } from "./Rendering";
+import { Rendering } from "./Rendering";
 import { Position, Sprite } from "../components";
+import { canvasCoordinates } from "../util";
 
 describe("Rendering system", () => {
   it("draws a sprite in its position", () => {

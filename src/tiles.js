@@ -9,6 +9,7 @@ const emoji = {
 const ascii = {
   wall: "◻︎",
   empty : ".",
+  anomaly : "⚛︎",
   player: "@",
   corpse: "X",
   enemy: "E"
@@ -22,5 +23,6 @@ export const COLORS = {
   [TILES.player]: "blue",
   [TILES.enemy]: "Gold",
   [TILES.corpse]: "black",
+  [TILES.anomaly]: "purple",
   'background': "LightCoral",
 };
