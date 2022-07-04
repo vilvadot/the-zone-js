@@ -7,7 +7,7 @@ export class Anomaly {
     this.sprite = new Sprite(this.id, TILES.anomaly, COLORS[TILES.anomaly]);
     this.position = new Position()
     this.spawn = Spawn.random()
-    this.isStatic = true
     this.pickable = new Pickable()
+    this.isStatic = true // TODO: Change for collision (go trough)
   }
 }
