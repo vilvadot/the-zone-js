@@ -1,4 +1,4 @@
-import { Position, Spawn, Sprite } from "../components/index.js";
+import { Pickable, Position, Spawn, Sprite } from "../components/index.js";
 import { TILES, COLORS } from "../tiles.js";
 
 export class Anomaly {
@@ -8,7 +8,6 @@ export class Anomaly {
     this.position = new Position()
     this.spawn = Spawn.random()
     this.isStatic = true
-    this.isPickable = true
-    this.isPicked = false
+    this.pickable = new Pickable()
   }
 }

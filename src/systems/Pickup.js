@@ -12,12 +12,12 @@ export class Pickup {
       // CONCERN: I'm searching in the whole list of entities. This does not look good
       const firstPickable = entities.find((entity) => {
         const isOnFloor = items.includes(entity.id)
-        return isOnFloor && entity.isPickable && !entity.isPicked;
+        return isOnFloor && entity.pickable && !entity.pickable.isPicked;
       })
      
       if(!firstPickable) continue;
 
-      firstPickable.isPicked = true;
+      firstPickable.pickable.isPicked = true;
       firstPickable.sprite.isHidden = true;
       inventory.add(firstPickable.id);
       logger.log(`🤛 ${id} picked up ${firstPickable.id}`)

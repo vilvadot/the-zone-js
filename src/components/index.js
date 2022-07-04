@@ -76,3 +76,9 @@ export class Inventory {
         this.content.push(item)
     }
 }
+
+export class Pickable {
+  constructor(){
+    this.isPicked = false;
+  }
+}
