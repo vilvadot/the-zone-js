@@ -9,7 +9,7 @@ const emoji = {
 const ascii = {
   wall: "◻︎",
   empty : ".",
-  anomaly : "⚛︎",
+  anomaly : "☸︎",
   player: "@",
   corpse: "X",
   enemy: "E"

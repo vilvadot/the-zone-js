@@ -8,5 +8,7 @@ export class Anomaly {
     this.position = new Position()
     this.spawn = Spawn.random()
     this.isStatic = true
+    this.isPickable = true
+    this.isPicked = false
   }
 }

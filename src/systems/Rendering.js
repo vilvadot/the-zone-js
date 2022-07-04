@@ -6,11 +6,16 @@ export class Rendering {
       if (!sprite || !position) continue;
 
       const $node = sprite.node || addTileNodeToGame(sprite.id);
+      
+      if(sprite.isHidden){
+        $node.style.display = 'none';
+      }
 
       if ($node.innerHTML !== sprite.tile) $node.innerHTML = sprite.tile;
       positionNodeInCanvas($node, position.x, position.y)
       $node.style.zIndex = sprite.zIndex;
       $node.style.color = sprite.color;
+
 
       sprite.node = $node;
     }

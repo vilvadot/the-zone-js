@@ -37,12 +37,13 @@ export class Damage {
 }
 
 export class Sprite {
-  constructor(id, tile, color = "black", zIndex = 2) {
+  constructor(id, tile, color = "black", zIndex = 2, isHidden = false) {
     this.id = id;
     this.tile = tile;
     this.node = null;
     this.color = color;
     this.zIndex = zIndex;
+    this.isHidden = isHidden;
   }
 }
 
@@ -64,4 +65,14 @@ export class Collision {
       ...areas
     };
   }
+}
+
+export class Inventory {
+    constructor(){
+        this.content = []
+    }
+
+    add(item){
+        this.content.push(item)
+    }
 }

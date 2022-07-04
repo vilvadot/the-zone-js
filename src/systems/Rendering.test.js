@@ -3,6 +3,10 @@ import { Position, Sprite } from "../components";
 import { canvasCoordinates } from "../util";
 
 describe("Rendering system", () => {
+  let sprite;
+  afterEach(() => {
+    sprite.remove();
+  });
   it("draws a sprite in its position", () => {
     stubWorldDOM();
     const id = "myEntity";
@@ -13,10 +17,26 @@ describe("Rendering system", () => {
 
     Rendering.run([centeredEntity]);
 
-    const sprite = document.querySelector(`#${id}`);
-    expect(sprite.innerHTML).toEqual(tile)
-    expect(sprite.getAttribute("style")).toContain(`top: ${canvasCoordinates(x)}px`)
-    expect(sprite.getAttribute("style")).toContain(`left: ${canvasCoordinates(y)}px;`)
+    sprite = document.querySelector(`#${id}`);
+    expect(sprite.innerHTML).toEqual(tile);
+    expect(sprite.getAttribute("style")).toContain(
+      `top: ${canvasCoordinates(x)}px`
+    );
+    expect(sprite.getAttribute("style")).toContain(
+      `left: ${canvasCoordinates(y)}px;`
+    );
+  });
+
+  it("hides hidden sprites", () => {
+    stubWorldDOM();
+    const id = "myEntity";
+    const entity = new EntityAt(id, 10, 10, "X");
+    entity.sprite.isHidden = true;
+
+    Rendering.run([entity]);
+
+    sprite = document.querySelector(`#${id}`);
+    expect(sprite.getAttribute("style")).toContain(`display: none`);
   });
 });
 

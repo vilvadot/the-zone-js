@@ -8,6 +8,7 @@ import {
   Following,
   Movement,
   Collision,
+  Pickup,
   Targetting,
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
@@ -15,6 +16,7 @@ import { UIRendering } from "./ui/system.js";
 import { initializeDebugSystem } from "./debug.js";
 import { Corpse } from "../entities/index.js";
 
+// CONCERN: Not tested
 export class Game {
   constructor(bus, display, world, entities) {
     this.bus = bus;
@@ -36,6 +38,7 @@ export class Game {
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       this.turns++;
       KeyboardControl.run(this.entities, action);
+      Pickup.run(this.entities, action);
       Targetting.run(this.entities, action);
       Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
