@@ -24,3 +24,25 @@ export const canvasCoordinates = (value) => {
   const CELL_SIZE = 20;
   return value * CELL_SIZE;
 };
+
+export const findOrCreateNode = (selector, parentSelector) => {
+  const parent = document.querySelector(parentSelector);
+  let node = document.querySelector(selector);
+
+  if (!node) {
+    node = document.createElement("div");
+    if(selector[0] === "#") node.id = selector.slice(1)
+    if(selector[0] === ".") node.className = selector.slice(1)
+    if(parent) parent.appendChild(node);
+  }
+  return node;
+};
+
+export const createNode = ({ type, className, content, style }) => {
+  const node = document.createElement(type);
+  if (className) node.className = className;
+  if (content) node.innerHTML = content;
+  if (style) node.style = style;
+
+  return node;
+};

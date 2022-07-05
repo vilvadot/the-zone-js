@@ -1,0 +1,29 @@
+body {
+  font-family: monospace;
+}
+
+body,
+html {
+  width: 100%;
+  overflow: hidden;
+  background: "red";
+  background: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+#game {
+  position: relative;
+}
+
+canvas {
+  position: relative;
+  z-index: 0;
+}

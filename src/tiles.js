@@ -22,7 +22,7 @@ export const COLORS = {
   [TILES.wall]: "#970000",
   [TILES.player]: "YellowGreen",
   [TILES.enemy]: "Gold",
-  [TILES.corpse]: "black",
+  [TILES.corpse]: "Silver",
   [TILES.anomaly]: "MediumPurple",
   "health": "YellowGreen",
   'background': "LightCoral",

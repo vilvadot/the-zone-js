@@ -1,0 +1,19 @@
+.tile {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.tile:hover {
+  color: lightseagreen !important;
+  cursor: pointer;
+}
+
+.animate--movement {
+  transition: top 0.1s, right 0.1s, left 0.1s, bottom 0.1s;
+}
