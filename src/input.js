@@ -1,5 +1,4 @@
 import { EVENTS } from "./events.js";
-import { logger } from "./logger.js";
 
 const ACTIONS = {
   ArrowUp: "ArrowUp",
@@ -20,7 +19,6 @@ export const isActionKey = (code) => ACTIONS[code];
 
 export const takeControlOfInputs = (bus) => {
   window.addEventListener("keydown", (event) => {
-    logger.debug(`Key pressed: ${event.code}`);
     if (isInputKey(event.code)) {
       event.preventDefault();
       bus.emit(EVENTS.INPUT_PRESSED, { key: INPUTS[event.code] });

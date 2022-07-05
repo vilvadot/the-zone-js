@@ -15,7 +15,7 @@ import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui/system.js";
 import { initializeDebugSystem } from "./debug.js";
 import { Corpse } from "../entities/index.js";
-import { logger } from "./logger.js";
+import { Logger } from "./Logger.js";
 
 // CONCERN: Not tested
 export class Game {
@@ -25,30 +25,32 @@ export class Game {
     this.world = world;
     this.entities = entities;
     this.world.generate();
-    this.turns = 0;
+    this.turn = 0;
     takeControlOfInputs(bus);
     initializeDebugSystem(this.entities)
+    this.ui = new UIRendering(bus)
+    this.logger = new Logger(bus)
   }
 
   runMainLoop() {
     this.world.draw();
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
-    UIRendering.run(this.entities, this.turns);
+    this.ui.update(this.entities, this.turn)
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
-      this.turns++;
+      this.turn++;
       KeyboardControl.run(this.entities, action);
-      Pickup.run(this.entities, action);
+      Pickup.run(this.entities, action, this.logger);
       Targetting.run(this.entities, action);
       Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
       Collision.run(this.entities);
-      Combat.run(this.entities);
+      Combat.run(this.entities, this.logger);
       Death.run(this.entities, this);
       Rendering.run(this.entities);
-      UIRendering.run(this.entities, this.turns);
-      logger.debug(`🎲 Turn passed: ${this.turns}`)
+      this.ui.update(this.entities, this.turn);
+      this.logger.debug(`🎲 Turn passed: ${this.turn}`)
     });
   }
 

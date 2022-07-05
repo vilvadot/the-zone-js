@@ -8,7 +8,7 @@ import { OPTIONS } from "./config.js";
 
 const { width, height } = OPTIONS;
 
-const NUMBER_ENEMIES = 3;
+const NUMBER_ENEMIES = 10;
 
 window.onload = () => {
   const bus = new Bus();

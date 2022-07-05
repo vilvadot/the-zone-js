@@ -1,11 +1,38 @@
 import { PLAYER_ID } from "../entities/Player.js";
 import { positionNodeInCanvas } from "../util.js";
+import { EVENTS } from "../events.js";
+import { COLORS } from "../tiles.js";
 
 export class UIRendering {
-  static run(entities, turns) {
+  constructor(bus, entities){
+    this.bus = bus;
+    this.turn = 0;
+    this._asyncSubscriptions()
+  }
+
+  _asyncSubscriptions(){
+    this.bus.subscribe(EVENTS.LOG_EMITTED, ({ message, color }) => {
+      const $logs = document.querySelector("#ui-log")
+      
+      const $message = createNode({
+        type: 'span',
+        className: "ui_log-message",
+        style: `color: ${color}`,
+        content: message
+      })
+
+      const $line = createNode({type: 'p'})
+      $line.appendChild($message)
+
+      $logs.prepend($line)
+    })
+  }
+
+  update(entities, turn) {
+    this.turn = turn;
     const player = entities.find(({ id }) => id === PLAYER_ID);
 
-    renderTurns(turns);
+    renderTurns(turn);
     renderHealth(player);
     entities.forEach((entity) => {
       renderHealthBar(entity);
@@ -54,7 +81,7 @@ const renderHealthBar = (entity) => {
   );
   $remaingHealthBar.style = `
     width: ${width * (value/ maxValue)}px;
-    background: green;
+    background: ${COLORS.health};
     height: 100%;
   `;
 
@@ -72,3 +99,13 @@ const findOrCreateNode = (id, parentSelector) => {
   }
   return node;
 };
+
+
+const createNode = ({ type, className, content, style }) => {
+  const node = document.createElement(type)
+  if(className) node.className = className
+  if(content) node.innerHTML = content
+  if(style) node.style = style
+
+  return node
+}

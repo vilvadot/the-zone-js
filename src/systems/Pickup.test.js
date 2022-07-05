@@ -1,5 +1,6 @@
 import { Pickup } from "./Pickup";
 import { Collision, Inventory, Pickable, Sprite } from "../components";
+import { Logger } from "../Logger.stub";
 import { INPUTS } from "../input";
 
 describe("Pickup system", () => {
@@ -9,7 +10,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [itemId] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action);
+    Pickup.run([picker, item], action, Logger());
 
     expect(picker.inventory.content).toContain(itemId);
     expect(item.pickable.isPicked).toBe(true);
@@ -22,7 +23,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action);
+    Pickup.run([picker, item], action, Logger());
 
     expect(picker.inventory.content).not.toContain(itemId);
     expect(item.pickable.isPicked).toBe(false);
@@ -34,7 +35,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [itemId] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action);
+    Pickup.run([picker, item], action, Logger());
 
     expect(picker.inventory.content).not.toContain(itemId);
   });
@@ -46,7 +47,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [itemId] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action);
+    Pickup.run([picker, item], action, Logger());
 
     expect(picker.inventory.content).not.toContain(itemId);
   });

@@ -1,11 +1,15 @@
-class Logger {
-    log(line){
-        console.log(line)
+import { EVENTS } from "./events.js";
+
+export class Logger {
+    constructor(bus){
+        this.bus = bus;
     }
 
-    debug(line){
-        console.debug(line)
+    log(message, color){
+        this.bus.emit(EVENTS.LOG_EMITTED, { level: "log", message, color })
+    }
+
+    debug(message){
+        console.debug(message)
     }
 }
-
-export const logger = new Logger()

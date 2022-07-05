@@ -1,9 +1,8 @@
 import { INPUTS } from "../input.js";
-import { logger } from "../logger.js";
 
 // CONCERN: maybe this is responsibility of KeyboardControl to issue commands like pickup and move?
 export class Pickup {
-  static run(entities, action) {
+  static run(entities, action, logger) {
     for (const { id, collision, inventory } of entities) {
       if (!collision || !inventory) continue;
       if (action.key != INPUTS.KeyE) return;
@@ -20,7 +19,7 @@ export class Pickup {
       firstPickable.pickable.isPicked = true;
       firstPickable.sprite.isHidden = true;
       inventory.add(firstPickable.id);
-      logger.log(`🤛 ${id} picked up ${firstPickable.id}`)
+      logger.log(`picked up "${firstPickable.id}"`, firstPickable.sprite.color)
     }
   }
 }
