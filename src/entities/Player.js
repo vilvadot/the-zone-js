@@ -1,5 +1,6 @@
 import { Position, Sprite, Velocity, Health, Damage, TargetManual, Collision, Inventory } from "../components/index.js";
-import { TILES, COLORS } from "../tiles.js";
+import { TILES } from "../tiles.js";
+import { COLORS } from "../colors.js";
 
 export const PLAYER_ID = 'player'
 

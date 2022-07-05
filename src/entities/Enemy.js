@@ -1,5 +1,6 @@
 import { Sprite, Position, Velocity, Health, Spawn, Damage, TargetManual } from "../components/index.js";
-import { TILES, COLORS } from "../tiles.js";
+import { TILES } from "../tiles.js";
+import { COLORS } from "../colors.js";
 
 export class Enemy {
   constructor(id = "enemy") {

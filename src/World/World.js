@@ -1,4 +1,5 @@
-import { TILES, COLORS } from '../tiles.js'
+import { COLORS } from '../colors.js'
+import { TILES } from '../tiles.js'
 
 export class World {
   constructor(bus, display, map, generator) {

@@ -17,13 +17,4 @@ const ascii = {
 
 export const TILES = ascii
 
-export const COLORS = {
-  [TILES.empty]: "#e06464",
-  [TILES.wall]: "#970000",
-  [TILES.player]: "YellowGreen",
-  [TILES.enemy]: "Gold",
-  [TILES.corpse]: "Silver",
-  [TILES.anomaly]: "MediumPurple",
-  "health": "YellowGreen",
-  'background': "LightCoral",
-};
+

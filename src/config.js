@@ -1,4 +1,4 @@
-import { COLORS } from "./tiles.js";
+import { COLORS } from "./colors.js";
 
 const fontSize = 20;
 const width = fontSize * 3.5;

@@ -1,5 +1,6 @@
 import { Pickable, Sprite } from "../components/index.js";
-import { COLORS, TILES } from "../tiles.js";
+import { TILES } from "../tiles.js";
+import { COLORS } from "../colors.js";
 
 export class Corpse {
   constructor(entity) {
