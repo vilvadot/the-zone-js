@@ -2,8 +2,8 @@ import { findOrCreateNode } from "../util.js";
 
 export class HealthCounter {
   static update(player) {
-    if (!player)
-      return;
+    if (!player || !player.health) return;
+    
     const currentValue = player.health.value;
     const maxValue = player.health.maxValue;
 

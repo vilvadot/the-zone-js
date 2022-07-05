@@ -50,7 +50,6 @@ export class Game {
       Death.run(this.entities, this);
       Rendering.run(this.entities);
       this.ui.update(this.entities, this.turn);
-      this.logger.debug(`🎲 Turn passed: ${this.turn}`)
     });
   }
 

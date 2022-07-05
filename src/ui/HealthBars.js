@@ -1,37 +1,37 @@
 import { positionNodeInCanvas, findOrCreateNode } from "../util.js";
-import { COLORS } from "../tiles.js";
 
 export class HealthBars {
   static update(entities) {
     entities.forEach((entity) => {
-      const id = `#ui-health-${entity.id}`;
-      if (!entity.health)
-        return document.querySelector(id)?.remove();
+      const barId = `#ui_health-${entity.id}`;
 
-      const { value, maxValue } = entity.health;
-      const { x, y } = entity.position;
+      if (!entity.health) return document.querySelector(barId)?.remove();
+
       const width = 15;
 
-      const $healthBar = findOrCreateNode(id, "#game");
-      $healthBar.style = ` 
-      position:absolute;
-      background: lightgrey;
-      width: ${width}px;
-      height: 3px;
-  `;
-      $healthBar.className = "animate--movement";
+      const $healthBar = this.createHealthBar(barId, width);
+      this.createRemainingHealthBar(width, entity, barId)
 
-      const $remaingHealthBar = findOrCreateNode(
-        `#ui-health--remaining-${entity.id}`,
-        id
-      );
-      $remaingHealthBar.style = `
-    width: ${width * (value / maxValue)}px;
-    background: ${COLORS.health};
-    height: 100%;
-  `;
-
+      const { x, y } = entity.position;
       positionNodeInCanvas($healthBar, x + 0.1, y - 0.1);
     });
+  }
+
+  static createHealthBar(id, width) {
+    const $healthBar = findOrCreateNode(id, "#game");
+    $healthBar.className = "ui_health-bar animate--movement";
+    $healthBar.style.width = width;
+
+    return $healthBar;
+  }
+
+  static createRemainingHealthBar(width, entity, parentId) {
+    const remainingId = `#ui_health-${entity.id}-remaining`;
+    const { value, maxValue } = entity.health;
+    const $remaingHealthBar = findOrCreateNode(remainingId, parentId);
+    $remaingHealthBar.className = "ui_health-bar--remaining"
+    $remaingHealthBar.style.width = width * (value / maxValue);
+
+    return $remaingHealthBar;
   }
 }

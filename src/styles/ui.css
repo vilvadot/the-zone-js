@@ -6,6 +6,17 @@
   background-color: lightcoral;
 }
 
+.ui_health-bar {
+  position: absolute;
+  background: #970000;
+  height: 3px;
+}
+
+.ui_health-bar--remaining {
+  background: YellowGreen;
+  height: 100%;
+}
+
 .ui_bottom-bar {
   z-index: 10;
   height: 40px;
