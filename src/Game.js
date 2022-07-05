@@ -15,6 +15,7 @@ import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui/system.js";
 import { initializeDebugSystem } from "./debug.js";
 import { Corpse } from "../entities/index.js";
+import { logger } from "./logger.js";
 
 // CONCERN: Not tested
 export class Game {
@@ -47,6 +48,7 @@ export class Game {
       Death.run(this.entities, this);
       Rendering.run(this.entities);
       UIRendering.run(this.entities, this.turns);
+      logger.debug(`🎲 Turn passed: ${this.turns}`)
     });
   }
 

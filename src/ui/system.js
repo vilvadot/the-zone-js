@@ -14,7 +14,7 @@ export class UIRendering {
 }
 
 const renderTurns = (turns) => {
-  const $turnsCounter = findOrCreateNode("turns", "div", ".right-area");
+  const $turnsCounter = findOrCreateNode("turns", "div", ".ui-bottom-bar");
   $turnsCounter.className = "ui-module";
 
   $turnsCounter.innerHTML = `Turns: ${turns}`;
@@ -25,7 +25,7 @@ const renderHealth = (player) => {
   const currentValue = player.health.value;
   const maxValue = player.health.maxValue;
 
-  const $health = findOrCreateNode("health", ".right-area");
+  const $health = findOrCreateNode("health", ".ui-bottom-bar");
   $health.className = "ui-module";
 
   $health.innerHTML = `Health: ${currentValue}/${maxValue}`;

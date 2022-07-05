@@ -25,47 +25,32 @@ html {
   font-size: 1.5em;
 }
 
-.animate--movement {
-  transition: top 0.1s, right 0.1s, left 0.1s, bottom 0.1s;
-}
-
 .tile:hover {
   color: lightseagreen !important;
   cursor: pointer;
 }
 
+.animate--movement {
+  transition: top 0.1s, right 0.1s, left 0.1s, bottom 0.1s;
+}
+
 .container {
   display: flex;
-}
-
-.column {
-  height: 100vh;
-  width: 100%;
-  display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 
-p {
-  font-family: monospace;
-  font-size: 16px;
-}
-
-.center-column {
-  position: relative;
-  align-items: center;
+.ui-display {
+  display:flex;
   justify-content: center;
-}
-
-.display-area {
+  padding: 10px;
   align-items: center;
   background-color: lightcoral;
 }
 
-.left-area {
-}
-
-.right-area {
+.ui-bottom-bar {
+  display:flex;
+  align-items: center;
+  height: 40px;
   color: white;
 }
 

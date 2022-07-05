@@ -1,24 +1,32 @@
 import { EVENTS } from "./events.js";
+import { logger } from "./logger.js";
 
-export const INPUTS = {
+const ACTIONS = {
   ArrowUp: "ArrowUp",
   ArrowDown: "ArrowDown",
   ArrowLeft: "ArrowLeft",
   ArrowRight: "ArrowRight",
   Space: "Space",
-  Click: "Click",
   KeyE: "KeyE",
 };
 
+export const INPUTS = {
+  ...ACTIONS,
+  Click: "Click",
+};
+
 export const isInputKey = (code) => INPUTS[code];
+export const isActionKey = (code) => ACTIONS[code];
 
 export const takeControlOfInputs = (bus) => {
   window.addEventListener("keydown", (event) => {
-    console.log(`Key pressed: ${event.code}`)
+    logger.debug(`Key pressed: ${event.code}`);
     if (isInputKey(event.code)) {
-      bus.emit(EVENTS.INPUT_PRESSED, { key: INPUTS[event.code] });
-      bus.emit(EVENTS.TURN_PASSED, { key: INPUTS[event.code] });
       event.preventDefault();
+      bus.emit(EVENTS.INPUT_PRESSED, { key: INPUTS[event.code] });
+      
+      if (isActionKey(event.code))
+        bus.emit(EVENTS.TURN_PASSED, { key: INPUTS[event.code] });
     }
   });
 

@@ -1,8 +1,8 @@
 import { COLORS } from "./tiles.js";
 
 const fontSize = 20;
-const width = fontSize * 2.5;
-const height = fontSize * 1.8;
+const width = fontSize * 3.5;
+const height = 35;
 
 export const OPTIONS = {
   bg: COLORS.background,
