@@ -1,4 +1,4 @@
-import { Damage, Health, Position, Sprite, TargetManual } from "../components";
+import { Damage, Health, Position, Sprite, TargetManual, Animation } from "../components";
 import { Combat } from "./Combat";
 import { Logger } from "../Logger.stub";
 
@@ -39,6 +39,7 @@ class Victim {
     this.damage = new Damage(1);
     this.position = position;
     this.sprite = new Sprite()
+    this.animation = new Animation()
   }
 }
 

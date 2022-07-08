@@ -82,3 +82,15 @@ export class Pickable {
     this.isPicked = false;
   }
 }
+
+export class Animation {
+  constructor(){
+    this.isActive = false;
+    this.name = null;
+  }
+
+  set(animationName){
+    this.name = animationName
+    this.isActive = true
+  }
+}

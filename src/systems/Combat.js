@@ -1,4 +1,5 @@
 import { isInrange } from "../util.js";
+import { ANIMATIONS } from "./Animation.js";
 
 export class Combat {
   static run(entities, logger) {
@@ -17,6 +18,11 @@ export class Combat {
 
   static _attack(name, target, damage, logger) {
     target.health.value -= damage;
-    logger.log(`"${name}" Attacked "${target.name}" for ${damage} damage!`, target.sprite.color);
+    target.animation.name = ANIMATIONS.hit.name;
+    target.animation.isActive = true;
+    logger.log(
+      `"${name}" Attacked "${target.name}" for ${damage} damage!`,
+      target.sprite.color
+    );
   }
 }

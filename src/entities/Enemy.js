@@ -1,4 +1,4 @@
-import { Sprite, Position, Velocity, Health, Spawn, Damage, TargetManual } from "../components/index.js";
+import { Sprite, Position, Velocity, Health, Spawn, Damage, TargetManual, Animation} from "../components/index.js";
 import { TILES } from "../tiles.js";
 import { COLORS } from "../colors.js";
 import {uid} from '../util.js'
@@ -14,6 +14,7 @@ export class Enemy{
     this.sprite = new Sprite(this.id, TILES.enemy, COLORS[TILES.enemy]);
     this.position = new Position(10, 10);
     this.velocity = new Velocity(0, 0);
+    this.animation = new Animation()
   }
 }
 

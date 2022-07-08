@@ -1,5 +1,5 @@
 import { Pickup } from "./Pickup";
-import { Collision, Inventory, Pickable, Sprite } from "../components";
+import { Collision, Inventory, Pickable, Sprite, Animation } from "../components";
 import { Logger } from "../Logger.stub";
 import { INPUTS } from "../input";
 
@@ -67,6 +67,7 @@ class PickableEntity {
     this.id = id;
     this.pickable = new Pickable();
     this.sprite = new Sprite();
+    this.animation = new Animation();
   }
 }
 

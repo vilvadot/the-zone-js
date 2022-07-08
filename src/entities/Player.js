@@ -1,4 +1,4 @@
-import { Position, Sprite, Velocity, Health, Damage, TargetManual, Collision, Inventory } from "../components/index.js";
+import { Position, Sprite, Velocity, Health, Damage, TargetManual, Collision, Inventory, Animation } from "../components/index.js";
 import { TILES } from "../tiles.js";
 import { COLORS } from "../colors.js";
 
@@ -17,6 +17,7 @@ export class Player{
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
     this.inventory = new Inventory();
+    this.animation = new Animation()
     this.keyboardControlled = true;
   }
 }

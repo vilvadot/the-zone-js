@@ -10,6 +10,7 @@ import {
   Collision,
   Pickup,
   Targetting,
+  Animation,
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui/system.js";
@@ -17,7 +18,6 @@ import { initializeDebugSystem } from "./debug.js";
 import { Corpse } from "./entities/index.js";
 import { Logger } from "./Logger.js";
 
-// CONCERN: Not tested
 export class Game {
   constructor(bus, display, world, entities) {
     this.bus = bus;
@@ -27,16 +27,16 @@ export class Game {
     this.world.generate();
     this.turn = 0;
     takeControlOfInputs(bus);
-    initializeDebugSystem(this.entities)
-    this.ui = new UIRendering(bus)
-    this.logger = new Logger(bus)
+    initializeDebugSystem(this.entities);
+    this.ui = new UIRendering(bus);
+    this.logger = new Logger(bus);
   }
 
   runMainLoop() {
     this.world.draw();
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
-    this.ui.update(this.entities, this.turn)
+    this.ui.update(this.entities, this.turn);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       this.turn++;
@@ -47,6 +47,7 @@ export class Game {
       Movement.run(this.entities, this.world);
       Collision.run(this.entities);
       Combat.run(this.entities, this.logger);
+      Animation.run(this.entities);
       Death.run(this.entities, this);
       Rendering.run(this.entities);
       this.ui.update(this.entities, this.turn);
