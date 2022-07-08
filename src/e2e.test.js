@@ -10,27 +10,26 @@ jest.mock("./Display");
 jest.mock("./World/Generator");
 
 describe("Game e2e", () => {
+  const width = 3;
+  const height = 3;
   beforeAll(() => {
-    document.body.innerHTML = html
+    document.body.innerHTML = html;
 
     Display.mockImplementation(() => {
       return {
-        init: () => {
-        },
-        draw: () => {
-        },
+        init: () => {},
+        draw: () => {},
       };
     });
 
     Generator.mockImplementation(() => {
       return {
-        generate: () => {
-        },
+        generate: (callback) => {},
       };
     });
   });
 
   it("loads everything correctly", () => {
-    loadGame();
+    loadGame(width, height);
   });
 });

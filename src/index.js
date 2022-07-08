@@ -10,7 +10,7 @@ const { width, height } = OPTIONS;
 
 const NUMBER_ENEMIES = 10;
 
-export const loadGame = () => {
+export const loadGame = (width, height) => {
   const bus = new Bus();
   const display = new Display()
 
@@ -28,4 +28,4 @@ export const loadGame = () => {
   new Game(bus, display, world, entities).runMainLoop();
 }
 
-window.onload = loadGame
+window.onload = () => loadGame(width, height)

@@ -30,6 +30,14 @@ export class Grid {
       });
     });
   }
+
+  log(){
+    let result = ``
+    this.map.forEach(row => {
+      result += (`${row.join('')}\n`)
+    }) 
+    console.log(result)
+  }
 }
 
 const preFillMatrixWithNulls = (rows, columns) => {
