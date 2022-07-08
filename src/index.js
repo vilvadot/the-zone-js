@@ -1,6 +1,6 @@
 import { Game } from "./Game.js";
 import { World, Grid, Generator } from "./World/index.js";
-import { Display, initDisplay } from "./Display.js";
+import { Display } from "./Display.js";
 import { Bus } from "./events.js";
 import { Enemy, Player, Anomaly } from "./entities/index.js";
 
@@ -12,7 +12,7 @@ const NUMBER_ENEMIES = 10;
 
 export const loadGame = () => {
   const bus = new Bus();
-  const display = new Display().init()
+  const display = new Display()
 
   const worldGenerator = new Generator(width - 1, height - 1);
   const map = new Grid(width, height);
