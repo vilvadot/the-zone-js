@@ -14,7 +14,7 @@ import {
 import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui/system.js";
 import { initializeDebugSystem } from "./debug.js";
-import { Corpse } from "../entities/index.js";
+import { Corpse } from "./entities/index.js";
 import { Logger } from "./Logger.js";
 
 // CONCERN: Not tested

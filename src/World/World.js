@@ -18,8 +18,7 @@ export class World {
 
   generate() {
     this.generator
-      .randomize(0.4)
-      .create((x, y, isFilled) => {
+      .generate((x, y, isFilled) => {
         const tile = isFilled ? TILES.wall : TILES.empty
         this.map.add(x, y, tile)
       })
