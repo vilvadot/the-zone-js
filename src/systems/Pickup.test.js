@@ -12,7 +12,7 @@ describe("Pickup system", () => {
 
     Pickup.run([picker, item], action, Logger());
 
-    expect(picker.inventory.content).toContain(itemId);
+    expect(picker.inventory.content[0].id).toEqual(itemId);
     expect(item.pickable.isPicked).toBe(true);
     expect(item.sprite.isHidden).toBe(true);
   });
@@ -25,7 +25,7 @@ describe("Pickup system", () => {
 
     Pickup.run([picker, item], action, Logger());
 
-    expect(picker.inventory.content).not.toContain(itemId);
+    expect(picker.inventory.content).toEqual([]);
     expect(item.pickable.isPicked).toBe(false);
   });
 
@@ -37,7 +37,7 @@ describe("Pickup system", () => {
 
     Pickup.run([picker, item], action, Logger());
 
-    expect(picker.inventory.content).not.toContain(itemId);
+    expect(picker.inventory.content).toEqual([]);
   });
 
   it("does not pick an already picked item", () => {
