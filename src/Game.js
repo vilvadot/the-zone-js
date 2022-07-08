@@ -11,6 +11,7 @@ import {
   Pickup,
   Targetting,
   Animation,
+  Sound
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui/system.js";
@@ -30,6 +31,7 @@ export class Game {
     initializeDebugSystem(this.entities);
     this.ui = new UIRendering(bus);
     this.logger = new Logger(bus);
+    this.sound = new Sound(bus);
   }
 
   runMainLoop() {
@@ -41,14 +43,14 @@ export class Game {
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       this.turn++;
       KeyboardControl.run(this.entities, action);
-      Pickup.run(this.entities, action, this.logger);
+      Pickup.run(this.logger, this.entities, action);
       Targetting.run(this.entities, action);
       Following.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
       Collision.run(this.entities);
-      Combat.run(this.entities, this.logger);
+      Combat.run(this.bus, this.logger, this.entities);
       Animation.run(this.entities);
-      Death.run(this.entities, this);
+      Death.run(this.entities, this); // TODO: Is there a better way of killing stuff?
       Rendering.run(this.entities);
       this.ui.update(this.entities, this.turn);
     });

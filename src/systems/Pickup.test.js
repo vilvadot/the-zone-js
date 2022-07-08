@@ -10,7 +10,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [itemId] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action, Logger());
+    Pickup.run(Logger(), [picker, item], action);
 
     expect(picker.inventory.content[0].id).toEqual(itemId);
     expect(item.pickable.isPicked).toBe(true);
@@ -23,7 +23,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action, Logger());
+    Pickup.run(Logger(), [picker, item], action);
 
     expect(picker.inventory.content).toEqual([]);
     expect(item.pickable.isPicked).toBe(false);
@@ -35,7 +35,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [itemId] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action, Logger());
+    Pickup.run(Logger(), [picker, item], action);
 
     expect(picker.inventory.content).toEqual([]);
   });
@@ -47,7 +47,7 @@ describe("Pickup system", () => {
     const picker = new Picker("player", { overlap: [itemId] });
     const action = { key: INPUTS.KeyE };
 
-    Pickup.run([picker, item], action, Logger());
+    Pickup.run(Logger(), [picker, item], action);
 
     expect(picker.inventory.content).not.toContain(itemId);
   });
