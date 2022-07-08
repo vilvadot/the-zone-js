@@ -14,10 +14,14 @@ export class Sound {
 }
 
 const beep = () => {
-  var context = new AudioContext();
-  var oscillator = context.createOscillator();
+  const context = new AudioContext();
+  const oscillator = context.createOscillator();
   oscillator.type = "sine";
-  oscillator.connect(context.destination);
+
+  const gain = context.createGain()
+  oscillator.connect(gain);
+  gain.connect(context.destination);
+
   oscillator.start();
   setTimeout(() => {
     oscillator.stop()
