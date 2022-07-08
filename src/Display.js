@@ -8,3 +8,16 @@ export const initDisplay = () => {
 
   return asciiDisplay;
 };
+
+export class Display {
+  constructor() {
+    this.display = new ROT.Display(OPTIONS);
+
+    const canvas = document.getElementById("game");
+    canvas.appendChild(this.display.getContainer());
+  }
+
+  init(){
+    return this.display;
+  }
+}
