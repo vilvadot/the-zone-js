@@ -5,6 +5,7 @@ import { COLORS } from "../colors.js";
 export class Corpse {
   constructor(entity) {
     this.id = `${entity.id}`;
+    this.name = `${entity.name} corpse`;
     this.sprite = new Sprite(this.id, TILES.corpse, COLORS[TILES.corpse], 0);
     this.position = entity.position
     this.isStatic = true;

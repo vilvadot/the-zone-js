@@ -19,6 +19,7 @@ describe("Rendering system", () => {
 
     sprite = document.querySelector(`#${id}`);
     expect(sprite.innerHTML).toEqual(tile);
+    expect(sprite.title).toEqual(centeredEntity.name);
     expect(sprite.getAttribute("style")).toContain(
       `top: ${canvasCoordinates(x)}px`
     );
@@ -48,6 +49,8 @@ const stubWorldDOM = () => {
 
 class EntityAt {
   constructor(id, x, y, tile) {
+    this.id = id;
+    this.name = "entityName";
     this.position = new Position(x, y);
     this.sprite = new Sprite(id, tile);
   }

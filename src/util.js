@@ -46,3 +46,5 @@ export const createNode = ({ type, className, content, style }) => {
 
   return node;
 };
+
+export const uid = () => Math.random().toString().replace(".", "");

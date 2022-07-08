@@ -9,6 +9,7 @@ import { OPTIONS } from "./config.js";
 const { width, height } = OPTIONS;
 
 const NUMBER_ENEMIES = 10;
+const NUMBER_ANOMALIES = 10;
 
 export const loadGame = (width, height) => {
   const bus = new Bus();
@@ -20,10 +21,15 @@ export const loadGame = (width, height) => {
 
   const enemies = [];
   for (let i = 0; i < NUMBER_ENEMIES; i++) {
-    enemies.push(new Enemy(`enemy-${i}`, `player`));
+    enemies.push(new Enemy());
   }
 
-  const entities = [...enemies, new Player(), new Anomaly()];
+  const anomalies = [];
+  for (let i = 0; i < NUMBER_ENEMIES; i++) {
+    anomalies.push(new Anomaly());
+  }
+
+  const entities = [new Player(), ...enemies, ...anomalies];
 
   new Game(bus, display, world, entities).runMainLoop();
 }

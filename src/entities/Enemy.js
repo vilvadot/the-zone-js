@@ -1,10 +1,12 @@
 import { Sprite, Position, Velocity, Health, Spawn, Damage, TargetManual } from "../components/index.js";
 import { TILES } from "../tiles.js";
 import { COLORS } from "../colors.js";
+import {uid} from '../util.js'
 
-export class Enemy {
-  constructor(id = "enemy") {
-    this.id = id;
+export class Enemy{
+  constructor() {
+    this.name = "enemy";
+    this.id = `enemy-${uid()}`;
     this.target = new TargetManual('player');
     this.spawn = Spawn.random()
     this.health = new Health(2);
@@ -14,3 +16,4 @@ export class Enemy {
     this.velocity = new Velocity(0, 0);
   }
 }
+

@@ -19,7 +19,7 @@ export class Pickup {
       firstPickable.pickable.isPicked = true;
       firstPickable.sprite.isHidden = true;
       inventory.add(firstPickable.id);
-      logger.log(`picked up "${firstPickable.id}"`, firstPickable.sprite.color)
+      logger.log(`picked up "${firstPickable.name}"`, firstPickable.sprite.color)
     }
   }
 }

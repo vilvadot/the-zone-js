@@ -2,10 +2,10 @@ import { addNodeToGame, positionNodeInCanvas } from "../util.js";
 
 export class Rendering {
   static run(entities) {
-    for (const { sprite, position } of entities) {
+    for (const { id, name, sprite, position } of entities) {
       if (!sprite || !position) continue;
 
-      const $node = sprite.node || addTileNodeToGame(sprite.id);
+      const $node = sprite.node || addTileNodeToGame(id, name);
       
       if(sprite.isHidden){
         $node.style.display = 'none';
@@ -22,11 +22,11 @@ export class Rendering {
   }
 }
 
-export const addTileNodeToGame = (id) => {
+export const addTileNodeToGame = (id, name  ) => {
   const $tile = document.createElement("div");
   $tile.className = "tile animate--movement";
   $tile.id = id;
-  $tile.title = id;
+  $tile.title = name;
 
   addNodeToGame($tile);
 

@@ -4,9 +4,10 @@ import { COLORS } from "../colors.js";
 
 export const PLAYER_ID = 'player'
 
-export class Player {
+export class Player{
   constructor() {
     this.id = PLAYER_ID;
+    this.name = PLAYER_ID;
     this.spawn = "origin";
     this.target = new TargetManual()
     this.health = new Health(30);
