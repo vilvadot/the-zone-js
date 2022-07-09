@@ -3,7 +3,8 @@ const emoji = {
   empty : ".",
   enemy: "😈",
   corpse: "💀",
-  player: "🐸"
+  player: "🐸",
+  anomaly : "📛",
 }
 
 const ascii = {

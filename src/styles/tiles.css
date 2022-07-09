@@ -9,11 +9,23 @@
   font-size: 1.5em;
 }
 
+.tile #glyph{ 
+  z-index: 1;
+}
+
+.tile::before {
+  content: "";
+  width: 8px;
+  height: 3px;
+  border-radius: 20px;
+  background: rgba(0,0,0,.1);
+  position:absolute;
+  bottom: -1px;
+  left: 6px;
+  z-index: 0;
+}
+
 .tile:hover {
   color: lightseagreen !important;
   cursor: pointer;
-}
-
-.animate--movement {
-  transition: top 0.1s, right 0.1s, left 0.1s, bottom 0.1s;
 }

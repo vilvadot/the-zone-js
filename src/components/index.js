@@ -37,10 +37,11 @@ export class Damage {
 }
 
 export class Sprite {
-  constructor(id, tile, color = "black", zIndex = 2, isHidden = false) {
+  constructor(id, tile, color = "black", zIndex = 2, isHidden = false, className = "") {
     this.id = id;
     this.tile = tile;
     this.node = null;
+    this.className = className;
     this.color = color;
     this.zIndex = zIndex;
     this.isHidden = isHidden;
