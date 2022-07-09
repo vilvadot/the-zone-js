@@ -56,6 +56,11 @@ export class Game {
     });
   }
 
+  reset(){
+    console.log('reset!')
+    window.location.reload()
+  }
+
   kill(entity) {
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
     this.entities.push(new Corpse(entity));

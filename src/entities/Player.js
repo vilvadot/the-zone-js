@@ -10,7 +10,7 @@ export class Player{
     this.name = PLAYER_ID;
     this.spawn = "origin";
     this.target = new TargetManual()
-    this.health = new Health(30);
+    this.health = new Health(10);
     this.damage = new Damage(1);
     this.sprite = new Sprite(this.id, TILES.player, COLORS[TILES.player], 2);
     this.position = new Position(10, 10);

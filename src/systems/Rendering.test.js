@@ -18,7 +18,8 @@ describe("Rendering system", () => {
     Rendering.run([centeredEntity]);
 
     sprite = document.querySelector(`#${id}`);
-    expect(sprite.innerHTML).toEqual(tile);
+    glyph = document.querySelector(`#glyph`);
+    expect(glyph.innerHTML).toEqual(tile);
     expect(sprite.title).toEqual(centeredEntity.name);
     expect(sprite.getAttribute("style")).toContain(
       `top: ${canvasCoordinates(x)}px`
