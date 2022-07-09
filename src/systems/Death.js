@@ -4,7 +4,7 @@ export class Death {
   static run(entities, game) {
     for (const entity of entities) {
       const player = entities.find(({ id }) => id === PLAYER_ID);
-      if(!player?.health.value) game.reset()
+      if(!player?.health?.value) game.reset()
 
       const { health, sprite } = entity;
       if (!health || !sprite) continue;
