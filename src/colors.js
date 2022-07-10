@@ -7,6 +7,8 @@ export const COLORS = {
   [TILES.enemy]: "Gold",
   [TILES.corpse]: "Silver",
   [TILES.anomaly]: "MediumPurple",
-  "health": "YellowGreen",
-  'background': "LightCoral",
+  health: "YellowGreen",
+  background: "LightCoral",
 };
+
+export const ENEMIES = ['thistle', 'gold', 'darkcyan']

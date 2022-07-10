@@ -53,4 +53,13 @@ export const repeat = (times, callback) => {
     }
 }
 
+export const randomInt = (max, min = 0) => {
+  return parseInt(Math.random() * (max - min) + min);
+}
+
 export const uid = () => Math.random().toString().replace(".", "");
+
+export const pickRandom = (collection = []) => {
+  const index = randomInt(0, collection.length);
+  return collection[index];
+};
