@@ -47,4 +47,10 @@ export const createNode = ({ type, className, content, style }) => {
   return node;
 };
 
+export const repeat = (times, callback) => {
+    for (let i = 0; i < times; i++) {
+      callback()
+    }
+}
+
 export const uid = () => Math.random().toString().replace(".", "");
