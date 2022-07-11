@@ -15,7 +15,7 @@ import {
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
 import { UIRendering } from "./ui/system.js";
-import { initializeDebugSystem } from "./debug.js";
+import { initializeEntityDebugSystem } from "./debug.js";
 import { Corpse } from "./entities/index.js";
 import { Logger } from "./Logger.js";
 
@@ -28,7 +28,7 @@ export class Game {
     this.world.generate();
     this.turn = 0;
     takeControlOfInputs(bus);
-    initializeDebugSystem(this.entities);
+    initializeEntityDebugSystem(this.entities);
     this.ui = new UIRendering(bus);
     this.logger = new Logger(bus);
     this.sound = new Sound(bus);

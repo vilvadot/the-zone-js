@@ -4,6 +4,7 @@
   padding: 10px;
   align-items: center;
   background-color: lightcoral;
+  justify-content: flex-start;
 }
 
 .ui_health-bar {

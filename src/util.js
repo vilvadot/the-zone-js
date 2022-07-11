@@ -16,6 +16,7 @@ export const addNodeToGame = ($node) => {
 }
 
 export const positionNodeInCanvas = ($node, x, y) => {
+  $node.style.position = `absolute`;
   $node.style.top = `${canvasCoordinates(y)}px`;
   $node.style.left = `${canvasCoordinates(x)}px`;
 }

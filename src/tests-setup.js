@@ -1,3 +1,3 @@
 module.exports = () => {
-    jest.mock('./logger')
-}
+  jest.mock("./debug");
+};
