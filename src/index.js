@@ -6,7 +6,7 @@ import { Player } from "./entities/index.js";
 
 import { OPTIONS, LIMIT } from "./config.js";
 import { EnemySpawner } from "./spawners/EnemySpawner.js";
-import { AnomalySpawner } from "./spawners/AnomalySpawner.js";
+import { ArtifactSpawner } from "./spawners/ArtifactSpawner.js";
 
 const { width, height } = OPTIONS;
 
@@ -19,7 +19,7 @@ export const loadGame = (width, height) => {
   const world = new World(bus, display, map, worldGenerator);
 
   const enemies = EnemySpawner.spawn(LIMIT.enemies)
-  const anomalies = AnomalySpawner.spawn(LIMIT.anomalies)
+  const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies)
   const entities = [new Player(), ...enemies, ...anomalies];
 
   new Game(bus, display, world, entities).runMainLoop();

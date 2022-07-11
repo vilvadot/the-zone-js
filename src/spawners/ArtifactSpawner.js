@@ -1,12 +1,12 @@
 import { repeat } from "../util.js";
-import { Anomaly } from "../entities/Anomaly.js";
+import { Artifact } from "../entities/Artifact.js";
 
-export class AnomalySpawner {
+export class ArtifactSpawner {
   static spawn(quantity = 1) {
     const result = [];
 
     repeat(quantity, () => {
-      result.push(new Anomaly());
+      result.push(new Artifact());
     });
 
     return result;

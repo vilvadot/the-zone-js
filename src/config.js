@@ -1,6 +1,6 @@
 import { COLORS } from "./colors.js";
 
-export let DEBUG_ENABLED = false
+export let DEBUG_ENABLED = true
 
 const fontSize = 20;
 const width = window.innerWidth / fontSize - 1
