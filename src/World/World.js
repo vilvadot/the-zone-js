@@ -1,5 +1,6 @@
 import { COLORS } from '../colors.js'
 import { TILES } from '../tiles.js'
+import { randomFloat, roll } from '../util.js'
 
 export class World {
   constructor(bus, display, map, generator) {
@@ -31,7 +32,10 @@ export class World {
 
   draw() {
     this.map.forEach((x, y, value) => {
-      this.display.draw(x, y, value, COLORS[value]);
+    const displacementX = randomSign(randomFloat(0, 0.15))
+    const displacementY = randomSign(randomFloat(0, 0.15))
+    console.log({displacementX, displacementY})
+      this.display.draw(x + displacementX, y + displacementY, value, COLORS[value]);
     });
   }
 
@@ -56,3 +60,9 @@ export class World {
     return tile
   }
 };
+
+
+const randomSign = (value) => {
+  if (roll()) return value * -1
+  return value
+}

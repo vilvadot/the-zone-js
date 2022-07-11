@@ -53,13 +53,23 @@ export const repeat = (times, callback) => {
     }
 }
 
-export const randomInt = (max, min = 0) => {
-  return parseInt(Math.random() * (max - min) + min);
+export const randomFloat = (min, max) => {
+  return Math.random() * (max - min) + min
+}
+
+export const randomInteger = (min, max) => {
+  return parseInt(Math.random() * (max - min + 1) + min);
 }
 
 export const uid = () => Math.random().toString().replace(".", "");
 
 export const pickRandom = (collection = []) => {
-  const index = randomInt(0, collection.length);
+  const index = randomInteger(0, collection.length);
   return collection[index];
+};
+
+export const roll = (probability = .5) => {
+  const diceRoll = Math.random();
+  if (diceRoll <= probability) return true;
+  return false;
 };

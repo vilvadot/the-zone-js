@@ -5,7 +5,7 @@ import { Bus } from "./events.js";
 import { Enemy, Player, Anomaly } from "./entities/index.js";
 
 import { OPTIONS } from "./config.js";
-import { EnemySpawner } from "./spawner/EnemySpawner.js";
+import { EnemySpawner } from "./spawners/EnemySpawner.js";
 
 const { width, height } = OPTIONS;
 
