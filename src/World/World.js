@@ -34,7 +34,6 @@ export class World {
     this.map.forEach((x, y, value) => {
     const displacementX = randomSign(randomFloat(0, 0.15))
     const displacementY = randomSign(randomFloat(0, 0.15))
-    console.log({displacementX, displacementY})
       this.display.draw(x + displacementX, y + displacementY, value, COLORS[value]);
     });
   }

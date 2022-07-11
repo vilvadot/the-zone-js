@@ -2,10 +2,11 @@ import { Game } from "./Game.js";
 import { World, Grid, Generator } from "./World/index.js";
 import { Display } from "./Display.js";
 import { Bus } from "./events.js";
-import { Enemy, Player, Anomaly } from "./entities/index.js";
+import { Player } from "./entities/index.js";
 
 import { OPTIONS } from "./config.js";
 import { EnemySpawner } from "./spawners/EnemySpawner.js";
+import { AnomalySpawner } from "./spawners/AnomalySpawner.js";
 
 const { width, height } = OPTIONS;
 
@@ -21,12 +22,7 @@ export const loadGame = (width, height) => {
   const world = new World(bus, display, map, worldGenerator);
 
   const enemies = EnemySpawner.spawn(NUMBER_ENEMIES)
-
-  const anomalies = [];
-  for (let i = 0; i < NUMBER_ANOMALIES; i++) {
-    anomalies.push(new Anomaly());
-  }
-
+  const anomalies = AnomalySpawner.spawn(NUMBER_ANOMALIES)
   const entities = [new Player(), ...enemies, ...anomalies];
 
   new Game(bus, display, world, entities).runMainLoop();

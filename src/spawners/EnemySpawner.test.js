@@ -1,7 +1,7 @@
 import { Enemy } from "../entities/Enemy";
 import { EnemySpawner } from "./EnemySpawner";
 
-describe("Enemy Spawner", () => {
+describe("EnemySpawner", () => {
   it("spawns enemies", () => {
     const quantity = 3;
 
