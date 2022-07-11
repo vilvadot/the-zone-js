@@ -1,8 +1,9 @@
 import { COLORS } from "./colors.js";
 
+
 const fontSize = 20;
-const width = fontSize * 3.5;
-const height = 35;
+const width = window.innerWidth / fontSize - 1
+const height = window.innerHeight / fontSize - 3
 
 export const OPTIONS = {
   bg: COLORS.background,
