@@ -7,7 +7,7 @@ const width = window.innerWidth / fontSize - 1
 const height = window.innerHeight / fontSize - 3
 
 export const LIMIT = {
-  enemies: 50,
+  enemies: 10,
   anomalies: 5
 }
 
