@@ -1,10 +1,11 @@
 import { Position, TargetManual, Velocity } from "../../components";
 import { Pathfinding } from "./index";
-import { AStarPathfinder } from "./AStarPathfinder";
-
-jest.mock("./AStarPathfinder");
 
 describe("Pathfinding system", () => {
+  const world = {
+        isBlocked: () => false
+    }
+
   it("accelerates follower towards target", () => {
     const targetId = "runner";
     const follower = new Entity(
@@ -13,14 +14,11 @@ describe("Pathfinding system", () => {
       new TargetManual(targetId)
     );
     const target = new Entity(targetId, new Position(2, 2));
-    AStarPathfinder.calculateNextStep = jest
-      .fn()
-      .mockReturnValue({ x: 1, y: 1 });
 
-    Pathfinding.run([target, follower]);
+    Pathfinding.run([target, follower], world);
 
     expect(follower.velocity.x).toEqual(1);
-    expect(follower.velocity.y).toEqual(1);
+    expect(follower.velocity.y).toEqual(0);
   });
 
   it("ignores keyboard controlled entities", () => {
@@ -32,7 +30,7 @@ describe("Pathfinding system", () => {
     );
     const target = new Entity(targetId, new Position(2, 2));
 
-    Pathfinding.run([target, follower]);
+    Pathfinding.run([target, follower], world);
 
     expect(follower.velocity.x).toEqual(0);
     expect(follower.velocity.y).toEqual(0);

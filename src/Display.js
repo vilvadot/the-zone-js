@@ -1,4 +1,5 @@
 import { OPTIONS } from "./config.js";
+import ROT from './lib/rot.js'
 
 export class Display {
   constructor() {

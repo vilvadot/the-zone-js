@@ -151,3 +151,5 @@ ROT.Path.Dijkstra.prototype._add=function(a,b,c){c={x:a,y:b,prev:c};this._comput
 ROT.Path.AStar.prototype.compute=function(a,b,c){this._todo=[];this._done={};this._fromX=a;this._fromY=b;for(this._add(this._toX,this._toY,null);this._todo.length;){var d=this._todo.shift();if(d.x==a&&d.y==b)break;for(var e=this._getNeighbors(d.x,d.y),f=0;f<e.length;f++){var g=e[f],h=g[0],g=g[1];h+","+g in this._done||this._add(h,g,d)}}if(d=this._done[a+","+b])for(;d;)c(d.x,d.y),d=d.prev};
 ROT.Path.AStar.prototype._add=function(a,b,c){var d=this._distance(a,b);c={x:a,y:b,prev:c,g:c?c.g+1:0,h:d};this._done[a+","+b]=c;a=c.g+c.h;for(b=0;b<this._todo.length;b++){var e=this._todo[b],f=e.g+e.h;if(a<f||a==f&&d<e.h){this._todo.splice(b,0,c);return}}this._todo.push(c)};
 ROT.Path.AStar.prototype._distance=function(a,b){switch(this._options.topology){case 4:return Math.abs(a-this._fromX)+Math.abs(b-this._fromY);case 6:var c=Math.abs(b-this._fromY);return c+Math.max(0,(Math.abs(a-this._fromX)-c)/2);case 8:return Math.max(Math.abs(a-this._fromX),Math.abs(b-this._fromY))}throw Error("Illegal topology");};
+
+export default ROT;

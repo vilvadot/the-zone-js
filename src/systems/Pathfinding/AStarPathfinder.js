@@ -1,4 +1,5 @@
 import { DebugPath } from "../../debug.js";
+import ROT from '../../lib/rot.js'
 
 export class AStarPathfinder {
   static calculateNextStep(id, origin, target, world) {

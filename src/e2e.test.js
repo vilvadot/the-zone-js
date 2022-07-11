@@ -7,7 +7,6 @@ import { Generator } from "./World/Generator";
 const html = readFileSync(resolve(__dirname, "./index.html")).toString();
 
 jest.mock("./Display");
-jest.mock("./World/Generator");
 
 describe("Game e2e", () => {
   const width = 3;
@@ -19,12 +18,6 @@ describe("Game e2e", () => {
       return {
         init: () => {},
         draw: () => {},
-      };
-    });
-
-    Generator.mockImplementation(() => {
-      return {
-        generate: (callback) => {},
       };
     });
   });

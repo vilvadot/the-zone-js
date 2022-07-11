@@ -1,3 +1,5 @@
+import ROT from '../lib/rot.js'
+
 export class Generator{
     constructor(width, height){
         this.width = width;
