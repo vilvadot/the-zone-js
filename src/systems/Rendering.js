@@ -31,9 +31,13 @@ export const addTileNodeToGame = (id, name) => {
   $tile.appendChild($glyph);
 
   $tile.id = id;
-  $tile.title = name;
+  $tile.title = capitalize(name);
 
   addNodeToGame($tile);
 
   return $tile;
 };
+
+const capitalize = (string) => {
+  return `${string[0].toUpperCase()}${string.slice(1)}`
+}

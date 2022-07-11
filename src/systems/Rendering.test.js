@@ -9,7 +9,7 @@ describe("Rendering system", () => {
   });
   it("draws a sprite in its position", () => {
     stubWorldDOM();
-    const id = "myEntity";
+    const id = "yEntity";
     const tile = "X";
     const x = 10;
     const y = 10;
@@ -20,7 +20,7 @@ describe("Rendering system", () => {
     sprite = document.querySelector(`#${id}`);
     glyph = document.querySelector(`#glyph`);
     expect(glyph.innerHTML).toEqual(tile);
-    expect(sprite.title).toEqual(centeredEntity.name);
+    expect(sprite.title).toEqual('EntityName');
     expect(sprite.getAttribute("style")).toContain(
       `top: ${canvasCoordinates(x)}px`
     );
