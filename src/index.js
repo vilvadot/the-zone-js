@@ -10,7 +10,7 @@ import { AnomalySpawner } from "./spawners/AnomalySpawner.js";
 
 const { width, height } = OPTIONS;
 
-const NUMBER_ENEMIES = 10;
+const NUMBER_ENEMIES = 50;
 const NUMBER_ANOMALIES = 10;
 
 export const loadGame = (width, height) => {

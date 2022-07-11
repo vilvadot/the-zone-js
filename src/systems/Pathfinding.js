@@ -1,4 +1,4 @@
-export class Following {
+export class Pathfinding {
   // TODO: Use line of sight algorithm to calculate this
   static run(entities) {
     for (const { target, position, velocity, keyboardControlled } of entities) {

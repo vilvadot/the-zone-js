@@ -5,7 +5,7 @@ import {
   Death,
   Combat,
   Spawn,
-  Following,
+  Pathfinding,
   Movement,
   Collision,
   Pickup,
@@ -45,7 +45,7 @@ export class Game {
       KeyboardControl.run(this.entities, action);
       Pickup.run(this.logger, this.entities, action);
       Targetting.run(this.entities, action);
-      Following.run(this.entities, this.world);
+      Pathfinding.run(this.entities, this.world);
       Movement.run(this.entities, this.world);
       Collision.run(this.entities);
       Combat.run(this.bus, this.logger, this.entities);

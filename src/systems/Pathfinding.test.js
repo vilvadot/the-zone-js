@@ -1,7 +1,7 @@
 import { Position, TargetManual, Velocity } from "../components";
-import { Following } from "./Following";
+import { Pathfinding } from "./Pathfinding";
 
-describe("Following system", () => {
+describe("Pathfinding system", () => {
   it("accelerates follower towards target", () => {
     const targetId = "runner";
     const follower = new Entity(
