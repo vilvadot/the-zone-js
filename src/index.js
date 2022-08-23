@@ -4,11 +4,9 @@ import { Display } from "./Display.js";
 import { Bus } from "./events.js";
 import { Player } from "./entities/index.js";
 
-import { OPTIONS, LIMIT } from "./config.js";
+import { WIDTH, HEIGHT, LIMIT } from "./config.js";
 import { EnemySpawner } from "./spawners/EnemySpawner.js";
 import { ArtifactSpawner } from "./spawners/ArtifactSpawner.js";
-
-const { width, height } = OPTIONS;
 
 export const loadGame = (width, height) => {
   const bus = new Bus();
@@ -25,4 +23,4 @@ export const loadGame = (width, height) => {
   new Game(bus, display, world, entities).runMainLoop();
 }
 
-window.onload = () => loadGame(width, height)
+window.onload = () => loadGame(WIDTH, HEIGHT)

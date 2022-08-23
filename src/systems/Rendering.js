@@ -1,3 +1,4 @@
+import { CELL_SIZE } from "../config.js";
 import { addNodeToGame, positionNodeInCanvas } from "../util.js";
 
 export class Rendering {
@@ -25,7 +26,12 @@ export class Rendering {
 
 export const addTileNodeToGame = (id, name) => {
   const $tile = document.createElement("div");
+
+  $tile.style.width = CELL_SIZE
+  $tile.style.height = CELL_SIZE
+  $tile.style.fontSize = CELL_SIZE
   $tile.className = "tile animate--movement";
+  
   const $glyph = document.createElement("span");
   $glyph.id = "glyph";
   $tile.appendChild($glyph);

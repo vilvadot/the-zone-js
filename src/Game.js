@@ -11,6 +11,7 @@ import {
   Pickup,
   Targetting,
   Animation,
+  WorldRendering,
   Sound
 } from "./systems/index.js";
 import { takeControlOfInputs } from "./input.js";
@@ -35,7 +36,7 @@ export class Game {
   }
 
   runMainLoop() {
-    this.world.draw();
+    WorldRendering.run(this.world, this.display)
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
     this.ui.update(this.entities, this.turn);

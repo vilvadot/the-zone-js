@@ -1,3 +1,4 @@
+import { CELL_SIZE } from "../config.js";
 import { positionNodeInCanvas, findOrCreateNode } from "../util.js";
 
 export class HealthBars {
@@ -7,20 +8,17 @@ export class HealthBars {
 
       if (!entity.health) return document.querySelector(barId)?.remove();
 
-      const width = 15;
-
-      const $healthBar = this.createHealthBar(barId, width);
-      this.createRemainingHealthBar(width, entity, barId)
-
-      const { x, y } = entity.position;
-      positionNodeInCanvas($healthBar, x + 0.1, y - 0.1);
+      this.createHealthBar(barId, entity.id);
+      this.createRemainingHealthBar(CELL_SIZE, entity, barId)
     });
   }
 
-  static createHealthBar(id, width) {
-    const $healthBar = findOrCreateNode(id, "#game");
+  static createHealthBar(id, entityId) {
+    const $healthBar = findOrCreateNode(id, `#${entityId}`);
     $healthBar.className = "ui_health-bar animate--movement";
-    $healthBar.style.width = width;
+    $healthBar.style.width = CELL_SIZE;
+    $healthBar.style.marginTop = `-${CELL_SIZE + 3}px`
+
 
     return $healthBar;
   }

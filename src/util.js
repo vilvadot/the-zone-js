@@ -1,3 +1,5 @@
+import { CELL_SIZE } from "./config.js";
+
 export const isInrange = (positionA, positionB) => {
   const distanceX = Math.abs(positionA.x - positionB.x);
   const distanceY = Math.abs(positionA.y - positionB.y);
@@ -22,7 +24,6 @@ export const positionNodeInCanvas = ($node, x, y) => {
 }
 
 export const canvasCoordinates = (value) => {
-  const CELL_SIZE = 20;
   return value * CELL_SIZE;
 };
 
@@ -60,6 +61,11 @@ export const randomFloat = (min, max) => {
 
 export const randomInteger = (min, max) => {
   return parseInt(Math.random() * (max - min + 1) + min);
+}
+
+export const randomSign = (value) => {
+  if (roll()) return value * -1
+  return value
 }
 
 export const uid = () => Math.random().toString().replace(".", "");
