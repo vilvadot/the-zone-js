@@ -6,7 +6,7 @@ export class Rendering {
     for (const { id, sprite, position } of entities) {
       if (!sprite || !position) continue;
 
-      let $node = findTile(id) || createTile(id, sprite);
+      let $node = findTile(id) || addTileToGame(id, sprite);
 
       if (sprite.isHidden) $node.style.display = "none";
 
@@ -15,6 +15,13 @@ export class Rendering {
   }
 }
 
+const addTileToGame = (id, sprite) => {
+  const $tile = createTile(id, sprite);
+  addNodeToGame($tile);
+
+  return $tile;
+};
+
 export const createTile = (id, sprite) => {
   const $tile = document.createElement("div");
 
@@ -22,13 +29,11 @@ export const createTile = (id, sprite) => {
   $tile.style.height = CELL_SIZE;
   $tile.style.fontSize = CELL_SIZE;
   $tile.style.zIndex = sprite.zIndex;
-  $tile.style.background = `url(${sprite.tileset})`
-  $tile.style.backgroundPosition = `${sprite.x}px ${sprite.y}px`
+  $tile.style.background = `url(${sprite.tileset})`;
+  $tile.style.backgroundPosition = `${sprite.x}px ${sprite.y}px`;
   $tile.className = `tile animate--movement ${sprite.additionalClass}`;
   $tile.id = id;
   $tile.title = id;
-
-  addNodeToGame($tile);
 
   return $tile;
 };

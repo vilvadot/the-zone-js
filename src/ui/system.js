@@ -4,7 +4,6 @@ import { LogMessages } from "./LogMessages.js";
 import { TurnsCounter } from "./TurnsCounter.js";
 import { HealthCounter } from "./HealthCounter.js";
 import { HealthBars } from "./HealthBars.js";
-import { Inventory } from "./Inventory.js";
 
 export class UIRendering {
   constructor(bus) {
@@ -23,7 +22,6 @@ export class UIRendering {
 
     TurnsCounter.update(turn);
     HealthCounter.update(player.health);
-    Inventory.update(player.inventory?.content);
     HealthBars.update(entities);
   }
 }
