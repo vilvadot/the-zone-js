@@ -7,7 +7,6 @@ export const initializeEntityDebugSystem = (entities) => {
     const targetEntity = entities.find(({ id }) => id === targetId);
 
     if (!targetEntity) return;
-    console.log(targetEntity);
   });
 };
 
