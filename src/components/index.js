@@ -38,12 +38,13 @@ export class Damage {
 }
 
 export class Sprite {
-  constructor(x = 19, y = 19) {
+  constructor([x = 19, y = 19] = [], additionalClass = '') {
     this.x = mapToTilesetCoordinates(x);
     this.y = mapToTilesetCoordinates(y);
-    console.log(this.x, this.y)
     this.tileset = tileset;
     this.isHidden = false;
+    
+    this.additionalClass = additionalClass;
   }
 }
 

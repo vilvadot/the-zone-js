@@ -24,10 +24,9 @@ export const createTile = (id, sprite) => {
   $tile.style.zIndex = 2;
   $tile.style.background = `url(${sprite.tileset})`
   $tile.style.backgroundPosition = `${sprite.x}px ${sprite.y}px`
-  
-  $tile.className = "tile animate--movement";
+  $tile.className = `tile animate--movement ${sprite.additionalClass}`;
   $tile.id = id;
-  $tile.title = capitalize(id);
+  $tile.title = id;
 
   addNodeToGame($tile);
 

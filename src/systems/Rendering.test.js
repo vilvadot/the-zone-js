@@ -4,9 +4,11 @@ import { canvasCoordinates } from "../util";
 
 describe("Rendering system", () => {
   let sprite;
+
   afterEach(() => {
     sprite.remove();
   });
+
   it("draws a sprite in its position", () => {
     stubWorldDOM();
     const id = "yEntity";
@@ -18,9 +20,7 @@ describe("Rendering system", () => {
     Rendering.run([centeredEntity]);
 
     sprite = document.querySelector(`#${id}`);
-    glyph = document.querySelector(`#glyph`);
-    expect(glyph.innerHTML).toEqual(tile);
-    expect(sprite.title).toEqual('EntityName');
+    expect(sprite.title).toEqual(id);
     expect(sprite.getAttribute("style")).toContain(
       `top: ${canvasCoordinates(x)}px`
     );
@@ -49,10 +49,10 @@ const stubWorldDOM = () => {
 };
 
 class EntityAt {
-  constructor(id, x, y, tile) {
+  constructor(id, x, y) {
     this.id = id;
     this.name = "entityName";
     this.position = new Position(x, y);
-    this.sprite = new Sprite(id, tile);
+    this.sprite = new Sprite();
   }
 }

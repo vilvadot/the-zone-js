@@ -7,8 +7,9 @@ import {
   Collision,
   Inventory,
   Animation,
-  Sprite
+  Sprite,
 } from "../components/index.js";
+import { sprites } from "../tiles.js";
 
 export const PLAYER_ID = "player";
 
@@ -21,7 +22,7 @@ export class Player {
     this.target = new TargetManual();
     this.health = new Health(10);
     this.damage = new Damage(1);
-    this.sprite = new Sprite(0, 8);
+    this.sprite = new Sprite(sprites.knight);
     this.position = new Position(10, 10);
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
