@@ -38,9 +38,10 @@ export class Damage {
 }
 
 export class Sprite {
-  constructor([x = 19, y = 19] = [], additionalClass = '') {
+  constructor([x = 19, y = 19] = [], zIndex = 1, additionalClass = '') {
     this.x = mapToTilesetCoordinates(x);
     this.y = mapToTilesetCoordinates(y);
+    this.zIndex = zIndex;
     this.tileset = tileset;
     this.isHidden = false;
     

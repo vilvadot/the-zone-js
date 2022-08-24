@@ -1,12 +1,11 @@
 import { Pickable, Sprite } from "../components/index.js";
-import { TILES } from "../tiles.js";
-import { COLORS } from "../colors.js";
+import { sprites } from "../tiles.js";
 
 export class Corpse {
   constructor(entity) {
     this.id = `${entity.id}`;
     this.name = `${entity.name} corpse`;
-    this.sprite = new Sprite(this.id, TILES.corpse, COLORS[TILES.corpse], 0);
+    this.sprite = new Sprite(sprites.corpse, 2);
     this.position = entity.position
     this.isStatic = true;
     this.pickable = new Pickable()

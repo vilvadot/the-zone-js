@@ -1,5 +1,5 @@
 import { CELL_SIZE } from "../config.js";
-import { addNodeToGame, positionNodeInCanvas, capitalize } from "../util.js";
+import { addNodeToGame, positionNodeInCanvas, findTile } from "../util.js";
 
 export class Rendering {
   static run(entities) {
@@ -21,7 +21,7 @@ export const createTile = (id, sprite) => {
   $tile.style.width = CELL_SIZE;
   $tile.style.height = CELL_SIZE;
   $tile.style.fontSize = CELL_SIZE;
-  $tile.style.zIndex = 2;
+  $tile.style.zIndex = sprite.zIndex;
   $tile.style.background = `url(${sprite.tileset})`
   $tile.style.backgroundPosition = `${sprite.x}px ${sprite.y}px`
   $tile.className = `tile animate--movement ${sprite.additionalClass}`;
@@ -32,5 +32,3 @@ export const createTile = (id, sprite) => {
 
   return $tile;
 };
-
-const findTile = id => document.querySelector(`#${id}`)

@@ -15,7 +15,8 @@ export const sprites = {
   knight: [0, 8],
   bottle: [14, 6],
   mushroom: [17, 4],
-  nothing: [0, 20]
+  nothing: [0, 20],
+  corpse: [8, 18]
 }
 
 export const TILES = ascii;

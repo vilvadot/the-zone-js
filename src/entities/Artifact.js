@@ -6,7 +6,7 @@ export class Artifact{
   constructor() {
     this.id = `anomaly-${uid()}`;
     this.name = "Artifact";
-    this.sprite = new Sprite(sprites.bottle, "animation--float");
+    this.sprite = new Sprite(sprites.bottle, 2, "animation--float");
     this.position = new Position();
     this.spawn = Spawn.random();
     this.pickable = new Pickable();

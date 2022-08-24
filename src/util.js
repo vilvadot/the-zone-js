@@ -40,6 +40,8 @@ export const findOrCreateNode = (selector, parentSelector) => {
   return node;
 };
 
+export const findTile = id => document.querySelector(`#${id}`)
+
 export const createNode = ({ type, className, content, style }) => {
   const node = document.createElement(type);
   if (className) node.className = className;
