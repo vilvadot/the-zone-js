@@ -19,6 +19,7 @@ export class World {
   generate() {
     this.generator
       .generate((x, y, isFilled) => {
+        console.log(isFilled)
         const tile = isFilled ? TILES.wall : TILES.empty
         this.map.add(x, y, tile)
       })
