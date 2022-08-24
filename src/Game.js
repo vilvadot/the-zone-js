@@ -58,7 +58,6 @@ export class Game {
   }
 
   reset(){
-    console.log('reset!')
     window.location.reload()
   }
 

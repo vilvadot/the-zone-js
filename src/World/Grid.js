@@ -37,7 +37,6 @@ export class Grid {
     this.map.forEach((row) => {
       result += `${row.join("")}\n`;
     });
-    console.log(result);
   }
 }
 
