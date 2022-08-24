@@ -8,6 +8,7 @@ export class World {
     this.map = map
     this.generator = generator
   } 
+
   get width(){
     return this.map.width
   }
@@ -42,6 +43,11 @@ export class World {
 
     const isFree = tile === TILES.empty
     return !isFree
+  }
+
+  getTileAt(x,y){
+    const tile = this.map.getTile(x,y)
+    return tile;
   }
 
   getRandomFreeCell(){

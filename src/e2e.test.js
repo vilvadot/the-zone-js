@@ -16,8 +16,9 @@ describe("Game e2e", () => {
 
     Display.mockImplementation(() => {
       return {
-        init: () => {},
+        clear: () => {},
         draw: () => {},
+
       };
     });
   });

@@ -26,6 +26,7 @@ export class Game {
     this.display = display;
     this.world = world;
     this.entities = entities;
+    this.player = this.entities[0]
     this.world.generate();
     this.turn = 0;
     takeControlOfInputs(bus);
@@ -36,14 +37,15 @@ export class Game {
   }
 
   runMainLoop() {
-    WorldRendering.run(this.world, this.display)
     Spawn.run(this.entities, this.world);
     Rendering.run(this.entities);
+    WorldRendering.run(this.world, this.display, this.player)
     this.ui.update(this.entities, this.turn);
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       this.turn++;
       KeyboardControl.run(this.entities, action);
+      WorldRendering.run(this.world, this.display, this.player)
       Pickup.run(this.logger, this.entities, action);
       Targetting.run(this.entities, action);
       Pathfinding.run(this.entities, this.world);

@@ -28,4 +28,8 @@ export class Display {
   draw(...params) {
     this.display.draw(...params);
   }
+
+  clear(...params){
+    this.display.clear(...params);
+  }
 }
