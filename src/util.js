@@ -80,3 +80,7 @@ export const roll = (probability = .5) => {
   if (diceRoll <= probability) return true;
   return false;
 };
+
+export const capitalize = (string) => {
+  return `${string[0].toUpperCase()}${string.slice(1)}`;
+};

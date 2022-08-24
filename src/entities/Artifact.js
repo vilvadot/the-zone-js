@@ -7,7 +7,7 @@ export class Artifact{
   constructor() {
     this.id = `anomaly-${uid()}`;
     this.name = "Artifact";
-    this.sprite = new Sprite(this.id, TILES.anomaly, COLORS[TILES.anomaly], 0, false, "animation--float"); // CONCERN: Muchos parametros. Convierto a un objeto? Forma chunga de pasar classname
+    this.sprite = new Sprite(17, 4, "animation--float");
     this.position = new Position();
     this.spawn = Spawn.random();
     this.pickable = new Pickable();

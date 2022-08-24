@@ -1,49 +1,37 @@
 import { CELL_SIZE } from "../config.js";
-import { addNodeToGame, positionNodeInCanvas } from "../util.js";
+import { addNodeToGame, positionNodeInCanvas, capitalize } from "../util.js";
 
 export class Rendering {
   static run(entities) {
-    for (const { id, name, sprite, position } of entities) {
+    for (const { id, sprite, position } of entities) {
       if (!sprite || !position) continue;
 
-      const $node = sprite.node || addTileNodeToGame(id, name);
+      let $node = findTile(id) || createTile(id, sprite);
 
-      if (sprite.isHidden) {
-        $node.style.display = "none";
-      }
-      $node.style.zIndex = sprite.zIndex;
-      $node.style.color = sprite.color;
+      if (sprite.isHidden) $node.style.display = "none";
+
       positionNodeInCanvas($node, position.x, position.y);
-
-      sprite.node = $node;
-
-      const $glyph = $node.querySelector("#glyph");
-      if ($glyph.innerHTML !== sprite.tile) $glyph.innerHTML = sprite.tile;
-      $glyph.className = sprite.className;
     }
   }
 }
 
-export const addTileNodeToGame = (id, name) => {
+export const createTile = (id, sprite) => {
   const $tile = document.createElement("div");
 
-  $tile.style.width = CELL_SIZE
-  $tile.style.height = CELL_SIZE
-  $tile.style.fontSize = CELL_SIZE
-  $tile.className = "tile animate--movement";
+  $tile.style.width = CELL_SIZE;
+  $tile.style.height = CELL_SIZE;
+  $tile.style.fontSize = CELL_SIZE;
+  $tile.style.zIndex = 2;
+  $tile.style.background = `url(${sprite.tileset})`
+  $tile.style.backgroundPosition = `${sprite.x}px ${sprite.y}px`
   
-  const $glyph = document.createElement("span");
-  $glyph.id = "glyph";
-  $tile.appendChild($glyph);
-
+  $tile.className = "tile animate--movement";
   $tile.id = id;
-  $tile.title = capitalize(name);
+  $tile.title = capitalize(id);
 
   addNodeToGame($tile);
 
   return $tile;
 };
 
-const capitalize = (string) => {
-  return `${string[0].toUpperCase()}${string.slice(1)}`
-}
+const findTile = id => document.querySelector(`#${id}`)

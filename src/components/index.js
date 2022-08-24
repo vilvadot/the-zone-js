@@ -1,3 +1,5 @@
+import { mapToTilesetCoordinates, tileset } from "../tiles.js";
+
 export class Position {
   constructor(x, y) {
     this.x = x;
@@ -13,9 +15,8 @@ export class Velocity {
 }
 
 export class Spawn {
-
-  static random(){
-    return new Spawn("random")
+  static random() {
+    return new Spawn("random");
   }
 
   constructor(mode = "center") {
@@ -37,23 +38,20 @@ export class Damage {
 }
 
 export class Sprite {
-  constructor(id, tile, color = "black", zIndex = 2, isHidden = false, className = "") {
-    this.id = id;
-    this.tile = tile;
-    this.node = null;
-    this.className = className;
-    this.color = color;
-    this.zIndex = zIndex;
-    this.isHidden = isHidden;
+  constructor(x = 19, y = 19) {
+    this.x = mapToTilesetCoordinates(x);
+    this.y = mapToTilesetCoordinates(y);
+    console.log(this.x, this.y)
+    this.tileset = tileset;
+    this.isHidden = false;
   }
 }
 
-export class TargetManual{
-  constructor(id){
-        this.id = id;
-    }
+export class TargetManual {
+  constructor(id) {
+    this.id = id;
+  }
 }
-
 
 export class Collision {
   constructor(areas) {
@@ -63,35 +61,35 @@ export class Collision {
       south: [],
       north: [],
       overlap: [],
-      ...areas
+      ...areas,
     };
   }
 }
 
 export class Inventory {
-    constructor(){
-        this.content = []
-    }
+  constructor() {
+    this.content = [];
+  }
 
-    add(item){
-        this.content.push(item)
-    }
+  add(item) {
+    this.content.push(item);
+  }
 }
 
 export class Pickable {
-  constructor(){
+  constructor() {
     this.isPicked = false;
   }
 }
 
 export class Animation {
-  constructor(){
+  constructor() {
     this.isActive = false;
     this.name = null;
   }
 
-  set(animationName){
-    this.name = animationName
-    this.isActive = true
+  set(animationName) {
+    this.name = animationName;
+    this.isActive = true;
   }
 }
