@@ -45,7 +45,6 @@ export class Game {
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       this.turn++;
       KeyboardControl.run(this.entities, action);
-      WorldRendering.run(this.world, this.display, this.player)
       Pickup.run(this.logger, this.entities, action);
       Targetting.run(this.entities, action);
       Pathfinding.run(this.entities, this.world);
@@ -55,6 +54,7 @@ export class Game {
       Animation.run(this.entities);
       Death.run(this.entities, this); // TODO: Is there a better way of killing stuff?
       Rendering.run(this.entities);
+      WorldRendering.run(this.world, this.display, this.player)
       this.ui.update(this.entities, this.turn);
     });
   }

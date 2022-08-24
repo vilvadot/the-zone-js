@@ -7,12 +7,11 @@ loadedTiles.src = tileset;
 
 export const OPTIONS = {
   layout: "tile",
-  bg: "transparent",
   width: WIDTH,
   height: HEIGHT,
   tileWidth: 24,
   tileHeight: 24,
-  forceSquareRatio: true,
+  tileColorize: true,
   tileSet: loadedTiles,
   tileMap
 };
