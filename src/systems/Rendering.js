@@ -31,7 +31,7 @@ export const createTile = (id, sprite) => {
   $tile.style.zIndex = sprite.zIndex;
   $tile.style.background = `url(${sprite.tileset})`;
   $tile.style.backgroundPosition = `${sprite.x}px ${sprite.y}px`;
-  $tile.className = `tile animate--movement ${sprite.additionalClass}`;
+  $tile.className = `tile ${sprite.additionalClass}`;
   $tile.id = id;
   $tile.title = id;
 
