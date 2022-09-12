@@ -2,13 +2,13 @@ import { Position, Spawn } from "../components";
 import { Spawn as SpawnSystem } from "./Spawn";
 
 describe("Spawn system", () => {
-  it("spawns entity at coordinates origin by default", () => {
+  it("spawns entity at center of world by default", () => {
     const entity = new Entity(1, 1);
 
     SpawnSystem.run([entity]);
 
-    expect(entity.position.x).toEqual(0);
-    expect(entity.position.y).toEqual(0);
+    expect(entity.position.x).toEqual(19);
+    expect(entity.position.y).toEqual(12);
   });
 
   it("spawns entity random free cell in 'random' mode", () => {
