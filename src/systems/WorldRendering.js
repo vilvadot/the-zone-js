@@ -6,6 +6,7 @@ const VIEW_RADIUS = 30;
 
 export class WorldRendering {
   static run(world, display, player) {
+    console.log('ere!')
     display.clear()
     const fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
       if (world.isBlocked(x, y)) return false;

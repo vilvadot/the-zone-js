@@ -26,8 +26,7 @@ export class Game {
     this.display = display;
     this.world = world;
     this.entities = entities;
-    this.player = this.entities[0]
-    this.world.generate();
+    this.player = this.entities[0];
     this.turn = 0;
     takeControlOfInputs(bus);
     initializeEntityDebugSystem(this.entities);
@@ -38,9 +37,10 @@ export class Game {
 
   runMainLoop() {
     Spawn.run(this.entities, this.world);
+    this.world.generate();  
     Rendering.run(this.entities);
-    WorldRendering.run(this.world, this.display, this.player)
     this.ui.update(this.entities, this.turn);
+    WorldRendering.run(this.world, this.display, this.player)
 
     this.bus.subscribe(EVENTS.TURN_PASSED, (action) => {
       this.turn++;
