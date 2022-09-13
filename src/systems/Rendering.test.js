@@ -1,4 +1,5 @@
 import { Rendering } from "./Rendering";
+import { FOVIndex } from "../fov-index";
 import { Position, Sprite } from "../components";
 import { canvasCoordinates } from "../util";
 
@@ -17,7 +18,7 @@ describe("Rendering system", () => {
     const y = 10;
     const centeredEntity = new EntityAt(id, x, y, tile);
 
-    Rendering.run([centeredEntity]);
+    Rendering.run([centeredEntity], new FOVIndex());
 
     sprite = document.querySelector(`#${id}`);
     expect(sprite.title).toEqual(id);
@@ -27,18 +28,6 @@ describe("Rendering system", () => {
     expect(sprite.getAttribute("style")).toContain(
       `left: ${canvasCoordinates(y)}px;`
     );
-  });
-
-  it("hides hidden sprites", () => {
-    stubWorldDOM();
-    const id = "myEntity";
-    const entity = new EntityAt(id, 10, 10, "X");
-    entity.sprite.isHidden = true;
-
-    Rendering.run([entity]);
-
-    sprite = document.querySelector(`#${id}`);
-    expect(sprite.getAttribute("style")).toContain(`display: none`);
   });
 });
 

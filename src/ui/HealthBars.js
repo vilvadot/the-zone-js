@@ -19,7 +19,6 @@ export class HealthBars {
     $healthBar.style.width = CELL_SIZE;
     $healthBar.style.marginTop = `-${CELL_SIZE + 3}px`
 
-
     return $healthBar;
   }
 

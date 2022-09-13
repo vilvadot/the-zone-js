@@ -1,32 +1,37 @@
 import { HEIGHT, WIDTH } from "../config.js";
 
 export class Travel {
-  static run(entities, world, display) {
-    for (const { id, sprite, position, velocity, isPlayer } of entities) {
+  static run(entities, world, onTravel) {
+    for (const { position, velocity, isPlayer } of entities) {
       if (!isPlayer) continue;
-      if (position.x === 0 && velocity.x === -1) {
-        console.log('travel!')
-        world.travelWest();
+
+      const isMovingUp = velocity.y === -1
+      const isMovingLeft = velocity.x === -1
+      const isMovingDown = velocity.y === 1
+      const isMovingRight = velocity.x === 1
+
+      if (position.x === 0 && isMovingLeft) {
+        onTravel()
         position.x = WIDTH;
-        display.clear();
+        world.travelWest();
       }
 
-      if (position.x === WIDTH - 1 && velocity.x === 1) {
+      if (position.x === WIDTH - 1 && isMovingRight) {
+        onTravel()
+        position.x = 0;
         world.travelEast();
-        position.x = -1;
-        display.clear();
       }
 
-      if (position.y === HEIGHT - 1 && velocity.y === 1) {
-        world.travelSouth();
+      if (position.y === HEIGHT - 1 && isMovingDown) {
+        onTravel()
         position.y = -1;
-        display.clear();
+        world.travelSouth();
       }
 
-      if (position.y === 0 && velocity.y === -1) {
-        world.travelNorth();
+      if (position.y === 0 && isMovingUp) {
+        onTravel()
         position.y = HEIGHT;
-        display.clear();
+        world.travelNorth();
       }
     }
   }

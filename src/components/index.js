@@ -43,7 +43,6 @@ export class Sprite {
     this.y = mapToTilesetCoordinates(y);
     this.zIndex = zIndex;
     this.tileset = tileset;
-    this.isHidden = false;
     
     this.additionalClass = additionalClass;
   }

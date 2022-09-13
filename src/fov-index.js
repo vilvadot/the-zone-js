@@ -1,4 +1,5 @@
 import ROT from "./lib/rot.js";
+import { DEBUG_ENABLED } from "./config.js";
 
 export class FOVIndex {
   constructor() {
@@ -6,8 +7,15 @@ export class FOVIndex {
   }
 
   update(player, world) {
-    this.index = {}
-    
+    this.index = {};
+
+    if (DEBUG_ENABLED) {
+      world.map.forEach((x, y) => {
+        this.index[`${x},${y}`] = 1;
+      });
+      return;
+    }
+
     const VIEW_RADIUS = 30;
 
     const fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
@@ -33,7 +41,7 @@ export class FOVIndex {
     }
   }
 
-  isVisible(x, y){
-    return this.index[`${x},${y}`]
+  isVisible(x, y) {
+    return this.index[`${x},${y}`];
   }
 }

@@ -23,22 +23,18 @@ export class World {
 
   travelWest() {
     this.currentArea[0]--;
-    this.generate()
   }
 
   travelEast() {
     this.currentArea[0]++;
-    this.generate()
   }
 
   travelNorth() {
     this.currentArea[1]++;
-    this.generate()
   }
 
   travelSouth() {
     this.currentArea[1]--;
-    this.generate()
   }
 
   _getCurrentArea() {
