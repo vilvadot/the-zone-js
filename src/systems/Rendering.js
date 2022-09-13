@@ -2,13 +2,17 @@ import { CELL_SIZE } from "../config.js";
 import { addNodeToGame, positionNodeInCanvas, findTile } from "../util.js";
 
 export class Rendering {
-  static run(entities) {
-    for (const { id, sprite, position } of entities) {
+  static run(entities, fov) {
+    for (const { id, sprite, position, isPlayer } of entities) {
       if (!sprite || !position) continue;
 
       let $node = findTile(id) || addTileToGame(id, sprite);
 
-      if (sprite.isHidden) $node.style.display = "none";
+      if (!fov.isVisible(position.x, position.y) && !isPlayer){
+        $node.style.visibility = "hidden";
+      }else{
+        $node.style.visibility = "visible";
+      }
 
       positionNodeInCanvas($node, position.x, position.y);
     }
