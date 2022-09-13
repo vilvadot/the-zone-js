@@ -17,11 +17,9 @@ export class UIRendering {
     });
   }
 
-  update(entities, turn) {
-    const player = entities.find(({ id }) => id === PLAYER_ID);
-
+  update(entities, player, turn) {
     TurnsCounter.update(turn);
-    HealthCounter.update(player.health);
+    HealthCounter.update(player);
     HealthBars.update(entities);
   }
 }

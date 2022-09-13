@@ -3,10 +3,11 @@ import { World, Grid, Generator } from "./World/index.js";
 import { Display } from "./Display.js";
 import { Bus } from "./events.js";
 import { Player } from "./entities/index.js";
-
 import { WIDTH, HEIGHT, LIMIT } from "./config.js";
 import { EnemySpawner } from "./spawners/EnemySpawner.js";
 import { ArtifactSpawner } from "./spawners/ArtifactSpawner.js";
+import { takeControlOfInputs } from "./input.js";
+import { EVENTS } from "./events.js";
 
 export const loadGame = (width, height) => {
   const bus = new Bus();
@@ -18,9 +19,16 @@ export const loadGame = (width, height) => {
 
   const enemies = EnemySpawner.spawn(LIMIT.enemies)
   const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies)
-  const entities = [new Player(), ...enemies, ...anomalies];
+  const entities = [...enemies, ...anomalies];
 
-  new Game(bus, display, world, entities).runMainLoop();
+  const game = new Game(bus, display, world, entities, new Player())
+  game.runMainLoop()
+
+  takeControlOfInputs(bus);
+  
+  bus.subscribe(EVENTS.TURN_PASSED, (action) => {
+    game.runMainLoop(action)
+  })
 }
 
 window.onload = () => loadGame(WIDTH, HEIGHT)

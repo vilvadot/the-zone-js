@@ -2,6 +2,7 @@ import { INPUTS } from "../input.js";
 
 export class KeyboardControl {
   static run(entities, action) {
+    if(!action) return 
     for (const { keyboardControlled, velocity } of entities) {
       if (!keyboardControlled || !velocity) continue;
 
