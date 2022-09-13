@@ -1,8 +1,6 @@
-import { PLAYER_ID } from "../entities/Player.js";
 import { EVENTS } from "../events.js";
 import { LogMessages } from "./LogMessages.js";
 import { TurnsCounter } from "./TurnsCounter.js";
-import { HealthCounter } from "./HealthCounter.js";
 import { HealthBars } from "./HealthBars.js";
 
 export class UIRendering {
@@ -17,9 +15,8 @@ export class UIRendering {
     });
   }
 
-  update(entities, player, turn) {
+  update(entities, turn) {
     TurnsCounter.update(turn);
-    HealthCounter.update(player);
     HealthBars.update(entities);
   }
 }

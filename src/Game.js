@@ -46,8 +46,8 @@ export class Game {
   }
 
   runMainLoop(action) {
-    this.turn++;
-    this.ui.update(this.entities, this.turn);
+    console.log(this.turn)
+    this.ui.update(this.entities, this.player, this.turn);
     KeyboardControl.run(this.entities, action);
     Travel.run(this.entities, this.world, () => {
       this._clearEntities()
