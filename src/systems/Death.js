@@ -1,8 +1,7 @@
-import { PLAYER_ID } from "../entities/Player.js";
 import { findTile } from "../util.js";
 
 export class Death {
-  static run(entities, game) {
+  static run(entities, entityManager) {
     for (const entity of entities) {
       const player = entities.find(({ isPlayer }) => isPlayer);
       if (!player?.health?.value) game.reset();
@@ -13,7 +12,7 @@ export class Death {
       if (health.value <= 0) {
         let $node = findTile(entity.id);
         if ($node) $node.remove();
-        game.kill(entity);
+        entityManager.kill(entity);
       }
     }
   }

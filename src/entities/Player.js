@@ -20,7 +20,7 @@ export class Player {
     this.name = PLAYER_ID;
     this.spawn = "origin";
     this.target = new TargetManual();
-    this.health = new Health(10);
+    this.health = new Health(100);
     this.damage = new Damage(1);
     this.sprite = new Sprite(sprites.knight, 3);
     this.position = new Position(10, 10);

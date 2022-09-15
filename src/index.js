@@ -2,7 +2,6 @@ import { Game } from "./Game.js";
 import { World, Grid, Generator } from "./World/index.js";
 import { Display } from "./Display.js";
 import { Bus } from "./events.js";
-import { Player } from "./entities/index.js";
 import { WIDTH, HEIGHT, LIMIT } from "./config.js";
 import { takeControlOfInputs } from "./input.js";
 import { EVENTS } from "./events.js";
