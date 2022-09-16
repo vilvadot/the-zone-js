@@ -14,7 +14,10 @@ export class EntityManager {
   }
 
   kill(entity) {
+    const tile = findTile(entity.id)
+    tile.remove()
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
+    console.log(this.entities)
     this.entities.push(new Corpse(entity));
   }
 

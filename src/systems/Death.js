@@ -10,8 +10,6 @@ export class Death {
       if (!health || !sprite) continue;
 
       if (health.value <= 0) {
-        let $node = findTile(entity.id);
-        if ($node) $node.remove();
         entityManager.kill(entity);
       }
     }

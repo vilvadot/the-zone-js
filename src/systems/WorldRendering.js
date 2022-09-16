@@ -1,4 +1,5 @@
 import { DEBUG_ENABLED } from "../config.js";
+import { shadowMagnitude } from "../util.js";
 
 export class WorldRendering {
   static run(display, fov, world) {
@@ -12,14 +13,9 @@ export class WorldRendering {
     }
 
     fov.forEach((x, y, distance) => {
-      const tinting = `rgba(0,0,0, ${shadow(distance)}`;
+      const tinting = `rgba(0,0,0,${1 - shadowMagnitude(distance)}`;
       const value = world.getTileAt(x, y);
       display.draw(x, y, value, tinting);
     });
   }
 }
-
-const shadow = (distance) => {
-  const shadowing = 1 / distance;
-  return 1 - shadowing;
-};

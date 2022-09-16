@@ -1,5 +1,5 @@
 import { CELL_SIZE } from "../config.js";
-import { addNodeToGame, positionNodeInCanvas, findTile } from "../util.js";
+import { addNodeToGame, positionNodeInCanvas, findTile, shadowMagnitude } from "../util.js";
 
 export class Rendering {
   static run(entities, fov) {
@@ -8,10 +8,14 @@ export class Rendering {
 
       let $node = findTile(id) || addTileToGame(id, sprite);
 
-      if (!fov.isVisible(position.x, position.y) && !isPlayer){
-        $node.style.visibility = "hidden";
-      }else{
-        $node.style.visibility = "visible";
+      const distanceToPlayer = fov.getDistance(position.x, position.y)
+
+      if (!distanceToPlayer && !isPlayer){
+        $node.remove()
+      }
+
+      if(!isPlayer){
+        $node.style.filter = `brightness(${shadowMagnitude(distanceToPlayer)})`;
       }
 
       positionNodeInCanvas($node, position.x, position.y);

@@ -27,7 +27,7 @@ export class Game {
   constructor(bus, display) {
     this.bus = bus;
     this.display = display;
-    this.navigation = new Navigation()
+    this.navigation = new Navigation();
     this.world = new World(WIDTH, HEIGHT);
     this.player = new Player();
     this.turn = 0;
@@ -49,29 +49,27 @@ export class Game {
     const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
     this.entityManager.add(anomalies);
 
-    const seed = this.navigation.getAreaCoordinates()
+    const seed = this.navigation.getAreaCoordinates();
     this.world.generate(seed);
 
     Spawn.run(this.entityManager.retrieveAll(), this.world);
   }
 
   runMainLoop(action) {
-    const entities = this.entityManager.retrieveAll();
-
-    this.ui.update(entities, this.player, this.turn);
-    KeyboardControl.run(entities, action);
-    Travel.run(entities, this.world, () => {
+    KeyboardControl.run(this.entityManager.retrieveAll(), action);
+    Travel.run(this.entityManager.retrieveAll(), this.world, () => {
       this.createNewArea();
     });
-    Movement.run(entities, this.world);
+    Movement.run(this.entityManager.retrieveAll(), this.world);
     this.fov.update(this.player, this.world);
-    Targetting.run(entities, action);
-    Pathfinding.run(entities, this.world);
-    Collision.run(entities);
-    Combat.run(this.bus, this.logger, entities);
-    Animation.run(entities);
-    Death.run(entities, this.entityManager);
+    Targetting.run(this.entityManager.retrieveAll(), action);
+    Pathfinding.run(this.entityManager.retrieveAll(), this.world);
+    Collision.run(this.entityManager.retrieveAll());
+    Combat.run(this.bus, this.logger, this.entityManager.retrieveAll());
+    Animation.run(this.entityManager.retrieveAll());
+    Death.run(this.entityManager.retrieveAll(), this.entityManager);
     WorldRendering.run(this.display, this.fov, this.world);
-    Rendering.run(entities, this.fov);
+    Rendering.run(this.entityManager.retrieveAll(), this.fov);
+    this.ui.update(this.entityManager.retrieveAll(), this.player, this.turn);
   }
 }

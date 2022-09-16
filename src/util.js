@@ -86,3 +86,8 @@ export const roll = (probability = .5) => {
 export const capitalize = (string) => {
   return `${string[0].toUpperCase()}${string.slice(1)}`;
 };
+
+export const shadowMagnitude = (distance) => {
+  const shadowing = 1 / distance;
+  return shadowing;
+};

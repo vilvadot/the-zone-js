@@ -42,6 +42,10 @@ export class FOVIndex {
   }
 
   isVisible(x, y) {
-    return this.index[`${x},${y}`];
+    return !!this.getDistance(x,y)
+  }
+
+  getDistance(x, y) {
+    return this.index[`${x},${y}`] || null;
   }
 }
