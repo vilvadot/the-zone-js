@@ -68,8 +68,8 @@ export class Game {
     Combat.run(this.bus, this.logger, this.entityManager.retrieveAll());
     Animation.run(this.entityManager.retrieveAll());
     Death.run(this.entityManager.retrieveAll(), this.entityManager);
+    this.ui.update(this.entityManager.retrieveAll(), this.player, this.turn);
     WorldRendering.run(this.display, this.fov, this.world);
     Rendering.run(this.entityManager.retrieveAll(), this.fov);
-    this.ui.update(this.entityManager.retrieveAll(), this.player, this.turn);
   }
 }
