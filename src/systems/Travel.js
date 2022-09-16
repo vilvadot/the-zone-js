@@ -11,27 +11,27 @@ export class Travel {
       const isMovingRight = velocity.x === 1
 
       if (position.x === 0 && isMovingLeft) {
+        navigation.travelWest();
         onTravel()
         position.x = WIDTH;
-        navigation.travelWest();
       }
 
       if (position.x === WIDTH - 1 && isMovingRight) {
-        onTravel()
-        position.x = 0;
         navigation.travelEast();
+        onTravel()
+        position.x = -1;
       }
 
       if (position.y === HEIGHT - 1 && isMovingDown) {
+        navigation.travelSouth();
         onTravel()
         position.y = -1;
-        navigation.travelSouth();
       }
 
       if (position.y === 0 && isMovingUp) {
+        navigation.travelNorth();
         onTravel()
         position.y = HEIGHT;
-        navigation.travelNorth();
       }
     }
   }

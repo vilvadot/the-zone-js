@@ -48,6 +48,7 @@ export class Game {
 
     const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
     this.entityManager.add(anomalies);
+    console.log(this.navigation)
     const seed = this.navigation.getAreaCoordinates();
     this.world.generate(seed);
 

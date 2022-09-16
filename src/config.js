@@ -1,4 +1,4 @@
-export let DEBUG_ENABLED = false
+export let DEBUG_ENABLED = true
 
 export const CELL_SIZE = 24;
 export const WIDTH = Math.ceil(900 / CELL_SIZE)
