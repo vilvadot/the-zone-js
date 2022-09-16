@@ -1,16 +1,11 @@
 import { TILES } from "../tiles.js";
-import { randomInteger } from "../util.js";
+import { Generator } from "./Generator.js";
+import { Grid } from "./Grid.js";
 
 export class World {
-  constructor(bus, display, map, generator) {
-    this.bus = bus;
-    this.display = display;
-    this.map = map;
-    this.generator = generator;
-    this.currentArea = [0, 0];
-    this.areas = {
-      "0,0": "1233",
-    };
+  constructor(width, height) {
+    this.generator = new Generator(width - 1, height - 1);
+    this.map = new Grid(width, height);
   }
 
   get width() {
@@ -21,37 +16,8 @@ export class World {
     return this.map.height;
   }
 
-  travelWest() {
-    this.currentArea[0]--;
-  }
-
-  travelEast() {
-    this.currentArea[0]++;
-  }
-
-  travelNorth() {
-    this.currentArea[1]++;
-  }
-
-  travelSouth() {
-    this.currentArea[1]--;
-  }
-
-  _getCurrentArea() {
-    const id = this.currentArea.join(",");
-    const result = this.areas[id];
-
-    if (!result) this.areas[id] = `${randomInteger(0, 99999)}`;
-
-    return this.areas[id];
-  }
-
-  generate() {
-    const seed = this._getCurrentArea();
-
-    this.generator
-    .setSeed(seed)
-    .generate((x, y, isFilled) => {
+  generate(seed) {
+    this.generator.setSeed(seed).generate((x, y, isFilled) => {
       const tile = isFilled ? TILES.wall : TILES.empty;
       this.map.add(x, y, tile);
     });

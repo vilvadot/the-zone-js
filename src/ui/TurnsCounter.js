@@ -8,6 +8,5 @@ export class TurnsCounter {
     );
     $turnsCounter.className = "ui_bar-module";
     $turnsCounter.innerHTML = `Turns: ${turn}`;
-    console.log({turn})
   }
 }
