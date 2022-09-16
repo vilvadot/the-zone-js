@@ -1,7 +1,7 @@
 import { HEIGHT, WIDTH } from "../config.js";
 
 export class Travel {
-  static run(entities, world, onTravel) {
+  static run(entities, navigation, onTravel) {
     for (const { position, velocity, isPlayer } of entities) {
       if (!isPlayer) continue;
 
@@ -13,25 +13,25 @@ export class Travel {
       if (position.x === 0 && isMovingLeft) {
         onTravel()
         position.x = WIDTH;
-        world.travelWest();
+        navigation.travelWest();
       }
 
       if (position.x === WIDTH - 1 && isMovingRight) {
         onTravel()
         position.x = 0;
-        world.travelEast();
+        navigation.travelEast();
       }
 
       if (position.y === HEIGHT - 1 && isMovingDown) {
         onTravel()
         position.y = -1;
-        world.travelSouth();
+        navigation.travelSouth();
       }
 
       if (position.y === 0 && isMovingUp) {
         onTravel()
         position.y = HEIGHT;
-        world.travelNorth();
+        navigation.travelNorth();
       }
     }
   }

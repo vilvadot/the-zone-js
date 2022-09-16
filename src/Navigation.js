@@ -1,3 +1,5 @@
+import { randomInteger } from "./util.js";
+
 export class Navigation {
   constructor() {
     const INITIAL_SEED = '12345'

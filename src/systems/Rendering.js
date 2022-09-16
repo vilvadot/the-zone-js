@@ -11,7 +11,9 @@ export class Rendering {
       const distanceToPlayer = fov.getDistance(position.x, position.y)
 
       if (!distanceToPlayer && !isPlayer){
-        $node.remove()
+        $node.style.visibility = 'hidden';
+      }else{
+        $node.style.visibility = 'visible';
       }
 
       if(!isPlayer){

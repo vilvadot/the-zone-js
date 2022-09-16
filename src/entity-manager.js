@@ -2,8 +2,13 @@ import { findTile } from "./util.js";
 import { Corpse } from "./entities/Corpse.js";
 
 export class EntityManager {
-  constructor(entitites = []) {
-    this.entities = entitites;
+  constructor() {
+    this.entities = [];
+    this.player = null;
+  }
+
+  addPlayer(player){
+    this.player = player
   }
 
   add(entities) {
@@ -17,14 +22,12 @@ export class EntityManager {
     const tile = findTile(entity.id)
     tile.remove()
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
-    console.log(this.entities)
     this.entities.push(new Corpse(entity));
   }
 
   resetAllButPlayer() {
-    this.entities.forEach((entity) => {
-      if (entity) findTile(entity?.id)?.remove(); // Responsabilidad de rendering
-    });
+    this.entities.forEach((entity) => findTile(entity?.id)?.remove())
+    this.entities = [this.player]
   }
 
   retrieveAll() {

@@ -35,7 +35,7 @@ export class Game {
     this.logger = new Logger(bus);
     this.fov = new FOVIndex();
     this.entityManager = new EntityManager();
-    this.entityManager.add(this.player);
+    this.entityManager.addPlayer(this.player);
     this.createNewArea();
   }
 
@@ -48,7 +48,6 @@ export class Game {
 
     const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
     this.entityManager.add(anomalies);
-
     const seed = this.navigation.getAreaCoordinates();
     this.world.generate(seed);
 
@@ -58,7 +57,7 @@ export class Game {
   runMainLoop(action) {
     this.turn++
     KeyboardControl.run(this.entityManager.retrieveAll(), action);
-    Travel.run(this.entityManager.retrieveAll(), this.world, () => {
+    Travel.run(this.entityManager.retrieveAll(), this.navigation, () => {
       this.createNewArea();
     });
     Movement.run(this.entityManager.retrieveAll(), this.world);
