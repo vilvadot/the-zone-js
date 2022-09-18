@@ -1,7 +1,6 @@
 import { Game } from "./Game.js";
-import { Display } from "./Display.js";
-import { Bus } from "./events.js";
-import { WIDTH, HEIGHT } from "./config.js";
+import { Display } from "./infra/display.js";
+import { Bus } from "./infra/bus.js";
 import { takeControlOfInputs } from "./input.js";
 import { EVENTS } from "./events.js";
 

@@ -1,5 +1,5 @@
-import { findTile } from "./util.js";
-import { Corpse } from "./entities/Corpse.js";
+import { findTile } from "../util.js";
+import { Corpse } from "./Corpse.js";
 
 export class EntityManager {
   constructor() {

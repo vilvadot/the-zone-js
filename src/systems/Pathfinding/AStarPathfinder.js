@@ -1,4 +1,4 @@
-import { DebugPath } from "../../debug.js";
+import { DebugPath } from "../../infra/debug.js";
 import ROT from '../../lib/rot.js'
 
 export class AStarPathfinder {

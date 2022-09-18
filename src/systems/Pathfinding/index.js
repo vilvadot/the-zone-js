@@ -1,4 +1,4 @@
-import { Debug } from "../../debug.js";
+import { Debug } from "../../infra/debug.js";
 import { AStarPathfinder } from "./AStarPathfinder.js";
 
 export class Pathfinding {

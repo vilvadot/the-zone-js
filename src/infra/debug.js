@@ -1,5 +1,5 @@
-import { positionNodeInCanvas, createNode, addNodeToGame } from "./util.js";
-import { DEBUG_ENABLED } from "./config.js";
+import { positionNodeInCanvas, createNode, addNodeToGame } from "../util.js";
+import { DEBUG_ENABLED } from "../config.js";
 
 export const initializeEntityDebugSystem = (entities) => {
   window.addEventListener("click", (event) => {

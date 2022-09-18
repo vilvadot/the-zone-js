@@ -13,14 +13,13 @@ import {
   Travel,
 } from "./systems/index.js";
 import { UIRendering } from "./ui/system.js";
-import { Corpse, Player } from "./entities/index.js";
-import { Logger } from "./Logger.js";
+import { EntityManager, Player } from "./entities/index.js";
+import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
 import { EnemySpawner } from "./spawners/EnemySpawner.js";
 import { ArtifactSpawner } from "./spawners/ArtifactSpawner.js";
 import { HEIGHT, WIDTH, LIMIT } from "./config.js";
-import { World } from "./World/index.js";
-import { EntityManager } from "./entity-manager.js";
+import { World } from "./world/index.js";
 import { Navigation } from "./navigation.js";
 
 export class Game {

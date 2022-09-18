@@ -1,11 +1,11 @@
 import { resolve } from "path";
 import { readFileSync } from "fs";
 import { loadGame } from "./index";
-import { Display } from "./Display";
+import { Display } from "./infra/display";
 
 const html = readFileSync(resolve(__dirname, "./index.html")).toString();
 
-jest.mock("./Display");
+jest.mock("./infra/display");
 
 describe("Game e2e", () => {
   const width = 3;
