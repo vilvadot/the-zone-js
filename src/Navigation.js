@@ -24,12 +24,18 @@ export class Navigation {
     this.coordinates[1]--;
   }
 
-  getAreaCoordinates() {
-    const id = this.coordinates.join(",");
-    const result = this.areas[id];
+  getAreaCoordinates(){
+    return this.coordinates.join(",");
+  }
 
-    if (!result) this.areas[id] = `${randomInteger(0, 99999)}`;
+  getAreaSeed() {
+    const id = this.getAreaCoordinates()
+    if (!this.areas[id]) this.generateSeed(id)
 
     return this.areas[id];
+  }
+
+  generateSeed(id){
+    this.areas[id] = `${randomInteger(0, 99999)}`;
   }
 }

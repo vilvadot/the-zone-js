@@ -40,25 +40,24 @@ export class Game {
   }
 
   createNewArea() {
-    this.display.clear();
-    this.entityManager.resetAllButPlayer();
+    const coordinates = this.navigation.getAreaCoordinates();
+    let cachedEntities = this.entityManager.isCached(coordinates);
 
-    const enemies = EnemySpawner.spawn(LIMIT.enemies);
-    this.entityManager.add(enemies);
+    if (!cachedEntities) {
+      const enemies = EnemySpawner.spawn(LIMIT.enemies);
+      const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
+      this.entityManager.add([...enemies, ...anomalies])
+    }
 
-    const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
-    this.entityManager.add(anomalies);
-    console.log(this.navigation)
-    const seed = this.navigation.getAreaCoordinates();
-    this.world.generate(seed);
+    this.world.generate(coordinates);
 
-    Spawn.run(this.entityManager.retrieveAll(), this.world);
+    Spawn.run(this.entityManager.retrieveAll(coordinates), this.world);
   }
 
   runMainLoop(action) {
-    this.turn++
+    this.turn++;
     KeyboardControl.run(this.entityManager.retrieveAll(), action);
-    Travel.run(this.entityManager.retrieveAll(), this.navigation, () => {
+    Travel.run(this.entityManager.retrieveAll(), this.navigation, this.entityManager, () => {
       this.createNewArea();
     });
     Movement.run(this.entityManager.retrieveAll(), this.world);

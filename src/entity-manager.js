@@ -3,6 +3,7 @@ import { Corpse } from "./entities/Corpse.js";
 
 export class EntityManager {
   constructor() {
+    this.cache = new EntityCache()
     this.entities = [];
     this.player = null;
   }
@@ -12,10 +13,7 @@ export class EntityManager {
   }
 
   add(entities) {
-    if (Array.isArray(entities))
-      return (this.entities = [...this.entities, ...entities]);
-
-    this.entities.push(entities);
+    this.entities = [...this.entities, ...entities]
   }
 
   kill(entity) {
@@ -25,12 +23,39 @@ export class EntityManager {
     this.entities.push(new Corpse(entity));
   }
 
-  resetAllButPlayer() {
+  reset(seed) {
+    this.cache.push(seed, this.entities)
     this.entities.forEach((entity) => findTile(entity?.id)?.remove())
-    this.entities = [this.player]
+    this.entities = []
   }
 
-  retrieveAll() {
-    return this.entities;
+  isCached(seed){
+    return !!this.cache.retrieve(seed)
+  }
+
+  retrieveAll(seed) {
+    if(this.isCached(seed)) {
+      this.entities = this.cache.retrieve(seed)
+      return this.entities
+    }
+    return this._getAll();
+  }
+
+  _getAll(){
+    return [this.player, ...this.entities]
+  }
+}
+
+class EntityCache{
+  constructor(){
+    this.cache = {}
+  }
+
+  push(key, entities){
+    this.cache[key] = entities
+  }
+
+  retrieve(key){
+    return this.cache[key]
   }
 }

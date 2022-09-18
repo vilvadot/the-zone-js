@@ -23,7 +23,7 @@ export class Player {
     this.health = new Health(100);
     this.damage = new Damage(1);
     this.sprite = new Sprite(sprites.knight, 3);
-    this.position = new Position(10, 10);
+    this.position = new Position();
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
     this.inventory = new Inventory();
