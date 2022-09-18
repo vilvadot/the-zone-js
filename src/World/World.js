@@ -1,11 +1,11 @@
 import { TILES } from "../tiles.js";
 import { Generator } from "./Generator.js";
-import { Grid } from "./Grid.js";
+import { Cells } from "./Cells.js";
 
 export class World {
   constructor(width, height) {
     this.generator = new Generator(width - 1, height - 1);
-    this.map = new Grid(width, height);
+    this.map = new Cells(width, height);
   }
 
   get width() {
@@ -17,8 +17,7 @@ export class World {
   }
 
   generate(seed) {
-    this.generator.setSeed(seed).generate((x, y, isFilled) => {
-      const tile = isFilled ? TILES.wall : TILES.empty;
+    this.generator.setSeed(seed).generate((x, y, tile) => {
       this.map.add(x, y, tile);
     });
   }

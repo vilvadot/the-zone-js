@@ -1,7 +1,7 @@
 import { TILES } from "../tiles.js";
 import { randomInteger } from "../util.js";
 
-export class Grid {
+export class Cells {
   constructor(columns = 0, rows = 0) {
     this.width = columns;
     this.height = rows;

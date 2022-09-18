@@ -1,3 +1,3 @@
 export { World } from './World.js'
-export { Grid } from './Grid.js'
+export { Cells } from './Cells.js'
 export { Generator } from './Generator.js'
