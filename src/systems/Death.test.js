@@ -1,4 +1,3 @@
-import { Player } from "../entities";
 import { Health, Sprite } from "../components";
 import { Death } from "./Death";
 
@@ -10,31 +9,21 @@ describe("Death system", () => {
   it("ignores an entity with health above alive threshold", () => {
     const health = 10;
     const aliveEntity = new Entity(health);
-    const game = gameStub();
+    const entityManager = entityManagerStub();
 
-    Death.run([aliveEntity], game);
+    Death.run([aliveEntity], entityManager);
 
-    expect(game.kill).not.toHaveBeenCalled();
+    expect(entityManager.kill).not.toHaveBeenCalled();
   });
 
   it("kills an with health bellow alive threshold", () => {
     const health = -1;
     const deadEntity = new Entity(health);
-    const game = gameStub();
+    const entityManager = entityManagerStub();
 
-    Death.run([deadEntity], game);
+    Death.run([deadEntity], entityManager);
 
-    expect(game.kill).toHaveBeenCalledWith(deadEntity);
-  });
-
-  it("if player is killed it resets the game", () => {
-    const player = new Player();
-    player.health.value = 0;
-    const game = gameStub();
-
-    Death.run([player], game);
-
-    expect(game.reset).toHaveBeenCalled();
+    expect(entityManager.kill).toHaveBeenCalledWith(deadEntity);
   });
 });
 
@@ -45,9 +34,8 @@ class Entity {
   }
 }
 
-const gameStub = () => {
+const entityManagerStub = () => {
   return {
     kill: jest.fn(),
-    reset: jest.fn(),
   };
 };
