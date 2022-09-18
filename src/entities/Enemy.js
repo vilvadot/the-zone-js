@@ -3,7 +3,6 @@ import {
   Position,
   Velocity,
   Health,
-  Spawn,
   Damage,
   TargetManual,
   Animation,
@@ -16,7 +15,6 @@ export class Enemy {
     this.name = "enemy";
     this.id = `enemy-${uid()}`;
     this.target = new TargetManual("player");
-    this.spawn = Spawn.random();
     this.health = new Health(2);
     this.damage = new Damage(1);
     this.sprite = new Sprite(sprites.snake, 3);

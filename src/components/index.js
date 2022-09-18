@@ -14,16 +14,6 @@ export class Velocity {
   }
 }
 
-export class Spawn {
-  static random() {
-    return new Spawn("random");
-  }
-
-  constructor(mode = "center") {
-    this.mode = mode;
-  }
-}
-
 export class Health {
   constructor(value = 0) {
     this.value = value;
@@ -64,22 +54,6 @@ export class Collision {
       overlap: [],
       ...areas,
     };
-  }
-}
-
-export class Inventory {
-  constructor() {
-    this.content = [];
-  }
-
-  add(item) {
-    this.content.push(item);
-  }
-}
-
-export class Pickable {
-  constructor() {
-    this.isPicked = false;
   }
 }
 

@@ -1,18 +1,9 @@
-import { Position, Spawn } from "../components";
+import { Position } from "../components";
 import { Spawn as SpawnSystem } from "./Spawn";
 
 describe("Spawn system", () => {
-  it("spawns entity at center of world by default", () => {
-    const entity = new Entity(1, 1);
-
-    SpawnSystem.run([entity]);
-
-    expect(entity.position.x).toEqual(19);
-    expect(entity.position.y).toEqual(12);
-  });
-
-  it("spawns entity random free cell in 'random' mode", () => {
-    const entity = new Entity(1, 1, "random");
+  it("spawns entity without position in random free cell", () => {
+    const entity = new Entity();
     const world = {
       getRandomFreeCell: () => ({ x: 3, y: 3 }),
     };
@@ -22,11 +13,19 @@ describe("Spawn system", () => {
     expect(entity.position.x).toEqual(3);
     expect(entity.position.y).toEqual(3);
   });
+
+  it("does not affect already spawned entitites", () => {
+    const entity = new Entity(1, 1);
+
+    SpawnSystem.run([entity]);
+
+    expect(entity.position.x).toEqual(1);
+    expect(entity.position.y).toEqual(1);
+  });
 });
 
 class Entity {
-  constructor(x, y, spawnMode) {
+  constructor(x, y) {
     this.position = new Position(x, y);
-    this.spawn = new Spawn(spawnMode);
   }
 }
