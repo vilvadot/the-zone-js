@@ -14,9 +14,40 @@ export class Generator {
   }
 
   generate(callback) {
-    return this.engine.randomize(0.4).create((x, y, isFilled) => {
-      const tile = isFilled ? TILES.wall : TILES.empty;
+    let result = this._generateBasicMap();
+    result = this._addWalls(result);
+    result = this._addGrass(result);
+
+    for (const key in result) {
+      const [x, y] = key.split(",");
+      const tile = result[key];
       callback(x, y, tile);
+    }
+  }
+
+  _addWalls(cells) {
+    this.engine.randomize(0.25).create((x, y, isFilled) => {
+      const originalTile = cells[`${x},${y}`]
+      cells[`${x},${y}`] = isFilled ? TILES.wall : originalTile;
+    })
+    return cells;
+  }
+
+  _addGrass(cells) {
+    this.engine.randomize(0.15).create((x, y, isFilled) => {
+      const originalTile = cells[`${x},${y}`]
+      cells[`${x},${y}`] = isFilled ? TILES.grass : originalTile;
+    })
+    return cells;
+  }
+
+  _generateBasicMap() {
+    const result = {};
+
+    this.engine.randomize(0.5).create((x, y, isFilled) => {
+      const tile = isFilled ? TILES.dirt : TILES.empty;
+      result[`${x},${y}`] = tile;
     });
+    return result;
   }
 }

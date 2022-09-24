@@ -12,21 +12,15 @@ describe("E2E Game test", () => {
     display = new MockDisplay();
   });
 
-  it("loads a game", () => {
-    const { navigation, player } = new Game(bus, display);
-
-    expect(navigation.coordinates).toEqual([0, 0]);
-    expect(player.position).toEqual({ x: 19, y: 12 });
-  });
-
   it("player moves", () => {
     const game = new Game(bus, display);
+    const {x,y} = game.player.position
 
     game.runMainLoop({ key: INPUTS["ArrowRight"] });
 
     const { navigation, player } = game;
     expect(navigation.coordinates).toEqual([0, 0]);
-    expect(player.position).toEqual({ x: 20, y: 12 });
+    expect(player.position).toEqual({ x: x + 1, y });
   });
 });
 

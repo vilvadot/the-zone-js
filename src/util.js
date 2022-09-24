@@ -88,6 +88,7 @@ export const capitalize = (string) => {
 };
 
 export const shadowMagnitude = (distance) => {
-  const shadowing = 1 / distance;
+  const FLASHLIGHT_INTENSITY = 2;
+  const shadowing = 1 / distance * FLASHLIGHT_INTENSITY;
   return shadowing;
 };

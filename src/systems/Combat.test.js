@@ -1,7 +1,7 @@
 import { Damage, Health, Position, Sprite, TargetManual, Animation } from "../components";
 import { Combat } from "./Combat";
-import { Logger } from "../Logger.stub";
-import { Bus } from "../events";
+import { Logger } from "../infra/Logger.stub";
+import { Bus } from "../infra/bus";
 
 const bus = new Bus()
 

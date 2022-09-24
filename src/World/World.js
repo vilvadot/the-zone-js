@@ -38,8 +38,8 @@ export class World {
     const tile = this.map.getTile(x, y);
     if (!tile) return true;
 
-    const isFree = tile === TILES.empty;
-    return !isFree;
+    const isWall = tile === TILES.wall;
+    return isWall;
   }
 
   getTileAt(x, y) {

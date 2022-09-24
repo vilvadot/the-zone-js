@@ -48,7 +48,7 @@ export class Game {
       this.entityManager.add([...enemies, ...anomalies])
     }
 
-    this.world.generate(coordinates);
+    this.world.generate(this.navigation.getAreaSeed());
 
     Spawn.run(this.entityManager.retrieveAll(coordinates), this.world);
   }
