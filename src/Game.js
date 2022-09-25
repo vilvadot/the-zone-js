@@ -1,6 +1,5 @@
 import {
   KeyboardControl,
-  Rendering,
   Death,
   Combat,
   Spawn,
@@ -9,10 +8,8 @@ import {
   Collision,
   Targetting,
   Animation,
-  WorldRendering,
   Travel,
 } from "./systems/index.js";
-import { UIRendering } from "./ui/system.js";
 import { EntityManager, Player } from "./entities/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -23,19 +20,21 @@ import { World } from "./world/index.js";
 import { Navigation } from "./navigation.js";
 
 export class Game {
-  constructor(bus, display) {
+  constructor(bus) {
     this.bus = bus;
-    this.display = display;
     this.navigation = new Navigation();
     this.world = new World(WIDTH, HEIGHT);
     this.player = new Player();
     this.turn = 0;
-    this.ui = new UIRendering(bus);
     this.logger = new Logger(bus);
     this.fov = new FOVIndex();
     this.entityManager = new EntityManager();
     this.entityManager.addPlayer(this.player);
     this.createNewArea();
+  }
+
+  get entities() {
+    return this.entityManager.retrieveAll();
   }
 
   createNewArea() {
@@ -45,7 +44,7 @@ export class Game {
     if (!cachedEntities) {
       const enemies = EnemySpawner.spawn(LIMIT.enemies);
       const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
-      this.entityManager.add([...enemies, ...anomalies])
+      this.entityManager.add([...enemies, ...anomalies]);
     }
 
     this.world.generate(this.navigation.getAreaSeed());
@@ -55,20 +54,24 @@ export class Game {
 
   runMainLoop(action) {
     this.turn++;
-    KeyboardControl.run(this.entityManager.retrieveAll(), action);
-    Travel.run(this.entityManager.retrieveAll(), this.navigation, this.entityManager, () => {
+    KeyboardControl.run(this.entities, action);
+    Travel.run(this.entities, this.navigation, this.entityManager, () => {
       this.createNewArea();
     });
-    Movement.run(this.entityManager.retrieveAll(), this.world);
+    Movement.run(this.entities, this.world);
     this.fov.update(this.player, this.world);
-    Targetting.run(this.entityManager.retrieveAll(), action);
-    Pathfinding.run(this.entityManager.retrieveAll(), this.world);
-    Collision.run(this.entityManager.retrieveAll());
-    Combat.run(this.bus, this.logger, this.entityManager.retrieveAll());
-    Animation.run(this.entityManager.retrieveAll());
-    Death.run(this.entityManager.retrieveAll(), this.entityManager);
-    WorldRendering.run(this.display, this.fov, this.world);
-    Rendering.run(this.entityManager.retrieveAll(), this.fov);
-    this.ui.update(this.entityManager.retrieveAll(), this.turn);
+    Targetting.run(this.entities, action);
+    Pathfinding.run(this.entities, this.world);
+    Collision.run(this.entities);
+    Combat.run(this.bus, this.logger, this.entities);
+    Animation.run(this.entities);
+    Death.run(this.entities, this.entityManager);
+
+    return {
+      fov: this.fov,
+      world: this.world,
+      turn: this.turn,
+      entities: this.entityManager.retrieveAll(),
+    };
   }
 }

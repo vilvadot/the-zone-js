@@ -1,9 +1,9 @@
 import { EVENTS } from "../events.js";
-import { LogMessages } from "./LogMessages.js";
-import { TurnsCounter } from "./TurnsCounter.js";
-import { HealthBars } from "./HealthBars.js";
+import { LogMessages } from "./ui/LogMessages.js";
+import { TurnsCounter } from "./ui/TurnsCounter.js";
+import { HealthBars } from "./ui/HealthBars.js";
 
-export class UIRendering {
+export class UIRenderer {
   constructor(bus) {
     this.bus = bus;
     this._asyncSubscriptions();

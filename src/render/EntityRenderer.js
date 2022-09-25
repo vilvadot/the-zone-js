@@ -1,7 +1,7 @@
 import { CELL_SIZE } from "../config.js";
 import { addNodeToGame, positionNodeInCanvas, findTile, shadowMagnitude } from "../util.js";
 
-export class Rendering {
+export class EntityRenderer {
   static run(entities, fov) {
     for (const { id, sprite, position, isPlayer } of entities) {
       if (!sprite || !position) continue;

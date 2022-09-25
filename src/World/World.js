@@ -4,7 +4,7 @@ import { Cells } from "./Cells.js";
 
 export class World {
   constructor(width, height) {
-    this.generator = new Generator(width - 1, height - 1);
+    this.generator = new Generator(width, height);
     this.map = new Cells(width, height);
   }
 

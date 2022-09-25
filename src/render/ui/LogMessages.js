@@ -1,4 +1,4 @@
-import { createNode } from "../util.js";
+import { createNode } from "../../util.js";
 
 export class LogMessages {
   static update(message, color) {

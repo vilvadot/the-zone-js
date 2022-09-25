@@ -3,7 +3,7 @@ import { FOVIndex } from "../fov-index";
 import { Position, Sprite } from "../components";
 import { canvasCoordinates } from "../util";
 
-describe("Rendering system", () => {
+describe("EntityRenderer", () => {
   let sprite;
 
   afterEach(() => {
