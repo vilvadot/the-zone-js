@@ -1,5 +1,5 @@
 import { Sprite } from "../components/index.js";
-import { sprites } from "../tiles.js";
+import { sprites } from "../sprites.js";
 
 export class Corpse {
   constructor(entity) {

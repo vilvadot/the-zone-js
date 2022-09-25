@@ -8,7 +8,7 @@ import {
   Animation,
   Sprite,
 } from "../components/index.js";
-import { sprites } from "../tiles.js";
+import { sprites } from "../sprites.js";
 import { WIDTH, HEIGHT} from '../config.js'
 
 export const PLAYER_ID = "player";

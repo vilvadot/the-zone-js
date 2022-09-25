@@ -8,7 +8,7 @@ import {
   Animation,
 } from "../components/index.js";
 import { uid } from "../util.js";
-import { sprites } from "../tiles.js";
+import { sprites } from "../sprites.js";
 
 export class Enemy {
   constructor() {

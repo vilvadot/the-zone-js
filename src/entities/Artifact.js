@@ -1,6 +1,6 @@
 import { Position, Sprite } from "../components/index.js";
 import {uid} from '../util.js'
-import { sprites } from "../tiles.js";
+import { sprites } from "../sprites.js";
 
 export class Artifact{
   constructor() {

@@ -1,9 +1,9 @@
 import ROT from "../lib/rot.js";
 import { WIDTH, HEIGHT } from "../config.js";
-import { tileset, tileMap } from '../tiles.js'
+import { spriteSheet, spriteMap } from '../sprites.js'
 
 export const loadedTiles = document.createElement("img");
-loadedTiles.src = tileset;
+loadedTiles.src = spriteSheet;
 
 export const OPTIONS = {
   layout: "tile",
@@ -13,7 +13,7 @@ export const OPTIONS = {
   tileHeight: 24,
   tileColorize: true,
   tileSet: loadedTiles,
-  tileMap
+  tileMap: spriteMap
 };
 
 export class Display {

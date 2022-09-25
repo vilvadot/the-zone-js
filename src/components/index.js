@@ -1,5 +1,3 @@
-import { mapToTilesetCoordinates, tileset } from "../tiles.js";
-
 export class Position {
   constructor(x, y) {
     this.x = x;
@@ -29,10 +27,9 @@ export class Damage {
 
 export class Sprite {
   constructor([x = 19, y = 19] = [], zIndex = 1, additionalClass = '') {
-    this.x = mapToTilesetCoordinates(x);
-    this.y = mapToTilesetCoordinates(y);
+    this.x = x;
+    this.y = y;
     this.zIndex = zIndex;
-    this.tileset = tileset;
     
     this.additionalClass = additionalClass;
   }
