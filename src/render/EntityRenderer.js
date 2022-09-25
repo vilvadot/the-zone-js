@@ -6,10 +6,11 @@ import {
   shadowMagnitude,
 } from "../util.js";
 import { spriteSheet, mapTospriteSheetCoordinates } from "../sprites.js";
+import { ANIMATIONS } from "./animations.js";
 
 export class EntityRenderer {
   static run(entities, fov) {
-    for (const { id, sprite, position, isPlayer } of entities) {
+    for (const { id, sprite, position, isPlayer, animation } of entities) {
       if (!sprite || !position) continue;
 
       let $node = findTile(id) || addTileToGame(id, sprite);
@@ -20,6 +21,15 @@ export class EntityRenderer {
         $node.style.visibility = "hidden";
       } else {
         $node.style.visibility = "visible";
+      }
+
+      if (animation?.isActive) {
+        const animationClassName = `animation--${animation.name}`;
+        $node.classList.add(animationClassName);
+        setTimeout(() => {
+          animation.isActive = false;
+          $node.classList.remove(animationClassName);
+        }, ANIMATIONS[animation.name].duration);
       }
 
       if (!isPlayer) {

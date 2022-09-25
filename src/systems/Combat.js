@@ -1,5 +1,5 @@
 import { isInrange } from "../util.js";
-import { ANIMATIONS } from "./Animation.js";
+import { ANIMATIONS } from "../animations.js";
 import { EVENTS } from "../events.js";
 
 export class Combat {

@@ -7,7 +7,6 @@ import {
   Movement,
   Collision,
   Targetting,
-  Animation,
   Travel,
 } from "./systems/index.js";
 import { EntityManager, Player } from "./entities/index.js";
@@ -64,7 +63,6 @@ export class Game {
     Pathfinding.run(this.entities, this.world);
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);
-    Animation.run(this.entities);
     Death.run(this.entities, this.entityManager);
 
     return {
