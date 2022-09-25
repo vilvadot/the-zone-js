@@ -1,4 +1,4 @@
-import { Rendering } from "./Rendering";
+import { EntityRenderer } from "./EntityRenderer";
 import { FOVIndex } from "../fov-index";
 import { Position, Sprite } from "../components";
 import { canvasCoordinates } from "../util";
@@ -18,7 +18,7 @@ describe("EntityRenderer", () => {
     const y = 10;
     const centeredEntity = new EntityAt(id, x, y, tile);
 
-    Rendering.run([centeredEntity], new FOVIndex());
+    EntityRenderer.run([centeredEntity], new FOVIndex());
 
     sprite = document.querySelector(`#${id}`);
     expect(sprite.title).toEqual(id);
