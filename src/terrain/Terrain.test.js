@@ -1,10 +1,10 @@
-import { World } from "./World";
+import { Terrain } from "./Terrain";
 
-describe("World", () => {
+describe("Terrain", () => {
   it("knows its center", () => {
     const width = 20;
     const height = 20;
-    const world = new World(width, height);
+    const world = new Terrain(width, height);
 
     const center = world.getCenter();
 
@@ -13,7 +13,7 @@ describe("World", () => {
   });
 
   it("knows if a cell is blocked", () => {
-    const world = new World(1, 1);
+    const world = new Terrain(1, 1);
 
     world.addWall(0, 0);
 
@@ -21,19 +21,19 @@ describe("World", () => {
   });
 
   it("knows where the world ends", () => {
-    const world = new World(1, 1);
+    const world = new Terrain(1, 1);
 
     expect(world.isBlocked(3, 3)).toBe(true);
   });
 
   it("knows if a cell is free", () => {
-    const world = new World(1, 1);
+    const world = new Terrain(1, 1);
 
     expect(world.isBlocked(0, 0)).toBe(false);
   });
 
   it("[recursive] provides free tiles", () => {
-    const world = new World(3, 3);
+    const world = new Terrain(3, 3);
     world.addWall(0, 0);
 
     const { x, y } = world.getRandomFreeCell();

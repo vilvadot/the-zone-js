@@ -15,14 +15,14 @@ import { FOVIndex } from "./fov-index.js";
 import { EnemySpawner } from "./spawners/EnemySpawner.js";
 import { ArtifactSpawner } from "./spawners/ArtifactSpawner.js";
 import { HEIGHT, WIDTH, LIMIT } from "./config.js";
-import { World } from "./world/index.js";
+import { Terrain } from "./terrain/index.js";
 import { Navigation } from "./navigation.js";
 
 export class Game {
   constructor(bus) {
     this.bus = bus;
     this.navigation = new Navigation();
-    this.world = new World(WIDTH, HEIGHT);
+    this.world = new Terrain(WIDTH, HEIGHT);
     this.player = new Player();
     this.turn = 0;
     this.logger = new Logger(bus);

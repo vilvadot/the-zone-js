@@ -11,7 +11,7 @@ describe("EntityRenderer", () => {
   });
 
   it("draws a sprite in its position", () => {
-    stubWorldDOM();
+    stubTerrainDOM();
     const id = "yEntity";
     const tile = "X";
     const x = 10;
@@ -31,7 +31,7 @@ describe("EntityRenderer", () => {
   });
 });
 
-const stubWorldDOM = () => {
+const stubTerrainDOM = () => {
   const $game = document.createElement("div");
   $game.id = "game";
   document.body.appendChild($game);
