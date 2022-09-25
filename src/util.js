@@ -86,9 +86,3 @@ export const roll = (probability = .5) => {
 export const capitalize = (string) => {
   return `${string[0].toUpperCase()}${string.slice(1)}`;
 };
-
-export const shadowMagnitude = (distance) => {
-  const FLASHLIGHT_INTENSITY = 2;
-  const shadowing = 1 / distance * FLASHLIGHT_INTENSITY;
-  return shadowing;
-};

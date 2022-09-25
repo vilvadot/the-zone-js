@@ -1,5 +1,5 @@
 import { DEBUG_ENABLED } from "../config.js";
-import { shadowMagnitude } from "../util.js";
+import { shadowMagnitude } from "./shadowMagnitude.js";
 
 export class TerrainRenderer {
   static run(display, fov, world) {

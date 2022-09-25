@@ -1,10 +1,6 @@
 import { CELL_SIZE } from "../config.js";
-import {
-  addNodeToGame,
-  positionNodeInCanvas,
-  findTile,
-  shadowMagnitude,
-} from "../util.js";
+import { addNodeToGame, positionNodeInCanvas, findTile } from "../util.js";
+import { shadowMagnitude } from "./shadowMagnitude.js";
 import { spriteSheet, mapTospriteSheetCoordinates } from "../sprites.js";
 import { ANIMATIONS } from "./animations.js";
 
