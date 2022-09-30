@@ -6,8 +6,7 @@ export class TerrainRenderer {
     display.clear();
 
     if (DEBUG_ENABLED) {
-      world.map.forEach((x, y) => {
-        const value = world.getTileAt(x, y);
+      world.data.forEach((x, y, value) => {
         display.draw(x, y, value, `rgba(0,0,0,0`);
       });
     }

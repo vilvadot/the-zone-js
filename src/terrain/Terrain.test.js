@@ -4,7 +4,7 @@ describe("Terrain", () => {
   it("knows its center", () => {
     const width = 20;
     const height = 20;
-    const world = new Terrain(width, height);
+    const world = new Terrain(height, width);
 
     const center = world.getCenter();
 
@@ -20,7 +20,7 @@ describe("Terrain", () => {
     expect(world.isBlocked(0, 0)).toBe(true);
   });
 
-  it("knows where the world ends", () => {
+  it("knows if a cell is out of bounds", () => {
     const world = new Terrain(1, 1);
 
     expect(world.isBlocked(3, 3)).toBe(true);

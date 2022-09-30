@@ -10,7 +10,7 @@ export class FOVIndex {
     this.index = {};
 
     if (DEBUG_ENABLED) {
-      world.map.forEach((x, y) => {
+      world.data.forEach((x, y) => {
         this.index[`${x},${y}`] = 1;
       });
       return;

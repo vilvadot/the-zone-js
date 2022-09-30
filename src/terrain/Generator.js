@@ -1,3 +1,4 @@
+import { Matrix } from "../data-structures/Matrix.js";
 import ROT from "../lib/rot.js";
 import { TILES } from "../tiles.js";
 
@@ -13,41 +14,41 @@ export class Generator {
     return this;
   }
 
-  generate(callback) {
-    let result = this._generateBasicMap();
+  generate() {
+    let result = new Matrix();
+    result = this._generateBasicMap(result);
     result = this._addWalls(result);
     result = this._addGrass(result);
 
-    for (const key in result) {
-      const [x, y] = key.split(",");
-      const tile = result[key];
-      callback(x, y, tile);
-    }
+    return result;
   }
 
-  _addWalls(cells) {
+  _addWalls(result) {
     this.engine.randomize(0.25).create((x, y, isFilled) => {
-      const originalTile = cells[`${x},${y}`]
-      cells[`${x},${y}`] = isFilled ? TILES.wall : originalTile;
-    })
-    return cells;
+      const originalTile = result.getValue(x, y);
+      const value = isFilled ? TILES.wall : originalTile;
+      result.setValue(x, y, value);
+    });
+
+    return result;
   }
 
-  _addGrass(cells) {
-    this.engine.randomize(0.15).create((x, y, isFilled) => {
-      const originalTile = cells[`${x},${y}`]
-      cells[`${x},${y}`] = isFilled ? TILES.grass : originalTile;
-    })
-    return cells;
+  _addGrass(result) {
+    this.engine.randomize(0.25).create((x, y, isFilled) => {
+      const originalTile = result.getValue(x, y);
+      const value = isFilled ? TILES.grass : originalTile;
+      result.setValue(x, y, value);
+    });
+    
+    return result;
   }
 
-  _generateBasicMap() {
-    const result = {};
-
+  _generateBasicMap(result) {
     this.engine.randomize(0.5).create((x, y, isFilled) => {
       const tile = isFilled ? TILES.dirt : TILES.empty;
-      result[`${x},${y}`] = tile;
+      result.setValue(x, y, tile);
     });
+
     return result;
   }
 }

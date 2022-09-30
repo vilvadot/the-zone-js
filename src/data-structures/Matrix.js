@@ -1,7 +1,7 @@
 export class Matrix {
   constructor(rows = 1, columns = 1) {
-    const emptyColumn = Array(columns).fill(null)
-    this.data = Array(rows).fill(emptyColumn)
+    const emptyColumn = [...Array(columns).fill(null)]
+    this.data = [...Array(rows).fill(emptyColumn)]
   }
 
   get columns() {
@@ -18,6 +18,15 @@ export class Matrix {
   }
 
   getValue(x, y) {
+    if(!this.data[x]) return
     return this.data[x][y];
+  }
+
+  forEach(callback) {
+    this.data.forEach((row, x) => {
+      row.forEach((element, y) => {
+        callback(x, y, element);
+      });
+    });
   }
 }

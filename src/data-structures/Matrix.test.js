@@ -34,4 +34,12 @@ describe("Matrix", () => {
     expect(matrix.rows).toEqual(1);
     expect(matrix.columns).toEqual(4);
   });
+
+  it("returns undefined if value does not exist", () => {
+    const matrix = new Matrix(1, 1);
+
+    const result = matrix.getValue(3, 3);
+    
+    expect(result).toBeUndefined()
+  })
 });

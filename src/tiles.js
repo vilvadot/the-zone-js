@@ -1,6 +1,6 @@
 export const TILES = {
   wall: "◻︎",
-  empty: "x",
+  empty: "",
   dirt: ".",
   grass: ",",
   anomaly: "☸︎",

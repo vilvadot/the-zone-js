@@ -14,7 +14,7 @@ describe("E2E Game test", () => {
 
   it("player moves", () => {
     const game = new Game(bus, display);
-    const {x,y} = game.player.position
+    const { x, y } = game.player.position;
 
     game.runMainLoop({ key: INPUTS["ArrowRight"] });
 
