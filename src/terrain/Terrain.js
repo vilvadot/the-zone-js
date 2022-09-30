@@ -7,7 +7,6 @@ export class Terrain {
   constructor(width, height) {
     this.generator = new Generator(width, height);
     this.data = new Matrix(width, height);
-    this.recursionCounter = 5;
   }
 
   get width() {
