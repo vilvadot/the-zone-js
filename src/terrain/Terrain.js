@@ -1,4 +1,4 @@
-import { TILES } from "../tiles.js";
+import { TILES, isBlockingTile } from "../tiles.js";
 import { Generator } from "./Generator.js";
 import { Matrix } from "../data-structures/Matrix.js";
 import { randomInteger } from "../util.js";
@@ -21,16 +21,10 @@ export class Terrain {
     this.data = this.generator.setSeed(seed).generate();
   }
 
-  addWall(x, y) {
-    this.data.setValue(x, y, TILES.wall);
-    return this;
-  }
-
   isBlocked(x, y) {
     const tile = this.data.getValue(x, y);
     const isOutOfBounds = tile === undefined;
-    const isAWall = tile === TILES.wall;
-    if (isOutOfBounds || isAWall) return true;
+    if (isOutOfBounds || isBlockingTile(tile)) return true;
 
     const isWall = tile === TILES.wall;
     return isWall;

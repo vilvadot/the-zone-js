@@ -8,6 +8,7 @@ export class Generator {
       new DirtGenerator(width, height),
       new WallGenerator(width, height),
       new GrassGenerator(width, height),
+      new BuildingGenerator(width, height),
     ];
   }
 
@@ -21,6 +22,13 @@ export class Generator {
     this.generators.forEach((generator) => generator.run(result));
 
     return result;
+  }
+}
+
+class BuildingGenerator{
+  run(result){
+    result.setValue(10, 10, TILES.wallWood)
+    return result
   }
 }
 
