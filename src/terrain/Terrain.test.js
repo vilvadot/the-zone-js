@@ -1,17 +1,6 @@
 import { Terrain } from "./Terrain";
 
 describe("Terrain", () => {
-  it("knows its center", () => {
-    const width = 20;
-    const height = 20;
-    const terrain = new Terrain(height, width);
-
-    const center = terrain.getCenter();
-
-    expect(center.x).toEqual(width / 2);
-    expect(center.y).toEqual(height / 2);
-  });
-
   it("knows if a cell is blocked", () => {
     const terrain = new Terrain(1, 1);
 

@@ -26,13 +26,6 @@ export class Terrain {
     return this;
   }
 
-  getCenter() {
-    return {
-      x: Math.floor(this.width / 2),
-      y: Math.floor(this.height / 2),
-    };
-  }
-
   isBlocked(x, y) {
     const tile = this.data.getValue(x, y);
     const isOutOfBounds = tile === undefined;
