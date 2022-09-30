@@ -1,5 +1,5 @@
 export const BLOCKING_TILES = {
-  wall: "◻︎",
+  rock: "◻︎",
   wallWood: "⚀",
 }
 

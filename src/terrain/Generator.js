@@ -6,7 +6,7 @@ export class Generator {
   constructor(width, height) {
     this.generators = [
       new DirtGenerator(width, height),
-      new WallGenerator(width, height),
+      new RockGenerator(width, height),
       new GrassGenerator(width, height),
       new BuildingGenerator(width, height),
     ];
@@ -55,7 +55,7 @@ class DirtGenerator extends CellularGenerator {
   }
 }
 
-class WallGenerator extends CellularGenerator {
+class RockGenerator extends CellularGenerator {
   constructor(width, height) {
     super()
     this.engine = new ROT.Map.Cellular(width, height);
@@ -63,7 +63,7 @@ class WallGenerator extends CellularGenerator {
 
   run(result) {
     return super.generate(result, 0.25, (isFilled, originalTile) =>
-      isFilled ? TILES.wall : originalTile
+      isFilled ? TILES.rock : originalTile
     );
   }
 }

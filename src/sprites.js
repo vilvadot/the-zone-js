@@ -6,6 +6,7 @@ export const spriteSheet = "tiles.png"
 export const sprites = {
   nothing: [20, 0],
   brickWall: [5, 3],
+  woodWall: [0, 0],
   rock: [18, 2],
   myRock: [19, 2],
   snake: [8,8],
@@ -19,8 +20,8 @@ export const sprites = {
 }
 const mapToSpriteSheet = ([x, y]) => [x * CELL_SIZE, y * CELL_SIZE];
 export const spriteMap = {
-  [TILES.wall]: mapToSpriteSheet(sprites.rock),
-  [TILES.wallWood]: mapToSpriteSheet(sprites.brickWall),
+  [TILES.rock]: mapToSpriteSheet(sprites.rock),
+  [TILES.wallWood]: mapToSpriteSheet(sprites.woodWall),
   [TILES.empty]: mapToSpriteSheet(sprites.nothing),
   [TILES.dirt]: mapToSpriteSheet(sprites.dirt),
   [TILES.grass]: mapToSpriteSheet(sprites.grassDry),

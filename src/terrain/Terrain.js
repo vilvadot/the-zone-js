@@ -24,10 +24,10 @@ export class Terrain {
   isBlocked(x, y) {
     const tile = this.data.getValue(x, y);
     const isOutOfBounds = tile === undefined;
+    
     if (isOutOfBounds || isBlockingTile(tile)) return true;
 
-    const isWall = tile === TILES.wall;
-    return isWall;
+    return false;
   }
 
   getTileAt(x, y) {
