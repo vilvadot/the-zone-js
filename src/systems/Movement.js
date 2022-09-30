@@ -1,5 +1,5 @@
 export class Movement {
-  static run(entities, world) {
+  static run(entities, terrain) {
     for (const { position, velocity } of entities) {
       if (!velocity || !position) continue;
 
@@ -8,7 +8,7 @@ export class Movement {
       candidate.x = position.x + velocity.x;
       candidate.y = position.y + velocity.y;
 
-      if (this._tileOccupied(entities, candidate, world)) {
+      if (this._tileOccupied(entities, candidate, terrain)) {
         this._reset(velocity);
         continue;
       }
@@ -20,11 +20,11 @@ export class Movement {
     }
   }
 
-  static _tileOccupied = (entities, candidate, world) => {
+  static _tileOccupied = (entities, candidate, terrain) => {
     const isEntityPresent = entities.some(
       ({ position, isStatic }) => position.x === candidate.x && position.y === candidate.y && !isStatic
     );
-    const isWall = world.isBlocked(candidate.x, candidate.y);
+    const isWall = terrain.isBlocked(candidate.x, candidate.y);
 
     return isEntityPresent || isWall;
   };

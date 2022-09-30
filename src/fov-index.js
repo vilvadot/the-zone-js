@@ -6,11 +6,11 @@ export class FOVIndex {
     this.index = {};
   }
 
-  update(player, world) {
+  update(player, terrain) {
     this.index = {};
 
     if (DEBUG_ENABLED) {
-      world.data.forEach((x, y) => {
+      terrain.data.forEach((x, y) => {
         this.index[`${x},${y}`] = 1;
       });
       return;
@@ -19,7 +19,7 @@ export class FOVIndex {
     const VIEW_RADIUS = 30;
 
     const fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
-      if (world.isBlocked(x, y)) return false;
+      if (terrain.isBlocked(x, y)) return false;
       return true;
     });
 

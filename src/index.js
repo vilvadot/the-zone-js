@@ -25,8 +25,8 @@ export const loadGame = () => {
 };
 
 const runTurn = (action, game, display, ui) => {
-  const { fov, world, entities, turn } = game.runMainLoop(action);
-  TerrainRenderer.run(display, fov, world);
+  const { fov, terrain, entities, turn } = game.runMainLoop(action);
+  TerrainRenderer.run(display, fov, terrain);
   EntityRenderer.run(entities, fov);
   ui.update(entities, turn);
 };

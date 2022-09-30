@@ -2,7 +2,7 @@ import { Debug } from "../../infra/debug.js";
 import { AStarPathfinder } from "./AStarPathfinder.js";
 
 export class Pathfinding {
-  static run(entities, world) {
+  static run(entities, terrain) {
     Debug.timeStart("Pathfind");
     for (const {
       id,
@@ -20,7 +20,7 @@ export class Pathfinding {
         id,
         { x: position.x, y: position.y },
         { x: targetEntity.position.x, y: targetEntity.position.y },
-        world
+        terrain
       );
 
       if (!nextStep) continue;

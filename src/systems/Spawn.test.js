@@ -4,11 +4,11 @@ import { Spawn as SpawnSystem } from "./Spawn";
 describe("Spawn system", () => {
   it("spawns entity without position in random free cell", () => {
     const entity = new Entity();
-    const world = {
+    const terrain = {
       getRandomFreeCell: () => ({ x: 3, y: 3 }),
     };
 
-    SpawnSystem.run([entity], world);
+    SpawnSystem.run([entity], terrain);
 
     expect(entity.position.x).toEqual(3);
     expect(entity.position.y).toEqual(3);

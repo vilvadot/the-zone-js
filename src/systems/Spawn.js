@@ -1,10 +1,10 @@
 export class Spawn {
-  static run(entities, world) {
+  static run(entities, terrain) {
     for (const { position } of entities) {
       if (!position) continue;
       if (position.x && position.y) continue;
 
-      const coordinates = world.getRandomFreeCell();
+      const coordinates = terrain.getRandomFreeCell();
 
       position.x = coordinates.x;
       position.y = coordinates.y;

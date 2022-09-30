@@ -2,11 +2,11 @@ import { DebugPath } from "../../infra/debug.js";
 import ROT from '../../lib/rot.js'
 
 export class AStarPathfinder {
-  static calculateNextStep(id, origin, target, world) {
+  static calculateNextStep(id, origin, target, terrain) {
     const path = [];
 
     const checkFreeCell = (x, y) => {
-      const isFree = !world.isBlocked(x, y);
+      const isFree = !terrain.isBlocked(x, y);
       return isFree;
     };
     const engine = new ROT.Path.AStar(target.x, target.y, checkFreeCell, {

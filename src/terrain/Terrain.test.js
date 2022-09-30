@@ -4,40 +4,40 @@ describe("Terrain", () => {
   it("knows its center", () => {
     const width = 20;
     const height = 20;
-    const world = new Terrain(height, width);
+    const terrain = new Terrain(height, width);
 
-    const center = world.getCenter();
+    const center = terrain.getCenter();
 
     expect(center.x).toEqual(width / 2);
     expect(center.y).toEqual(height / 2);
   });
 
   it("knows if a cell is blocked", () => {
-    const world = new Terrain(1, 1);
+    const terrain = new Terrain(1, 1);
 
-    world.addWall(0, 0);
+    terrain.addWall(0, 0);
 
-    expect(world.isBlocked(0, 0)).toBe(true);
+    expect(terrain.isBlocked(0, 0)).toBe(true);
   });
 
   it("knows if a cell is out of bounds", () => {
-    const world = new Terrain(1, 1);
+    const terrain = new Terrain(1, 1);
 
-    expect(world.isBlocked(3, 3)).toBe(true);
+    expect(terrain.isBlocked(3, 3)).toBe(true);
   });
 
   it("knows if a cell is free", () => {
-    const world = new Terrain(1, 1);
+    const terrain = new Terrain(1, 1);
 
-    expect(world.isBlocked(0, 0)).toBe(false);
+    expect(terrain.isBlocked(0, 0)).toBe(false);
   });
 
   it("[recursive] provides free tiles", () => {
-    const world = new Terrain(3, 3);
-    world.addWall(0, 0);
+    const terrain = new Terrain(3, 3);
+    terrain.addWall(0, 0);
 
-    const { x, y } = world.getRandomFreeCell();
+    const { x, y } = terrain.getRandomFreeCell();
 
-    expect(world.isBlocked(x, y)).toBe(false);
+    expect(terrain.isBlocked(x, y)).toBe(false);
   });
 });

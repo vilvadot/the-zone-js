@@ -2,7 +2,7 @@ import { Position, TargetManual, Velocity } from "../../components";
 import { Pathfinding } from "./index";
 
 describe("Pathfinding system", () => {
-  const world = {
+  const terrain = {
         isBlocked: () => false
     }
 
@@ -15,7 +15,7 @@ describe("Pathfinding system", () => {
     );
     const target = new Entity(targetId, new Position(2, 2));
 
-    Pathfinding.run([target, follower], world);
+    Pathfinding.run([target, follower], terrain);
 
     expect(follower.velocity.x).toEqual(1);
     expect(follower.velocity.y).toEqual(0);
@@ -30,7 +30,7 @@ describe("Pathfinding system", () => {
     );
     const target = new Entity(targetId, new Position(2, 2));
 
-    Pathfinding.run([target, follower], world);
+    Pathfinding.run([target, follower], terrain);
 
     expect(follower.velocity.x).toEqual(0);
     expect(follower.velocity.y).toEqual(0);

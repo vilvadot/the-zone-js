@@ -22,7 +22,7 @@ export class Game {
   constructor(bus) {
     this.bus = bus;
     this.navigation = new Navigation();
-    this.world = new Terrain(WIDTH, HEIGHT);
+    this.terrain = new Terrain(WIDTH, HEIGHT);
     this.player = new Player();
     this.turn = 0;
     this.logger = new Logger(bus);
@@ -46,9 +46,9 @@ export class Game {
       this.entityManager.add([...enemies, ...anomalies]);
     }
 
-    this.world.generate(this.navigation.getAreaSeed());
+    this.terrain.generate(this.navigation.getAreaSeed());
 
-    Spawn.run(this.entityManager.retrieveAll(coordinates), this.world);
+    Spawn.run(this.entityManager.retrieveAll(coordinates), this.terrain);
   }
 
   runMainLoop(action) {
@@ -57,17 +57,17 @@ export class Game {
     Travel.run(this.entities, this.navigation, this.entityManager, () => {
       this.createNewArea();
     });
-    Movement.run(this.entities, this.world);
-    this.fov.update(this.player, this.world);
+    Movement.run(this.entities, this.terrain);
+    this.fov.update(this.player, this.terrain);
     Targetting.run(this.entities, action);
-    Pathfinding.run(this.entities, this.world);
+    Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);
     Death.run(this.entities, this.entityManager);
 
     return {
       fov: this.fov,
-      world: this.world,
+      terrain: this.terrain,
       turn: this.turn,
       entities: this.entityManager.retrieveAll(),
     };
