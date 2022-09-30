@@ -1,6 +1,6 @@
 import ROT from "../lib/rot.js";
 import { WIDTH, HEIGHT } from "../config.js";
-import { spriteSheet, spriteMap } from '../sprites.js'
+import { spriteSheet, SPRITES } from '../sprites.js'
 
 export const loadedTiles = document.createElement("img");
 loadedTiles.src = spriteSheet;
@@ -13,7 +13,7 @@ export const OPTIONS = {
   tileHeight: 24,
   tileColorize: true,
   tileSet: loadedTiles,
-  tileMap: spriteMap
+  tileMap: SPRITES
 };
 
 export class Display {

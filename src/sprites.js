@@ -1,15 +1,20 @@
 import { CELL_SIZE } from "./config.js";
-import {TILES} from './tiles.js'
 
-export const spriteSheet = "tiles.png"
-
-export const sprites = {
+const graphicCoordinates = {
   nothing: [20, 0],
   brickWall: [5, 3],
-  woodWall: [0, 0],
+  woodWall: {
+    horizontal: [1, 16],
+    vertical: [12, 16],
+    topLeft: [0, 16],
+    topRight: [2, 16],
+    bottomLeft: [11, 16],
+    bottomright: [10, 16],
+  },
+  plank: [12, 3],
   rock: [18, 2],
   myRock: [19, 2],
-  snake: [8,8],
+  snake: [8, 8],
   knight: [0, 8],
   bottle: [14, 6],
   mushroom: [17, 4],
@@ -17,14 +22,27 @@ export const sprites = {
   grassDry: [11, 4],
   corpse: [8, 18],
   dirt: [8, 2],
-}
-const mapToSpriteSheet = ([x, y]) => [x * CELL_SIZE, y * CELL_SIZE];
-export const spriteMap = {
-  [TILES.rock]: mapToSpriteSheet(sprites.rock),
-  [TILES.wallWood]: mapToSpriteSheet(sprites.woodWall),
-  [TILES.empty]: mapToSpriteSheet(sprites.nothing),
-  [TILES.dirt]: mapToSpriteSheet(sprites.dirt),
-  [TILES.grass]: mapToSpriteSheet(sprites.grassDry),
 };
 
-export const mapTospriteSheetCoordinates = (index) => -(index * CELL_SIZE)
+const mapToSpriteSheet = ([x, y]) => [x * CELL_SIZE, y * CELL_SIZE];
+
+export const SPRITES = {
+  wallVertical: mapToSpriteSheet(graphicCoordinates.woodWall.vertical),
+  wallHorizontal: mapToSpriteSheet(graphicCoordinates.woodWall.horizontal),
+  wallTopLeft: mapToSpriteSheet(graphicCoordinates.woodWall.topLeft),
+  wallTopRight: mapToSpriteSheet(graphicCoordinates.woodWall.topRight),
+  wallBottomLeft: mapToSpriteSheet(graphicCoordinates.woodWall.bottomLeft),
+  wallBottomRight: mapToSpriteSheet(graphicCoordinates.woodWall.bottomright),
+  knight: mapToSpriteSheet(graphicCoordinates.knight),
+  snake: mapToSpriteSheet(graphicCoordinates.snake),
+  corpse: mapToSpriteSheet(graphicCoordinates.corpse),
+  rock: mapToSpriteSheet(graphicCoordinates.rock),
+  plank: mapToSpriteSheet(graphicCoordinates.plank),
+  empty: mapToSpriteSheet(graphicCoordinates.nothing),
+  dirt: mapToSpriteSheet(graphicCoordinates.dirt),
+  grass: mapToSpriteSheet(graphicCoordinates.grassDry),
+};
+
+export const spriteSheet = "tiles.png";
+
+export const mapTospriteSheetCoordinates = (index) => -index;

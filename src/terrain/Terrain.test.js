@@ -26,7 +26,7 @@ describe("Terrain", () => {
     const terrain = new Terrain(3, 3);
     terrain.data.setValue(0,0, TILES.wall)
 
-    const { x, y } = terrain.getRandomFreeCell();
+    const { x, y } = terrain.getRandomFreeCoordinate();
 
     expect(terrain.isBlocked(x, y)).toBe(false);
   });

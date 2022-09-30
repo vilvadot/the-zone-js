@@ -1,7 +1,13 @@
-import { TILES, isBlockingTile } from "../tiles.js";
+import { isBlockingTile } from "../tiles.js";
 import { Generator } from "./Generator.js";
 import { Matrix } from "../data-structures/Matrix.js";
 import { randomInteger } from "../util.js";
+
+class Tile {
+  constructor(){
+    this.orientation = "default"
+  }
+}
 
 export class Terrain {
   constructor(width, height) {
@@ -35,7 +41,7 @@ export class Terrain {
     return tile;
   }
 
-  getRandomFreeCell() {
+  getRandomFreeCoordinate() {
     let tries = 0;
     let x;
     let y;
@@ -51,6 +57,6 @@ export class Terrain {
       }
     }
 
-    return { x, y, value: this.data.getValue(x, y) };
+    return { x, y };
   }
 }

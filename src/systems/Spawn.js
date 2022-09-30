@@ -4,7 +4,7 @@ export class Spawn {
       if (!position) continue;
       if (position.x && position.y) continue;
 
-      const coordinates = terrain.getRandomFreeCell();
+      const coordinates = terrain.getRandomFreeCoordinate();
 
       position.x = coordinates.x;
       position.y = coordinates.y;

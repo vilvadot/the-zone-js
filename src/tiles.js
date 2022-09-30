@@ -1,6 +1,6 @@
 export const BLOCKING_TILES = {
-  rock: "◻︎",
-  wallWood: "⚀",
+  rock: "rock",
+  woodWall: "wood_wall",
 }
 
 export const isBlockingTile = (tile) => {
@@ -9,12 +9,13 @@ export const isBlockingTile = (tile) => {
 
 export const TILES = {
   ...BLOCKING_TILES,
-  empty: "",
-  dirt: ".",
-  grass: ",",
-  anomaly: "☸︎",
-  player: "@",
-  corpse: "X",
-  enemy: "E",
+  empty: "empty",
+  dirt: "dirt",
+  grass: "grass",
+  anomaly: "anomaly",
+  player: "player",
+  corpse: "corpse",
+  enemy: "enemy",
+  plank: "plank"
 };
 

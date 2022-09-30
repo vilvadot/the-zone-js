@@ -8,8 +8,6 @@ import {
   Animation,
   Sprite,
 } from "../components/index.js";
-import { sprites } from "../sprites.js";
-import { WIDTH, HEIGHT} from '../config.js'
 
 export const PLAYER_ID = "player";
 
@@ -21,7 +19,7 @@ export class Player {
     this.target = new TargetManual();
     this.health = new Health(100);
     this.damage = new Damage(1);
-    this.sprite = new Sprite(sprites.knight, 3);
+    this.sprite = new Sprite('knight', 3);
     this.position = new Position();
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();

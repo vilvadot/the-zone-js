@@ -1,7 +1,11 @@
 import { CELL_SIZE } from "../config.js";
 import { addNodeToGame, positionNodeInCanvas, findTile } from "../util.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
-import { spriteSheet, mapTospriteSheetCoordinates } from "../sprites.js";
+import {
+  spriteSheet,
+  mapTospriteSheetCoordinates,
+  SPRITES,
+} from "../sprites.js";
 import { ANIMATIONS } from "./animations.js";
 
 export class EntityRenderer {
@@ -46,15 +50,14 @@ const addTileToGame = (id, sprite) => {
 
 export const createTile = (id, sprite) => {
   const $tile = document.createElement("div");
+  const [x, y] = SPRITES[sprite.name] || [0,0];
 
   $tile.style.width = CELL_SIZE;
   $tile.style.height = CELL_SIZE;
   $tile.style.fontSize = CELL_SIZE;
   $tile.style.zIndex = sprite.zIndex;
   $tile.style.background = `url(${spriteSheet})`;
-  $tile.style.backgroundPosition = `${mapTospriteSheetCoordinates(
-    sprite.x
-  )}px ${mapTospriteSheetCoordinates(sprite.y)}px`;
+  $tile.style.backgroundPosition = `${-x}px ${-y}px`;
   $tile.className = `tile ${sprite.additionalClass}`;
   $tile.id = id;
   $tile.title = id;

@@ -5,7 +5,7 @@ describe("Spawn system", () => {
   it("spawns entity without position in random free cell", () => {
     const entity = new Entity();
     const terrain = {
-      getRandomFreeCell: () => ({ x: 3, y: 3 }),
+      getRandomFreeCoordinate: () => ({ x: 3, y: 3 }),
     };
 
     SpawnSystem.run([entity], terrain);

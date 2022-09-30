@@ -26,9 +26,8 @@ export class Damage {
 }
 
 export class Sprite {
-  constructor([x = 19, y = 19] = [], zIndex = 1, additionalClass = '') {
-    this.x = x;
-    this.y = y;
+  constructor(name = "", zIndex = 1, additionalClass = '') {
+    this.name = name;
     this.zIndex = zIndex;
     
     this.additionalClass = additionalClass;

@@ -37,7 +37,7 @@ export class FOVIndex {
     for (const coordinate in this.index) {
       const [x, y] = coordinate.split(",");
 
-      callback(x, y, this.index[coordinate]);
+      callback(Number(x), Number(y), this.index[coordinate]);
     }
   }
 
