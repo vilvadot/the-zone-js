@@ -2,11 +2,13 @@ import { isBlockingTile } from "../tiles.js";
 import { TerrainGenerator } from "./generators/index.js";
 import { Matrix } from "../data-structures/Matrix.js";
 import { randomInteger } from "../util.js";
+import { Cache } from "../Cache.js";
 
 export class Terrain {
   constructor(width, height) {
     this.generator = new TerrainGenerator(width, height);
     this.data = new Matrix(width, height);
+    this.cache = new Cache();
   }
 
   get width() {
@@ -18,13 +20,17 @@ export class Terrain {
   }
 
   generate(seed) {
+    const cachedTerrain = this.cache.retrieve(seed);
+    if (cachedTerrain) return (this.data = cachedTerrain);
+    
     this.data = this.generator.setSeed(seed).generate();
+    this.cache.push(seed, this.data);
   }
 
   isBlocked(x, y) {
     const tile = this.data.getValue(x, y);
     const isOutOfBounds = tile === undefined;
-    
+
     if (isOutOfBounds || isBlockingTile(tile)) return true;
 
     return false;

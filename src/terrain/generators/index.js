@@ -7,6 +7,7 @@ import { RockGenerator } from "./RockGenerator.js";
 
 export class TerrainGenerator {
   constructor(width, height) {
+    this.seed = 0;
     this.generators = [
       new DirtGenerator(width, height),
       new RockGenerator(width, height),
@@ -16,11 +17,13 @@ export class TerrainGenerator {
   }
 
   setSeed(seed) {
-    ROT.RNG.setSeed(seed);
+    this.seed = seed;
     return this;
   }
 
   generate() {
+    ROT.RNG.setSeed(this.seed);
+
     let result = new Matrix();
     this.generators.forEach((generator) => generator.run(result));
 

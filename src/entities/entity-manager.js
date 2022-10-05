@@ -1,9 +1,10 @@
 import { findTile } from "../util.js";
+import { Cache } from "../Cache.js";
 import { Corpse } from "./Corpse.js";
 
 export class EntityManager {
   constructor() {
-    this.cache = new EntityCache()
+    this.cache = new Cache()
     this.entities = [];
     this.player = null;
   }
@@ -46,16 +47,4 @@ export class EntityManager {
   }
 }
 
-class EntityCache{
-  constructor(){
-    this.cache = {}
-  }
 
-  push(key, entities){
-    this.cache[key] = entities
-  }
-
-  retrieve(key){
-    return this.cache[key]
-  }
-}
