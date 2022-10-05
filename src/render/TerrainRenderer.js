@@ -1,5 +1,3 @@
-import { DEBUG_ENABLED } from "../config.js";
-import { SPRITES } from "../sprites.js";
 import { TILES } from "../tiles.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
 
@@ -19,19 +17,21 @@ const getSprite = (terrain, x, y) => {
   const value = terrain.getTileAt(x, y);
 
   if (isWoodWall(value)) {
-    const north = terrain.getTileAt(x, y - 1);
-    const south = terrain.getTileAt(x, y + 1);
-    const east = terrain.getTileAt(x + 1, y);
-    const west = terrain.getTileAt(x - 1, y);
-    console.log({x, y, north, south, east, west})
-    if(isWoodWall(east) && isWoodWall(south)) return "wallTopLeft";
-    if(isWoodWall(west) && isWoodWall(south)) return "wallTopRight";
-    if(isWoodWall(north) && isWoodWall(east)) return "wallBottomRight";
-    if(isWoodWall(north) && isWoodWall(west)) return "wallBottomLeft";
-    if(isWoodWall(north) || isWoodWall(south)) return "wallVertical";
-    return "wallHorizontal";
+    return getWallSprite(terrain, x, y);
   }
   return value;
 };
 
-const isWoodWall = (tile) => tile === TILES.woodWall
+const isWoodWall = (tile) => tile === TILES.woodWall;
+const getWallSprite = (terrain, x, y) => {
+  const north = terrain.getTileAt(x, y - 1);
+  const south = terrain.getTileAt(x, y + 1);
+  const east = terrain.getTileAt(x + 1, y);
+  const west = terrain.getTileAt(x - 1, y);
+  if (isWoodWall(east) && isWoodWall(south)) return "wallTopLeft";
+  if (isWoodWall(west) && isWoodWall(south)) return "wallTopRight";
+  if (isWoodWall(north) && isWoodWall(east)) return "wallBottomRight";
+  if (isWoodWall(north) && isWoodWall(west)) return "wallBottomLeft";
+  if (isWoodWall(north) || isWoodWall(south)) return "wallVertical";
+  return "wallHorizontal";
+};

@@ -1,7 +1,7 @@
 export class Matrix {
   constructor(rows = 1, columns = 1) {
-    const emptyColumn = [...Array(columns).fill(null)]
-    this.data = [...Array(rows).fill(emptyColumn)]
+    const emptyColumn = [...Array(columns).fill(null)];
+    this.data = [...Array(rows).fill(emptyColumn)];
   }
 
   get columns() {
@@ -18,11 +18,34 @@ export class Matrix {
   }
 
   getValue(x, y) {
-    if(!this.data[x]) return
+    if (!this.data[x]) return;
     return this.data[x][y];
   }
 
-  forEach(callback) {
+  getBorder(width = 1) {
+    const result = new Matrix();
+
+    this.iterate((x, y, value) => {
+      const isLeftBorder = x < width;
+      const isTopBorder = y < width;
+      const isRightBorder = x > this.rows - 1 - width;
+      const isBottomBorder = y > this.columns - 1 - width;
+
+      if (isLeftBorder || isRightBorder || isTopBorder || isBottomBorder)
+        return result.setValue(x, y, value);
+    });
+
+    return result;
+  }
+
+  merge(matrix) {
+    matrix.iterate((x, y, value) => {
+      this.setValue(x, y, value);
+    });
+    return this;
+  }
+
+  iterate(callback) {
     this.data.forEach((row, x) => {
       row.forEach((element, y) => {
         callback(x, y, element);

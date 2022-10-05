@@ -10,7 +10,7 @@ export class FOVIndex {
     this.index = {};
 
     if (DEBUG_ENABLED) {
-      terrain.data.forEach((x, y) => {
+      terrain.data.iterate((x, y) => {
         this.index[`${x},${y}`] = 1;
       });
       return;
