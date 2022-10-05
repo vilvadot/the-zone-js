@@ -36,6 +36,6 @@ export class Navigation {
   }
 
   generateSeed(id){
-    this.areas[id] = `${randomInteger(0, 99999)}`;
+    this.areas[id] = `${randomInteger(99999)}`;
   }
 }

@@ -61,7 +61,7 @@ export const randomFloat = (min, max) => {
   return Math.random() * (max - min) + min
 }
 
-export const randomInteger = (min, max) => {
+export const randomInteger = (max = 0, min = 0) => {
   return parseInt(Math.random() * (max - min + 1) + min);
 }
 

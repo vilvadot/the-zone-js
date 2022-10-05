@@ -41,8 +41,8 @@ export class Terrain {
     let y;
 
     while (tries < 10) {
-      x = randomInteger(0, this.width);
-      y = randomInteger(0, this.height);
+      x = randomInteger(this.width);
+      y = randomInteger(this.height);
 
       if (this.isBlocked(x, y)) {
         tries++;

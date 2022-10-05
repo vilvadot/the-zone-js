@@ -1,3 +1,5 @@
+import { TILES } from "../tiles.js";
+
 export class Matrix {
   constructor(rows = 1, columns = 1) {
     const emptyColumn = [...Array(columns).fill(null)];
@@ -42,6 +44,20 @@ export class Matrix {
     matrix.iterate((x, y, value) => {
       this.setValue(x, y, value);
     });
+    return this;
+  }
+
+   mergeAt(matrix, [startX, startY]) {
+    this.iterate((x,y) => {
+      if(x < startX) return
+      if(x > startX + matrix.rows - 1) return
+      if(y < startY) return
+      if(y > startY + matrix.columns -1) return
+
+      const value = matrix.getValue(x - startX, y - startY)
+      this.setValue(x,y, value)
+    })
+
     return this;
   }
 
