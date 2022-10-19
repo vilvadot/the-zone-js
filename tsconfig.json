@@ -1,18 +1,21 @@
 {
-  "compilerOptions": {
-    "target": "ES2015" ,
-    "esModuleInterop": true ,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "noImplicitAny": false,
-    "outDir": "src/dist",
-    "allowJs": true
-  },
-  "exclude": [
-    "node_modules",
-    "src/dist",
-    "**/*/*.test.ts",
-    "src/lib/**/*/*.ts"
-  ]
-}
+    "compilerOptions": {
+      "target": "ES2017" ,
+      "esModuleInterop": true ,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "skipLibCheck": true,
+      "noImplicitAny": false,
+      "outDir": "src/dist",
+      "allowJs": true,
+      "types": ["vitest"]
+    },
+    "exclude": [
+      "node_modules",
+      "src/dist",
+      "vitest.config.ts",
+      "**/*/*.test.ts",
+      "src/lib/**/*/*.ts"
+    ]
+  }
+  

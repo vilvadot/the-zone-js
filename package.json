@@ -1,25 +1,18 @@
 {
-
+  "name": "the-zone-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "jest src --watchAll",
-    "serve": "live-server src --ignore src/dist",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "vitest src",
+    "preview": "live-server src"
   },
   "devDependencies": {
-    "@types/jest": "^29.2.0",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/core": "^7.18.5",
-    "jest": "^28.1.1",
-    "jest-environment-jsdom": "^28.1.1",
-    "babel-jest": "^28.1.1",
     "live-server": "^1.2.2",
-    "typescript": "^4.8.4"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFiles": [
-      "./src/tests-setup.js"
-    ],
-    "modulePathIgnorePatterns": ["<rootDir>/src/dist/"]
+    "typescript": "^4.6.4",
+    "jsdom": "^20.0.1",
+    "vitest": "^0.24.3"
   }
 }

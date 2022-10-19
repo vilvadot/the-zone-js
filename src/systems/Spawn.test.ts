@@ -1,4 +1,5 @@
-import { Position } from "../components.js";
+import { describe, expect, it } from 'vitest'
+import { Position } from "../components";
 import { Spawn as SpawnSystem } from "./Spawn.js";
 
 describe("Spawn system", () => {
