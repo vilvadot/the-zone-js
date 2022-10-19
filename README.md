@@ -1,4 +1,4 @@
-Lightweight Roguelike built using [Rotjs](https://ondras.github.io/rot.js/hp/).
+Lightweight Roguelike built using [Rotjs](https://ondras.github.io/rot/hp/).
 
 ## How to use it
 

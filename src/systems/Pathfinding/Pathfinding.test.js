@@ -1,5 +1,5 @@
-import { Position, TargetManual, Velocity } from "../../components";
-import { Pathfinding } from "./index";
+import { Position, TargetManual, Velocity } from "../../components.js";
+import { Pathfinding } from "./index.js";
 
 describe("Pathfinding system", () => {
   const terrain = {
