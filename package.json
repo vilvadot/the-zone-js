@@ -1,4 +1,5 @@
 {
+
   "scripts": {
     "test": "jest src --watchAll",
     "serve": "live-server src --ignore src/dist",
@@ -18,6 +19,7 @@
     "testEnvironment": "jsdom",
     "setupFiles": [
       "./src/tests-setup.js"
-    ]
+    ],
+    "modulePathIgnorePatterns": ["<rootDir>/src/dist/"]
   }
 }
