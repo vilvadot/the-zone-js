@@ -35,7 +35,7 @@ export const SPRITES = {
   wallBottomLeft: mapToSpriteSheet(graphicCoordinates.woodWall.bottomLeft),
   wallBottomRight: mapToSpriteSheet(graphicCoordinates.woodWall.bottomright),
   knight: mapToSpriteSheet(graphicCoordinates.knight),
-  snake: mapToSpriteSheet(graphicCoordinates.knight),
+  snake: mapToSpriteSheet(graphicCoordinates.snake),
   corpse: mapToSpriteSheet(graphicCoordinates.corpse),
   rock: mapToSpriteSheet(graphicCoordinates.rock),
   plank: mapToSpriteSheet(graphicCoordinates.plank),
