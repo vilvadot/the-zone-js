@@ -1,4 +1,5 @@
-import { Damage, Health, Position, Sprite, TargetManual, Animation } from "../components.js";
+import { describe, expect, it, beforeEach } from 'vitest'
+import { Damage, Health, Position, Sprite, TargetManual, Animation } from "../components/index.js";
 import { Combat } from "./Combat.js";
 import { Logger } from "../infra/loggerStub.js";
 import { Bus } from "../infra/bus.js";

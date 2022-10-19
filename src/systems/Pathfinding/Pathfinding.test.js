@@ -1,4 +1,5 @@
-import { Position, TargetManual, Velocity } from "../../components.js";
+import { describe, expect, it, beforeEach } from 'vitest'
+import { Position, TargetManual, Velocity } from "../../components/index.js";
 import { Pathfinding } from "./index.js";
 
 describe("Pathfinding system", () => {

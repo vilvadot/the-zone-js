@@ -1,5 +1,6 @@
-import { Collision as CollisionSystem } from "../systems.js";
-import { Position, Collision} from "../components.js";
+import { describe, expect, it, beforeEach } from 'vitest'
+import { Collision as CollisionSystem } from "../systems/index.js";
+import { Position, Collision} from "../components/index.js";
 
 describe("Collision system", () => {
   it("ignores itself", () => {

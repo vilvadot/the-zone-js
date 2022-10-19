@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { Matrix } from "./Matrix.js";
 
 describe("Matrix", () => {

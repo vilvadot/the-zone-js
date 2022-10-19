@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach } from 'vitest'
 import { Enemy } from "../entities/Enemy.js";
 import { EnemySpawner } from "./EnemySpawner.js";
 

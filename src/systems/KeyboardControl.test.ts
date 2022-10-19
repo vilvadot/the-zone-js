@@ -1,4 +1,5 @@
-import { Velocity } from "../components.js";
+import { describe, expect, it, beforeEach } from 'vitest'
+import { Velocity } from "../components/index.js";
 import { INPUTS } from "../input.js";
 import { KeyboardControl } from "./KeyboardControl.js";
 

@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach } from 'vitest'
 import { Artifact } from "../entities/Artifact.js";
 import { ArtifactSpawner } from "./ArtifactSpawner.js";
 

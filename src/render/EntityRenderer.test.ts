@@ -1,6 +1,7 @@
+import { describe, expect, it, afterEach } from 'vitest'
 import { EntityRenderer } from "./EntityRenderer.js";
 import { FOVIndex } from "../fov-index.js";
-import { Position, Sprite } from "../components.js";
+import { Position, Sprite } from "../components/index.js";
 import { canvasCoordinates } from "../util.js";
 
 describe("EntityRenderer", () => {

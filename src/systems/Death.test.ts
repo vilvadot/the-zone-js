@@ -1,9 +1,10 @@
-import { Health, Sprite } from "../components.js";
+import { describe, expect, it, afterEach, vi } from 'vitest'
+import { Health, Sprite } from "../components/index.js";
 import { Death } from "./Death.js";
 
 describe("Death system", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("ignores an entity with health above alive threshold", () => {
@@ -36,6 +37,6 @@ class Entity {
 
 const entityManagerStub = () => {
   return {
-    kill: jest.fn(),
+    kill: vi.fn(),
   };
 };

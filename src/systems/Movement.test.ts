@@ -1,4 +1,5 @@
-import { Position, Velocity } from "../components.js";
+import { describe, expect, it, beforeEach } from 'vitest'
+import { Position, Velocity } from "../components/index.js";
 import { Movement } from "./Movement.js";
 
 describe("Movement system", () => {

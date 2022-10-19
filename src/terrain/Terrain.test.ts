@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach } from 'vitest'
 import { Terrain } from "./Terrain.js";
 import {TILES} from '../tiles.js';
 

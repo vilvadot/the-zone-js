@@ -1,4 +1,5 @@
-import { Position, TargetManual, Collision } from "../components.js";
+import { describe, expect, it, beforeEach } from 'vitest'
+import { Position, TargetManual, Collision } from "../components/index.js";
 import { Targetting } from "./Targetting.js";
 import { INPUTS } from "../input.js";
 
