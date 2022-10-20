@@ -14,32 +14,32 @@ concurrency:
 
 jobs:
   test:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-        - name: Install
-          run: npm install
-        - name: Build
-            run: npm run test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run test
   publish:
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-        - name: Install
-          run: npm install
-        - name: Build
-          run: npm run build
-        - name: Setup Pages
-          uses: actions/configure-pages@v2
-        - name: Upload artifact
-          uses: actions/upload-pages-artifact@v1
-          with:
-            path: '.'
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v1
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "."
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
