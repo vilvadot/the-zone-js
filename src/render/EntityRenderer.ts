@@ -56,6 +56,7 @@ export const createTile = (id, sprite) => {
   $tile.style.fontSize = `${CELL_SIZE}`;
   $tile.style.zIndex = sprite.zIndex;
   $tile.style.background = `url(${spriteSheet})`;
+  $tile.style.backgroundSize = `480px`;
   $tile.style.backgroundPosition = `${-x}px ${-y}px`;
   $tile.className = `tile ${sprite.additionalClass}`;
   $tile.id = id;

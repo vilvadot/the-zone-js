@@ -7,7 +7,7 @@
     "dev": "tsc -w",
     "build": "tsc",
     "test": "vitest --config ./src/vitest.config.ts",
-    "preview": "live-server src"
+    "preview": "live-server ."
   },
   "devDependencies": {
     "live-server": "^1.2.2",

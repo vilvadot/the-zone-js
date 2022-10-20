@@ -6,15 +6,14 @@
       "strict": true,
       "skipLibCheck": true,
       "noImplicitAny": false,
-      "outDir": "src/dist",
+      "outDir": "dist",
       "allowJs": true,
       "types": ["vitest"],
       "moduleResolution": "node"
     },
     "exclude": [
       "node_modules",
-      "src/dist",
-      "src/lib/**/*/*.ts"
+      "dist",
     ]
   }
   

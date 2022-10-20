@@ -44,6 +44,6 @@ export const SPRITES = {
   grass: mapToSpriteSheet(graphicCoordinates.grassDry),
 };
 
-export const spriteSheet = "tiles.png";
+export const spriteSheet = "./static/tiles.png";
 
 export const mapTospriteSheetCoordinates = (index: number) => -index;
