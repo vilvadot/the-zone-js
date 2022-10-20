@@ -13,6 +13,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Install
+          run: npm install
+        - name: Build
+            run: npm run test
   publish:
       environment:
         name: github-pages
