@@ -1,6 +1,17 @@
-name: Publish game
-run-name: Publish game 🚀
-on: [push]
+name: Publish game into Github Pages 👾
+on:
+  push:
+    branches: ["master"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   publish:
       environment:
