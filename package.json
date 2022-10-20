@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
-    "test": "vitest src",
+    "test": "vitest --config ./src/vitest.config.ts",
     "preview": "live-server src"
   },
   "devDependencies": {
