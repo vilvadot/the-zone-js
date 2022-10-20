@@ -1,7 +1,7 @@
 import { INPUTS } from "../input.js";
 
 export class Targetting {
-  static run(entities, action) {
+  static run(entities, action?) {
     for (const { position, target, collision } of entities) {
       if (!position || !target || !collision) continue;
 

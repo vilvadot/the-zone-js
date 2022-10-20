@@ -36,6 +36,14 @@ describe("Combat system", () => {
 });
 
 class Victim {
+  health: any;
+  id: string;
+  target: TargetManual;
+  damage: Damage;
+  position: Position;
+  sprite: Sprite;
+  animation: Animation;
+
   constructor(health, position) {
     this.id = "victim";
     this.target = new TargetManual();
@@ -48,6 +56,12 @@ class Victim {
 }
 
 class Attacker {
+  id: string;
+  target: TargetManual;
+  health: Health;
+  damage: Damage;
+  position: Position;
+
   constructor(health, position) {
     this.id = "attacker";
     this.target = new TargetManual("victim");

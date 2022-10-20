@@ -29,6 +29,9 @@ describe("Death system", () => {
 });
 
 class Entity {
+  sprite: Sprite;
+  health: Health;
+  
   constructor(health) {
     this.sprite = new Sprite();
     this.health = new Health(health);

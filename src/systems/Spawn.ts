@@ -1,5 +1,5 @@
 export class Spawn {
-  static run(entities, terrain) {
+  static run(entities, terrain?) {
     for (const { position } of entities) {
       if (!position) continue;
       if (position.x && position.y) continue;

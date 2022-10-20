@@ -54,6 +54,9 @@ describe("Movement system", () => {
 });
 
 class Entity {
+  position: Position;
+  velocity: Velocity;
+  
   constructor(position, velocity ) {
     this.position = position;
     this.velocity = velocity;

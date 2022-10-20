@@ -1,12 +1,12 @@
-import { describe, expect, it, beforeEach } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { Terrain } from "./Terrain.js";
-import {TILES} from '../tiles.js';
+import {BLOCKING_TILES} from '../tiles.js';
 
 describe("Terrain", () => {
   it("knows if a cell is blocked", () => {
     const terrain = new Terrain(1, 1);
     
-    terrain.data.setValue(0,0, TILES.wall)
+    terrain.data.setValue(0,0, BLOCKING_TILES.woodWall)
 
     expect(terrain.isBlocked(0, 0)).toBe(true);
   });
@@ -25,7 +25,7 @@ describe("Terrain", () => {
 
   it("[recursive] provides free tiles", () => {
     const terrain = new Terrain(3, 3);
-    terrain.data.setValue(0,0, TILES.wall)
+    terrain.data.setValue(0,0, BLOCKING_TILES.woodWall)
 
     const { x, y } = terrain.getRandomFreeCoordinate();
 

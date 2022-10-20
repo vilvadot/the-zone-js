@@ -26,7 +26,9 @@ describe("Spawn system", () => {
 });
 
 class Entity {
-  constructor(x, y) {
+  position: Position;
+
+  constructor(x?, y?) {
     this.position = new Position(x, y);
   }
 }

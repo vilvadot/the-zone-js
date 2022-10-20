@@ -46,6 +46,9 @@ describe("KeyboardControl system", () => {
 });
 
 class Entity {
+  velocity: Velocity;
+  keyboardControlled: boolean;
+
   constructor(velocityX, velocityY) {
     this.velocity = new Velocity(velocityX, velocityY);
     this.keyboardControlled = true;

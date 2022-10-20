@@ -72,6 +72,10 @@ describe("Collision system", () => {
 });
 
 class Entity {
+  collision: Collision;
+  id: string;
+  position: Position;
+  
   constructor(id, x, y) {
     this.id = id;
     this.position = new Position(x, y);

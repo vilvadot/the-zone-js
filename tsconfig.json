@@ -8,12 +8,12 @@
       "noImplicitAny": false,
       "outDir": "src/dist",
       "allowJs": true,
-      "types": ["vitest"]
+      "types": ["vitest"],
+      "moduleResolution": "node"
     },
     "exclude": [
       "node_modules",
       "src/dist",
-      "**/*/*.test.ts",
       "src/lib/**/*/*.ts"
     ]
   }

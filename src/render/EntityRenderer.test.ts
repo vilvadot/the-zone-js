@@ -14,10 +14,9 @@ describe("EntityRenderer", () => {
   it("draws a sprite in its position", () => {
     stubTerrainDOM();
     const id = "yEntity";
-    const tile = "X";
     const x = 10;
     const y = 10;
-    const centeredEntity = new EntityAt(id, x, y, tile);
+    const centeredEntity = new EntityAt(id, x, y);
 
     EntityRenderer.run([centeredEntity], new FOVIndex());
 
@@ -39,6 +38,11 @@ const stubTerrainDOM = () => {
 };
 
 class EntityAt {
+  id: any;
+  name: string;
+  position: Position;
+  sprite: Sprite;
+
   constructor(id, x, y) {
     this.id = id;
     this.name = "entityName";

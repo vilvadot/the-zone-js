@@ -47,7 +47,12 @@ describe("Targetting system", () => {
 });
 
 class Attacker {
-  constructor(collisionAreas) {
+  target: TargetManual;
+  id: string;
+  position: Position;
+  collision: Collision;
+
+  constructor(collisionAreas?) {
     this.id = "attacker";
     this.target = new TargetManual('victim')
     this.position = new Position(0,0);
