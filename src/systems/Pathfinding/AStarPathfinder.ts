@@ -18,7 +18,7 @@ export class AStarPathfinder {
       const position: Coordinate = [x, y]
       path.push(position);
     });
-    DebugPath.draw(id, path);
+    // DebugPath.draw(id, path);
 
     const firstPathStep = path[1];
     if (!firstPathStep)
