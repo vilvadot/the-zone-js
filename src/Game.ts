@@ -60,6 +60,7 @@ export class Game {
       terrain: this.terrain,
       turn: this.turn,
       entities: this.entityManager.retrieveAll(),
+      area: this.areaManager.getCoordinates()
     };
   }
 }
