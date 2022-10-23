@@ -3,7 +3,6 @@ import { AStarPathfinder } from "./AStarPathfinder.js";
 
 export class Pathfinding {
   static run(entities, terrain) {
-    Debug.timeStart("Pathfind");
     for (const {
       id,
       target,
@@ -28,6 +27,5 @@ export class Pathfinding {
       velocity.x = nextStep.x - position.x;
       velocity.y = nextStep.y - position.y;
     }
-    Debug.timeEnd("Pathfind");
   }
 }

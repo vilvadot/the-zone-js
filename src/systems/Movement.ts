@@ -1,5 +1,7 @@
+import { Terrain } from "../terrain";
+
 export class Movement {
-  static run(entities, terrain) {
+  static run(entities, terrain: Terrain) {
     for (const { position, velocity } of entities) {
       if (!velocity || !position) continue;
 
@@ -20,7 +22,7 @@ export class Movement {
     }
   }
 
-  static _tileOccupied = (entities, candidate, terrain) => {
+  static _tileOccupied = (entities, candidate, terrain: Terrain) => {
     const isEntityPresent = entities.some(
       ({ position, isStatic }) => position.x === candidate.x && position.y === candidate.y && !isStatic
     );

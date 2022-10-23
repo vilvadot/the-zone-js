@@ -20,8 +20,10 @@ export class Matrix {
   }
 
   setValue(x: number, y: number, value: any) {
-    if (!this.data[x]) this.data[x] = [];
-    this.data[x][y] = value;
+    const intX = Math.floor(x)
+    const intY = Math.floor(y)
+    if (!this.data[intX]) this.data[intX] = [];
+    this.data[intX][intY] = value;
   }
 
   getValue(x: number, y: number) {

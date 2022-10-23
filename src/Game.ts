@@ -12,7 +12,6 @@ import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
 import { HEIGHT, WIDTH } from "./config.js";
 import { Terrain } from "./terrain/index.js";
-import { Navigation } from "./Navigation.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { Player } from "./entities/Player.js";
@@ -20,7 +19,6 @@ import { AreaManager } from "./AreaManager.js";
 
 export class Game {
   bus: Bus;
-  navigation: Navigation;
   terrain: Terrain;
   player: Player;
   turn: number;
@@ -31,7 +29,6 @@ export class Game {
 
   constructor(bus: Bus) {
     this.bus = bus;
-    this.navigation = new Navigation();
     this.terrain = new Terrain(WIDTH, HEIGHT);
     this.player = new Player();
     this.turn = 0;
