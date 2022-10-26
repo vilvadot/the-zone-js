@@ -1,13 +1,12 @@
-import { describe, expect, it, beforeEach } from 'vitest'
+import { describe, expect, it, vi } from "vitest";
 import { Position, Velocity } from "../components/index.js";
+import { Terrain } from "../terrain/Terrain.js";
 import { Movement } from "./Movement.js";
 
 describe("Movement system", () => {
   it("moves entity according to its velocity", () => {
-    const terrain = {
-        isBlocked: () => false
-    }
-    const entity = new Entity(new Position(0,0), new Velocity(0, 1));
+    const terrain = stubTerrainNeverBlocked()
+    const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
 
     Movement.run([entity], terrain);
 
@@ -16,10 +15,8 @@ describe("Movement system", () => {
   });
 
   it("resets velocity after moving", () => {
-    const terrain = {
-        isBlocked: () => false
-    }
-    const entity = new Entity(new Position(0,0), new Velocity(0, 1));
+    const terrain = stubTerrainNeverBlocked()
+    const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
 
     Movement.run([entity], terrain);
 
@@ -28,10 +25,8 @@ describe("Movement system", () => {
   });
 
   it("wont move if tile is blocked", () => {
-    const terrain = {
-        isBlocked: () => true
-    }
-    const entity = new Entity(new Position(0,0), new Velocity(0, 1));
+    const terrain = stubTerrainAlwaysBlocked()
+    const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
 
     Movement.run([entity], terrain);
 
@@ -40,11 +35,9 @@ describe("Movement system", () => {
   });
 
   it("wont move if tile is occupied by another entity", () => {
-    const terrain = {
-        isBlocked: () => false
-    }
-    const entity = new Entity(new Position(0,0), new Velocity(0, 1));
-    const blocker = new Entity(new Position(0,1), new Velocity(0, 0));
+    const terrain = stubTerrainNeverBlocked()
+    const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
+    const blocker = new Entity(new Position(0, 1), new Velocity(0, 0));
 
     Movement.run([entity, blocker], terrain);
 
@@ -53,11 +46,25 @@ describe("Movement system", () => {
   });
 });
 
+const stubTerrainAlwaysBlocked = () => {
+  const terrain = new Terrain(10, 10);
+  terrain.isBlocked = vi.fn().mockReturnValue(true);
+
+  return terrain;
+};
+
+const stubTerrainNeverBlocked = () => {
+  const terrain = new Terrain(10, 10);
+  terrain.isBlocked = vi.fn().mockReturnValue(false);
+
+  return terrain;
+};
+
 class Entity {
   position: Position;
   velocity: Velocity;
-  
-  constructor(position, velocity ) {
+
+  constructor(position, velocity) {
     this.position = position;
     this.velocity = velocity;
   }

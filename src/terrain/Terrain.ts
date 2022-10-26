@@ -34,7 +34,6 @@ export class Terrain {
   isBlocked(x: number, y: number) {
     const tile = this.data.getValue(x, y);
     const isOutOfBounds = tile === undefined;
-    // console.log({x,y,tile, isOutOfBounds, block: isBlockingTile(tile)})
 
     if (isOutOfBounds || isBlockingTile(tile)) return true;
 
@@ -42,7 +41,6 @@ export class Terrain {
   }
 
   getTileAt(x: number, y: number) {
-    console.log({x,y})
     const tile = this.data.getValue(x, y);
     return tile;
   }
