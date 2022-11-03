@@ -21,7 +21,6 @@ export class Combat {
     target.health.value -= damage;
     target.animation.name = ANIMATIONS.hit.name;
     target.animation.isActive = true;
-    bus.emit(EVENTS.ATTACK_HIT)
     logger.log(
       `"${name}" Attacked "${target.name}" for ${damage} damage!`,
       'red'

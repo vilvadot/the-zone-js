@@ -17,6 +17,27 @@ import { EntityManager } from "./entities/entity-manager.js";
 import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
 import { EVENTS } from "./events.js";
+import { INPUTS } from "./input.js";
+import { ANIMATIONS } from "./animations.js";
+
+const BULLET_DAMAGE = 3;
+
+export class Shooting {
+  static run(logger, entities, targetId) {
+    for (const entity of entities) {
+      if (entity.id !== targetId || targetId === "player") continue;
+      console.log('here!', targetId)
+      entity.health.value -= BULLET_DAMAGE;
+      entity.animation.name = ANIMATIONS.hit.name;
+      entity.animation.isActive = true;
+
+      logger.log(
+        `"player" shot at "${entity.name}" for ${BULLET_DAMAGE} damage!`,
+        "blue"
+      );
+    }
+  }
+}
 
 export class Game {
   bus: Bus;
@@ -44,7 +65,7 @@ export class Game {
     return this.entityManager.retrieveAll();
   }
 
-  get state(){
+  get state() {
     return {
       fov: this.fov,
       terrain: this.terrain,
@@ -55,6 +76,10 @@ export class Game {
   }
 
   runMainLoop(action?) {
+    if (action?.key === INPUTS.Click) {
+      Shooting.run(this.logger, this.entities, action.target);
+      Death.run(this.entities, this.entityManager);
+    }
     this.turn++;
     KeyboardControl.run(this.entities, action);
     Travel.run(this.entities, this.areaManager);

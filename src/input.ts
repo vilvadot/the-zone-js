@@ -42,9 +42,11 @@ export const takeControlOfInputs = (bus) => {
     });
   });
 
-  canvas.addEventListener("click", (event) => {
-    bus.emit(EVENTS.MOUSE_CLICKED, {
+  window.addEventListener("click", (event) => {
+    bus.emit(EVENTS.TURN_PASSED, {
       key: INPUTS["Click"],
+      // @ts-ignore
+      target: event.target?.id,
       ...tileCoordinatesFromMouse(event)
     });
   });
