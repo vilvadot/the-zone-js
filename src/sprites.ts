@@ -2,7 +2,7 @@ import { CELL_SIZE } from "./config.js";
 import { Coordinate } from "./Coordinate.js";
 
 const graphicCoordinates = {
-  nothing: [20, 0],
+  nothing: [17, 0],
   brickWall: [5, 3],
   woodWall: {
     horizontal: [1, 16],

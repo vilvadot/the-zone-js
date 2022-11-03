@@ -23,8 +23,13 @@ export const positionNodeInCanvas = ($node, x, y) => {
   $node.style.left = `${canvasCoordinates(x)}px`;
 };
 
-export const canvasCoordinates = (value) => {
-  return value * CELL_SIZE;
+export const canvasCoordinates = (tileCoordinates) => {
+  return tileCoordinates * CELL_SIZE;
+};
+
+export const tileCoordinates = (canvasCoordinates) => {
+  if(!canvasCoordinates) return
+  return Math.floor(canvasCoordinates / CELL_SIZE);
 };
 
 export const findOrCreateNode = (selector, parentSelector) => {

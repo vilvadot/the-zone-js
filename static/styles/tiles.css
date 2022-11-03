@@ -8,23 +8,16 @@
   font-size: 1.5em;
 }
 
+.tile:hover::before {
+  cursor:pointer;
+  content: "";
+  height: 100%;
+  position: absolute;
+  z-index:10;
+  width: 100%;
+  background:rgba(255,255,255,.5);
+}
+
 .tile #glyph{ 
   z-index: 1;
-}
-
-.tile::before {
-  content: "";
-  width: 8px;
-  height: 3px;
-  border-radius: 20px;
-  background: rgba(0,0,0,.1);
-  position:absolute;
-  bottom: -1px;
-  left: 6px;
-  z-index: 0;
-}
-
-.tile:hover {
-  color: lightseagreen !important;
-  cursor: pointer;
 }

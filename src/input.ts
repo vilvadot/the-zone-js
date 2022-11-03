@@ -1,4 +1,5 @@
 import { EVENTS } from "./events.js";
+import { tileCoordinates } from "./util.js";
 
 const ACTIONS = {
   ArrowUp: "ArrowUp",
@@ -21,18 +22,37 @@ export const takeControlOfInputs = (bus) => {
   window.addEventListener("keydown", (event) => {
     if (isInputKey(event.code)) {
       event.preventDefault();
-      bus.emit(EVENTS.INPUT_PRESSED, { key: INPUTS[event.code] });
-      
+
       if (isActionKey(event.code))
         bus.emit(EVENTS.TURN_PASSED, { key: INPUTS[event.code] });
     }
   });
 
-  window.addEventListener("click", ({ clientX, clientY }) => {
-    bus.emit(EVENTS.INPUT_PRESSED, {
-      key: INPUTS["Click"],
-      x: clientX,
-      y: clientY,
+  const canvas = document.querySelector("canvas")!;
+  canvas.addEventListener("mousemove", (event: MouseEvent) => {
+    bus.emit(EVENTS.MOUSE_MOVED, {
+      ...tileCoordinatesFromMouse(event)
     });
   });
+
+  canvas.addEventListener("mouseleave", (event: MouseEvent) => {
+    bus.emit(EVENTS.MOUSE_MOVED, {
+      x: undefined,
+      y: undefined,
+    });
+  });
+
+  canvas.addEventListener("click", (event) => {
+    bus.emit(EVENTS.MOUSE_CLICKED, {
+      key: INPUTS["Click"],
+      ...tileCoordinatesFromMouse(event)
+    });
+  });
+};
+
+const tileCoordinatesFromMouse = (event) => {
+  return {
+    x: tileCoordinates(event.layerX),
+    y: tileCoordinates(event.layerY),
+  };
 };

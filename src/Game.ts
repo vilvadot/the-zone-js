@@ -16,6 +16,7 @@ import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
+import { EVENTS } from "./events.js";
 
 export class Game {
   bus: Bus;
@@ -43,7 +44,17 @@ export class Game {
     return this.entityManager.retrieveAll();
   }
 
-  runMainLoop(action) {
+  get state(){
+    return {
+      fov: this.fov,
+      terrain: this.terrain,
+      turn: this.turn,
+      entities: this.entityManager.retrieveAll(),
+      area: this.areaManager.getCoordinates(),
+    };
+  }
+
+  runMainLoop(action?) {
     this.turn++;
     KeyboardControl.run(this.entities, action);
     Travel.run(this.entities, this.areaManager);
@@ -54,13 +65,5 @@ export class Game {
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);
     Death.run(this.entities, this.entityManager);
-
-    return {
-      fov: this.fov,
-      terrain: this.terrain,
-      turn: this.turn,
-      entities: this.entityManager.retrieveAll(),
-      area: this.areaManager.getCoordinates()
-    };
   }
 }

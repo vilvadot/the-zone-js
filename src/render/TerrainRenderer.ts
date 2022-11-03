@@ -2,15 +2,26 @@ import { TILES } from "../tiles.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
 
 export class TerrainRenderer {
-  static run(display, fov, terrain) {
+  static run(display, fov, terrain, mouse?) {
     display.clear();
 
     fov.forEach((x, y, distance) => {
-      const tinting = `rgba(0,0,0,${1 - shadowMagnitude(distance)}`;
+      const isMouseHover = x === mouse?.x && y === mouse?.y
+      const tint = getTint(distance, isMouseHover)
       const sprite = getSprite(terrain, x, y);
-      display.draw(x, y, sprite, tinting);
+
+      display.draw(x, y, sprite, tint);
     });
   }
+}
+
+const getTint = (distance, isMouseHover) => {
+  if(isMouseHover) return `rgba(255,255,255, .3)`;
+
+  const tint = 1 - shadowMagnitude(distance);
+  let result = `rgba(0,0,0, ${tint})`;
+
+  return result
 }
 
 const getSprite = (terrain, x, y) => {
@@ -19,6 +30,7 @@ const getSprite = (terrain, x, y) => {
   if (isWoodWall(value)) {
     return getWallSprite(terrain, x, y);
   }
+  
   return value;
 };
 
