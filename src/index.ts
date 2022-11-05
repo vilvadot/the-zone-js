@@ -16,7 +16,6 @@ export const loadGame = () => {
   const game = new Game(bus);
   const ui = new UIRenderer(bus);
   takeControlOfInputs(bus);
-  game.runMainLoop();
   render(game, display, ui);
 
   bus.subscribe(EVENTS.TURN_PASSED, (action) => {
@@ -31,7 +30,6 @@ export const loadGame = () => {
 
 const render = (game, display, ui, mouse?) => {
   const { fov, terrain, entities, turn, area } = game.state;
-
   if(isTextMode()){
     GlyphRenderer.run(display, fov, terrain, entities, mouse);
   } else{

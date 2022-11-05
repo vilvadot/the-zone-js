@@ -59,6 +59,7 @@ export class Game {
     this.entityManager = new EntityManager();
     this.entityManager.addPlayer(this.player);
     this.areaManager = new AreaManager(this.terrain, this.entityManager);
+    this.fov.update(this.player, this.terrain);
   }
 
   get entities() {

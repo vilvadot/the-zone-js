@@ -2,7 +2,8 @@ export const DEBUG_ENABLED = true
 
 const DISPLAY_TEXT = "text";
 const DISPLAY_TILES = "tiles";
-const DISPLAY_MODE = DISPLAY_TEXT;
+const DISPLAY_MODE = DISPLAY_TILES;
+// @ts-ignore
 export const isTextMode = () => DISPLAY_MODE === DISPLAY_TEXT;
 
 export const CELL_SIZE = 24;
