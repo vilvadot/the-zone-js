@@ -4,8 +4,7 @@ import { takeControlOfInputs } from "./input.js";
 import { EVENTS } from "./events.js";
 import {
   UIRenderer,
-  TerrainRenderer,
-  EntityRenderer,
+  TileRenderer,
   Display,
 } from "./render/index.js";
 
@@ -31,8 +30,7 @@ export const loadGame = () => {
 const render = (game, display, ui, mouse?) => {
   const { fov, terrain, entities, turn, area } = game.state;
 
-  TerrainRenderer.run(display, fov, terrain, mouse);
-  EntityRenderer.run(entities, fov);
+  TileRenderer.run(display, fov, terrain, entities, mouse);
   ui.update(entities, turn, area);
 };
 

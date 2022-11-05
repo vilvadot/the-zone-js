@@ -11,18 +11,6 @@ export const isInrange = (positionA, positionB) => {
   return false;
 };
 
-export const addNodeToGame = ($node) => {
-  const $game = document.querySelector("#game");
-
-  $game?.appendChild($node);
-};
-
-export const positionNodeInCanvas = ($node, x, y) => {
-  $node.style.position = `absolute`;
-  $node.style.top = `${canvasCoordinates(y)}px`;
-  $node.style.left = `${canvasCoordinates(x)}px`;
-};
-
 export const canvasCoordinates = (tileCoordinates) => {
   return tileCoordinates * CELL_SIZE;
 };
@@ -45,7 +33,6 @@ export const findOrCreateNode = (selector, parentSelector) => {
   return node;
 };
 
-export const findTile = (id) => document.querySelector(`#${id}`);
 
 type NodeOptions = {
   type: string;
@@ -53,6 +40,7 @@ type NodeOptions = {
   content?: string;
   style?: string;
 };
+
 export const createNode = ({
   type,
   className,

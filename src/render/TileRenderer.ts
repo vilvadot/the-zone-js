@@ -1,14 +1,12 @@
 import { TILES } from "../tiles.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
 
-export class TerrainRenderer {
-  static run(display, fov, terrain, mouse?) {
-    display.clear();
-
+export class TileRenderer {
+  static run(display, fov, terrain, entities, mouse?) {
     fov.forEach((x, y, distance) => {
       const isMouseHover = x === mouse?.x && y === mouse?.y
       const tint = getTint(distance, isMouseHover)
-      const sprite = getSprite(terrain, x, y);
+      const sprite = getEntitySprite(entities, x, y) || getTerrainSprite(terrain, x, y);
 
       display.draw(x, y, sprite, tint);
     });
@@ -24,7 +22,13 @@ const getTint = (distance, isMouseHover) => {
   return result
 }
 
-const getSprite = (terrain, x, y) => {
+const getEntitySprite = (entities, x, y) => {
+  const entity = entities.find(({position}) => position.x === x && position.y === y)
+
+  return entity?.sprite?.name
+};
+
+const getTerrainSprite = (terrain, x, y) => {
   const value = terrain.getTileAt(x, y);
 
   if (isWoodWall(value)) {

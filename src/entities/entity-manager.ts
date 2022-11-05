@@ -1,4 +1,3 @@
-import { findTile } from "../util.js";
 import { Cache } from "../Cache.js";
 import { Corpse } from "./Corpse.js";
 import { Player } from "./Player.js";
@@ -24,15 +23,12 @@ export class EntityManager {
   }
 
   kill(entity: any) {
-    const tile = findTile(entity.id)
-    tile?.remove()
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
     this.entities.push(new Corpse(entity));
   }
 
   reset(seed: string) {
     this.cache.push(seed, this.entities)
-    this.entities.forEach((entity) => findTile(entity?.id)?.remove())
     this.entities = []
   }
 

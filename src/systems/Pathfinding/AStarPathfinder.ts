@@ -1,5 +1,4 @@
 import { Coordinate } from "../../Coordinate.js";
-import { DebugPath } from "../../infra/debug.js";
 import ROT from '../../lib/rot.js'
 
 export class AStarPathfinder {
@@ -18,7 +17,6 @@ export class AStarPathfinder {
       const position: Coordinate = [x, y]
       path.push(position);
     });
-    // DebugPath.draw(id, path);
 
     const firstPathStep = path[1];
     if (!firstPathStep)
