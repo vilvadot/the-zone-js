@@ -7,6 +7,7 @@ import {
   Collision,
   Targetting,
   Travel,
+  Shooting
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -17,7 +18,6 @@ import { EntityManager } from "./entities/entity-manager.js";
 import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
-import { Shooting } from "./systems/Shooting";
 
 export const BULLET_DAMAGE = 3;
 
