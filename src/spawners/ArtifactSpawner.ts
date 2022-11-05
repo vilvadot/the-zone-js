@@ -1,4 +1,4 @@
-import { repeat } from "../util.js";
+import { repeat } from "../util/index.js";
 import { Artifact } from "../entities/Artifact.js";
 
 export class ArtifactSpawner {

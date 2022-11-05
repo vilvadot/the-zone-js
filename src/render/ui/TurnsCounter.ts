@@ -1,4 +1,4 @@
-import { findOrCreateNode } from "../../util.js";
+import { findOrCreateNode } from "../../util/index.js";
 
 export class TurnsCounter {
   static update(turn) {

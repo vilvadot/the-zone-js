@@ -3,7 +3,7 @@ import { LogMessages } from "./ui/LogMessages.js";
 import { TurnsCounter } from "./ui/TurnsCounter.js";
 import { HealthBars } from "./ui/HealthBars.js";
 import { Bus } from "../infra/bus.js";
-import { findOrCreateNode } from "../util.js";
+import { findOrCreateNode } from "../util/index.js";
 
 export class UIRenderer {
   bus: Bus;

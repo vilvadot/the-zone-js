@@ -6,7 +6,7 @@ import {
   Damage,
   TargetManual,
 } from "../components/index.js";
-import { uid } from "../util.js";
+import { uid } from "../util/index.js";
 
 export class Enemy {
   name: string;

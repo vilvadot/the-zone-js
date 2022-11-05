@@ -7,7 +7,7 @@ import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
 import { INPUTS } from "./input.js";
 import { Terrain } from "./terrain/Terrain.js";
-import { repeat } from "./util.js";
+import { repeat } from "./util/index.js";
 
 describe("E2E Game test", () => {
   let bus: Bus;

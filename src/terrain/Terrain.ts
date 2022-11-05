@@ -1,7 +1,7 @@
 import { isBlockingTile } from "../tiles.js";
 import { TerrainGenerator } from "./generators/index.js";
 import { Matrix } from "../data-structures/Matrix.js";
-import { randomInteger } from "../util.js";
+import { randomInteger } from "../util/index.js";
 import { Cache } from "../Cache.js";
 
 export class Terrain {

@@ -1,6 +1,6 @@
 import { TILES } from "../../tiles.js";
 import { MatrixArea } from "../../data-structures/MatrixArea.js";
-import { randomInteger } from "../../util.js";
+import { randomInteger } from "../../util/index.js";
 import { HEIGHT, WIDTH } from "../../config.js";
 import { Matrix } from "../../data-structures/Matrix.js";
 import { Coordinate } from "../../Coordinate.js";

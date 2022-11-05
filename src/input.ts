@@ -1,5 +1,5 @@
 import { EVENTS } from "./events.js";
-import { tileCoordinates } from "./util.js";
+import { tileCoordinates } from "./util/index.js";
 
 const ACTIONS = {
   ArrowUp: "ArrowUp",

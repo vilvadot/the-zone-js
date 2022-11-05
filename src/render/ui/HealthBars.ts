@@ -1,5 +1,5 @@
 import { CELL_SIZE } from "../../config.js";
-import { findOrCreateNode } from "../../util.js";
+import { findOrCreateNode } from "../../util/index.js";
 
 export class HealthBars {
   static update(entities) {

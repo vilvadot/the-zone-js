@@ -1,5 +1,5 @@
 import { Enemy } from "../entities/Enemy.js";
-import { repeat, pickRandom } from "../util.js";
+import { repeat, pickRandom } from "../util/index.js";
 import { ENEMIES } from "../colors.js";
 
 export class EnemySpawner {

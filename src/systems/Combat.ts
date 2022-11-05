@@ -1,4 +1,4 @@
-import { isInrange } from "../util.js";
+import { isAdjacent } from "../util/index.js";
 
 export class Combat {
   static run(logger, entities) {
@@ -10,7 +10,7 @@ export class Combat {
       });
       if (!targetEntity) continue;
 
-      if (isInrange(targetEntity.position, position))
+      if (isAdjacent(targetEntity.position, position))
         this._attack(name, targetEntity, damage.value, logger);
     }
   }

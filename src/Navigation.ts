@@ -1,5 +1,5 @@
 import { Coordinate } from "./Coordinate.js";
-import { randomInteger } from "./util.js";
+import { randomInteger } from "./util/index.js";
 
 type AreaSeed = string;
 type AreaIndex = string;

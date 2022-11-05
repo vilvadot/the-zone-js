@@ -1,5 +1,5 @@
 import { Position, Sprite } from "../components/index.js";
-import {uid} from '../util.js'
+import {uid} from '../util/index.js'
 
 export class Artifact{
   id: string;
