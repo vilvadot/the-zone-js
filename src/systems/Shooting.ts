@@ -1,4 +1,4 @@
-import { BULLET_DAMAGE } from "../Game";
+const BULLET_DAMAGE = 3;
 
 export class Shooting {
   static run(logger, entities, x, y) {

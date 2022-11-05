@@ -19,8 +19,6 @@ import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
 
-export const BULLET_DAMAGE = 3;
-
 export class Game {
   bus: Bus;
   terrain: Terrain;
@@ -71,7 +69,7 @@ export class Game {
     Targetting.run(this.entities, action);
     Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);
-    Combat.run(this.bus, this.logger, this.entities);
+    Combat.run(this.logger, this.entities);
     this.turn++;
     Death.run(this.entities, this.entityManager);
   }
