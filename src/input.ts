@@ -45,8 +45,6 @@ export const takeControlOfInputs = (bus) => {
   window.addEventListener("click", (event) => {
     bus.emit(EVENTS.TURN_PASSED, {
       key: INPUTS["Click"],
-      // @ts-ignore
-      target: event.target?.id,
       ...tileCoordinatesFromMouse(event)
     });
   });
