@@ -1,4 +1,4 @@
-export const DEBUG_ENABLED = true
+export const DEBUG_ENABLED = false
 
 const DISPLAY_TEXT = "text";
 const DISPLAY_TILES = "tiles";

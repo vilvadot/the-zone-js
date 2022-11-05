@@ -9,6 +9,8 @@ import {
 } from "./render/index.js";
 import { isTextMode } from "./config.js";
 import { GlyphRenderer } from "./render/GlyphRenderer.js";
+import { TILES } from "./tiles.js";
+// import { TILES } from "./tiles.js";
 
 export const loadGame = () => {
   const bus = new Bus();
@@ -20,7 +22,6 @@ export const loadGame = () => {
   takeControlOfInputs(bus);
   
   setInterval(() => {
-    console.log('tick!')
     render(game, display, ui, mouse);
   }, 60)
 
@@ -32,6 +33,7 @@ export const loadGame = () => {
     mouse = mousePosition
   });
 };
+
 
 const render = (game, display, ui, mouse?) => {
   const { fov, terrain, entities, turn, area } = game.state;

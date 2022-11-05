@@ -1,31 +1,66 @@
+import { Matrix } from "../data-structures/Matrix.js";
 import { TILES } from "../tiles.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
 
 export class TileRenderer {
   static run(display, fov, terrain, entities, mouse?) {
-    fov.forEach((x, y, distance) => {
-      const isMouseHover = x === mouse?.x && y === mouse?.y
-      const tint = getTint(distance, isMouseHover)
-      const sprite = getEntitySprite(entities, x, y) || getTerrainSprite(terrain, x, y);
+    display.clear();
 
-      display.draw(x, y, sprite, tint);
+    fov.forEach((x, y, distance) => {
+      const stack = this.generateTileStack(x, y, terrain, entities);
+
+      const isMouseHover = x === mouse?.x && y === mouse?.y;
+      let tint = getTint(distance);
+      if (isMouseHover) tint = `rgba(255,255,255, .3)`;
+
+      display.draw(x, y, stack, tint);
     });
+  }
+
+  private static generateTileStack(x, y, terrain, entities) {
+    const stack: string[] = [];
+
+    const base = getTerrainSprite(terrain, x, y);
+    const entity = getEntitySprite(entities, x, y);
+    const animation = renderLine([0, 0], [10, 10]).getValue(x, y);
+
+    if (base) stack.push(base);
+    if (animation) stack.push(animation);
+    if (entity) stack.push(entity);
+
+    return stack;
   }
 }
 
-const getTint = (distance, isMouseHover) => {
-  if(isMouseHover) return `rgba(255,255,255, .3)`;
+type Point = [number, number];
+const renderLine = ([startX, startY]: Point, [endX, endY]: Point) => {
+  const layer = new Matrix();
 
+  const distanceX = endX - startX;
+  const distanceY = endY - startY;
+
+  for (let x = startX; x <= endX; x++) {
+    const y = Math.floor(startY + (distanceY * (x - startX)) / distanceX);
+
+    layer.setValue(x, y, TILES.corpse);
+  }
+
+  return layer;
+};
+
+const getTint = (distance) => {
   const tint = 1 - shadowMagnitude(distance);
   let result = `rgba(0,0,0, ${tint})`;
 
-  return result
-}
+  return result;
+};
 
 const getEntitySprite = (entities, x, y) => {
-  const entity = entities.find(({position}) => position.x === x && position.y === y)
+  const entity = entities.find(
+    ({ position }) => position.x === x && position.y === y
+  );
 
-  return entity?.sprite?.name
+  return entity?.sprite?.name;
 };
 
 const getTerrainSprite = (terrain, x, y) => {
@@ -34,7 +69,7 @@ const getTerrainSprite = (terrain, x, y) => {
   if (isWoodWall(value)) {
     return getWallSprite(terrain, x, y);
   }
-  
+
   return value;
 };
 
