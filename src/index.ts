@@ -15,26 +15,33 @@ export const loadGame = () => {
   const display = new Display();
   const game = new Game(bus);
   const ui = new UIRenderer(bus);
+  let mouse = undefined;
+  
   takeControlOfInputs(bus);
-  render(game, display, ui);
+  
+  setInterval(() => {
+    console.log('tick!')
+    render(game, display, ui, mouse);
+  }, 60)
 
   bus.subscribe(EVENTS.TURN_PASSED, (action) => {
     game.runMainLoop(action);
-    render(game, display, ui);
   });
 
-  bus.subscribe(EVENTS.MOUSE_MOVED, (mouse) => {
-    render(game, display, ui, mouse);
+  bus.subscribe(EVENTS.MOUSE_MOVED, (mousePosition) => {
+    mouse = mousePosition
   });
 };
 
 const render = (game, display, ui, mouse?) => {
   const { fov, terrain, entities, turn, area } = game.state;
+
   if(isTextMode()){
     GlyphRenderer.run(display, fov, terrain, entities, mouse);
   } else{
     TileRenderer.run(display, fov, terrain, entities, mouse);
   }
+  
   ui.update(entities, turn, area);
 };
 
