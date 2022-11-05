@@ -74,18 +74,3 @@ export class Collision {
     };
   }
 }
-
-export class Animation {
-  isActive: boolean;
-  name: string | null;
-
-  constructor() {
-    this.isActive = false;
-    this.name = null;
-  }
-
-  set(animationName: string) {
-    this.name = animationName;
-    this.isActive = true;
-  }
-}

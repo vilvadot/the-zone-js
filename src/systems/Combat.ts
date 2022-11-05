@@ -19,8 +19,6 @@ export class Combat {
 
   static _attack(bus, name, target, damage, logger) {
     target.health.value -= damage;
-    target.animation.name = ANIMATIONS.hit.name;
-    target.animation.isActive = true;
     logger.log(
       `"${name}" Attacked "${target.name}" for ${damage} damage!`,
       'red'

@@ -18,7 +18,6 @@ export class Enemy {
   sprite: Sprite;
   position: Position;
   velocity: Velocity;
-  animation: Animation;
   
   constructor() {
     this.name = "enemy";
@@ -29,6 +28,5 @@ export class Enemy {
     this.sprite = new Sprite('snake');
     this.position = new Position();
     this.velocity = new Velocity(0, 0);
-    this.animation = new Animation();
   }
 }

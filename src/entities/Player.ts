@@ -36,7 +36,6 @@ export class Player {
     this.position = new Position();
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
-    this.animation = new Animation();
     this.keyboardControlled = true;
   }
 }

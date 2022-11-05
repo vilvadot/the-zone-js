@@ -17,31 +17,9 @@ import { EntityManager } from "./entities/entity-manager.js";
 import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
-import { ANIMATIONS } from "./animations.js";
+import { Shooting } from "./systems/Shooting";
 
-const BULLET_DAMAGE = 3;
-
-export class Shooting {
-  static run(logger, entities, x, y) {
-    const target = entities.find((entity) => {
-      return entity.position.x === x && entity.position.y === y;
-    });
-
-    if (!target) return;
-
-    for (const entity of entities) {
-      if (entity.id !== target.id || target.id === "player") continue;
-      entity.health.value -= BULLET_DAMAGE;
-      entity.animation.name = ANIMATIONS.hit.name;
-      entity.animation.isActive = true;
-
-      logger.log(
-        `"player" shot at "${entity.name}" for ${BULLET_DAMAGE} damage!`,
-        "blue"
-      );
-    }
-  }
-}
+export const BULLET_DAMAGE = 3;
 
 export class Game {
   bus: Bus;

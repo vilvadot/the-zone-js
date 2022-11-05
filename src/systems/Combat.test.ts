@@ -42,7 +42,6 @@ class Victim {
   damage: Damage;
   position: Position;
   sprite: Sprite;
-  animation: Animation;
 
   constructor(health, position) {
     this.id = "victim";
@@ -51,7 +50,6 @@ class Victim {
     this.damage = new Damage(1);
     this.position = position;
     this.sprite = new Sprite()
-    this.animation = new Animation()
   }
 }
 
