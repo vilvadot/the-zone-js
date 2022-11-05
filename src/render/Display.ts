@@ -1,11 +1,11 @@
 import ROT from "../lib/rot.js";
-import { WIDTH, HEIGHT } from "../config.js";
+import { WIDTH, HEIGHT, isTextMode } from "../config.js";
 import { spriteSheet, SPRITES } from '../sprites.js'
 
 export const loadedTiles = document.createElement("img");
 loadedTiles.src = spriteSheet;
 
-export const OPTIONS = {
+export const OPTIONS_TILEMODE = {
   layout: "tile",
   width: WIDTH,
   height: HEIGHT,
@@ -15,6 +15,14 @@ export const OPTIONS = {
   tileSet: loadedTiles,
   tileMap: SPRITES
 };
+
+export const OPTIONS_TEXTMODE = {
+  width: WIDTH,
+  height: HEIGHT,
+  fontSize: 24,
+};
+
+const OPTIONS = isTextMode() ? OPTIONS_TEXTMODE : OPTIONS_TILEMODE;
 
 export class Display {
   display: ROT.Display;

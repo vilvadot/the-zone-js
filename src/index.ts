@@ -7,6 +7,8 @@ import {
   TileRenderer,
   Display,
 } from "./render/index.js";
+import { isTextMode } from "./config.js";
+import { GlyphRenderer } from "./render/GlyphRenderer.js";
 
 export const loadGame = () => {
   const bus = new Bus();
@@ -30,7 +32,11 @@ export const loadGame = () => {
 const render = (game, display, ui, mouse?) => {
   const { fov, terrain, entities, turn, area } = game.state;
 
-  TileRenderer.run(display, fov, terrain, entities, mouse);
+  if(isTextMode()){
+    GlyphRenderer.run(display, fov, terrain, entities, mouse);
+  } else{
+    TileRenderer.run(display, fov, terrain, entities, mouse);
+  }
   ui.update(entities, turn, area);
 };
 
