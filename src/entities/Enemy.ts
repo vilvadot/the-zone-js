@@ -26,7 +26,7 @@ export class Enemy {
     this.target = new TargetManual("player");
     this.health = new Health(2);
     this.damage = new Damage(1);
-    this.sprite = new Sprite('snake', 3);
+    this.sprite = new Sprite('snake');
     this.position = new Position();
     this.velocity = new Velocity(0, 0);
     this.animation = new Animation();

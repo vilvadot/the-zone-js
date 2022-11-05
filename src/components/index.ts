@@ -38,14 +38,9 @@ export class Damage {
 
 export class Sprite {
   name: string;
-  zIndex: number;
-  additionalClass: string;
 
-  constructor(name = "", zIndex = 1, additionalClass = '') {
+  constructor(name = "") {
     this.name = name;
-    this.zIndex = zIndex;
-    
-    this.additionalClass = additionalClass;
   }
 }
 

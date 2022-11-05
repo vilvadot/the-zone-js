@@ -32,7 +32,7 @@ export class Player {
     this.target = new TargetManual();
     this.health = new Health(100);
     this.damage = new Damage(1);
-    this.sprite = new Sprite('knight', 3);
+    this.sprite = new Sprite('knight');
     this.position = new Position();
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
