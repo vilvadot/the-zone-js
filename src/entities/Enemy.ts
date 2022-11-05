@@ -5,7 +5,6 @@ import {
   Health,
   Damage,
   TargetManual,
-  Animation,
 } from "../components/index.js";
 import { uid } from "../util.js";
 

@@ -5,7 +5,6 @@ import {
   Damage,
   TargetManual,
   Collision,
-  Animation,
   Sprite,
 } from "../components/index.js";
 
@@ -22,7 +21,6 @@ export class Player {
   position: Position;
   velocity: Velocity;
   collision: Collision;
-  animation: Animation;
   keyboardControlled: boolean;
 
   constructor() {

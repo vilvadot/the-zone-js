@@ -1,9 +1,7 @@
 import { isInrange } from "../util.js";
-import { ANIMATIONS } from "../animations.js";
-import { EVENTS } from "../events.js";
 
 export class Combat {
-  static run(bus, logger, entities) {
+  static run(logger, entities) {
     for (const { name, position, target, damage } of entities) {
       if (!position || !target || !damage) continue;
 
@@ -13,11 +11,11 @@ export class Combat {
       if (!targetEntity) continue;
 
       if (isInrange(targetEntity.position, position))
-        this._attack(bus, name, targetEntity, damage.value, logger);
+        this._attack(name, targetEntity, damage.value, logger);
     }
   }
 
-  static _attack(bus, name, target, damage, logger) {
+  static _attack(name, target, damage, logger) {
     target.health.value -= damage;
     logger.log(
       `"${name}" Attacked "${target.name}" for ${damage} damage!`,
