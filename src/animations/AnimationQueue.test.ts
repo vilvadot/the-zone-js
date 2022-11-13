@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { AnimationQueue } from "./AnimationQueue";
-import { HitAnimation } from "./animations";
+import { AnimationQueue } from "./AnimationQueue.js";
+import { HitAnimation } from "./animations.js";
 
 describe("AnimationQueue", () => {
   it("provides next animation frame", () => {

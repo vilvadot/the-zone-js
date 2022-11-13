@@ -1,4 +1,4 @@
-import { CELL_SIZE } from "./config.js";
+import { TILE_SIZE } from "./config.js";
 import { Coordinate } from "./Coordinate.js";
 
 const graphicCoordinates = {
@@ -26,7 +26,7 @@ const graphicCoordinates = {
   dirt: [8, 2],
 };
 
-const mapToSpriteSheet = ([x, y] : Coordinate) => [x * CELL_SIZE, y * CELL_SIZE];
+const mapToSpriteSheet = ([x, y] : Coordinate) => [x * TILE_SIZE, y * TILE_SIZE];
 
 export const SPRITES = {
   wallVertical: mapToSpriteSheet(graphicCoordinates.woodWall.vertical),

@@ -18,7 +18,7 @@ export const INPUTS = {
 export const isInputKey = (code) => INPUTS[code];
 export const isActionKey = (code) => ACTIONS[code];
 
-export const takeControlOfInputs = (bus) => {
+export const handleInput = (bus) => {
   window.addEventListener("keydown", (event) => {
     if (isInputKey(event.code)) {
       event.preventDefault();

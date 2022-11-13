@@ -1,12 +1,12 @@
-import { CELL_SIZE } from "../config.js";
+import { TILE_SIZE } from "../config.js";
 
 export const canvasCoordinates = (tileCoordinates) => {
-  return tileCoordinates * CELL_SIZE;
+  return tileCoordinates * TILE_SIZE;
 };
 
 export const tileCoordinates = (canvasCoordinates) => {
   if (!canvasCoordinates) return;
-  return Math.floor(canvasCoordinates / CELL_SIZE);
+  return Math.floor(canvasCoordinates / TILE_SIZE);
 };
 
 export const isAdjacent = (positionA, positionB) => {

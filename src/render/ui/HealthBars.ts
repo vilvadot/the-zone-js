@@ -1,4 +1,4 @@
-import { CELL_SIZE } from "../../config.js";
+import { TILE_SIZE } from "../../config.js";
 import { findOrCreateNode } from "../../util/index.js";
 
 export class HealthBars {
@@ -9,15 +9,15 @@ export class HealthBars {
       if (!entity.health) return document.querySelector(barId)?.remove();
 
       this.createHealthBar(barId, entity.id);
-      this.createRemainingHealthBar(CELL_SIZE, entity, barId)
+      this.createRemainingHealthBar(TILE_SIZE, entity, barId)
     });
   }
 
   static createHealthBar(id, entityId) {
     const $healthBar = findOrCreateNode(id, `#${entityId}`);
     $healthBar.className = "ui_health-bar animate--movement";
-    $healthBar.style.width = CELL_SIZE;
-    $healthBar.style.marginTop = `-${CELL_SIZE + 3}px`
+    $healthBar.style.width = TILE_SIZE;
+    $healthBar.style.marginTop = `-${TILE_SIZE + 3}px`
 
     return $healthBar;
   }

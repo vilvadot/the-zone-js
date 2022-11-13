@@ -1,2 +1,2 @@
-export { HitAnimation } from "./animations";
-export { AnimationQueue } from "./AnimationQueue";
+export { HitAnimation } from "./animations.js";
+export { AnimationQueue } from "./AnimationQueue.js";

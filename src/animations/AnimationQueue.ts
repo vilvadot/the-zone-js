@@ -1,5 +1,5 @@
 import { Matrix } from "../data-structures/Matrix.js";
-import { Animation } from "./Animation";
+import { Animation } from "./Animation.js";
 
 export class AnimationQueue {
   animations: Array<Animation>;

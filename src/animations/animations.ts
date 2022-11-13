@@ -1,6 +1,6 @@
-import { Animation } from "./Animation";
-import { Matrix } from "../data-structures/Matrix";
-import { TILES } from "../tiles";
+import { Animation } from "./Animation.js";
+import { Matrix } from "../data-structures/Matrix.js";
+import { TILES } from "../tiles.js";
 
 export class HitAnimation extends Animation {
   frames: Matrix[];
