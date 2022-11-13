@@ -1,13 +1,24 @@
-import { Matrix } from "../data-structures/Matrix.js";
+import { AnimationQueue } from "../animation.js";
+import { FOVIndex } from "../fov-index.js";
+import { Terrain } from "../terrain/Terrain.js";
 import { TILES } from "../tiles.js";
+import { Display } from "./Display.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
 
 export class TileRenderer {
-  static run(display, fov, terrain, entities, mouse?) {
+  static run(
+    display: Display,
+    fov: FOVIndex,
+    terrain: Terrain,
+    entities,
+    animations: AnimationQueue,
+    mouse?
+  ) {
     display.clear();
+    const animation = animations.composeNextFrame();
 
     fov.forEach((x, y, distance) => {
-      const stack = this.generateTileStack(x, y, terrain, entities);
+      const stack = this.generateTileStack(x, y, terrain, entities, animation);
 
       const isMouseHover = x === mouse?.x && y === mouse?.y;
       let tint = getTint(distance);
@@ -17,36 +28,20 @@ export class TileRenderer {
     });
   }
 
-  private static generateTileStack(x, y, terrain, entities) {
+  private static generateTileStack(x, y, terrain, entities, animation) {
     const stack: string[] = [];
 
     const base = getTerrainSprite(terrain, x, y);
     const entity = getEntitySprite(entities, x, y);
-    const animation = renderLine([0, 0], [10, 10]).getValue(x, y);
+    const animationTile = animation?.getValue(x, y);
 
     if (base) stack.push(base);
-    if (animation) stack.push(animation);
     if (entity) stack.push(entity);
+    if (animationTile) stack.push(animationTile);
 
     return stack;
   }
 }
-
-type Point = [number, number];
-const renderLine = ([startX, startY]: Point, [endX, endY]: Point) => {
-  const layer = new Matrix();
-
-  const distanceX = endX - startX;
-  const distanceY = endY - startY;
-
-  for (let x = startX; x <= endX; x++) {
-    const y = Math.floor(startY + (distanceY * (x - startX)) / distanceX);
-
-    layer.setValue(x, y, TILES.corpse);
-  }
-
-  return layer;
-};
 
 const getTint = (distance) => {
   const tint = 1 - shadowMagnitude(distance);

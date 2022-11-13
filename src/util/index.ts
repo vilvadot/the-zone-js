@@ -11,3 +11,4 @@ export const capitalize = (string) => {
 export * from './dom.js'
 export * from './random.js'
 export * from './coordinates.js'
+export * from './draw.js'

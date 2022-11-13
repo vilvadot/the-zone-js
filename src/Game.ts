@@ -57,9 +57,10 @@ export class Game {
   }
 
   runMainLoop(action?) {
+    this.turn++;
     if (action?.key === INPUTS.Click) {
       const { x, y } = action;
-      Shooting.run(this.logger, this.entities, x, y);
+      Shooting.run(this.bus, this.logger, this.entities, x, y);
       Death.run(this.entities, this.entityManager);
     }
     KeyboardControl.run(this.entities, action);
@@ -69,8 +70,7 @@ export class Game {
     Targetting.run(this.entities, action);
     Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);
-    Combat.run(this.logger, this.entities);
-    this.turn++;
+    Combat.run(this.bus, this.logger, this.entities);
     Death.run(this.entities, this.entityManager);
   }
 }

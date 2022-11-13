@@ -1,7 +1,9 @@
+import { EVENTS } from "../events.js";
+import { Bus } from "../infra/bus.js";
 import { isAdjacent } from "../util/index.js";
 
 export class Combat {
-  static run(logger, entities) {
+  static run(bus: Bus, logger, entities) {
     for (const { name, position, target, damage } of entities) {
       if (!position || !target || !damage) continue;
 
@@ -11,12 +13,13 @@ export class Combat {
       if (!targetEntity) continue;
 
       if (isAdjacent(targetEntity.position, position))
-        this._attack(name, targetEntity, damage.value, logger);
+        this._attack(name, targetEntity, damage.value, bus, logger);
     }
   }
 
-  static _attack(name, target, damage, logger) {
+  static _attack(name, target, damage, bus, logger) {
     target.health.value -= damage;
+    bus.emit(EVENTS.HIT, {x: target.position.x, y: target.position.y})
     logger.log(
       `"${name}" Attacked "${target.name}" for ${damage} damage!`,
       'red'

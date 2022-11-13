@@ -2,9 +2,13 @@ import { describe, expect, it, afterEach, vi } from "vitest";
 import { Health, Position } from "../components/index.js";
 import { Player } from "../entities/Player.js";
 import { Shooting } from "./Shooting";
-import { Logger } from "../infra/loggerStub.js";
+import { Bus } from "../infra/bus.js";
+import { Logger } from "../infra/logger.js";
 
 describe("Shooting system", () => {
+  const bus = new Bus();
+  const logger = new Logger(bus);
+
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -16,7 +20,8 @@ describe("Shooting system", () => {
     const target = new Entity(initialHealth, entityX, entityY);
 
     Shooting.run(
-      Logger(),
+      bus,
+      logger,
       [target],
       entityX,
       entityY
@@ -32,7 +37,8 @@ describe("Shooting system", () => {
     const target = new Entity(initialHealth, entityX, entityY);
 
     Shooting.run(
-      Logger(),
+      bus,
+      logger,
       [target],
       0,
       entityY
@@ -50,7 +56,8 @@ describe("Shooting system", () => {
     target.position = new Position(targetX, targetY)
 
     Shooting.run(
-      Logger(),
+      bus,
+      logger,
       [target],
       targetX,
       targetY

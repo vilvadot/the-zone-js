@@ -24,6 +24,7 @@ export class Matrix {
     const intY = Math.floor(y)
     if (!this.data[intX]) this.data[intX] = [];
     this.data[intX][intY] = value;
+    return this
   }
 
   getValue(x: number, y: number) {

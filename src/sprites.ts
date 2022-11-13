@@ -4,6 +4,7 @@ import { Coordinate } from "./Coordinate.js";
 const graphicCoordinates = {
   nothing: [17, 0],
   brickWall: [5, 3],
+  blood: [4, 10],
   woodWall: {
     horizontal: [1, 16],
     vertical: [12, 16],
@@ -42,6 +43,7 @@ export const SPRITES = {
   empty: mapToSpriteSheet(graphicCoordinates.nothing),
   dirt: mapToSpriteSheet(graphicCoordinates.dirt),
   grass: mapToSpriteSheet(graphicCoordinates.grassDry),
+  hit: mapToSpriteSheet(graphicCoordinates.blood)
 };
 
 

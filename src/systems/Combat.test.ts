@@ -1,14 +1,18 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { Damage, Health, Position, Sprite, TargetManual } from "../components/index.js";
+import { Bus } from '../infra/bus.js';
+import { Logger } from '../infra/logger.js';
 import { Combat } from "./Combat.js";
-import { Logger } from "../infra/loggerStub.js";
 
 describe("Combat system", () => {
+  const bus = new Bus()
+  const logger = new Logger(bus)
+
   it("an attacker hits a victim in range", () => {
     const attacker = new Attacker(10, new Position(0, 0));
     const victim = new Victim(10, new Position(0, 1));
 
-    Combat.run(Logger(), [attacker, victim]);
+    Combat.run(bus, logger, [attacker, victim]);
 
     expect(victim.health.value).toEqual(9);
   });
@@ -17,7 +21,7 @@ describe("Combat system", () => {
     const attacker = new Attacker(10, new Position(0, 0));
     const victim = new Victim(10, new Position(0, 2));
 
-    Combat.run(Logger(), [attacker, victim]);
+    Combat.run(bus, logger, [attacker, victim]);
 
     expect(victim.health.value).toEqual(10);
   });
@@ -26,7 +30,7 @@ describe("Combat system", () => {
     const attacker = new Attacker(10, new Position(0, 0));
     const victim = new Victim(0, new Position(0, 1));
 
-    Combat.run(Logger(), [attacker, victim]);
+    Combat.run(bus, logger, [attacker, victim]);
 
     expect(victim.health.value).toEqual(0);
   });
