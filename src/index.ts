@@ -5,7 +5,7 @@ import { EVENTS } from "./events.js";
 import { UIRenderer, TileRenderer, Display } from "./render/index.js";
 import { isTextMode } from "./config.js";
 import { GlyphRenderer } from "./render/GlyphRenderer.js";
-import { AnimationQueue, HitAnimation } from "./animation.js";
+import { AnimationQueue, HitAnimation } from "./animations/index.js";
 
 export const loadGame = () => {
   const bus = new Bus();

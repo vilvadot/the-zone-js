@@ -1,4 +1,4 @@
-import { AnimationQueue } from "../animation.js";
+import { AnimationQueue } from "../animations/index.js";
 import { FOVIndex } from "../fov-index.js";
 import { Terrain } from "../terrain/Terrain.js";
 import { TILES } from "../tiles.js";
