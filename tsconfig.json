@@ -11,6 +11,9 @@
       "types": ["vitest"],
       "moduleResolution": "node"
     },
+    "include": [
+      "src/**/*.ts"
+    ],
     "exclude": [
       "node_modules",
       "dist",
