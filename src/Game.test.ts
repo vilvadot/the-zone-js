@@ -1,8 +1,9 @@
-import { describe, expect, it, beforeEach } from "vitest";
+import { describe, expect, it, beforeEach, vi } from "vitest";
 import { Position } from "./components/index.js";
 import { HEIGHT, WIDTH } from "./config.js";
-import { Matrix } from "./data-structures/Matrix.js";
+import { Point } from "./data-structures/Point.js";
 import { Entity } from "./entities/index.js";
+import { EVENTS } from "./events.js";
 import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
 import { INPUTS } from "./input.js";
@@ -91,13 +92,33 @@ describe("E2E Game test", () => {
     const area = areaManager.getCoordinates();
     expect(area).toEqual("0,-1");
   });
+
+  it.only("player can shoot", () => {
+    const game = new Game(bus);
+    vi.spyOn(bus, "emit");
+    const [playerX, playerY] = forcePlayerInCenter(game);
+    forceClearTerrain(game);
+    const shotX = 1;
+    const shotY = 10;
+
+    game.runMainLoop({
+      key: INPUTS["Click"],
+      x: shotX,
+      y: shotY,
+    });
+
+    expect(bus.emit).toHaveBeenCalledWith(EVENTS.SHOT_FIRED, {
+      origin: new Point(playerX, playerY),
+      target: new Point(shotX, shotY),
+    });
+  });
 });
 
-const forcePlayerInCenter = (game) => 
-{
-  const x = Math.floor(WIDTH / 2)
-  const y = Math.floor(HEIGHT / 2)
+const forcePlayerInCenter = (game) => {
+  const x = Math.floor(WIDTH / 2);
+  const y = Math.floor(HEIGHT / 2);
   game.player.position = new Position(x, y);
+  return [x, y];
 };
 
 const forceClearTerrain = (game) => {

@@ -17,6 +17,7 @@ export const TILES = {
   corpse: "corpse",
   enemy: "enemy",
   plank: "plank",
-  hit: "hit"
+  hit: "hit",
+  bullet: "bullet"
 };
 

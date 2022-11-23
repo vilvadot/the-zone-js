@@ -4,4 +4,5 @@ export const EVENTS = {
   LOG_EMITTED: "LOG_EMITTED",
   MOUSE_MOVED: "MOUSE_MOVED",
   HIT: "HIT",
+  SHOT_FIRED: "SHOT_FIRED",
 }

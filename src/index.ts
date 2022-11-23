@@ -5,6 +5,7 @@ import { EVENTS } from "./events.js";
 import { UIRenderer, Display, render } from "./render/index.js";
 import { AnimationQueue, HitAnimation } from "./animations/index.js";
 import { FPS_CAP } from "./config.js";
+import { ShootAnimation } from "./animations/animations.js";
 
 export const loadGame = () => {
   const bus = new Bus();
@@ -44,6 +45,11 @@ const handleSubscriptions = (
   bus.subscribe(EVENTS.HIT, ({ x, y }) => {
     animations.add(new HitAnimation(x, y));
   });
+
+  bus.subscribe(EVENTS.SHOT_FIRED, ({ origin, target }) => {
+    animations.add(new ShootAnimation(origin, target));
+  });
+  
 };
 
 window.onload = () => loadGame();

@@ -15,7 +15,7 @@ const graphicCoordinates = {
   },
   plank: [12, 3],
   rock: [18, 2],
-  myRock: [19, 2],
+  bullet: [15, 2],
   snake: [8, 8],
   knight: [0, 8],
   bottle: [14, 6],
@@ -29,21 +29,22 @@ const graphicCoordinates = {
 const mapToSpriteSheet = ([x, y] : Coordinate) => [x * TILE_SIZE, y * TILE_SIZE];
 
 export const SPRITES = {
-  wallVertical: mapToSpriteSheet(graphicCoordinates.woodWall.vertical),
+  bullet: mapToSpriteSheet(graphicCoordinates.bullet),
+  corpse: mapToSpriteSheet(graphicCoordinates.corpse),
+  dirt: mapToSpriteSheet(graphicCoordinates.dirt),
+  empty: mapToSpriteSheet(graphicCoordinates.nothing),
+  grass: mapToSpriteSheet(graphicCoordinates.grassDry),
+  hit: mapToSpriteSheet(graphicCoordinates.blood),
+  knight: mapToSpriteSheet(graphicCoordinates.knight),
+  plank: mapToSpriteSheet(graphicCoordinates.plank),
+  rock: mapToSpriteSheet(graphicCoordinates.rock),
+  snake: mapToSpriteSheet(graphicCoordinates.snake),
+  wallBottomLeft: mapToSpriteSheet(graphicCoordinates.woodWall.bottomLeft),
+  wallBottomRight: mapToSpriteSheet(graphicCoordinates.woodWall.bottomright),
   wallHorizontal: mapToSpriteSheet(graphicCoordinates.woodWall.horizontal),
   wallTopLeft: mapToSpriteSheet(graphicCoordinates.woodWall.topLeft),
   wallTopRight: mapToSpriteSheet(graphicCoordinates.woodWall.topRight),
-  wallBottomLeft: mapToSpriteSheet(graphicCoordinates.woodWall.bottomLeft),
-  wallBottomRight: mapToSpriteSheet(graphicCoordinates.woodWall.bottomright),
-  knight: mapToSpriteSheet(graphicCoordinates.knight),
-  snake: mapToSpriteSheet(graphicCoordinates.snake),
-  corpse: mapToSpriteSheet(graphicCoordinates.corpse),
-  rock: mapToSpriteSheet(graphicCoordinates.rock),
-  plank: mapToSpriteSheet(graphicCoordinates.plank),
-  empty: mapToSpriteSheet(graphicCoordinates.nothing),
-  dirt: mapToSpriteSheet(graphicCoordinates.dirt),
-  grass: mapToSpriteSheet(graphicCoordinates.grassDry),
-  hit: mapToSpriteSheet(graphicCoordinates.blood)
+  wallVertical: mapToSpriteSheet(graphicCoordinates.woodWall.vertical),
 };
 
 

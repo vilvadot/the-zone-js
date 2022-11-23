@@ -8,6 +8,7 @@ import { Logger } from "../infra/logger.js";
 describe("Shooting system", () => {
   const bus = new Bus();
   const logger = new Logger(bus);
+  const player = new Player()
 
   afterEach(() => {
     vi.clearAllMocks();
@@ -22,7 +23,7 @@ describe("Shooting system", () => {
     Shooting.run(
       bus,
       logger,
-      [target],
+      [target, player],
       entityX,
       entityY
     );
@@ -39,7 +40,7 @@ describe("Shooting system", () => {
     Shooting.run(
       bus,
       logger,
-      [target],
+      [target, player],
       0,
       entityY
     );
