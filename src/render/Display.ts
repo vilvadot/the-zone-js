@@ -1,5 +1,5 @@
 import ROT from "../lib/rot.js";
-import { WIDTH, HEIGHT, isTextMode } from "../config.js";
+import { WIDTH, HEIGHT, isTextMode, TILE_SIZE } from "../config.js";
 import { spriteSheet, SPRITES } from '../sprites.js'
 
 export const loadedTiles = document.createElement("img");
@@ -9,8 +9,8 @@ export const OPTIONS_TILEMODE = {
   layout: "tile",
   width: WIDTH,
   height: HEIGHT,
-  tileWidth: 24,
-  tileHeight: 24,
+  tileWidth: TILE_SIZE,
+  tileHeight: TILE_SIZE,
   tileColorize: true,
   tileSet: loadedTiles,
   tileMap: SPRITES

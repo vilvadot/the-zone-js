@@ -21,6 +21,8 @@ export class Shooting {
 
     if (!target?.health) return;
 
+    bus.emit(EVENTS.HIT, {x: target.position.x, y: target.position.y})
+
     target.health.value -= BULLET_DAMAGE;
 
     logger.log(

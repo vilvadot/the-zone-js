@@ -48,6 +48,6 @@ export const SPRITES = {
 };
 
 
-export const spriteSheet = "./static/tiles.png";
+export const spriteSheet = "./static/tiles24x24.png";
 
 export const mapTospriteSheetCoordinates = (index: number) => -index;
