@@ -23,6 +23,11 @@ export const loadGame = () => {
     }, 1000 / FPS_CAP);
   };
 
+
+  bus.subscribe(EVENTS.MOUSE_MOVED, (mousePosition) => {
+    mouse = mousePosition;
+  });
+  
   handleInput(bus);
   handleSubscriptions(bus, game, animations, mouse);
   runFrame();
@@ -36,10 +41,6 @@ const handleSubscriptions = (
 ) => {
   bus.subscribe(EVENTS.TURN_PASSED, (action) => {
     game.runMainLoop(action);
-  });
-
-  bus.subscribe(EVENTS.MOUSE_MOVED, (mousePosition) => {
-    mouse = mousePosition;
   });
 
   bus.subscribe(EVENTS.HIT, ({ x, y }) => {
