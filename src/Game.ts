@@ -7,7 +7,8 @@ import {
   Collision,
   Targetting,
   Travel,
-  Shooting
+  Shooting,
+  Spawn
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -23,7 +24,6 @@ import { EVENTS } from "./events.js";
 export class Game {
   bus: Bus;
   terrain: Terrain;
-  player: Player;
   turn: number;
   logger: Logger;
   fov: FOVIndex;
@@ -33,19 +33,18 @@ export class Game {
   constructor(bus: Bus) {
     this.bus = bus;
     this.terrain = new Terrain(WIDTH, HEIGHT);
-    this.player = new Player();
     this.turn = 0;
     this.logger = new Logger(bus);
     this.fov = new FOVIndex();
-    this.entityManager = new EntityManager();
-    this.entityManager.addPlayer(this.player);
+    this.entityManager = new EntityManager(this.bus, this.terrain);
     this.areaManager = new AreaManager(this.terrain, this.entityManager, this.bus);
-    this.fov.update(this.player, this.terrain);
+    this.fov.update(this.entityManager.getPlayer(), this.terrain);
     this.handleSubscriptions()
   }
 
   handleSubscriptions() {
     this.areaManager.handleSubscriptions()
+    this.entityManager.handleSubscriptions()
   }
 
   get entities() {
@@ -56,15 +55,16 @@ export class Game {
     return {
       fov: this.fov,
       terrain: this.terrain,
+      player: this.entityManager.getPlayer(),
       turn: this.turn,
-      entities: this.entityManager.retrieveAll(),
+      entities: this.entities,
       area: this.areaManager.getCoordinates(),
     };
   }
 
-  runMainLoop(action?) {
+  runMainLoop(action) {
     this.turn++;
-    if (action?.key === INPUTS.Click) {
+    if (action.key === INPUTS.Click) {
       const { x, y } = action;
       Shooting.run(this.bus, this.logger, this.entities, x, y);
       Death.run(this.entities, this.entityManager);
@@ -72,7 +72,7 @@ export class Game {
     KeyboardControl.run(this.entities, action);
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
-    this.fov.update(this.player, this.terrain);
+    this.fov.update(this.entityManager.getPlayer(), this.terrain);
     Targetting.run(this.entities, action);
     Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);

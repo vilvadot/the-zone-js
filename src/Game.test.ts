@@ -30,11 +30,11 @@ describe("E2E Game test", () => {
 
   it("player moves", () => {
     const game = new Game(bus);
-    const { x, y } = game.player.position;
-
+    const { player } = game.state;
+    const { x, y } = player.position;
+    
     game.runMainLoop({ key: INPUTS["ArrowRight"] });
-
-    const { player } = game;
+    
     expect(player.position).toEqual({ x: x! + 1, y });
   });
 
@@ -117,7 +117,7 @@ describe("E2E Game test", () => {
 const forcePlayerInCenter = (game) => {
   const x = Math.floor(WIDTH / 2);
   const y = Math.floor(HEIGHT / 2);
-  game.player.position = new Position(x, y);
+  game.state.player.position = new Position(x, y);
   return [x, y];
 };
 

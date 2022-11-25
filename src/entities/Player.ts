@@ -31,7 +31,7 @@ export class Player {
     this.health = new Health(100);
     this.damage = new Damage(1);
     this.sprite = new Sprite('knight');
-    this.position = new Position();
+    this.position = new Position(10, 10);
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
     this.keyboardControlled = true;

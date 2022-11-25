@@ -24,19 +24,8 @@ export class AreaManager {
     }
 
     createNewArea() {
-        const coordinates = this.coordinates.retrieve();
-        const isHome = coordinates === "0,0"
-        let cachedEntities = this.entityManager.isCached(coordinates);
-        if (!cachedEntities) {
-            let enemies: Enemy[] = [];
-            if (!isHome) {
-                enemies = EnemySpawner.spawn(LIMIT.enemies, ENEMY.dog);
-            }
-            const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
-            this.entityManager.add([...enemies, ...anomalies]);
-        }
+        this.bus.emit(EVENTS.AREA_CREATED, { coordinates: this.coordinates.retrieve() })
         this.terrain.generate(this.coordinates.getAreaSeed());
-        Spawn.run(this.entityManager.retrieveAll(coordinates), this.terrain);
     }
 
     getCoordinates() {
@@ -71,7 +60,7 @@ export class AreaManager {
     }
 
     handleSubscriptions() {
-        this.bus.subscribe(EVENTS.TRAVELED_AREA, ({ direction }) => {
+        this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
             if (direction === "north") this.travelNorth()
             if (direction === "east") this.travelEast()
             if (direction === "west") this.travelWest()

@@ -1,3 +1,5 @@
+import { DEBUG_ENABLED } from "../config.js"
+
 export class Bus {
   events: {}
   
@@ -14,7 +16,8 @@ export class Bus {
     }
   }
 
-  emit(eventName, value) {
+  emit(eventName, value?) {
+    if(DEBUG_ENABLED) console.log({eventName, value})
     if (!this.events[eventName]) return
     this.events[eventName].forEach(callback => callback(value))
   }

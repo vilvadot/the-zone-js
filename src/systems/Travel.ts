@@ -10,22 +10,22 @@ export class Travel {
       if (!isPlayer) continue;
 
       if (isAtScreenEdge("left", position) && isMoving("left", velocity)) {
-        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'west'})
+        bus.emit(EVENTS.TRAVELED, {direction: 'west'})
         position.x = WIDTH;
       }
 
       if (isAtScreenEdge("right", position) && isMoving("right", velocity)) {
-        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'east'})
+        bus.emit(EVENTS.TRAVELED, {direction: 'east'})
         position.x = -1;
       }
 
       if (isAtScreenEdge("bottom", position) && isMoving("down", velocity)) {
-        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'south'})
+        bus.emit(EVENTS.TRAVELED, {direction: 'south'})
         position.y = -1;
       }
 
       if (isAtScreenEdge("top", position) && isMoving("up", velocity)) {
-        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'north'})
+        bus.emit(EVENTS.TRAVELED, {direction: 'north'})
         position.y = HEIGHT;
       }
     }
