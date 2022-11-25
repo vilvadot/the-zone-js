@@ -5,7 +5,7 @@ import { LIMIT } from "./config.js";
 import { Terrain } from "./terrain/index.js";
 import { Navigation } from "./Navigation.js";
 import { EntityManager } from "./entities/entity-manager.js";
-import { Enemy } from "./entities/Enemy.js";
+import { Enemy } from "./entities/enemies/Enemy.js";
 
 export class AreaManager {
     terrain: Terrain;

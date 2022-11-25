@@ -1,4 +1,4 @@
-import { Enemy } from "../entities/Enemy.js";
+import { Snake, Enemy} from "../entities/enemies/Enemy.js";
 import { repeat, pickRandom } from "../util/index.js";
 import { ENEMIES } from "../colors.js";
 
@@ -7,7 +7,7 @@ export class EnemySpawner {
     const result: Enemy[] = [];
 
     repeat(quantity, () => {
-      result.push(new Enemy());
+      result.push(new Snake());
     });
 
     return result;

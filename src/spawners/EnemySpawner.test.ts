@@ -1,14 +1,14 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import { Enemy } from "../entities/Enemy.js";
+import { Snake } from "../entities/enemies/Enemy.js";
 import { EnemySpawner } from "./EnemySpawner.js";
 
 describe("EnemySpawner", () => {
-  it("spawns enemies", () => {
+  it("spawns snakes", () => {
     const quantity = 3;
 
     const enemies = EnemySpawner.spawn(quantity);
 
     expect(enemies).toHaveLength(quantity);
-    expect(enemies[0]).toBeInstanceOf(Enemy);
+    expect(enemies[0]).toBeInstanceOf(Snake);
   });
 });

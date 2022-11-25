@@ -1,6 +1,6 @@
 import { Artifact } from "./Artifact.js";
 import { Corpse } from "./Corpse.js";
-import { Enemy } from "./Enemy.js";
+import { Enemy } from "./enemies/Enemy.js";
 import { EntityManager } from "./entity-manager.js";
 import { Player } from "./Player.js";
 
