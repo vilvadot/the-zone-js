@@ -1,17 +1,18 @@
-import { Snake, Enemy, PseudoDog, ENEMY} from "../entities/enemies/Enemy.js";
+import { Snake, Enemy, PseudoDog, ENEMY } from "../entities/enemies/Enemy.js";
 import { repeat, pickRandom } from "../util/index.js";
 import { ENEMIES } from "../colors.js";
 
-class EnemyFactory{
-  static generate(mob){
-    if(mob === ENEMY.dog) return new PseudoDog()
+class EnemyFactory {
+  static generate(mob) {
+    if (mob === ENEMY.dog) return new PseudoDog()
     return new Snake()
   }
 }
 
 export class EnemySpawner {
-  static spawn(quantity = 1, mob: ENEMY = ENEMY.snake) {
+  static spawn(seed: string, mob: ENEMY = ENEMY.snake) {
     const result: Enemy[] = [];
+    const quantity = 1;
 
     repeat(quantity, () => {
       const enemy = EnemyFactory.generate(mob)

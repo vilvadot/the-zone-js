@@ -24,8 +24,10 @@ export class AreaManager {
     }
 
     createNewArea() {
-        this.bus.emit(EVENTS.AREA_CREATED, { coordinates: this.coordinates.retrieve() })
-        this.terrain.generate(this.coordinates.getAreaSeed());
+        const coordinates = this.coordinates.retrieve()
+        const seed = this.coordinates.getAreaSeed()
+        this.bus.emit(EVENTS.AREA_CREATED, { coordinates, seed })
+        this.terrain.generate(seed);
     }
 
     getCoordinates() {

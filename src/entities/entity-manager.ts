@@ -1,13 +1,11 @@
 import { Cache } from "../Cache.js";
 import { Corpse } from "./Corpse.js";
 import { Player } from "./Player.js";
-import { Entities } from "./index.js";
+import { Entities, Entity } from "./index.js";
 import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
-import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
-import { LIMIT } from "../config.js";
-import { Enemy, ENEMY } from "./enemies/Enemy.js";
+import { ENEMY } from "./enemies/Enemy.js";
 import { Spawn } from "../systems/Spawn.js";
 import { Terrain } from "../terrain/Terrain.js";
 
@@ -34,7 +32,7 @@ export class EntityManager {
     this.entities = [...this.entities, ...entities]
   }
 
-  kill(entity: any) {
+  kill(entity: Entity) {
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
     this.entities.push(new Corpse(entity));
   }
@@ -44,9 +42,6 @@ export class EntityManager {
     this.entities = []
   }
 
-  isCached(seed: string) {
-    return !!this.cache.retrieve(seed)
-  }
 
   retrieveAll(seed?: string) {
     if (!seed) return this.getAll();
@@ -60,15 +55,19 @@ export class EntityManager {
   }
 
   handleSubscriptions() {
-    this.bus.subscribe(EVENTS.AREA_CREATED, (coordinates) => {
+    this.bus.subscribe(EVENTS.AREA_CREATED, ({coordinates, seed }) => {
       const isHome = coordinates === "0,0"
 
       if (!this.isCached(coordinates) && !isHome) {
-        const enemies = EnemySpawner.spawn(LIMIT.enemies, ENEMY.dog);
+        const enemies = EnemySpawner.spawn(seed, ENEMY.dog);
         this.add(enemies);
       }
       Spawn.run(this.retrieveAll(coordinates), this.terrain);
     })
+  }
+
+  private isCached(seed: string) {
+    return !!this.cache.retrieve(seed)
   }
 
   private getAll() {

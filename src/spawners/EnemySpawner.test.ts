@@ -3,21 +3,17 @@ import { ENEMY, PseudoDog, Snake } from "../entities/enemies/Enemy.js";
 import { EnemySpawner } from "./EnemySpawner.js";
 
 describe("EnemySpawner", () => {
+  const seed = '123';
+
   it("spawns snakes", () => {
-    const quantity = 3;
+    const enemies = EnemySpawner.spawn(seed);
 
-    const enemies = EnemySpawner.spawn(quantity);
-
-    expect(enemies).toHaveLength(quantity);
     expect(enemies[0]).toBeInstanceOf(Snake);
   });
 
   it("spawns pseudodogs", () => {
-    const quantity = 3;
+    const enemies = EnemySpawner.spawn(seed, ENEMY.dog);
 
-    const enemies = EnemySpawner.spawn(quantity, ENEMY.dog);
-
-    expect(enemies).toHaveLength(quantity);
     expect(enemies[0]).toBeInstanceOf(PseudoDog);
   });
 });
