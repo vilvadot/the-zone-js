@@ -34,7 +34,7 @@ export class Snake extends Enemy{
     super()
     this.name = "snake";
     this.id = `snake-${uid()}`;
-    this.health = new Health(2);
+    this.health = new Health(5);
     this.damage = new Damage(1);
     this.sprite = new Sprite('snake');
     this.velocity = new Velocity(0, 0);

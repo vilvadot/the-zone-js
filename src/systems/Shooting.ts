@@ -3,7 +3,7 @@ import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
 import { Logger } from "../infra/logger.js";
 
-const BULLET_DAMAGE = 3;
+const BULLET_DAMAGE = 1;
 
 export class Shooting {
   static run(bus: Bus, logger: Logger, entities, x, y) {
