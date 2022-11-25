@@ -5,9 +5,9 @@ import { Entities, Entity } from "./index.js";
 import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
-import { ENEMY } from "./enemies/Enemy.js";
 import { Spawn } from "../systems/Spawn.js";
 import { Terrain } from "../terrain/Terrain.js";
+import { Coordinates } from "../Navigation.js";
 
 export class EntityManager {
   bus: Bus;
@@ -37,8 +37,8 @@ export class EntityManager {
     this.entities.push(new Corpse(entity));
   }
 
-  reset(seed: string) {
-    this.cache.push(seed, this.entities)
+  reset(coordinates: Coordinates) {
+    this.cache.push(coordinates.toString(), this.entities)
     this.entities = []
   }
 
@@ -56,10 +56,9 @@ export class EntityManager {
 
   handleSubscriptions() {
     this.bus.subscribe(EVENTS.AREA_CREATED, ({coordinates, seed }) => {
-      const isHome = coordinates === "0,0"
-
-      if (!this.isCached(coordinates) && !isHome) {
-        const enemies = EnemySpawner.spawn(seed, ENEMY.dog);
+      if (!this.isCached(coordinates) && !coordinates.isHome()) {
+        const enemySeed = `${coordinates.x + coordinates.y}${coordinates.y}`
+        const enemies = EnemySpawner.spawn(enemySeed);
         this.add(enemies);
       }
       Spawn.run(this.retrieveAll(coordinates), this.terrain);

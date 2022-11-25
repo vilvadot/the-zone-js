@@ -47,7 +47,7 @@ describe("E2E Game test", () => {
     });
 
     const { areaManager } = game;
-    const area = areaManager.getCoordinates();
+    const area = areaManager.getCoordinates().toString();
     expect(area).toEqual("1,0");
   });
 
@@ -61,7 +61,7 @@ describe("E2E Game test", () => {
     });
 
     const { areaManager } = game;
-    const area = areaManager.getCoordinates();
+    const area = areaManager.getCoordinates().toString();
     expect(area).toEqual("-1,0");
   });
 
@@ -75,7 +75,7 @@ describe("E2E Game test", () => {
     });
 
     const { areaManager } = game;
-    const area = areaManager.getCoordinates();
+    const area = areaManager.getCoordinates().toString();
     expect(area).toEqual("0,1");
   });
 
@@ -89,7 +89,7 @@ describe("E2E Game test", () => {
     });
 
     const { areaManager } = game;
-    const area = areaManager.getCoordinates();
+    const area = areaManager.getCoordinates().toString();
     expect(area).toEqual("0,-1");
   });
 

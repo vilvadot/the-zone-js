@@ -1,19 +1,19 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import { ENEMY, PseudoDog, Snake } from "../entities/enemies/Enemy.js";
+import { PseudoDog, Snake } from "../entities/enemies/Enemy.js";
 import { EnemySpawner } from "./EnemySpawner.js";
 
 describe("EnemySpawner", () => {
-  const seed = '123';
-
   it("spawns snakes", () => {
+    const seed = '12'
     const enemies = EnemySpawner.spawn(seed);
 
-    expect(enemies[0]).toBeInstanceOf(Snake);
+    expect(enemies[0].name).toEqual('snake');
   });
 
   it("spawns pseudodogs", () => {
-    const enemies = EnemySpawner.spawn(seed, ENEMY.dog);
+    const seed = '11'
+    const enemies = EnemySpawner.spawn(seed);
 
-    expect(enemies[0]).toBeInstanceOf(PseudoDog);
+    expect(enemies[0].name).toEqual('pseudo dog');
   });
 });

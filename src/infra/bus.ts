@@ -17,7 +17,6 @@ export class Bus {
   }
 
   emit(eventName, value?) {
-    if(DEBUG_ENABLED) console.log({eventName, value})
     if (!this.events[eventName]) return
     this.events[eventName].forEach(callback => callback(value))
   }

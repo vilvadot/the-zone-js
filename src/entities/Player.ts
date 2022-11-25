@@ -28,7 +28,7 @@ export class Player {
     this.id = PLAYER_ID;
     this.name = PLAYER_ID;
     this.target = new TargetManual();
-    this.health = new Health(100);
+    this.health = new Health(10);
     this.damage = new Damage(1);
     this.sprite = new Sprite('knight');
     this.position = new Position(10, 10);

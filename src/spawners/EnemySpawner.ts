@@ -10,16 +10,22 @@ class EnemyFactory {
 }
 
 export class EnemySpawner {
-  static spawn(seed: string, mob: ENEMY = ENEMY.snake) {
+  static spawn(seed: string) {
     const result: Enemy[] = [];
-    const quantity = 1;
+    const {quantity, mobType} = this.parseSeed(seed)
 
     repeat(quantity, () => {
-      const enemy = EnemyFactory.generate(mob)
+      const enemy = EnemyFactory.generate(mobType)
       result.push(enemy);
     });
 
     return result;
+  }
+
+  private static parseSeed(seed) {
+    const quantity = Number(seed[0]);
+    const mobType = Number(seed[1]) % 2 === 0 ? ENEMY.snake : ENEMY.dog;
+    return { quantity, mobType }
   }
 
   static _generateColor() {
