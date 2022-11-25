@@ -3,39 +3,44 @@ import { EnemySpawner } from "./spawners/EnemySpawner.js";
 import { ArtifactSpawner } from "./spawners/ArtifactSpawner.js";
 import { LIMIT } from "./config.js";
 import { Terrain } from "./terrain/index.js";
-import { Navigation } from "./Navigation.js";
+import { GlobalCoordinates } from "./Navigation.js";
 import { EntityManager } from "./entities/entity-manager.js";
-import { Enemy } from "./entities/enemies/Enemy.js";
+import { ENEMY, Enemy } from "./entities/enemies/Enemy.js";
+import { Bus } from "./infra/bus.js";
+import { EVENTS } from "./events.js";
 
 export class AreaManager {
     terrain: Terrain;
+    bus: Bus;
     entityManager: EntityManager;
-    navigation: Navigation;
+    coordinates: GlobalCoordinates;
 
-    constructor(terrain: Terrain, entityManager: EntityManager) {
+    constructor(terrain: Terrain, entityManager: EntityManager, bus: Bus) {
         this.terrain = terrain;
+        this.bus = bus;
         this.entityManager = entityManager;
-        this.navigation = new Navigation();
-        this.createNew();
+        this.coordinates = new GlobalCoordinates();
+        this.createNewArea();
     }
 
-    createNew() {
-        const coordinates = this.navigation.getAreaCoordinates();
+    createNewArea() {
+        const coordinates = this.coordinates.retrieve();
+        const isHome = coordinates === "0,0"
         let cachedEntities = this.entityManager.isCached(coordinates);
         if (!cachedEntities) {
             let enemies: Enemy[] = [];
-            if (coordinates !== "0,0") {
-                enemies = EnemySpawner.spawn(LIMIT.enemies);
+            if (!isHome) {
+                enemies = EnemySpawner.spawn(LIMIT.enemies, ENEMY.dog);
             }
             const anomalies = ArtifactSpawner.spawn(LIMIT.anomalies);
             this.entityManager.add([...enemies, ...anomalies]);
         }
-        this.terrain.generate(this.navigation.getAreaSeed());
+        this.terrain.generate(this.coordinates.getAreaSeed());
         Spawn.run(this.entityManager.retrieveAll(coordinates), this.terrain);
     }
 
     getCoordinates() {
-        return this.navigation.getAreaCoordinates();
+        return this.coordinates.retrieve();
     }
 
     private resetCurrentArea() {
@@ -43,26 +48,34 @@ export class AreaManager {
     }
 
     travelWest() {
-        this.resetCurrentArea();
-        this.navigation.travelWest();
-        this.createNew();
+        this.coordinates.moveWest();
+        this.createNewArea();
     }
 
     travelEast() {
         this.resetCurrentArea();
-        this.navigation.travelEast();
-        this.createNew();
+        this.coordinates.moveEast();
+        this.createNewArea();
     }
 
     travelNorth() {
         this.resetCurrentArea();
-        this.navigation.travelNorth();
-        this.createNew();
+        this.coordinates.moveNorth();
+        this.createNewArea();
     }
 
     travelSouth() {
         this.resetCurrentArea();
-        this.navigation.travelSouth();
-        this.createNew();
+        this.coordinates.moveSouth();
+        this.createNewArea();
+    }
+
+    handleSubscriptions() {
+        this.bus.subscribe(EVENTS.TRAVELED_AREA, ({ direction }) => {
+            if (direction === "north") this.travelNorth()
+            if (direction === "east") this.travelEast()
+            if (direction === "west") this.travelWest()
+            if (direction === "south") this.travelSouth()
+        })
     }
 }

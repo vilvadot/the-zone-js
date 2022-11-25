@@ -93,7 +93,7 @@ describe("E2E Game test", () => {
     expect(area).toEqual("0,-1");
   });
 
-  it.only("player can shoot", () => {
+  it("player can shoot", () => {
     const game = new Game(bus);
     vi.spyOn(bus, "emit");
     const [playerX, playerY] = forcePlayerInCenter(game);

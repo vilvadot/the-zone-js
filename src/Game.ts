@@ -18,6 +18,7 @@ import { EntityManager } from "./entities/entity-manager.js";
 import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
+import { EVENTS } from "./events.js";
 
 export class Game {
   bus: Bus;
@@ -38,8 +39,13 @@ export class Game {
     this.fov = new FOVIndex();
     this.entityManager = new EntityManager();
     this.entityManager.addPlayer(this.player);
-    this.areaManager = new AreaManager(this.terrain, this.entityManager);
+    this.areaManager = new AreaManager(this.terrain, this.entityManager, this.bus);
     this.fov.update(this.player, this.terrain);
+    this.handleSubscriptions()
+  }
+
+  handleSubscriptions() {
+    this.areaManager.handleSubscriptions()
   }
 
   get entities() {
@@ -64,7 +70,7 @@ export class Game {
       Death.run(this.entities, this.entityManager);
     }
     KeyboardControl.run(this.entities, action);
-    Travel.run(this.entities, this.areaManager);
+    Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
     this.fov.update(this.player, this.terrain);
     Targetting.run(this.entities, action);

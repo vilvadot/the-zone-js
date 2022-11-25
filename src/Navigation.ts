@@ -5,7 +5,7 @@ type AreaSeed = string;
 type AreaIndex = string;
 type NavigationAreas = Record<AreaIndex, AreaSeed>
 
-export class Navigation {
+export class GlobalCoordinates {
   coordinates: Coordinate;
   areas: NavigationAreas;
 
@@ -16,28 +16,28 @@ export class Navigation {
     this.areas = { [ORIGIN_INDEX]: INITIAL_SEED };
   }
 
-  travelWest() {
+  moveWest() {
     this.coordinates[0]--;
   }
 
-  travelEast() {
+  moveEast() {
     this.coordinates[0]++;
   }
 
-  travelNorth() {
+  moveNorth() {
     this.coordinates[1]++;
   }
 
-  travelSouth() {
+  moveSouth() {
     this.coordinates[1]--;
   }
 
-  getAreaCoordinates(){
+  retrieve(){
     return this.coordinates.join(",");
   }
 
   getAreaSeed() {
-    const id = this.getAreaCoordinates()
+    const id = this.retrieve()
     if (!this.areas[id]) this.generateSeed(id)
 
     return this.areas[id];

@@ -1,28 +1,31 @@
 import { Position, Velocity } from "../components/index.js";
 import { HEIGHT, WIDTH } from "../config.js";
+import { Entities } from "../entities/index.js";
+import { EVENTS } from "../events.js";
+import { Bus } from "../infra/bus.js";
 
 export class Travel {
-  static run(entities, areaManager) {
+  static run(entities: Entities, bus: Bus) {
     for (const { position, velocity, isPlayer } of entities) {
       if (!isPlayer) continue;
 
       if (isAtScreenEdge("left", position) && isMoving("left", velocity)) {
-        areaManager.travelWest();
+        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'west'})
         position.x = WIDTH;
       }
 
       if (isAtScreenEdge("right", position) && isMoving("right", velocity)) {
-        areaManager.travelEast();
+        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'east'})
         position.x = -1;
       }
 
       if (isAtScreenEdge("bottom", position) && isMoving("down", velocity)) {
-        areaManager.travelSouth();
+        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'south'})
         position.y = -1;
       }
 
       if (isAtScreenEdge("top", position) && isMoving("up", velocity)) {
-        areaManager.travelNorth();
+        bus.emit(EVENTS.TRAVELED_AREA, {direction: 'north'})
         position.y = HEIGHT;
       }
     }
