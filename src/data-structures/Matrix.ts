@@ -1,7 +1,6 @@
 import { Coordinate } from "../Coordinate.js";
 
 type MultidimensionalMatrix = any[][]
-type IteratorCallback = (x: number, y: number, element: any) => void
 
 export class Matrix {
   data: MultidimensionalMatrix;
@@ -78,3 +77,6 @@ export class Matrix {
     });
   }
 }
+
+type IteratorCallback = (x: number, y: number, element: any) => void
+

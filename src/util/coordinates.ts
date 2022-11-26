@@ -1,4 +1,5 @@
 import { TILE_SIZE } from "../config.js";
+import { Point } from "../data-structures/Point.js";
 
 export const canvasCoordinates = (tileCoordinates) => {
   return tileCoordinates * TILE_SIZE;
@@ -8,6 +9,10 @@ export const tileCoordinates = (canvasCoordinates) => {
   if (!canvasCoordinates) return;
   return Math.floor(canvasCoordinates / TILE_SIZE);
 };
+
+export const calculateDistance = (pointA: Point, pointB: Point) => {
+  return Math.sqrt((pointA.x - pointB.x!) ** 2 + (pointA.y - pointB.y!) ** 2)
+}
 
 export const isAdjacent = (positionA, positionB) => {
   const distanceX = Math.abs(positionA.x - positionB.x);

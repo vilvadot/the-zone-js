@@ -1,4 +1,5 @@
 import { AnimationQueue } from "../animations/index.js";
+import { DEBUG_ENABLED } from "../config.js";
 import { FOVIndex } from "../fov-index.js";
 import { Terrain } from "../terrain/Terrain.js";
 import { TILES } from "../tiles.js";
@@ -16,14 +17,16 @@ export class TileRenderer {
   ) {
     display.clear();
     const animation = animations.composeNextFrame();
-
-    fov.forEach((x, y, distance) => {
-      const stack = this.generateTileStack(x, y, terrain, entities, animation);
-
+    
+    fov.forEach((x, y, { distance, isBlocked }) => {
       const isMouseHover = x === mouse?.x && y === mouse?.y;
-      let tint = getTint(distance);
-      if (isMouseHover) tint = `rgba(255,255,255, .3)`;
-
+      const stack = this.generateTileStack(x, y, terrain, entities, animation);
+      
+      if (isMouseHover) {
+        console.info(`${x}, ${y}, ${distance}, ${isBlocked}, ${stack}`)
+      };
+      
+      const tint = getTint(distance, isBlocked, isMouseHover);
       display.draw(x, y, stack, tint);
     });
   }
@@ -43,11 +46,13 @@ export class TileRenderer {
   }
 }
 
-const getTint = (distance) => {
-  const tint = 1 - shadowMagnitude(distance);
-  let result = `rgba(0,0,0, ${tint})`;
+const getTint = (distance, isBlocked, isMouseHover) => {
+  if (isMouseHover) return `rgba(255,255,255, .3)`
+  if (DEBUG_ENABLED && isBlocked) return `rgba(0,0,255, .3)`
+  if (DEBUG_ENABLED) return `rgba(255,0,255, .3)`
 
-  return result;
+  const opacity = 1 - shadowMagnitude(distance);
+  return `rgba(0,0,0, ${opacity})`;
 };
 
 const getEntitySprite = (entities, x, y) => {
