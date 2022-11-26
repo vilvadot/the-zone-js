@@ -7,13 +7,17 @@ export class Targetting {
 
       if (!action) continue;
 
-      if (action.key === INPUTS.ArrowRight) {
+      const { key } = action;
+      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, KeyA, KeyW, KeyS, KeyD } = INPUTS
+
+      // Todo: Decouple from key input
+      if (key === ArrowRight || key === KeyD) {
         target.id = collision.areas.east[0];
-      } else if (action.key === INPUTS.ArrowLeft) {
+      } else if (key === ArrowLeft || key === KeyA) {
         target.id = collision.areas.west[0];
-      } else if (action.key === INPUTS.ArrowUp) {
+      } else if (key === ArrowUp || key === KeyW) {
         target.id = collision.areas.north[0];
-      } else if (action.key === INPUTS.ArrowDown) {
+      } else if (key === ArrowDown || key === KeyS) {
         target.id = collision.areas.south[0];
       }
     }

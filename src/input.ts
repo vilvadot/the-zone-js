@@ -8,6 +8,10 @@ const ACTIONS = {
   ArrowRight: "ArrowRight",
   Space: "Space",
   KeyE: "KeyE",
+  KeyA: "KeyA",
+  KeyW: "KeyW",
+  KeyS: "KeyS",
+  KeyD: "KeyD",
 };
 
 export const INPUTS = {
