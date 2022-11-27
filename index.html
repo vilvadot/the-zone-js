@@ -5,15 +5,33 @@
   <link rel="stylesheet" href="static/styles/main.css" />
   <link rel="stylesheet" href="static/styles/ui.css" />
   <link rel="icon" type="image/png" href="static/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
   <script src="dist/index.js" type="module"></script>
 
   <div class="container">
-    <div class="ui_display">
-      <div id="game_section">
-        <div id="game"></div>
-      </div>
-      <div id="ui_log"></div>
+    <div id="game_section">
+      <div id="game"></div>
     </div>
-    <div class="ui_bottom-bar"></div>
-  </div>
+    <div id="sidebar">
+      <div id="stats" class="ui_panel">
+        <h2 class="ui_panel--title">Stats</h2>
+        <div class="ui_panel--content">
+        </div>
+      </div>
+      <div id="inventory" class="ui_panel">
+        <h2 class="ui_panel--title">Inventory</h2>
+        <div class="ui_panel--content">
+        </div>
+      </div>
+    </div>
+    <div id="bottom-bar">
+      <div id="messages" class="ui_panel">
+        <h2 class="ui_panel--title">Messages</h2>
+        <div id="log_messages" class="ui_panel--content">
+        </div>
+      </div>
+    </div>
 </body>

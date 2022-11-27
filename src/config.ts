@@ -8,7 +8,7 @@ const DISPLAY_MODE = DISPLAY_TILES;
 export const isTextMode = () => DISPLAY_MODE === DISPLAY_TEXT;
 
 export const TILE_SIZE = 24;
-export const WIDTH = Math.ceil(900 / TILE_SIZE)
+export const WIDTH = Math.ceil(1100 / TILE_SIZE)
 export const HEIGHT = Math.ceil(600 / TILE_SIZE)
 
 export const FPS_CAP = 30;

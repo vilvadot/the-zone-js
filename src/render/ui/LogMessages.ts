@@ -2,18 +2,15 @@ import { createNode } from "../../util/index.js";
 
 export class LogMessages {
   static update(message, color) {
-    const $logs = document.querySelector("#ui_log");
+    const $logs = document.querySelector("#log_messages");
 
     const $message = createNode({
-      type: "span",
-      className: "ui_log-message",
+      type: "p",
+      className: "ui_log--message",
       style: `color: ${color}`,
       content: message,
     });
 
-    const $line = createNode({ type: "p" });
-    $line.appendChild($message);
-
-    $logs?.prepend($line);
+    $logs?.prepend($message);
   }
 }

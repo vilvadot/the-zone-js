@@ -21,7 +21,7 @@ export class Combat {
     target.health.value -= damage;
     bus.emit(EVENTS.HIT, {x: target.position.x, y: target.position.y})
     logger.log(
-      `"${name}" Attacked "${target.name}" for ${damage} damage!`,
+      `"${name}" Attacked "${target.name}" for ${damage} damage`,
       'red'
     );
   }

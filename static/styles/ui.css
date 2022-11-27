@@ -1,92 +1,64 @@
-#game_section{
-  width: 100%;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 80px;
-}
-.ui_display {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
+.container{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1105px 1fr;
+  grid-template-rows: 600px 1fr;
+  grid-gap: 10px;
   background-color: black;
-  justify-content: flex-start;
+  color: white;
 }
 
-.ui_health-bar {
-  position: absolute;
-  background: #970000;
-  height: 3px;
+*{
+  font-family: 'Courier Prime', monospace !important;
+  font-size: 16px;
 }
 
-.ui_health-bar--remaining {
-  background: YellowGreen;
-  height: 100%;
+.container > div{
+  padding: 5px;
 }
 
-.ui_bottom-bar {
-  z-index: 10;
-  height: 40px;
+#sidebar{
+  grid-column: 2;
+  grid-row: 1/3;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  color: white;
-  background: black;
-}
-
-.ui_bar-module {
-  display: block;
-  padding: 10px;
-}
-
-#ui_log {
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.8);
-  width: 300px;
   height: 100%;
-  flex-shrink: 0;
-  overflow-y: auto;
-  padding: 20px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  max-height: 80vh;
 }
 
-#ui_log p {
-  display: block;
-  margin: 4px 0;
-  text-transform: capitalize;
-  text-shadow: 0 0 1px #000;
+#bottom-bar{
+  grid-column: 1;
+  grid-row: 2;
+  width: 100%;
+  height: 100%;
 }
 
-.ui_log-turn {
-  margin-right: 4px;
-  color: grey;
+#bottom-bar .ui_panel{
+  height: 100%;
 }
 
-#ui_turn-counter {
-  display: block;
+.ui_panel{
+  width: 100%;
+  border: 1px solid white;
 }
 
-/* Inventory */
-
-#ui_inventory{
-  align-items: center;
-  padding: 0;
-  display:flex;
+.ui_panel--content{
+  padding:10px;
+  overflow: hidden;
 }
 
-#ui_inventory--items{
-  display:flex;
+#log_messages{
+  max-height: 100px;
 }
 
-.ui_inventory--item{
-  height: 20px;
-  width: 20px;
-  display:flex;
-  align-items: center;
-  justify-content: center;
+.ui_log--message{
+  padding: 4px;
+}
+
+.ui_panel--title{
+  font-size: 16px;
+  padding: 3px;
+  display: inline-block;
+  margin-left: 10px;
+  background: black;
+  margin-top: -10px;
+  font-weight: bold;
 }
