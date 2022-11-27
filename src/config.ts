@@ -1,4 +1,5 @@
-export const DEBUG_ENABLED = true
+const urlParams = new URLSearchParams(window.location.search);
+export const DEBUG_ENABLED = urlParams.get('debug')
 
 const DISPLAY_TEXT = "text";
 const DISPLAY_TILES = "tiles";
