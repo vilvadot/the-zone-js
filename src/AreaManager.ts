@@ -15,11 +15,11 @@ export class AreaManager {
     entityManager: EntityManager;
     coordinates: GlobalCoordinates;
 
-    constructor(terrain: Terrain, entityManager: EntityManager, bus: Bus) {
-        this.terrain = terrain;
+    constructor(bus: Bus, terrain: Terrain, entityManager: EntityManager, coordinates: GlobalCoordinates,) {
         this.bus = bus;
+        this.terrain = terrain;
         this.entityManager = entityManager;
-        this.coordinates = new GlobalCoordinates();
+        this.coordinates = coordinates;
         this.createNewArea();
     }
 
@@ -30,36 +30,14 @@ export class AreaManager {
         this.bus.emit(EVENTS.AREA_CREATED, { coordinates })
     }
 
-    getCoordinates() {
-        return this.coordinates.retrieve();
-    }
-
-    travelWest() {
-        this.coordinates.moveWest();
-        this.createNewArea();
-    }
-
-    travelEast() {
-        this.coordinates.moveEast();
-        this.createNewArea();
-    }
-
-    travelNorth() {
-        this.coordinates.moveNorth();
-        this.createNewArea();
-    }
-
-    travelSouth() {
-        this.coordinates.moveSouth();
-        this.createNewArea();
-    }
-
     handleSubscriptions() {
         this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
-            if (direction === "north") this.travelNorth()
-            if (direction === "east") this.travelEast()
-            if (direction === "west") this.travelWest()
-            if (direction === "south") this.travelSouth()
+            if (direction === "north") this.coordinates.moveNorth()
+            if (direction === "east") this.coordinates.moveEast()
+            if (direction === "west") this.coordinates.moveWest()
+            if (direction === "south") this.coordinates.moveSouth()
+
+            this.createNewArea();
         })
     }
 }
