@@ -43,7 +43,7 @@ export class EntityManager {
   }
 
 
-  retrieveAll(seed?: string) {
+  retrieveAll(seed?: string): Entity[] {
     if (!seed) return this.getAll();
 
     if (this.isCached(seed)) {
