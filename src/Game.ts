@@ -8,7 +8,6 @@ import {
   Targetting,
   Travel,
   Shooting,
-  Spawn
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -16,19 +15,17 @@ import { HEIGHT, WIDTH } from "./config.js";
 import { Terrain } from "./terrain/index.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
-import { Player } from "./entities/Player.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
-import { EVENTS } from "./events.js";
 
 export class Game {
-  bus: Bus;
-  terrain: Terrain;
-  turn: number;
-  logger: Logger;
-  fov: FOVIndex;
-  entityManager: EntityManager;
-  areaManager: AreaManager;
+  private bus: Bus;
+  private terrain: Terrain;
+  private turn: number;
+  private logger: Logger;
+  private fov: FOVIndex;
+  private entityManager: EntityManager;
+  private areaManager: AreaManager;
 
   constructor(bus: Bus) {
     this.bus = bus;
@@ -58,7 +55,7 @@ export class Game {
       player: this.entityManager.getPlayer(),
       turn: this.turn,
       entities: this.entities,
-      area: this.areaManager.getCoordinates(),
+      area: this.areaManager.getCoordinates().toString(),
     };
   }
 

@@ -32,9 +32,9 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     const { player } = game.state;
     const { x, y } = player.position;
-    
+
     game.runMainLoop({ key: INPUTS["ArrowRight"] });
-    
+
     expect(player.position).toEqual({ x: x! + 1, y });
   });
 
@@ -46,8 +46,7 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowRight"] });
     });
 
-    const { areaManager } = game;
-    const area = areaManager.getCoordinates().toString();
+    const { area } = game.state;
     expect(area).toEqual("1,0");
   });
 
@@ -60,8 +59,7 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowLeft"] });
     });
 
-    const { areaManager } = game;
-    const area = areaManager.getCoordinates().toString();
+    const { area } = game.state;
     expect(area).toEqual("-1,0");
   });
 
@@ -74,8 +72,7 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowUp"] });
     });
 
-    const { areaManager } = game;
-    const area = areaManager.getCoordinates().toString();
+    const { area } = game.state;
     expect(area).toEqual("0,1");
   });
 
@@ -88,8 +85,7 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowDown"] });
     });
 
-    const { areaManager } = game;
-    const area = areaManager.getCoordinates().toString();
+    const { area } = game.state;
     expect(area).toEqual("0,-1");
   });
 
