@@ -25,7 +25,7 @@ describe("EntityManager", () => {
 
         bus.emit(EVENTS.AREA_CREATED, { coordinates: homeCoordinates })
 
-        const entities = entityManager.retrieveAll()
+        const entities = entityManager.getAllEntities()
         expect(entities).toHaveLength(1)
     });
 
@@ -34,8 +34,24 @@ describe("EntityManager", () => {
 
         bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
 
-        const entities = entityManager.retrieveAll()
+        const entities = entityManager.getAllEntities()
         expect(findEntity(entities, Enemy)).toBeDefined()
+    });
+
+    it("recovers entities from cache", () => {
+        fakeChanceAlwaysHappens()
+
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        const initialEntities = entityManager.getAllEntities()
+        
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(2, 1) })
+        const secondAreaEntities = entityManager.getAllEntities()
+        expect(secondAreaEntities).not.toEqual(initialEntities)
+        
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        const initialEntitiesAgain = entityManager.getAllEntities()
+
+        expect(initialEntitiesAgain).toEqual(initialEntities)
     });
 
     it("spawns artifacts when area is created", () => {
@@ -43,7 +59,7 @@ describe("EntityManager", () => {
 
         bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
 
-        const entities = entityManager.retrieveAll()
+        const entities = entityManager.getAllEntities()
         expect(findEntity(entities, Artifact)).toBeDefined()
     });
 
@@ -52,7 +68,7 @@ describe("EntityManager", () => {
 
         bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
 
-        const entities = entityManager.retrieveAll()
+        const entities = entityManager.getAllEntities()
         expect(findEntity(entities, Artifact)).toBeUndefined()
     });
 })

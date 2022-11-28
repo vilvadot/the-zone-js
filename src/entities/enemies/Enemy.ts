@@ -19,15 +19,15 @@ export class Enemy {
   name: string;
   id: string;
 
-  constructor() {
+  constructor(x, y) {
     this.target = new TargetManual("player");
-    this.position = new Position();
+    this.position = new Position(x, y);
     this.name = "enemy";
     this.id = `enemy-${uid()}`;
   }
 }
 
-export class Snake extends Enemy{
+export class Snake extends Enemy {
   name: string;
   id: string;
   health: Health;
@@ -35,8 +35,8 @@ export class Snake extends Enemy{
   sprite: Sprite;
   velocity: Velocity;
 
-  constructor() {
-    super()
+  constructor(x, y) {
+    super(x, y)
     this.name = "snake";
     this.id = `snake-${uid()}`;
     this.health = new Health(5);
@@ -46,7 +46,7 @@ export class Snake extends Enemy{
   }
 }
 
-export class PseudoDog extends Enemy{
+export class PseudoDog extends Enemy {
   name: string;
   id: string;
   health: Health;
@@ -54,8 +54,8 @@ export class PseudoDog extends Enemy{
   sprite: Sprite;
   velocity: Velocity;
 
-  constructor() {
-    super()
+  constructor(x, y) {
+    super(x, y)
     this.name = "pseudo dog";
     this.id = `dog-${uid()}`;
     this.health = new Health(3);

@@ -46,7 +46,7 @@ export class Game {
   }
 
   get entities() {
-    return this.entityManager.retrieveAll();
+    return this.entityManager.getAllEntities();
   }
 
   get state() {

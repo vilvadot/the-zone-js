@@ -27,15 +27,11 @@ export class AreaManager {
         const coordinates = this.coordinates.retrieve()
         const seed = this.coordinates.getAreaSeed()
         this.terrain.generate(seed);
-        this.bus.emit(EVENTS.AREA_CREATED, { coordinates, seed })
+        this.bus.emit(EVENTS.AREA_CREATED, { coordinates })
     }
 
     getCoordinates() {
         return this.coordinates.retrieve();
-    }
-
-    private resetCurrentArea() {
-        this.entityManager.reset(this.getCoordinates());
     }
 
     travelWest() {
@@ -44,19 +40,16 @@ export class AreaManager {
     }
 
     travelEast() {
-        this.resetCurrentArea();
         this.coordinates.moveEast();
         this.createNewArea();
     }
 
     travelNorth() {
-        this.resetCurrentArea();
         this.coordinates.moveNorth();
         this.createNewArea();
     }
 
     travelSouth() {
-        this.resetCurrentArea();
         this.coordinates.moveSouth();
         this.createNewArea();
     }

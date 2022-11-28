@@ -4,15 +4,15 @@ import { ENEMIES } from "../colors.js";
 
 class EnemyFactory {
   static generate(mob) {
-    if (mob === ENEMY.dog) return new PseudoDog()
-    return new Snake()
+    if (mob === ENEMY.dog) return new PseudoDog(10, 10)
+    return new Snake(5, 5)
   }
 }
 
 export class EnemySpawner {
   static spawn(seed: string) {
     const result: Enemy[] = [];
-    const {quantity, mobType} = this.parseSeed(seed)
+    const { quantity, mobType } = this.parseSeed(seed)
 
     repeat(quantity, () => {
       const enemy = EnemyFactory.generate(mobType)
@@ -23,8 +23,10 @@ export class EnemySpawner {
   }
 
   private static parseSeed(seed) {
-    const quantity = Number(seed[0]);
-    const mobType = Number(seed[1]) % 2 === 0 ? ENEMY.snake : ENEMY.dog;
+    const cleanSeed = seed.replace("-", "")
+    const quantity = Number(cleanSeed[0]) || 1;
+    const mobType = Number(cleanSeed[1]) % 2 === 0 ? ENEMY.snake : ENEMY.dog;
+
     return { quantity, mobType }
   }
 
