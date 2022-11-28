@@ -8,6 +8,7 @@ import {
   Targetting,
   Travel,
   Shooting,
+  Spawn,
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";

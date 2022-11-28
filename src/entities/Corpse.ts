@@ -6,13 +6,13 @@ export class Corpse {
   name: string;
   sprite: Sprite;
   position: any;
-  isStatic: boolean;
+  isWalkable: boolean;
 
   constructor(entity: Entity) {
     this.id = `${entity.id}-corpse`;
     this.name = `${entity.name} corpse`;
     this.sprite = new Sprite('corpse');
     this.position = entity.position
-    this.isStatic = true;
+    this.isWalkable = true;
   }
 }

@@ -24,7 +24,7 @@ export class Movement {
 
   static _tileOccupied = (entities, candidate, terrain: Terrain) => {
     const isEntityPresent = entities.some(
-      ({ position, isStatic }) => position.x === candidate.x && position.y === candidate.y && !isStatic
+      ({ position, isWalkable }) => position.x === candidate.x && position.y === candidate.y && !isWalkable
     );
     const isWall = terrain.isBlocked(candidate.x, candidate.y);
 

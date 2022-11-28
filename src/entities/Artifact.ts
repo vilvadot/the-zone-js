@@ -6,13 +6,13 @@ export class Artifact{
   name: string;
   sprite: Sprite;
   position: Position;
-  isStatic: boolean;
+  isWalkable: boolean;
   
   constructor() {
     this.id = `anomaly-${uid()}`;
     this.name = "Artifact";
-    this.sprite = new Sprite('bottle');
+    this.sprite = new Sprite('flame');
     this.position = new Position();
-    this.isStatic = true; // TODO: Change for collision (go trough)
+    this.isWalkable = true;
   }
 }

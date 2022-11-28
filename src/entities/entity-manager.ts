@@ -8,6 +8,8 @@ import { EnemySpawner } from "../spawners/EnemySpawner.js";
 import { Spawn } from "../systems/Spawn.js";
 import { Terrain } from "../terrain/Terrain.js";
 import { Coordinates } from "../Navigation.js";
+import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
+import { Chance } from "../util/index.js";
 
 export class EntityManager {
   bus: Bus;
@@ -55,15 +57,32 @@ export class EntityManager {
   }
 
   handleSubscriptions() {
-    this.bus.subscribe(EVENTS.AREA_CREATED, ({coordinates, seed }) => {
+    this.bus.subscribe(EVENTS.AREA_CREATED, ({ coordinates }) => {
       if (!this.isCached(coordinates) && !coordinates.isHome()) {
-        const enemySeed = `${coordinates.x + coordinates.y}${coordinates.y}`
-        const enemies = EnemySpawner.spawn(enemySeed);
-        this.add(enemies);
+        this.spawnEnemies(coordinates)
+        this.spawnArtifacts()
       }
       Spawn.run(this.retrieveAll(coordinates), this.terrain);
     })
   }
+
+  private spawnArtifacts() {
+    Chance.withProbability(15, () => {
+      const artifacts = ArtifactSpawner.spawn(1);
+
+      this.add(artifacts)
+    })
+  }
+
+  private spawnEnemies(coordinates: Coordinates) {
+    Chance.withProbability(100, () => {
+      const enemySeed = `${coordinates.x + coordinates.y}${coordinates.y}`
+      const enemies = EnemySpawner.spawn(enemySeed);
+
+      this.add(enemies)
+    })
+  }
+
 
   private isCached(seed: string) {
     return !!this.cache.retrieve(seed)
