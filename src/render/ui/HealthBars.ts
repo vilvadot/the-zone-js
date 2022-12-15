@@ -1,34 +1,13 @@
-import { TILE_SIZE } from "../../config.js";
-import { findOrCreateNode } from "../../util/index.js";
+import { Health } from "../../components/index.js";
 
-export class HealthBars {
-  static update(entities) {
-    entities.forEach((entity) => {
-      const barId = `#ui_health-${entity.id}`;
+export class HealthBar {
+  static update(remainingHealth: number, totalHealth: number) {
+    const $container = document.querySelector("#ui_healthBar") as HTMLDivElement;
 
-      if (!entity.health) return document.querySelector(barId)?.remove();
+    const currentHealth = Math.ceil(remainingHealth)
+    const health = "■".repeat(currentHealth)
+    const damage = "◻︎".repeat(totalHealth - currentHealth)
 
-      this.createHealthBar(barId, entity.id);
-      this.createRemainingHealthBar(TILE_SIZE, entity, barId)
-    });
-  }
-
-  static createHealthBar(id, entityId) {
-    const $healthBar = findOrCreateNode(id, `#${entityId}`);
-    $healthBar.className = "ui_health-bar animate--movement";
-    $healthBar.style.width = TILE_SIZE;
-    $healthBar.style.marginTop = `-${TILE_SIZE + 3}px`
-
-    return $healthBar;
-  }
-
-  static createRemainingHealthBar(width, entity, parentId) {
-    const remainingId = `#ui_health-${entity.id}-remaining`;
-    const { value, maxValue } = entity.health;
-    const $remaingHealthBar = findOrCreateNode(remainingId, parentId);
-    $remaingHealthBar.className = "ui_health-bar--remaining"
-    $remaingHealthBar.style.width = width * (value / maxValue);
-
-    return $remaingHealthBar;
+    $container.innerHTML = `${health}${damage}`
   }
 }

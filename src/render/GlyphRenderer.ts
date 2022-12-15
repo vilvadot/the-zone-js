@@ -1,6 +1,4 @@
 import { GLYPHS, GLYPH_COLORS } from "../glyphs.js";
-import { TILES } from "../tiles.js";
-import { shadowMagnitude } from "./shadowMagnitude.js";
 
 const DEBUG_COLOR = "red";
 

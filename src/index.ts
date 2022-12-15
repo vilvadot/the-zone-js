@@ -2,10 +2,12 @@ import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
 import { handleInput } from "./input.js";
 import { EVENTS } from "./events.js";
-import { UIRenderer, Display, render } from "./render/index.js";
+import { render } from "./render/index.js";
 import { AnimationQueue, HitAnimation } from "./animations/index.js";
 import { FPS_CAP } from "./config.js";
 import { ShootAnimation } from "./animations/animations.js";
+import { Display } from "./render/Display.js";
+import { UIRenderer } from "./render/UIRenderer.js";
 
 export const loadGame = () => {
   const bus = new Bus();
@@ -37,7 +39,6 @@ const handleSubscriptions = (
   bus: Bus,
   game: Game,
   animations: AnimationQueue,
-  mouse: any
 ) => {
   bus.subscribe(EVENTS.TURN_PASSED, (action) => {
     game.runMainLoop(action);
