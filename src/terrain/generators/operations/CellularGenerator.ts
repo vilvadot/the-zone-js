@@ -1,5 +1,5 @@
-import { Matrix } from "../../data-structures/Matrix.js";
-import ROT from "../../lib/rot.js";
+import { Matrix } from "../../../data-structures/Matrix.js";
+import ROT from "../../../lib/rot.js";
 
 type TileSelectorCallback = (isFilled: boolean, originalTile: string) => void;
 

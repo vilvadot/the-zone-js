@@ -5,7 +5,6 @@ import { Entities, Entity } from "./index.js";
 import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
-import { Spawn } from "../systems/Spawn.js";
 import { Terrain } from "../terrain/Terrain.js";
 import { Coordinates } from "../Navigation.js";
 import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";

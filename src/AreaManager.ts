@@ -20,7 +20,14 @@ export class AreaManager {
         this.terrain = terrain;
         this.entityManager = entityManager;
         this.coordinates = coordinates;
-        this.createNewArea();
+        this.createInitialArea();
+    }
+
+    createInitialArea() {
+        const coordinates = this.coordinates.retrieve()
+        const seed = this.coordinates.getAreaSeed()
+        this.terrain.generate(seed, "town");
+        this.bus.emit(EVENTS.AREA_CREATED, { coordinates })
     }
 
     createNewArea() {

@@ -1,9 +1,9 @@
-import { Matrix } from "../../data-structures/Matrix.js";
-import ROT from "../../lib/rot.js";
-import { TILES } from "../../tiles.js";
+import { Matrix } from "../../../data-structures/Matrix.js";
+import ROT from "../../../lib/rot.js";
+import { TILES } from "../../../tiles.js";
 import { CellularGenerator } from "./CellularGenerator.js";
 
-export class DirtGenerator extends CellularGenerator {
+export class GenearteDirt extends CellularGenerator {
   constructor(width: number, height: number) {
     super();
     this.engine = new ROT.Map.Cellular(width, height);

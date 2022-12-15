@@ -1,5 +1,6 @@
 import { isBlockingTile } from "../tiles.js";
-import { TerrainGenerator } from "./generators/index.js";
+import { WilderNessGenerator } from "./generators/WilderNessGenerator.js";
+import { TerrainGenerator } from "./generators/TerrainGenerator.js";
 import { Matrix } from "../data-structures/Matrix.js";
 import { randomInteger } from "../util/index.js";
 import { Cache } from "../Cache.js";
@@ -10,20 +11,24 @@ export class Terrain {
   cache: Cache;
 
   constructor(width: number, height: number) {
-    this.generator = new TerrainGenerator(width, height);
     this.data = new Matrix(width, height);
     this.cache = new Cache();
+    this.generator = new WilderNessGenerator(width, height);
   }
 
   get width() {
-    return this.data.columns;
-  }
-
-  get height() {
     return this.data.rows;
   }
 
-  generate(seed: string) {
+  get height() {
+    return this.data.columns;
+  }
+
+  generate(seed: string, areaType: string = "wilderness") {
+    if(areaType === "town"){
+      console.log('Generating a town!')
+      this.generator = new WilderNessGenerator(this.width, this.height)
+    }
     const cachedTerrain = this.cache.retrieve(seed);
     if (cachedTerrain) return (this.data = cachedTerrain);
     
