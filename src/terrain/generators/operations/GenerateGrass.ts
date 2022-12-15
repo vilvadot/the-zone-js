@@ -4,13 +4,16 @@ import { TILES } from "../../../tiles.js";
 import { CellularGenerator } from "./CellularGenerator.js";
 
 export class GenerateGrass extends CellularGenerator {
-  constructor(width: number, height: number) {
+  density: number;
+
+  constructor(width: number, height: number, density: number = 0.2) {
     super();
     this.engine = new ROT.Map.Cellular(width, height);
+    this.density = density;
   }
 
   run(result: Matrix) {
-    return super.generate(result, 0.2, (isFilled, originalTile) => isFilled ? TILES.grass : originalTile
+    return super.generate(result, this.density, (isFilled, originalTile) => isFilled ? TILES.grass : originalTile
     );
   }
 }

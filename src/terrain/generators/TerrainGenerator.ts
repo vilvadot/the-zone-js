@@ -11,7 +11,7 @@ export class TerrainGenerator {
     this.operations = [];
   }
 
-  setSeed(seed) {
+  withSeed(seed) {
     this.seed = seed;
     return this;
   }
@@ -20,7 +20,7 @@ export class TerrainGenerator {
     ROT.RNG.setSeed(this.seed);
 
     let result = new Matrix();
-    this.operations.forEach((generator) => generator.run(result));
+    this.operations.forEach((operation) => operation.run(result));
 
     return result;
   }
