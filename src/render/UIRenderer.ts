@@ -1,13 +1,14 @@
 import { EVENTS } from "../events.js";
 import { LogMessages } from "./ui/LogMessages.js";
 import { TurnsCounter } from "./ui/TurnsCounter.js";
-import { HealthBar } from "./ui/HealthBars.js";
+import { HealthBar } from "./ui/HealthBar.js";
 import { Bus } from "../infra/bus.js";
 import { findOrCreateNode } from "../util/index.js";
 import { Player } from "../entities/Player.js";
 import { GlobalCoordinates } from "../GlobalCoordinates.js";
 import { GameMode } from "../GameMode";
 import { ContextualDialog } from "./ui/ContextualDialog.js";
+import { InventoryScreen } from "./ui/InventoryScreen.js";
 
 export class UIRenderer {
   bus: Bus;
@@ -27,6 +28,7 @@ export class UIRenderer {
     AreaCoordinates.update(coordinates);
     TurnsCounter.update(turn);
     HealthBar.update(player.health.value, player.health.maxValue);
+    InventoryScreen.update(player.inventory);
     ContextualDialog.update(mode);
   }
 }

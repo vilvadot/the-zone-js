@@ -1,4 +1,31 @@
-import { SPRITES } from "../sprites";
+import { SPRITES } from "../sprites.js";
+import { uid } from "../util/index.js";
+
+class Item {
+  name: string;
+  quantity: number;
+  id: string;
+
+  constructor(name = "unknown item", quantity = 0){
+    this.name = name;
+    this.quantity = quantity;
+    this.id = `${this.name}-${uid()}`;
+  }
+}
+
+export class Ammo extends Item {
+  constructor(quantity = 0) {
+    super("Ammo", quantity)
+  }
+}
+
+export class Inventory {
+  content: Item[];
+
+  constructor(content: Item[]) {
+    this.content = content;
+  }
+}
 
 export class Position {
   x: number | undefined;

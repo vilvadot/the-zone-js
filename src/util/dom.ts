@@ -14,6 +14,7 @@ export const findOrCreateNode = (selector, parentSelector) => {
   
   type NodeOptions = {
     type: string;
+    id?: string;
     className?: string;
     content?: string;
     style?: string;
@@ -21,12 +22,14 @@ export const findOrCreateNode = (selector, parentSelector) => {
   
   export const createNode = ({
     type,
+    id,
     className,
     content,
     style,
   }: NodeOptions) => {
     const node = document.createElement(type);
     if (className) node.className = className;
+    if (id) node.id = id;
     if (content) node.innerHTML = content;
     // @ts-ignore-line
     if (style) node.style = style; 

@@ -1,4 +1,6 @@
+import { Ammo } from "../components/index.js";
 import { Point } from "../data-structures/Point.js";
+import { Player } from "../entities/Player.js";
 import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
 import { Logger } from "../infra/logger.js";
@@ -7,17 +9,19 @@ const BULLET_DAMAGE = 1;
 
 export class Shooting {
   static run(bus: Bus, logger: Logger, entities, x, y) {
-    const player = entities.find(({ isPlayer }) => isPlayer);
+    const player = entities.find(({ isPlayer }) => isPlayer) as Player;
     const target = entities.find((entity) => {
       return entity.position.x === x && entity.position.y === y;
     });
-
-    if (target?.isPlayer) return;
+    const ammo = player.inventory.content.find(item => item instanceof Ammo)
+    if(!ammo || ammo.quantity === 0 || target?.isPlayer) return 
 
     bus.emit(EVENTS.SHOT_FIRED, {
       origin: new Point(player.position.x, player.position.y),
       target: new Point(x, y),
     });
+
+    ammo.quantity--
 
     if (!target?.health) return;
 
