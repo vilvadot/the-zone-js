@@ -18,6 +18,9 @@ import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
 import { KEYS } from "./input.js";
 import { ACTION_EXECUTED_PAYLOAD } from "./events.js";
+import { Debug } from "./infra/debug.js";
+import { Talk } from "./systems/Talk.js";
+import { GameMode } from "./GameMode.js";
 
 export class Game {
   private bus: Bus;
@@ -27,6 +30,7 @@ export class Game {
   private fov: FOVIndex;
   private entityManager: EntityManager;
   private areaManager: AreaManager;
+  private mode: GameMode;
 
   constructor(bus: Bus) {
     this.bus = bus;
@@ -34,15 +38,20 @@ export class Game {
     this.turn = 0;
     this.logger = new Logger(bus);
     this.fov = new FOVIndex();
+    this.mode = new GameMode();
     this.entityManager = new EntityManager(this.bus, this.terrain);
-    this.areaManager = new AreaManager(this.bus, this.terrain, this.entityManager);
-    this.handleSubscriptions()
+    this.areaManager = new AreaManager(
+      this.bus,
+      this.terrain,
+      this.entityManager
+    );
+    this.handleSubscriptions();
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
 
   handleSubscriptions() {
-    this.entityManager.handleSubscriptions()
-    this.areaManager.handleSubscriptions()
+    this.entityManager.handleSubscriptions();
+    this.areaManager.handleSubscriptions();
   }
 
   get entities() {
@@ -56,17 +65,26 @@ export class Game {
       player: this.entityManager.getPlayer(),
       turn: this.turn,
       entities: this.entities,
-      coordinates: this.areaManager.getCurrentCoordinates()
+      mode: this.mode,
+      coordinates: this.areaManager.getCurrentCoordinates(),
     };
   }
 
   runMainLoop(action: ACTION_EXECUTED_PAYLOAD) {
     this.turn++;
+    if (action.key === KEYS.Space) {
+      Debug.log(`Game mode toggled ${this.mode}`);
+      Talk.run(this.entities, this.mode)
+    }
+    
+    if (this.mode.isDialog()) return;
+
     if (action.key === KEYS.Click) {
       const { x, y } = action;
       Shooting.run(this.bus, this.logger, this.entities, x, y);
       Death.run(this.entities, this.entityManager);
     }
+
     KeyboardControl.run(this.entities, action);
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
@@ -78,3 +96,4 @@ export class Game {
     Death.run(this.entities, this.entityManager);
   }
 }
+

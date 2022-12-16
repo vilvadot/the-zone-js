@@ -7,7 +7,7 @@ import { TileRenderer } from "./TileRenderer.js";
 import { UIRenderer } from "./UIRenderer.js";
 
 export const render = (game: Game, display: Display, ui: UIRenderer, animationQueue: AnimationQueue, mouse?) => {
-  const { fov, terrain, entities, turn, coordinates, player } = game.state;
+  const { fov, terrain, entities, turn, coordinates, player, mode } = game.state;
 
   if (isTextMode()) {
     GlyphRenderer.run(display, fov, terrain, entities, mouse);
@@ -15,5 +15,5 @@ export const render = (game: Game, display: Display, ui: UIRenderer, animationQu
     TileRenderer.run(display, fov, terrain, entities, animationQueue, mouse);
   }
 
-  ui.update(player, turn, coordinates);
+  ui.update(player, turn, coordinates, mode);
 };

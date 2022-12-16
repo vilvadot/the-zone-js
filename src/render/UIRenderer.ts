@@ -6,6 +6,8 @@ import { Bus } from "../infra/bus.js";
 import { findOrCreateNode } from "../util/index.js";
 import { Player } from "../entities/Player.js";
 import { GlobalCoordinates } from "../GlobalCoordinates.js";
+import { GameMode } from "../GameMode";
+import { ContextualDialog } from "./ui/ContextualDialog.js";
 
 export class UIRenderer {
   bus: Bus;
@@ -21,10 +23,11 @@ export class UIRenderer {
     });
   }
 
-  update(player: Player, turn: number, coordinates: GlobalCoordinates) {
+  update(player: Player, turn: number, coordinates: GlobalCoordinates, mode: GameMode) {
     AreaCoordinates.update(coordinates);
     TurnsCounter.update(turn);
     HealthBar.update(player.health.value, player.health.maxValue);
+    ContextualDialog.update(mode);
   }
 }
 
