@@ -2,7 +2,7 @@ import { Cache } from "../Cache.js";
 import { Corpse } from "./Corpse.js";
 import { Player } from "./Player.js";
 import { Entities, Entity } from "./index.js";
-import { EVENTS } from "../events.js";
+import { AREA_CREATED_PAYLOAD, EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
 import { Terrain } from "../terrain/Terrain.js";
@@ -41,7 +41,8 @@ export class EntityManager {
   handleSubscriptions() {
     this.bus.subscribe(
       EVENTS.AREA_CREATED,
-      ({ coordinates }: { coordinates: GlobalCoordinates }) => {
+      ({ area }: AREA_CREATED_PAYLOAD) => {
+        const coordinates = area.coordinates;
         this.reset();
 
         if (coordinates.isOrigin()) return;

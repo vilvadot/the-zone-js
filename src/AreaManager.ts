@@ -2,10 +2,16 @@ import { Terrain } from "./terrain/index.js";
 import { GlobalCoordinates } from "./GlobalCoordinates.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { Bus } from "./infra/bus.js";
-import { EVENTS } from "./events.js";
+import { AREA_CREATED_PAYLOAD, EVENTS } from "./events.js";
 import { BIOME } from "./terrain/Terrain.js";
 import { randomInteger } from "./util/index.js";
 import { Cache } from "./Cache.js";
+
+export interface Area {
+  id: string;
+  seed: string;
+  coordinates: GlobalCoordinates;
+}
 
 export class AreaManager {
   bus: Bus;
@@ -23,7 +29,7 @@ export class AreaManager {
     this.createNewArea(BIOME.town);
   }
 
-  get currentArea() {
+  get currentArea(): Area {
     return {
       id: this.getCurrentAreaId(),
       seed: this.getCurrentAreaSeed(),
@@ -36,7 +42,9 @@ export class AreaManager {
     this.areas.push(this.getCurrentAreaId(), seed);
     this.terrain.generate(seed, biome);
 
-    this.bus.emit(EVENTS.AREA_CREATED, { coordinates: this.coordinates });
+    this.bus.emit(EVENTS.AREA_CREATED, {
+      area: this.currentArea,
+    } as AREA_CREATED_PAYLOAD);
   }
 
   handleSubscriptions() {
@@ -45,9 +53,9 @@ export class AreaManager {
       this.createNewArea(BIOME.wilderness);
     });
   }
-  
+
   private getCurrentAreaId() {
-    return this.coordinates.toString()
+    return this.coordinates.toString();
   }
 
   private getCurrentAreaSeed() {
