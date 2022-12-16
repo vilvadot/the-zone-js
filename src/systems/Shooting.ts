@@ -21,6 +21,7 @@ export class Shooting {
       target: new Point(x, y),
     });
 
+    // TODO: test
     ammo.quantity--
 
     if (!target?.health) return;

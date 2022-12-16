@@ -3,6 +3,8 @@ import { isAdjacent } from "../util/coordinates.js";
 import { Player } from "../entities/Player.js";
 import { GameMode } from "../GameMode.js";
 
+// TODO: test
+
 export class Talk {
   static run(entities: Entities, gameMode: GameMode) {
     const player = entities.find((entity) => entity.isPlayer);
