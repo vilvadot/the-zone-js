@@ -1,4 +1,5 @@
 import { Coordinate } from "../Coordinate.js";
+import { pickRandom, randomInteger } from "../util/random.js";
 
 type MultidimensionalMatrix = any[][]
 
@@ -31,7 +32,7 @@ export class Matrix {
     return this.data[x][y];
   }
 
-  getBorder(width = 1) {
+  getBorder(width = 1): Matrix {
     const result = new Matrix();
 
     this.iterate((x: number, y: number, value: any) => {
@@ -67,7 +68,6 @@ export class Matrix {
 
     return this;
   }
-
 
   iterate(callback: IteratorCallback) {
     this.data.forEach((row, x) => {
