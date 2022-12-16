@@ -5,6 +5,7 @@ import { HealthBar } from "./ui/HealthBars.js";
 import { Bus } from "../infra/bus.js";
 import { findOrCreateNode } from "../util/index.js";
 import { Player } from "../entities/Player.js";
+import { GlobalCoordinates } from "../Navigation.js";
 
 export class UIRenderer {
   bus: Bus;
@@ -20,17 +21,17 @@ export class UIRenderer {
     });
   }
 
-  update(player: Player, entities, turn, navigation) {
-    AreaCoordinates.update(navigation)
+  update(player: Player, turn: number, coordinates: GlobalCoordinates) {
+    AreaCoordinates.update(coordinates);
     TurnsCounter.update(turn);
     HealthBar.update(player.health.value, player.health.maxValue);
   }
 }
 
 class AreaCoordinates {
-  static update(coordinates) {
+  static update(coordinates: GlobalCoordinates) {
     let icon = " ";
-    if(coordinates === "0,0") icon = "🏠 "
+    if (coordinates.isOrigin()) icon = "🏠 ";
 
     const $turnsCounter = findOrCreateNode(
       "#ui_area-coordinates",

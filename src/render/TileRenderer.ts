@@ -1,6 +1,7 @@
 import { AnimationQueue } from "../animations/index.js";
 import { DEBUG_ENABLED } from "../config.js";
 import { FOVIndex } from "../fov-index.js";
+import { Debug } from "../infra/debug.js";
 import { Terrain } from "../terrain/Terrain.js";
 import { TILES } from "../tiles.js";
 import { Display } from "./Display.js";
@@ -24,7 +25,7 @@ export class TileRenderer {
       const stack = this.generateTileStack(x, y, terrain, entities, animation);
       
       if (isMouseHover) {
-        console.info(`${x}, ${y}, ${distance}, ${isBlocked}, ${stack}`)
+        Debug.log(`${x}, ${y}, ${distance}, ${isBlocked}, ${stack}`)
       };
       
       const tint = getTint(distance, isBlocked, isMouseHover);

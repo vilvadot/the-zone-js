@@ -18,7 +18,7 @@ describe("E2E Game test", () => {
     bus = new Bus();
   });
 
-  it("there are no enemies on starting area", () => {
+  it("there are no enemies on starting coordinates", () => {
     const game = new Game(bus);
 
     game.runMainLoop({ key: INPUTS["ArrowRight"] });
@@ -46,8 +46,9 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowRight"] });
     });
 
-    const { area } = game.state;
-    expect(area).toEqual("1,0");
+    const { coordinates } = game.state;
+    expect(coordinates.x).toEqual(1);
+    expect(coordinates.y).toEqual(0);
   });
 
   it("player can travel west", () => {
@@ -59,8 +60,9 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowLeft"] });
     });
 
-    const { area } = game.state;
-    expect(area).toEqual("-1,0");
+    const { coordinates } = game.state;
+    expect(coordinates.x).toEqual(-1);
+    expect(coordinates.y).toEqual(0);
   });
 
   it("player can travel north", () => {
@@ -72,8 +74,9 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowUp"] });
     });
 
-    const { area } = game.state;
-    expect(area).toEqual("0,1");
+    const { coordinates } = game.state;
+    expect(coordinates.x).toEqual(0);
+    expect(coordinates.y).toEqual(1);
   });
 
   it("player can travel south", () => {
@@ -85,8 +88,9 @@ describe("E2E Game test", () => {
       game.runMainLoop({ key: INPUTS["ArrowDown"] });
     });
 
-    const { area } = game.state;
-    expect(area).toEqual("0,-1");
+    const { coordinates } = game.state;
+    expect(coordinates.x).toEqual(0);
+    expect(coordinates.y).toEqual(-1);
   });
 
   it("player can shoot", () => {

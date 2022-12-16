@@ -20,7 +20,7 @@ export class AreaManager {
   }
 
   getCurrentArea() {
-    return this.coordinates.toString();
+    return this.coordinates;
   }
 
   createNewArea(biome: BIOME) {
@@ -32,10 +32,7 @@ export class AreaManager {
 
   handleSubscriptions() {
     this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
-      if (direction === "north") this.coordinates.moveNorth();
-      if (direction === "east") this.coordinates.moveEast();
-      if (direction === "west") this.coordinates.moveWest();
-      if (direction === "south") this.coordinates.moveSouth();
+    this.coordinates.move(direction)
 
       this.createNewArea(BIOME.wilderness);
     });

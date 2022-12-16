@@ -18,6 +18,7 @@ import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
+import { GlobalCoordinates } from "./Navigation.js";
 
 export class Game {
   private bus: Bus;
@@ -35,7 +36,7 @@ export class Game {
     this.logger = new Logger(bus);
     this.fov = new FOVIndex();
     this.entityManager = new EntityManager(this.bus, this.terrain);
-    this.areaManager = new AreaManager(this.bus, this.terrain, this.entityManager,);
+    this.areaManager = new AreaManager(this.bus, this.terrain, this.entityManager);
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
     this.handleSubscriptions()
   }
@@ -56,7 +57,7 @@ export class Game {
       player: this.entityManager.getPlayer(),
       turn: this.turn,
       entities: this.entities,
-      area: this.areaManager.getCurrentArea()
+      coordinates: this.areaManager.getCurrentArea(),
     };
   }
 
