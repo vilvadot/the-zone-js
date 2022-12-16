@@ -4,57 +4,45 @@ type AreaSeed = string;
 type AreaIndex = string;
 type NavigationAreas = Record<AreaIndex, AreaSeed>
 
-export class Coordinates{
+export class GlobalCoordinates {
   x: number;
   y: number;
+  private areas: NavigationAreas;
 
-  constructor(x: number, y: number){
+  constructor(x = 0, y = 0) {
+    const INITIAL_SEED = '12345'
+    const ORIGIN_INDEX = "0,0"
     this.x = x;
     this.y = y;
+    this.areas = { [ORIGIN_INDEX]: INITIAL_SEED };
   }
-  
+
+  isOrigin(){
+    return this.x === 0 && this.y === 0;
+  }
+
   toString(){
     return `${this.x},${this.y}`
   }
 
-  isHome(){
-    return this.x === 0 && this.y === 0;
-  }
-}
-
-export class GlobalCoordinates {
-  coordinates: Coordinates;
-  areas: NavigationAreas;
-
-  constructor() {
-    const INITIAL_SEED = '12345'
-    const ORIGIN_INDEX = "0,0"
-    this.coordinates = new Coordinates(0,0);
-    this.areas = { [ORIGIN_INDEX]: INITIAL_SEED };
-  }
-
   moveWest() {
-    this.coordinates.x--;
+    this.x--;
   }
 
   moveEast() {
-    this.coordinates.x++;
+    this.x++;
   }
 
   moveNorth() {
-    this.coordinates.y++;
+    this.y++;
   }
 
   moveSouth() {
-    this.coordinates.y--;
-  }
-
-  retrieve(){
-    return this.coordinates;
+    this.y--;
   }
 
   getAreaSeed() {
-    const id = this.retrieve().toString()
+    const id = this.toString()
     if (!this.areas[id]) this.generateSeed(id)
 
     return this.areas[id];

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Entities } from ".";
 import { EVENTS } from "../events";
 import { Bus } from "../infra/bus";
-import { Coordinates } from "../Navigation";
+import { GlobalCoordinates } from "../Navigation";
 import { Terrain } from "../terrain";
 import { fakeChanceAlwaysHappens, fakeChanceNeverHappens } from "../util/Chance.testUtils";
 import { Artifact } from "./Artifact";
@@ -21,7 +21,7 @@ describe("EntityManager", () => {
     })
 
     it("does not spawn entities on home area", () => {
-        const homeCoordinates = new Coordinates(0, 0)
+        const homeCoordinates = new GlobalCoordinates(0, 0)
 
         bus.emit(EVENTS.AREA_CREATED, { coordinates: homeCoordinates })
 
@@ -32,7 +32,7 @@ describe("EntityManager", () => {
     it("spawns enemies when area is created", () => {
         fakeChanceAlwaysHappens()
 
-        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new GlobalCoordinates(1, 1) })
 
         const entities = entityManager.getAllEntities()
         expect(findEntity(entities, Enemy)).toBeDefined()
@@ -41,14 +41,14 @@ describe("EntityManager", () => {
     it("recovers entities from cache", () => {
         fakeChanceAlwaysHappens()
 
-        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new GlobalCoordinates(1, 1) })
         const initialEntities = entityManager.getAllEntities()
         
-        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(2, 1) })
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new GlobalCoordinates(2, 1) })
         const secondAreaEntities = entityManager.getAllEntities()
         expect(secondAreaEntities).not.toEqual(initialEntities)
         
-        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new GlobalCoordinates(1, 1) })
         const initialEntitiesAgain = entityManager.getAllEntities()
 
         expect(initialEntitiesAgain).toEqual(initialEntities)
@@ -57,7 +57,7 @@ describe("EntityManager", () => {
     it("spawns artifacts when area is created", () => {
         fakeChanceAlwaysHappens()
 
-        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new GlobalCoordinates(1, 1) })
 
         const entities = entityManager.getAllEntities()
         expect(findEntity(entities, Artifact)).toBeDefined()
@@ -66,7 +66,7 @@ describe("EntityManager", () => {
     it("sometimes does not spawn artifacts", () => {
         fakeChanceNeverHappens()
 
-        bus.emit(EVENTS.AREA_CREATED, { coordinates: new Coordinates(1, 1) })
+        bus.emit(EVENTS.AREA_CREATED, { coordinates: new GlobalCoordinates(1, 1) })
 
         const entities = entityManager.getAllEntities()
         expect(findEntity(entities, Artifact)).toBeUndefined()
