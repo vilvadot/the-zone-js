@@ -9,6 +9,8 @@ import { Terrain } from "../terrain/Terrain.js";
 import { GlobalCoordinates } from "../GlobalCoordinates.js";
 import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
 import { Chance } from "../util/index.js";
+import { NPCSpawner } from "../spawners/NPCSpawner.js";
+import { Debug } from "../infra/debug.js";
 
 export class EntityManager {
   bus: Bus;
@@ -46,8 +48,12 @@ export class EntityManager {
         this.reset();
 
         const isCached = this.isCached(coordinates);
-        if (isCached) return this.loadFromCache(coordinates);
+        if (isCached) {
+          Debug.log("Entities loaded from cache")
+          return this.loadFromCache(coordinates)
+        };
 
+        this.spawnNPCs(coordinates);
         this.spawnEnemies(coordinates);
         this.spawnArtifacts(coordinates);
       }
@@ -78,6 +84,12 @@ export class EntityManager {
 
       this.add(enemies, coordinates);
     });
+  }
+
+  private spawnNPCs(coordinates: GlobalCoordinates) {
+    if (!coordinates.isOrigin()) return;
+
+    this.add(NPCSpawner.spawn(), coordinates);
   }
 
   private reset() {

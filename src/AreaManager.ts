@@ -6,6 +6,7 @@ import { AREA_CREATED_PAYLOAD, EVENTS } from "./events.js";
 import { BIOME } from "./terrain/Terrain.js";
 import { randomInteger } from "./util/index.js";
 import { Cache } from "./Cache.js";
+import { Debug } from "./infra/debug.js";
 
 export interface Area {
   id: string;
@@ -26,15 +27,6 @@ export class AreaManager {
     this.entityManager = entityManager;
     this.areas = new Cache();
     this.coordinates = new GlobalCoordinates();
-    this.createNewArea(BIOME.town);
-  }
-
-  get currentArea(): Area {
-    return {
-      id: this.getCurrentAreaId(),
-      seed: this.getCurrentAreaSeed(),
-      coordinates: this.coordinates,
-    };
   }
 
   createNewArea(biome: BIOME) {
@@ -48,11 +40,26 @@ export class AreaManager {
   }
 
   handleSubscriptions() {
+    this.createNewArea(BIOME.town) // TODO: Remove this. Makes no sense here
+
     this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
       this.coordinates.move(direction);
       this.createNewArea(BIOME.wilderness);
     });
   }
+
+  getCurrentCoordinates() {
+    return this.coordinates;
+  }
+
+  private get currentArea(): Area {
+    return {
+      id: this.getCurrentAreaId(),
+      seed: this.getCurrentAreaSeed(),
+      coordinates: this.coordinates,
+    };
+  }
+
 
   private getCurrentAreaId() {
     return this.coordinates.toString();
@@ -62,7 +69,10 @@ export class AreaManager {
     const id = this.getCurrentAreaId();
     const cachedSeed = this.areas.retrieve(id);
 
-    if (cachedSeed) return cachedSeed;
+    if (cachedSeed) {
+      Debug.log(`Recovering cached area: ${id}. seed: ${cachedSeed}`)
+      return cachedSeed;
+    }
 
     return this.generateSeed();
   }

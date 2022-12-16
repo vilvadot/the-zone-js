@@ -1,5 +1,5 @@
 import { AnimationQueue } from "../animations/index.js";
-import { DEBUG_ENABLED } from "../config.js";
+import { DEBUG_ENABLED, FOV_ENABLED } from "../config.js";
 import { FOVIndex } from "../fov-index.js";
 import { Debug } from "../infra/debug.js";
 import { Terrain } from "../terrain/Terrain.js";
@@ -50,8 +50,8 @@ export class TileRenderer {
 
 const getTint = (distance, isBlocked, isMouseHover) => {
   if (isMouseHover) return `rgba(255,255,255, .3)`
-  if (DEBUG_ENABLED && isBlocked) return `rgba(0,0,255, .3)`
-  if (DEBUG_ENABLED) return `rgba(255,0,255, .3)`
+  if (FOV_ENABLED && isBlocked) return `rgba(0,0,255, .3)`
+  if (isBlocked) return `rgba(0,0,0, 1)`
 
   const opacity = 1 - shadowMagnitude(distance);
   return `rgba(0,0,0, ${opacity})`;

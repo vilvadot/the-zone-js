@@ -1,3 +1,5 @@
+import { SPRITES } from "../sprites";
+
 export class Position {
   x: number | undefined;
   y: number | undefined;
@@ -37,9 +39,9 @@ export class Damage {
 }
 
 export class Sprite {
-  name: string;
+  name: keyof typeof SPRITES;
 
-  constructor(name = "") {
+  constructor(name: keyof typeof SPRITES = "flame") {
     this.name = name;
   }
 }
@@ -53,16 +55,16 @@ export class TargetManual {
 }
 
 export type CollisionAreas = {
-  west: any[],
-  east: any[],
-  south: any[],
-  north: any[],
-  overlap: any[],
-}
+  west: any[];
+  east: any[];
+  south: any[];
+  north: any[];
+  overlap: any[];
+};
 
 export class Collision {
   areas: CollisionAreas;
-  
+
   constructor(areas?: CollisionAreas) {
     this.areas = {
       west: [],

@@ -37,13 +37,13 @@ export class Game {
     this.fov = new FOVIndex();
     this.entityManager = new EntityManager(this.bus, this.terrain);
     this.areaManager = new AreaManager(this.bus, this.terrain, this.entityManager);
-    this.fov.update(this.entityManager.getPlayer(), this.terrain);
     this.handleSubscriptions()
+    this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
 
   handleSubscriptions() {
-    this.areaManager.handleSubscriptions()
     this.entityManager.handleSubscriptions()
+    this.areaManager.handleSubscriptions()
   }
 
   get entities() {
@@ -57,7 +57,7 @@ export class Game {
       player: this.entityManager.getPlayer(),
       turn: this.turn,
       entities: this.entities,
-      coordinates: this.areaManager.currentArea.coordinates,
+      coordinates: this.areaManager.getCurrentCoordinates()
     };
   }
 

@@ -11,6 +11,8 @@ import {
 import { Artifact } from "./Artifact";
 import { Enemy } from "./enemies/Enemy";
 import { EntityManager } from "./entity-manager";
+import { Merchant } from "./Merchant";
+import { Player } from "./Player";
 
 describe("EntityManager", () => {
   const bus = new Bus();
@@ -23,13 +25,15 @@ describe("EntityManager", () => {
     vi.clearAllMocks();
   });
 
-  it("does not spawn entities on home area", () => {
+  it("spawns a merchant in home area", () => {
     const homeCoordinates = new GlobalCoordinates(0, 0);
 
     bus.emit(EVENTS.AREA_CREATED, { area: anArea(homeCoordinates) });
 
     const entities = entityManager.getAllEntities();
-    expect(entities).toHaveLength(1);
+    expect(entities).toHaveLength(2);
+    expect(findEntity(entities, Merchant)).toBeDefined();
+    expect(findEntity(entities, Player)).toBeDefined();
   });
 
   it("spawns enemies when area is created", () => {

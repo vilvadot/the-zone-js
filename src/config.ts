@@ -1,5 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 export const DEBUG_ENABLED = urlParams.get('debug')
+export const FOV_ENABLED = urlParams.get('fov')
 
 const DISPLAY_TEXT = "text";
 const DISPLAY_TILES = "tiles";
