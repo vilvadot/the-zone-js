@@ -31,7 +31,7 @@ export const loadGame = () => {
   });
   
   handleInput(bus);
-  handleSubscriptions(bus, game, animations, mouse);
+  handleSubscriptions(bus, game, animations);
   runFrame();
 };
 
