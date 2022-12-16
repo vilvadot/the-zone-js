@@ -1,0 +1,26 @@
+#contextual-layer{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1095px 1fr;
+    grid-template-rows: 600px 1fr;
+    position: absolute;
+    pointer-events:none;
+}
+
+.contextual_container{
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating_window{
+    height: 400px;
+    width: 800px;
+    background: black;
+    border: 1px solid white;
+}

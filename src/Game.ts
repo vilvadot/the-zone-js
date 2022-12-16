@@ -8,7 +8,6 @@ import {
   Targetting,
   Travel,
   Shooting,
-  Spawn,
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -17,8 +16,8 @@ import { Terrain } from "./terrain/index.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
-import { INPUTS } from "./input.js";
-import { GlobalCoordinates } from "./GlobalCoordinates.js";
+import { KEYS } from "./input.js";
+import { ACTION_EXECUTED_PAYLOAD } from "./events.js";
 
 export class Game {
   private bus: Bus;
@@ -61,9 +60,9 @@ export class Game {
     };
   }
 
-  runMainLoop(action) {
+  runMainLoop(action: ACTION_EXECUTED_PAYLOAD) {
     this.turn++;
-    if (action.key === INPUTS.Click) {
+    if (action.key === KEYS.Click) {
       const { x, y } = action;
       Shooting.run(this.bus, this.logger, this.entities, x, y);
       Death.run(this.entities, this.entityManager);

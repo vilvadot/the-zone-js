@@ -1,45 +1,38 @@
-import { EVENTS } from "./events.js";
+import { ACTION_EXECUTED_PAYLOAD, EVENTS } from "./events.js";
 import { tileCoordinates } from "./util/index.js";
 
-const ACTIONS = {
-  ArrowUp: "ArrowUp",
-  ArrowDown: "ArrowDown",
-  ArrowLeft: "ArrowLeft",
-  ArrowRight: "ArrowRight",
-  Space: "Space",
-  KeyE: "KeyE",
-  KeyA: "KeyA",
-  KeyW: "KeyW",
-  KeyS: "KeyS",
-  KeyD: "KeyD",
+export enum KEYS {
+  ArrowUp = "ArrowUp",
+  ArrowDown = "ArrowDown",
+  ArrowLeft = "ArrowLeft",
+  ArrowRight = "ArrowRight",
+  Space = "Space",
+  KeyE = "KeyE",
+  KeyA = "KeyA",
+  KeyW = "KeyW",
+  KeyS = "KeyS",
+  KeyD = "KeyD",
+  Click = "Click",
 };
 
-export const INPUTS = {
-  ...ACTIONS,
-  Click: "Click",
-};
-
-export const isInputKey = (code) => INPUTS[code];
-export const isActionKey = (code) => ACTIONS[code];
+export const isInputKey = (code): KEYS => KEYS[code];
 
 export const handleInput = (bus) => {
   window.addEventListener("keydown", (event) => {
     if (isInputKey(event.code)) {
       event.preventDefault();
 
-      if (isActionKey(event.code))
-        bus.emit(EVENTS.TURN_PASSED, { key: INPUTS[event.code] });
+      bus.emit(EVENTS.ACTION_EXECUTED, { key: KEYS[event.code] } as ACTION_EXECUTED_PAYLOAD);
     }
   });
 
   const canvas = document.querySelector("canvas")!;
+
   canvas.addEventListener("mousemove", (event: MouseEvent) => {
-    bus.emit(EVENTS.MOUSE_MOVED, {
-      ...tileCoordinatesFromMouse(event)
-    });
+    bus.emit(EVENTS.MOUSE_MOVED, tileCoordinatesFromMouse(event));
   });
 
-  canvas.addEventListener("mouseleave", (event: MouseEvent) => {
+  canvas.addEventListener("mouseleave", () => {
     bus.emit(EVENTS.MOUSE_MOVED, {
       x: undefined,
       y: undefined,
@@ -47,10 +40,10 @@ export const handleInput = (bus) => {
   });
 
   window.addEventListener("click", (event) => {
-    bus.emit(EVENTS.TURN_PASSED, {
-      key: INPUTS["Click"],
-      ...tileCoordinatesFromMouse(event)
-    });
+    bus.emit(EVENTS.ACTION_EXECUTED, {
+      key: KEYS["Click"],
+      ...tileCoordinatesFromMouse(event),
+    } as ACTION_EXECUTED_PAYLOAD);
   });
 };
 

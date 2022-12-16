@@ -40,7 +40,7 @@ const handleSubscriptions = (
   game: Game,
   animations: AnimationQueue,
 ) => {
-  bus.subscribe(EVENTS.TURN_PASSED, (action) => {
+  bus.subscribe(EVENTS.ACTION_EXECUTED, (action) => {
     game.runMainLoop(action);
   });
 

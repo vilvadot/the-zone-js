@@ -1,7 +1,9 @@
-import { INPUTS } from "../input.js";
+import { Entities } from "../entities/index.js";
+import { ACTION_EXECUTED_PAYLOAD } from "../events.js";
+import { KEYS } from "../input.js";
 
 export class KeyboardControl {
-  static run(entities, action) {
+  static run(entities: Entities, action: ACTION_EXECUTED_PAYLOAD) {
     if (!action) return
     for (const { keyboardControlled, velocity } of entities) {
       if (!keyboardControlled || !velocity) continue;
@@ -9,7 +11,7 @@ export class KeyboardControl {
       const STEP = 1;
 
       const { key } = action;
-      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, KeyA, KeyW, KeyS, KeyD } = INPUTS;
+      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, KeyA, KeyW, KeyS, KeyD } = KEYS;
 
       if (key === ArrowRight || key === KeyD) velocity.x += STEP;
       if (key === ArrowLeft || key === KeyA) velocity.x -= STEP;

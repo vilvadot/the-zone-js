@@ -6,7 +6,7 @@ import { Entity } from "./entities/index.js";
 import { EVENTS } from "./events.js";
 import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
-import { INPUTS } from "./input.js";
+import { KEYS } from "./input.js";
 import { Terrain } from "./terrain/Terrain.js";
 import { repeat } from "./util/index.js";
 
@@ -21,7 +21,7 @@ describe("E2E Game test", () => {
   it("there are no enemies on starting coordinates", () => {
     const game = new Game(bus);
 
-    game.runMainLoop({ key: INPUTS["ArrowRight"] });
+    game.runMainLoop({ key: KEYS["ArrowRight"] });
 
     const { entities } = game;
     const enemy = findEntity(entities, "enemy");
@@ -33,7 +33,7 @@ describe("E2E Game test", () => {
     const { player } = game.state;
     const { x, y } = player.position;
 
-    game.runMainLoop({ key: INPUTS["ArrowRight"] });
+    game.runMainLoop({ key: KEYS["ArrowRight"] });
 
     expect(player.position).toEqual({ x: x! + 1, y });
   });
@@ -43,7 +43,7 @@ describe("E2E Game test", () => {
     forceClearTerrain(game);
 
     repeat(WIDTH, () => {
-      game.runMainLoop({ key: INPUTS["ArrowRight"] });
+      game.runMainLoop({ key: KEYS["ArrowRight"] });
     });
 
     const { coordinates } = game.state;
@@ -57,7 +57,7 @@ describe("E2E Game test", () => {
     forcePlayerInCenter(game);
 
     repeat(WIDTH, () => {
-      game.runMainLoop({ key: INPUTS["ArrowLeft"] });
+      game.runMainLoop({ key: KEYS["ArrowLeft"] });
     });
 
     const { coordinates } = game.state;
@@ -71,7 +71,7 @@ describe("E2E Game test", () => {
     forceClearTerrain(game);
 
     repeat(HEIGHT, () => {
-      game.runMainLoop({ key: INPUTS["ArrowUp"] });
+      game.runMainLoop({ key: KEYS["ArrowUp"] });
     });
 
     const { coordinates } = game.state;
@@ -85,7 +85,7 @@ describe("E2E Game test", () => {
     forceClearTerrain(game);
 
     repeat(HEIGHT, () => {
-      game.runMainLoop({ key: INPUTS["ArrowDown"] });
+      game.runMainLoop({ key: KEYS["ArrowDown"] });
     });
 
     const { coordinates } = game.state;
@@ -102,7 +102,7 @@ describe("E2E Game test", () => {
     const shotY = 10;
 
     game.runMainLoop({
-      key: INPUTS["Click"],
+      key: KEYS["Click"],
       x: shotX,
       y: shotY,
     });

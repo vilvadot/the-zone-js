@@ -22,6 +22,8 @@
   grid-row: 1/3;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #bottom-bar{
@@ -61,4 +63,8 @@
   background: black;
   margin-top: -10px;
   font-weight: bold;
+}
+
+.full-height{
+  height: 100%;
 }

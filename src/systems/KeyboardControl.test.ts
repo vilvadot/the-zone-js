@@ -1,13 +1,13 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { Velocity } from "../components/index.js";
-import { INPUTS } from "../input.js";
+import { KEYS } from "../input.js";
 import { KeyboardControl } from "./KeyboardControl.js";
 
 describe("KeyboardControl system", () => {
   it("accelerates entity to the right", () => {
     const entity = new Entity(0, 0);
 
-    const action = { key: INPUTS.ArrowRight}
+    const action = { key: KEYS.ArrowRight}
     KeyboardControl.run([entity], action);
 
     expect(entity.velocity.x).toEqual(1);
@@ -17,7 +17,7 @@ describe("KeyboardControl system", () => {
   it("accelerates entity to the left", () => {
     const entity = new Entity(0, 0);
 
-    const action = { key: INPUTS.ArrowLeft}
+    const action = { key: KEYS.ArrowLeft}
     KeyboardControl.run([entity], action);
 
     expect(entity.velocity.x).toEqual(-1);
@@ -27,7 +27,7 @@ describe("KeyboardControl system", () => {
   it("accelerates entity to the top", () => {
     const entity = new Entity(0, 0);
 
-    const action = { key: INPUTS.ArrowUp}
+    const action = { key: KEYS.ArrowUp}
     KeyboardControl.run([entity], action);
 
     expect(entity.velocity.x).toEqual(0);
@@ -37,7 +37,7 @@ describe("KeyboardControl system", () => {
   it("accelerates entity to the bottom", () => {
     const entity = new Entity(0, 0);
 
-    const action = { key: INPUTS.ArrowDown}
+    const action = { key: KEYS.ArrowDown}
     KeyboardControl.run([entity], action);
 
     expect(entity.velocity.x).toEqual(0);

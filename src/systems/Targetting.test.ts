@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { Position, TargetManual, Collision } from "../components/index.js";
 import { Targetting } from "./Targetting.js";
-import { INPUTS } from "../input.js";
+import { KEYS } from "../input.js";
 
 describe("Targetting system", () => {
   it("respects hardcoded targets", () => {
@@ -16,7 +16,7 @@ describe("Targetting system", () => {
   it("targets entity to the east if ArrowRight is pressed", () => {
     const attacker = new Attacker({ east: ['east-id']});
 
-    Targetting.run([attacker], aKeyPress(INPUTS.ArrowRight));
+    Targetting.run([attacker], aKeyPress(KEYS.ArrowRight));
 
     expect(attacker.target.id).toEqual('east-id');
   });
@@ -24,7 +24,7 @@ describe("Targetting system", () => {
   it("targets entity to the west if ArrowLeft is pressed", () => {
     const attacker = new Attacker({ west: ['west-id']});
 
-    Targetting.run([attacker], aKeyPress(INPUTS.ArrowLeft));
+    Targetting.run([attacker], aKeyPress(KEYS.ArrowLeft));
 
     expect(attacker.target.id).toEqual('west-id');
   });
@@ -32,7 +32,7 @@ describe("Targetting system", () => {
   it("targets entity to the north if ArrowUp is pressed", () => {
     const attacker = new Attacker({ north: ['north-id']});
 
-    Targetting.run([attacker], aKeyPress(INPUTS.ArrowUp));
+    Targetting.run([attacker], aKeyPress(KEYS.ArrowUp));
 
     expect(attacker.target.id).toEqual('north-id');
   });
@@ -40,7 +40,7 @@ describe("Targetting system", () => {
   it("targets entity to the south if ArrowUp is pressed", () => {
     const attacker = new Attacker({ south: ['south-id']});
 
-    Targetting.run([attacker], aKeyPress(INPUTS.ArrowDown));
+    Targetting.run([attacker], aKeyPress(KEYS.ArrowDown));
 
     expect(attacker.target.id).toEqual('south-id');
   });

@@ -1,4 +1,4 @@
-import { INPUTS } from "../input.js";
+import { KEYS } from "../input.js";
 
 export class Targetting {
   static run(entities, action?) {
@@ -8,7 +8,7 @@ export class Targetting {
       if (!action) continue;
 
       const { key } = action;
-      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, KeyA, KeyW, KeyS, KeyD } = INPUTS
+      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, KeyA, KeyW, KeyS, KeyD } = KEYS
 
       // Todo: Decouple from key input
       if (key === ArrowRight || key === KeyD) {
