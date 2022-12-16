@@ -57,7 +57,7 @@ export class Game {
       player: this.entityManager.getPlayer(),
       turn: this.turn,
       entities: this.entities,
-      coordinates: this.areaManager.getCurrentArea(),
+      coordinates: this.areaManager.currentArea.coordinates,
     };
   }
 

@@ -5,56 +5,61 @@ import { Bus } from "./infra/bus.js";
 import { EVENTS } from "./events.js";
 import { BIOME } from "./terrain/Terrain.js";
 import { randomInteger } from "./util/index.js";
-
-type AreaSeed = string;
-type AreaIndex = string;
-type NavigationAreas = Record<AreaIndex, AreaSeed>;
+import { Cache } from "./Cache.js";
 
 export class AreaManager {
   bus: Bus;
   terrain: Terrain;
   entityManager: EntityManager;
   coordinates: GlobalCoordinates;
-  private areas: NavigationAreas;
+  private areas: Cache;
 
   constructor(bus: Bus, terrain: Terrain, entityManager: EntityManager) {
-    const INITIAL_SEED = "12345";
-    const ORIGIN_INDEX = "0,0";
-    this.areas = { [ORIGIN_INDEX]: INITIAL_SEED };
     this.bus = bus;
     this.terrain = terrain;
     this.entityManager = entityManager;
+    this.areas = new Cache();
     this.coordinates = new GlobalCoordinates();
     this.createNewArea(BIOME.town);
   }
 
-  getCurrentArea() {
-    return this.coordinates;
-  }
-
-  getAreaSeed() {
-    const id = this.coordinates.toString();
-    if (!this.areas[id]) this.generateSeed(id);
-
-    return this.areas[id];
-  }
-
-  private generateSeed(id) {
-    this.areas[id] = `${randomInteger(99999)}`;
+  get currentArea() {
+    return {
+      id: this.getCurrentAreaId(),
+      seed: this.getCurrentAreaSeed(),
+      coordinates: this.coordinates,
+    };
   }
 
   createNewArea(biome: BIOME) {
-    const coordinates = this.coordinates;
-    const seed = this.getAreaSeed();
+    const seed = this.getCurrentAreaSeed();
+    this.areas.push(this.getCurrentAreaId(), seed);
     this.terrain.generate(seed, biome);
-    this.bus.emit(EVENTS.AREA_CREATED, { coordinates });
+
+    this.bus.emit(EVENTS.AREA_CREATED, { coordinates: this.coordinates });
   }
 
   handleSubscriptions() {
     this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
-    this.coordinates.move(direction)
-
+      this.coordinates.move(direction);
       this.createNewArea(BIOME.wilderness);
     });
+  }
+  
+  private getCurrentAreaId() {
+    return this.coordinates.toString()
+  }
+
+  private getCurrentAreaSeed() {
+    const id = this.getCurrentAreaId();
+    const cachedSeed = this.areas.retrieve(id);
+
+    if (cachedSeed) return cachedSeed;
+
+    return this.generateSeed();
+  }
+
+  private generateSeed() {
+    return randomInteger(99999);
   }
 }
