@@ -5,7 +5,7 @@ import { HealthBar } from "./ui/HealthBars.js";
 import { Bus } from "../infra/bus.js";
 import { findOrCreateNode } from "../util/index.js";
 import { Player } from "../entities/Player.js";
-import { GlobalCoordinates } from "../Navigation.js";
+import { GlobalCoordinates } from "../GlobalCoordinates.js";
 
 export class UIRenderer {
   bus: Bus;

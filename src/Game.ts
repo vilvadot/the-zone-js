@@ -18,7 +18,7 @@ import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
 import { INPUTS } from "./input.js";
-import { GlobalCoordinates } from "./Navigation.js";
+import { GlobalCoordinates } from "./GlobalCoordinates.js";
 
 export class Game {
   private bus: Bus;

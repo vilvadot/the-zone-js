@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Entities } from ".";
 import { EVENTS } from "../events";
 import { Bus } from "../infra/bus";
-import { GlobalCoordinates } from "../Navigation";
+import { GlobalCoordinates } from "../GlobalCoordinates";
 import { Terrain } from "../terrain";
 import { fakeChanceAlwaysHappens, fakeChanceNeverHappens } from "../util/Chance.testUtils";
 import { Artifact } from "./Artifact";

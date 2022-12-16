@@ -6,7 +6,7 @@ import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
 import { Terrain } from "../terrain/Terrain.js";
-import { GlobalCoordinates } from "../Navigation.js";
+import { GlobalCoordinates } from "../GlobalCoordinates.js";
 import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
 import { Chance } from "../util/index.js";
 
