@@ -31,12 +31,20 @@ export class EntityManager {
     return this.player;
   }
 
+  get(entityId: string){
+    return this.entities.find(entity => entity.id === entityId)
+  }
+
   getAllEntities(): Entity[] {
     return [this.player, ...this.entities];
   }
 
-  kill(entity: Entity) {
+  remove(entity: Entity){
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
+  }
+
+  kill(entity: Entity) {
+    this.remove(entity);
     this.entities.push(new Corpse(entity));
   }
 
@@ -68,7 +76,7 @@ export class EntityManager {
   private spawnArtifacts(coordinates: GlobalCoordinates) {
     if (coordinates.isOrigin()) return;
 
-    Chance.withProbability(15, () => {
+    Chance.withProbability(80, () => {
       const artifacts = ArtifactSpawner.spawn(1);
 
       this.add(artifacts, coordinates);

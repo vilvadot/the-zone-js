@@ -1,5 +1,5 @@
-import { Ammo } from "../components/index.js";
 import { Point } from "../data-structures/Point.js";
+import { Ammo } from "../entities/items/index.js";
 import { Player } from "../entities/Player.js";
 import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";

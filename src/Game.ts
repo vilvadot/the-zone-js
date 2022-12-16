@@ -21,6 +21,7 @@ import { ACTION_EXECUTED_PAYLOAD } from "./events.js";
 import { Debug } from "./infra/debug.js";
 import { Talk } from "./systems/Talk.js";
 import { GameMode } from "./GameMode.js";
+import { Pickup } from "./systems/Pickup.js";
 
 export class Game {
   private bus: Bus;
@@ -85,6 +86,7 @@ export class Game {
       Death.run(this.entities, this.entityManager);
     }
 
+    Pickup.run(this.entities, action, this.entityManager)
     KeyboardControl.run(this.entities, action);
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);

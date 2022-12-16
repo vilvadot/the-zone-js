@@ -51,7 +51,7 @@ export class TileRenderer {
 const getTint = (distance, isBlocked, isMouseHover) => {
   if (isMouseHover) return `rgba(255,255,255, .3)`
   if (FOV_ENABLED && isBlocked) return `rgba(0,0,255, .3)`
-  if (isBlocked) return `rgba(0,0,0, 1)`
+  if (isBlocked && !DEBUG_ENABLED) return `rgba(0,0,0, 1)`
 
   const opacity = 1 - shadowMagnitude(distance);
   return `rgba(0,0,0, ${opacity})`;

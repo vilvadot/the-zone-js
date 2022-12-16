@@ -7,8 +7,8 @@ import {
   Collision,
   Sprite,
   Inventory,
-  Ammo,
 } from "../components/index.js";
+import { Ammo } from "./items/index.js";
 
 export const PLAYER_ID = "player";
 
