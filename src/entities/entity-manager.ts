@@ -45,8 +45,6 @@ export class EntityManager {
         const coordinates = area.coordinates;
         this.reset();
 
-        if (coordinates.isOrigin()) return;
-
         const isCached = this.isCached(coordinates);
         if (isCached) return this.loadFromCache(coordinates);
 
@@ -62,6 +60,8 @@ export class EntityManager {
   }
 
   private spawnArtifacts(coordinates: GlobalCoordinates) {
+    if (coordinates.isOrigin()) return;
+
     Chance.withProbability(15, () => {
       const artifacts = ArtifactSpawner.spawn(1);
 
@@ -70,6 +70,8 @@ export class EntityManager {
   }
 
   private spawnEnemies(coordinates: GlobalCoordinates) {
+    if (coordinates.isOrigin()) return;
+
     Chance.withProbability(100, () => {
       const enemySeed = `${coordinates.x + coordinates.y}${coordinates.y}`;
       const enemies = EnemySpawner.spawn(enemySeed);
