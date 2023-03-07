@@ -1,6 +1,5 @@
 import { Terrain } from "./terrain/index.js";
 import { GlobalCoordinates } from "./GlobalCoordinates.js";
-import { EntityManager } from "./entities/entity-manager.js";
 import { Bus } from "./infra/bus.js";
 import { AREA_CREATED_PAYLOAD, EVENTS } from "./events.js";
 import { BIOME } from "./terrain/Terrain.js";
@@ -17,14 +16,12 @@ export interface Area {
 export class AreaManager {
   bus: Bus;
   terrain: Terrain;
-  entityManager: EntityManager;
   coordinates: GlobalCoordinates;
   private areas: Cache;
 
-  constructor(bus: Bus, terrain: Terrain, entityManager: EntityManager) {
+  constructor(bus: Bus, terrain: Terrain) {
     this.bus = bus;
     this.terrain = terrain;
-    this.entityManager = entityManager;
     this.areas = new Cache();
     this.coordinates = new GlobalCoordinates();
   }

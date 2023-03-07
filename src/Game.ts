@@ -41,11 +41,7 @@ export class Game {
     this.fov = new FOVIndex();
     this.mode = new GameMode();
     this.entityManager = new EntityManager(this.bus, this.terrain);
-    this.areaManager = new AreaManager(
-      this.bus,
-      this.terrain,
-      this.entityManager
-    );
+    this.areaManager = new AreaManager(this.bus, this.terrain,);
     this.handleSubscriptions();
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
