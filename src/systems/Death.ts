@@ -8,8 +8,11 @@ export class Death {
       if (!health || !sprite) continue;
 
       if (health.value <= 0) {
+        if(entity.isPlayer) window.location.reload()
+        
         entityManager.kill(entity);
       }
+
     }
   }
 }
