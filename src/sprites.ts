@@ -18,6 +18,7 @@ const graphicCoordinates = {
   plank: [12, 3],
   rock: [18, 2],
   snake: [8, 8],
+  anomaly: [11, 15],
   woodWall: {
     horizontal: [1, 16],
     vertical: [12, 16],
@@ -31,6 +32,7 @@ const graphicCoordinates = {
 const mapToSpriteSheet = ([x, y] : Coordinate) => [x * TILE_SIZE, y * TILE_SIZE];
 
 export const SPRITES = {
+  anomaly: mapToSpriteSheet(graphicCoordinates.anomaly),
   bullet: mapToSpriteSheet(graphicCoordinates.bullet),
   corpse: mapToSpriteSheet(graphicCoordinates.corpse),
   dirt: mapToSpriteSheet(graphicCoordinates.dirt),

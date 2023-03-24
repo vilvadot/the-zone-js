@@ -11,6 +11,8 @@ import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
 import { Chance } from "../util/index.js";
 import { NPCSpawner } from "../spawners/NPCSpawner.js";
 import { Debug } from "../infra/debug.js";
+import { Anomaly } from "./Anomaly.js";
+import { AnomalySpawner } from "../spawners/AnomalySpawner.js";
 
 export class EntityManager {
   bus: Bus;
@@ -64,6 +66,7 @@ export class EntityManager {
         this.spawnNPCs(coordinates);
         this.spawnEnemies(coordinates);
         this.spawnArtifacts(coordinates);
+        this.spawnAnomalies(coordinates);
       }
     );
   }
@@ -78,6 +81,16 @@ export class EntityManager {
 
     Chance.withProbability(80, () => {
       const artifacts = ArtifactSpawner.spawn(1);
+
+      this.add(artifacts, coordinates);
+    });
+  }
+
+  private spawnAnomalies(coordinates: GlobalCoordinates) {
+    // if (coordinates.isOrigin()) return;
+
+    Chance.withProbability(100, () => {
+      const artifacts = AnomalySpawner.spawn();
 
       this.add(artifacts, coordinates);
     });

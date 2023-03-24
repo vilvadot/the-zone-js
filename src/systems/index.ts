@@ -1,3 +1,4 @@
+export { AnomalyDiscovery } from './AnomalyDiscovery.js'
 export { Death } from './Death.js'
 export { Combat } from './Combat.js'
 export { KeyboardControl } from './KeyboardControl.js'

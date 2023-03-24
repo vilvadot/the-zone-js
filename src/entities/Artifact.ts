@@ -19,3 +19,4 @@ export class Artifact{
     this.inventoryVersion = new ArtifactItem()
   }
 }
+

@@ -8,6 +8,7 @@ import {
   Targetting,
   Travel,
   Shooting,
+  AnomalyDiscovery
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -73,7 +74,7 @@ export class Game {
       Debug.log(`Game mode toggled ${this.mode}`);
       Talk.run(this.entities, this.mode)
     }
-    
+
     if (this.mode.isDialog()) return;
 
     if (action.key === KEYS.Click) {
@@ -90,8 +91,8 @@ export class Game {
     Targetting.run(this.entities, action);
     Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);
+    AnomalyDiscovery.run(this.entities)
     Combat.run(this.bus, this.logger, this.entities);
     Death.run(this.entities, this.entityManager);
   }
 }
-
