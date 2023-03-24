@@ -14,6 +14,13 @@ export const calculateDistance = (pointA: Point, pointB: Point) => {
   return Math.sqrt((pointA.x - pointB.x!) ** 2 + (pointA.y - pointB.y!) ** 2)
 }
 
+export const isOver = (positionA, positionB) => {
+  const distanceX = Math.abs(positionA.x - positionB.x);
+  const distanceY = Math.abs(positionA.y - positionB.y);
+
+  return distanceX === 0 && distanceY === 0;
+};
+
 export const isAdjacent = (positionA, positionB) => {
   const distanceX = Math.abs(positionA.x - positionB.x);
   const distanceY = Math.abs(positionA.y - positionB.y);

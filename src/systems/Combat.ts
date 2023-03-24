@@ -1,6 +1,6 @@
 import { EVENTS } from "../events.js";
 import { Bus } from "../infra/bus.js";
-import { isAdjacent } from "../util/index.js";
+import { isAdjacent, isOver } from "../util/index.js";
 
 export class Combat {
   static run(bus: Bus, logger, entities) {
@@ -11,6 +11,11 @@ export class Combat {
         return id === target.id && health?.value > 0;
       });
       if (!targetEntity) continue;
+
+      if(name === "Anomaly") { // TODO: Extract to own system ??
+        if(isOver(targetEntity.position, position)) this._attack(name, targetEntity, damage.value, bus, logger);
+        continue;
+      }
 
       if (isAdjacent(targetEntity.position, position))
         this._attack(name, targetEntity, damage.value, bus, logger);

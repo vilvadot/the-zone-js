@@ -18,7 +18,7 @@ const graphicCoordinates = {
   plank: [12, 3],
   rock: [18, 2],
   snake: [8, 8],
-  anomaly: [11, 15],
+  anomaly: [9, 15],
   woodWall: {
     horizontal: [1, 16],
     vertical: [12, 16],
