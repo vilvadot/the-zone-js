@@ -62,7 +62,8 @@ const getEntitySprite = (entities, x, y) => {
     ({ position }) => position.x === x && position.y === y
   );
   
-  if(entity?.isInvisible) return ""
+  const isInvisible = entity?.isInvisible && !DEBUG_ENABLED
+  if(isInvisible) return ""
 
   return entity?.sprite?.name;
 };

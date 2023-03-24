@@ -1,17 +1,21 @@
-import { randomInteger, repeat } from "../util/index.js";
-import { HEIGHT, WIDTH } from "../config.js";
 import { Anomaly } from "../entities/Anomaly.js";
+import ROT from "../lib/rot.js";
+import { randomFloat } from "../util/random.js";
+
 
 export class AnomalySpawner {
-  static spawn(quantity = 100) {
+  static spawn() {
     const result: Anomaly[] = [];
+    const filled = randomFloat(0, .55)
 
-    repeat(quantity, () => {
-      const x = randomInteger(WIDTH, 0);
-      const y = randomInteger(HEIGHT, 0);
-      
-      result.push(new Anomaly(x, y));
-    });
+    new ROT.Map.Cellular()
+      .randomize(filled)
+      .create((x: number, y: number, isFilled: boolean) => {
+        console.log(isFilled)
+        if (!isFilled) return
+
+        result.push(new Anomaly(x, y));
+      });
 
     return result;
   }

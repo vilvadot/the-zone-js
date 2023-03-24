@@ -87,7 +87,7 @@ export class EntityManager {
   }
 
   private spawnAnomalies(coordinates: GlobalCoordinates) {
-    // if (coordinates.isOrigin()) return;
+    if (coordinates.isOrigin()) return;
 
     Chance.withProbability(100, () => {
       const artifacts = AnomalySpawner.spawn();
