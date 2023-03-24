@@ -6,7 +6,7 @@ import { randomFloat } from "../util/random.js";
 export class AnomalySpawner {
   static spawn() {
     const result: Anomaly[] = [];
-    const filled = randomFloat(0, .55)
+    const filled = randomFloat(0, .45)
 
     new ROT.Map.Cellular()
       .randomize(filled)

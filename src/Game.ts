@@ -91,8 +91,8 @@ export class Game {
     Targetting.run(this.entities, action);
     Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);
-    AnomalyDiscovery.run(this.entities)
     Combat.run(this.bus, this.logger, this.entities);
+    AnomalyDiscovery.run(this.entities)
     Death.run(this.entities, this.entityManager);
   }
 }
