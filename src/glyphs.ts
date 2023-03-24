@@ -21,7 +21,7 @@ export const GLYPH_COLORS = {
   rock: "lightgray",
   plank: "BurlyWood",
   empty: "black",
-  dirt: "lightbrown",
+  dirt: "Peru",
   dog: "brown",
   anomaly: "lightblue",
   grass: "lightgreen",

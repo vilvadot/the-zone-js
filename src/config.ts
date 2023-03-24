@@ -1,10 +1,11 @@
 const urlParams = new URLSearchParams(window.location.search);
 export const DEBUG_ENABLED = urlParams.get('debug')
 export const FOV_ENABLED = urlParams.get('fov')
+export const TEXT_MODE_ENABLED = urlParams.get('text')
 
 const DISPLAY_TEXT = "text";
 const DISPLAY_TILES = "tiles";
-const DISPLAY_MODE = DISPLAY_TILES;
+const DISPLAY_MODE = TEXT_MODE_ENABLED ? DISPLAY_TEXT : DISPLAY_TILES;
 // @ts-ignore
 export const isTextMode = () => DISPLAY_MODE === DISPLAY_TEXT;
 

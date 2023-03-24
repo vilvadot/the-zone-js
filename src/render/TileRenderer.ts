@@ -18,10 +18,8 @@ export class TileRenderer {
   ) {
     display.clear();
     const animation = animations.composeNextFrame();
-    
     fov.forEach((x, y, { distance, isBlocked }) => {
       const isMouseHover = x === mouse?.x && y === mouse?.y;
-      
       const stack = this.generateTileStack(x, y, terrain, entities, animation);
       
       if (isMouseHover) {
