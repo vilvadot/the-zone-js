@@ -1,8 +1,7 @@
 import { AnimationQueue } from "../animations/index.js";
 import { DEBUG_ENABLED, FOV_ENABLED } from "../config.js";
-import { FOVIndex } from "../fov-index.js";
+import { GameState } from "../Game.js";
 import { Debug } from "../infra/debug.js";
-import { Terrain } from "../terrain/Terrain.js";
 import { TILES } from "../tiles.js";
 import { Display } from "./Display.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
@@ -10,22 +9,23 @@ import { shadowMagnitude } from "./shadowMagnitude.js";
 export class TileRenderer {
   static run(
     display: Display,
-    fov: FOVIndex,
-    terrain: Terrain,
-    entities,
+    gameState: GameState,
     animations: AnimationQueue,
-    mouse?
+    mouse,
   ) {
+
+    const { fov, terrain, entities } = gameState
     display.clear();
     const animation = animations.composeNextFrame();
+
     fov.forEach((x, y, { distance, isBlocked }) => {
       const isMouseHover = x === mouse?.x && y === mouse?.y;
       const stack = this.generateTileStack(x, y, terrain, entities, animation);
-      
+
       if (isMouseHover) {
         Debug.log(`${x}, ${y}, ${distance}, ${isBlocked}, ${stack}`)
       };
-      
+
       const tint = getTint(distance, isBlocked, isMouseHover);
       display.draw(x, y, stack, tint);
     });
@@ -59,9 +59,9 @@ const getEntitySprite = (entities, x, y) => {
   const entity = entities.find(
     ({ position }) => position.x === x && position.y === y
   );
-  
+
   const isInvisible = entity?.isInvisible && !DEBUG_ENABLED
-  if(isInvisible) return ""
+  if (isInvisible) return ""
 
   return entity?.sprite?.name;
 };

@@ -6,7 +6,6 @@
     grid-template-columns: 1095px 1fr;
     grid-template-rows: 600px 1fr;
     position: absolute;
-    pointer-events:none;
 }
 
 .contextual_container{
@@ -21,7 +20,27 @@
 
 .floating_window{
     height: 400px;
-    width: 800px;
     background: black;
     border: 1px solid white;
+    display:flex;
+    flex-direction: row;
+    padding: 24px;
+    justify-content: space-between;
+}
+
+.floating_window .column{
+    padding: 25px;
+    border: 1px solid white;
+}
+
+.floating_window .column .item:hover{
+    cursor: pointer;
+    color: red;
+}
+
+
+.floating_window .column h2{
+    font-size: 20px;
+    margin-bottom: 24px;
+    font-weight: bold;
 }

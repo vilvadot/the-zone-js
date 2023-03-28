@@ -1,5 +1,6 @@
-import { Position, Sprite } from "../components/index.js";
+import { Inventory, Position, Sprite } from "../components/index.js";
 import { uid } from "../util/index.js";
+import { Ammo } from "./items/index.js";
 
 export class Merchant {
   position: Position;
@@ -7,6 +8,7 @@ export class Merchant {
   name: string;
   id: string;
   isTalkable: boolean;
+  inventory: Inventory;
 
   constructor(x, y) {
     this.position = new Position(x, y);
@@ -14,5 +16,6 @@ export class Merchant {
     this.id = `merchant-${uid()}`;
     this.sprite = new Sprite('man')
     this.isTalkable = true;
+    this.inventory = new Inventory([new Ammo(1000)]);
   }
 }

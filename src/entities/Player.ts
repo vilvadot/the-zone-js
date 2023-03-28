@@ -8,7 +8,7 @@ import {
   Sprite,
   Inventory,
 } from "../components/index.js";
-import { Ammo } from "./items/index.js";
+import { Ammo, Artifact } from "./items/index.js";
 
 export const PLAYER_ID = "player";
 
@@ -34,10 +34,10 @@ export class Player {
     this.health = new Health(10);
     this.damage = new Damage(1);
     this.sprite = new Sprite("knight");
-    this.position = new Position(10, 10);
+    this.position = new Position(21, 5);
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
     this.keyboardControlled = true;
-    this.inventory = new Inventory([new Ammo(10)]);
+    this.inventory = new Inventory([new Ammo(10), new Artifact(1)]);
   }
 }

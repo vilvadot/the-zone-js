@@ -4,7 +4,8 @@ import { GLYPHS, GLYPH_COLORS } from "../glyphs.js";
 const DEBUG_COLOR = "red";
 
 export class GlyphRenderer {
-  static run(display, fov, terrain, entities, mouse?) {
+  static run(display, gameState) {
+    const { fov, terrain, entities } = gameState
     display.clear();
     fov.forEach((x, y, { isBlocked }) => {
       const { glyph, color } = getGlyph(entities, terrain, x, y, isBlocked)

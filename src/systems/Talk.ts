@@ -1,7 +1,6 @@
 import { Entities } from "../entities/index.js";
-import { isAdjacent } from "../util/coordinates.js";
-import { Player } from "../entities/Player.js";
 import { GameMode } from "../GameMode.js";
+import { findAdjacent } from "../util/entities.js";
 
 // TODO: test
 
@@ -16,11 +15,3 @@ export class Talk {
     console.log("talking to", target.name);
   }
 }
-
-export const findAdjacent = (player: Player, entities: Entities) => {
-  return entities.find((entitity) => isEntityAdjacent(player, entitity));
-};
-
-export const isEntityAdjacent = (entityA, entityB) => {
-  return isAdjacent(entityA.position, entityB.position);
-};

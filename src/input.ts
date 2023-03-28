@@ -1,4 +1,4 @@
-import { ACTION_EXECUTED_PAYLOAD, EVENTS } from "./events.js";
+import { ACTION_EXECUTED_PAYLOAD, EVENTS, MOUSE_MOVED } from "./events.js";
 import { tileCoordinates } from "./util/index.js";
 
 export enum KEYS {
@@ -36,7 +36,7 @@ export const handleInput = (bus) => {
     bus.emit(EVENTS.MOUSE_MOVED, {
       x: undefined,
       y: undefined,
-    });
+    } as MOUSE_MOVED);
   });
 
   window.addEventListener("click", (event) => {
