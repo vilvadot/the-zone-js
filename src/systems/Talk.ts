@@ -9,7 +9,7 @@ export class Talk {
   static run(entities: Entities, gameMode: GameMode) {
     const player = entities.find((entity) => entity.isPlayer);
     const target = findAdjacent(player, entities);
-    if (!target) return;
+    if (!target.isTalkable) return;
 
     gameMode.toggleDialog();
 

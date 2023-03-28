@@ -6,11 +6,13 @@ export class Merchant {
   sprite: Sprite;
   name: string;
   id: string;
+  isTalkable: boolean;
 
   constructor(x, y) {
     this.position = new Position(x, y);
     this.name = "merchant";
     this.id = `merchant-${uid()}`;
     this.sprite = new Sprite('man')
+    this.isTalkable = true;
   }
 }

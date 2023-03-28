@@ -18,12 +18,14 @@ export class Enemy {
   position: Position;
   name: string;
   id: string;
+  isTalkable: boolean;
 
   constructor(x, y) {
     this.target = new TargetManual("player");
     this.position = new Position(x, y);
     this.name = "enemy";
     this.id = `enemy-${uid()}`;
+    this.isTalkable = false;
   }
 }
 
