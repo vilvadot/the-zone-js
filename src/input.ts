@@ -12,14 +12,18 @@ export enum KEYS {
   W = "KeyW",
   S = "KeyS",
   D = "KeyD",
-  Click = "Click",
+  Period = "Period"
 };
+
+const inputIsControlled = (code) => Object.values(KEYS).includes(code)
 
 export const handleInput = (bus) => {
   window.addEventListener("keydown", (event) => {
+    const { code } = event
+
+    if(!inputIsControlled(code)) return
     event.preventDefault();
 
-    const { code } = event
     const actionEvent = EVENTS.ACTION_EXECUTED
 
     if (code === KEYS.E) bus.emit(actionEvent, { name: ACTION_NAME.PICKUP })
@@ -28,7 +32,7 @@ export const handleInput = (bus) => {
     if (code === KEYS.S || code === KEYS.ArrowDown) bus.emit(actionEvent, { name: ACTION_NAME.MOVE, payload: { direction: "south" } as MOVE_PAYLOAD })
     if (code === KEYS.D || code === KEYS.ArrowRight) bus.emit(actionEvent, { name: ACTION_NAME.MOVE, payload: { direction: "east" } as MOVE_PAYLOAD })
     if (code === KEYS.A || code === KEYS.ArrowLeft) bus.emit(actionEvent, { name: ACTION_NAME.MOVE, payload: { direction: "west" } as MOVE_PAYLOAD })
-    if (code === KEYS.Space) bus.emit(actionEvent, { name: ACTION_NAME.WAIT })
+    if (code === KEYS.Period) bus.emit(actionEvent, { name: ACTION_NAME.WAIT })
   });
 
   const canvas = document.querySelector("canvas")!;
