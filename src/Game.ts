@@ -84,7 +84,7 @@ export class Game {
     Talk.run(action, this.entities, this.mode)
     Trading.run(action)
 
-    if (!this.mode.isDialog())
+    if (this.mode.isDialog()) return
 
     Shooting.run(action, this.bus, this.logger, this.entities);
     KeyboardControl.run(action, this.entities);

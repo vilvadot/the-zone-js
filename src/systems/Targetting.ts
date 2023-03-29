@@ -5,7 +5,7 @@ export class Targetting {
   static run(entities: Entities, action?: ACTION) {
     for (const { position, target, collision } of entities) {
       if (!position || !target || !collision) continue;
-      if (!action) continue;
+      if (!action?.payload) continue;
 
       const { direction } = action.payload;
 
