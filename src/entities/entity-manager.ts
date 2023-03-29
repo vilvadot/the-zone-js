@@ -2,7 +2,7 @@ import { Cache } from "../Cache.js";
 import { Corpse } from "./Corpse.js";
 import { Player } from "./Player.js";
 import { Entities, Entity } from "./index.js";
-import { AREA_CREATED_PAYLOAD, EVENTS } from "../events.js";
+import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
 import { Terrain } from "../terrain/Terrain.js";
@@ -11,7 +11,6 @@ import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
 import { Chance } from "../util/index.js";
 import { NPCSpawner } from "../spawners/NPCSpawner.js";
 import { Debug } from "../infra/debug.js";
-import { Anomaly } from "./Anomaly.js";
 import { AnomalySpawner } from "../spawners/AnomalySpawner.js";
 
 export class EntityManager {
@@ -53,7 +52,7 @@ export class EntityManager {
   handleSubscriptions() {
     this.bus.subscribe(
       EVENTS.AREA_CREATED,
-      ({ area }: AREA_CREATED_PAYLOAD) => {
+      ({ area }) => {
         const coordinates = area.coordinates;
         this.reset();
 

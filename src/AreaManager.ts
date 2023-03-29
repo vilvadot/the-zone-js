@@ -1,7 +1,7 @@
 import { Terrain } from "./terrain/index.js";
 import { GlobalCoordinates } from "./GlobalCoordinates.js";
 import { Bus } from "./infra/bus.js";
-import { AREA_CREATED_PAYLOAD, EVENTS } from "./events.js";
+import { EVENTS } from "./actions.js";
 import { BIOME } from "./terrain/Terrain.js";
 import { randomInteger } from "./util/index.js";
 import { Cache } from "./Cache.js";
@@ -33,7 +33,7 @@ export class AreaManager {
 
     this.bus.emit(EVENTS.AREA_CREATED, {
       area: this.currentArea,
-    } as AREA_CREATED_PAYLOAD);
+    });
   }
 
   handleSubscriptions() {

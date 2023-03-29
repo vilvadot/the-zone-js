@@ -1,4 +1,4 @@
-import { EVENTS } from "../events.js";
+import { EVENTS } from "../actions.js";
 
 export class Bus {
   events: {};

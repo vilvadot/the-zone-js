@@ -5,10 +5,13 @@ import { findAdjacent } from "../util/entities.js";
 // TODO: test
 
 export class Talk {
-  static run(entities: Entities, gameMode: GameMode) {
+  static run(action, entities: Entities, gameMode: GameMode) {
+    if (action.name !== "talk") return
+
     const player = entities.find((entity) => entity.isPlayer);
     const target = findAdjacent(player, entities);
-    if (!target.isTalkable) return;
+
+    if (!target?.isTalkable) return;
 
     gameMode.toggleDialog();
 

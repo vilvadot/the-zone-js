@@ -4,6 +4,7 @@ import { Player } from "../entities/Player.js";
 import { Shooting } from "./Shooting";
 import { Bus } from "../infra/bus.js";
 import { Logger } from "../infra/logger.js";
+import { ACTION_NAME } from "../actions.js";
 
 describe("Shooting system", () => {
   const bus = new Bus();
@@ -21,11 +22,10 @@ describe("Shooting system", () => {
     const target = new Entity(initialHealth, entityX, entityY);
 
     Shooting.run(
+      shotAction(entityX, entityY),
       bus,
       logger,
       [target, player],
-      entityX,
-      entityY
     );
 
     expect(target.health.value).toBeLessThan(initialHealth);
@@ -38,11 +38,10 @@ describe("Shooting system", () => {
     const target = new Entity(initialHealth, entityX, entityY);
 
     Shooting.run(
+      shotAction(0, entityY),
       bus,
       logger,
       [target, player],
-      0,
-      entityY
     );
 
     expect(target.health.value).toEqual(initialHealth);
@@ -57,16 +56,17 @@ describe("Shooting system", () => {
     target.position = new Position(targetX, targetY)
 
     Shooting.run(
+      shotAction(targetX, targetY),
       bus,
       logger,
       [target],
-      targetX,
-      targetY
     );
 
     expect(target.health.value).toEqual(initialHealth);
   });
 });
+
+const shotAction = (x, y) => ({ name: ACTION_NAME.SHOOT, payload: { x, y } })
 
 class Entity {
   health: Health;

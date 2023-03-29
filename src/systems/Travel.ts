@@ -1,7 +1,7 @@
 import { Position, Velocity } from "../components/index.js";
 import { HEIGHT, WIDTH } from "../config.js";
 import { Entities } from "../entities/index.js";
-import { EVENTS } from "../events.js";
+import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
 
 export class Travel {

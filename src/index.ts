@@ -1,7 +1,7 @@
 import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
 import { handleInput } from "./input.js";
-import { EVENTS, MOUSE_POSITION } from "./events.js";
+import { EVENTS } from "./actions.js";
 import { AnimationQueue, HitAnimation } from "./animations/index.js";
 import { FPS_CAP, isTextMode } from "./config.js";
 import { ShootAnimation } from "./animations/animations.js";
@@ -16,7 +16,7 @@ export const loadGame = () => {
   const game = new Game(bus);
   const ui = new UIRenderer(bus);
   const animations = new AnimationQueue();
-  let mouse: MOUSE_POSITION = { x: undefined, y: undefined};
+  let mouse = { x: undefined, y: undefined};
 
   const runFrame = () => {
     if (isTextMode()) {

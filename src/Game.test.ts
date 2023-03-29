@@ -3,7 +3,7 @@ import { Position } from "./components/index.js";
 import { HEIGHT, WIDTH } from "./config.js";
 import { Point } from "./data-structures/Point.js";
 import { Entity } from "./entities/index.js";
-import { EVENTS } from "./events.js";
+import { ACTION_NAME, EVENTS } from "./actions.js";
 import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
 import { KEYS } from "./input.js";
@@ -20,8 +20,9 @@ describe("E2E Game test", () => {
 
   it("there are no enemies on starting coordinates", () => {
     const game = new Game(bus);
+    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west"}}
 
-    game.runMainLoop({ key: KEYS["ArrowRight"] });
+    game.runMainLoop(moveWest);
 
     const { entities } = game;
     const enemy = findEntity(entities, "enemy");
@@ -32,8 +33,9 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     const { player } = game.state;
     const { x, y } = player.position;
+    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east"}}
 
-    game.runMainLoop({ key: KEYS["ArrowRight"] });
+    game.runMainLoop(moveEast);
 
     expect(player.position).toEqual({ x: x! + 1, y });
   });
@@ -41,9 +43,10 @@ describe("E2E Game test", () => {
   it("player can travel east", () => {
     const game = new Game(bus);
     forceClearTerrain(game);
+    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east"}}
 
     repeat(WIDTH, () => {
-      game.runMainLoop({ key: KEYS["ArrowRight"] });
+      game.runMainLoop(moveEast);
     });
 
     const { coordinates } = game.state;
@@ -55,9 +58,10 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     forceClearTerrain(game);
     forcePlayerInCenter(game);
+    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west"}}
 
     repeat(WIDTH, () => {
-      game.runMainLoop({ key: KEYS["ArrowLeft"] });
+      game.runMainLoop(moveWest);
     });
 
     const { coordinates } = game.state;
@@ -69,9 +73,10 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     forcePlayerInCenter(game);
     forceClearTerrain(game);
+    const moveNorth = { name: ACTION_NAME.MOVE, payload: { direction: "north"}}
 
     repeat(HEIGHT, () => {
-      game.runMainLoop({ key: KEYS["ArrowUp"] });
+      game.runMainLoop(moveNorth);
     });
 
     const { coordinates } = game.state;
@@ -83,9 +88,10 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     forcePlayerInCenter(game);
     forceClearTerrain(game);
+    const moveSouth = { name: ACTION_NAME.MOVE, payload: { direction: "south"}}
 
     repeat(HEIGHT, () => {
-      game.runMainLoop({ key: KEYS["ArrowDown"] });
+      game.runMainLoop(moveSouth);
     });
 
     const { coordinates } = game.state;
@@ -100,12 +106,9 @@ describe("E2E Game test", () => {
     forceClearTerrain(game);
     const shotX = 1;
     const shotY = 10;
+    const shoot = { name: ACTION_NAME.SHOOT, payload: { x: shotX, y: shotY}}
 
-    game.runMainLoop({
-      key: KEYS["Click"],
-      x: shotX,
-      y: shotY,
-    });
+    game.runMainLoop(shoot);
 
     expect(bus.emit).toHaveBeenCalledWith(EVENTS.SHOT_FIRED, {
       origin: new Point(playerX, playerY),

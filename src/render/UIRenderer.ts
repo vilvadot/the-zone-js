@@ -1,4 +1,4 @@
-import { EVENTS } from "../events.js";
+import { EVENTS } from "../actions.js";
 import { LogMessages } from "./ui/LogMessages.js";
 import { TurnsCounter } from "./ui/TurnsCounter.js";
 import { HealthBar } from "./ui/HealthBar.js";

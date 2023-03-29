@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Entities } from ".";
-import { EVENTS } from "../events";
+import { EVENTS } from "../actions";
 import { Bus } from "../infra/bus";
 import { GlobalCoordinates } from "../GlobalCoordinates";
 import { Terrain } from "../terrain";

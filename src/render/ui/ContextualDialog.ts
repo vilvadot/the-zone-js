@@ -1,6 +1,6 @@
-import { Entities, Entity } from "../../entities/index.js";
+import { Entities } from "../../entities/index.js";
 import { Player } from "../../entities/Player.js";
-import { EVENTS, ITEM_TRANSFERED } from "../../events.js";
+import { ACTION_NAME, EVENTS, TRADE_PAYLOAD } from "../../actions.js";
 import { GameMode } from "../../GameMode.js";
 import { Bus } from "../../infra/bus.js";
 import { createNode } from "../../util/dom.js";
@@ -25,7 +25,7 @@ export class ContextualDialog {
         if (!row) {
           const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
           newRow?.addEventListener("click", () => {
-            bus.emit(EVENTS.ITEM_TRANSFERED, { from: player, to: merchant, item, quantity: 1 } as ITEM_TRANSFERED)
+            bus.emit(EVENTS.ACTION_EXECUTED, { name: ACTION_NAME.TRADE, payload: { from: player, to: merchant, item, quantity: 1 } as TRADE_PAYLOAD })
           })
           playerColumn.appendChild(newRow);
         } else {
@@ -39,9 +39,9 @@ export class ContextualDialog {
         const text = `${item.name} - ${item.quantity}`;
         const row = merchantColumn.querySelector(`#${item.id}`);
         if (!row) {
-          const newRow = createNode({ type: "p", content: text, id: item.id, className: "item"});
+          const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
           newRow?.addEventListener("click", () => {
-            bus.emit(EVENTS.ITEM_TRANSFERED, { from: merchant, to: player, item, quantity: 1 } as ITEM_TRANSFERED)
+            bus.emit(EVENTS.ACTION_EXECUTED, { name:  ACTION_NAME.TRADE, payload: { from: merchant, to: player, item, quantity: 1 } as TRADE_PAYLOAD })
           })
           merchantColumn.appendChild(newRow);
         } else {

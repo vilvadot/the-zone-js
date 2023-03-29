@@ -1,4 +1,5 @@
 import { describe, expect, it, beforeEach } from 'vitest'
+import { ACTION_NAME } from '../actions.js';
 import { Velocity } from "../components/index.js";
 import { KEYS } from "../input.js";
 import { KeyboardControl } from "./KeyboardControl.js";
@@ -6,9 +7,9 @@ import { KeyboardControl } from "./KeyboardControl.js";
 describe("KeyboardControl system", () => {
   it("accelerates entity to the right", () => {
     const entity = new Entity(0, 0);
-
-    const action = { key: KEYS.ArrowRight}
-    KeyboardControl.run([entity], action);
+    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east"}}
+   
+    KeyboardControl.run(moveEast, [entity]);
 
     expect(entity.velocity.x).toEqual(1);
     expect(entity.velocity.y).toEqual(0);
@@ -16,9 +17,9 @@ describe("KeyboardControl system", () => {
 
   it("accelerates entity to the left", () => {
     const entity = new Entity(0, 0);
-
-    const action = { key: KEYS.ArrowLeft}
-    KeyboardControl.run([entity], action);
+    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west"}}
+    
+    KeyboardControl.run(moveWest, [entity]);
 
     expect(entity.velocity.x).toEqual(-1);
     expect(entity.velocity.y).toEqual(0);
@@ -26,9 +27,9 @@ describe("KeyboardControl system", () => {
 
   it("accelerates entity to the top", () => {
     const entity = new Entity(0, 0);
+    const moveNorth = { name: ACTION_NAME.MOVE, payload: { direction: "north"}}
 
-    const action = { key: KEYS.ArrowUp}
-    KeyboardControl.run([entity], action);
+    KeyboardControl.run(moveNorth, [entity]);
 
     expect(entity.velocity.x).toEqual(0);
     expect(entity.velocity.y).toEqual(-1);
@@ -36,9 +37,9 @@ describe("KeyboardControl system", () => {
 
   it("accelerates entity to the bottom", () => {
     const entity = new Entity(0, 0);
+    const moveSouth = { name: ACTION_NAME.MOVE, payload: { direction: "south"}}
 
-    const action = { key: KEYS.ArrowDown}
-    KeyboardControl.run([entity], action);
+    KeyboardControl.run(moveSouth, [entity]);
 
     expect(entity.velocity.x).toEqual(0);
     expect(entity.velocity.y).toEqual(1);

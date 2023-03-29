@@ -1,22 +1,21 @@
 import { Entities } from "../entities/index.js";
-import { ACTION_EXECUTED_PAYLOAD } from "../events.js";
-import { KEYS } from "../input.js";
+import { ACTION, MOVE_PAYLOAD } from "../actions.js";
 
 export class KeyboardControl {
-  static run(entities: Entities, action: ACTION_EXECUTED_PAYLOAD) {
-    if (!action) return
+  static run(action: ACTION, entities: Entities) {
+    if (action.name !== "move") return
+
     for (const { keyboardControlled, velocity } of entities) {
       if (!keyboardControlled || !velocity) continue;
 
       const STEP = 1;
 
-      const { key } = action;
-      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, KeyA, KeyW, KeyS, KeyD } = KEYS;
+      const { direction } = action.payload as MOVE_PAYLOAD;
 
-      if (key === ArrowRight || key === KeyD) velocity.x += STEP;
-      if (key === ArrowLeft || key === KeyA) velocity.x -= STEP;
-      if (key === ArrowUp || key === KeyW) velocity.y -= STEP;
-      if (key === ArrowDown || key === KeyS) velocity.y += STEP;
+      if (direction === "east") velocity.x += STEP;
+      if (direction === "west") velocity.x -= STEP;
+      if (direction === "north") velocity.y -= STEP;
+      if (direction === "south") velocity.y += STEP;
     }
   }
 }

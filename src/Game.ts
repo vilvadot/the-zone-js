@@ -18,9 +18,7 @@ import { Terrain } from "./terrain/index.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
-import { KEYS } from "./input.js";
-import { ACTION_EXECUTED_PAYLOAD } from "./events.js";
-import { Debug } from "./infra/debug.js";
+import { ACTION } from "./actions.js";
 import { Talk } from "./systems/Talk.js";
 import { GameMode } from "./GameMode.js";
 import { Pickup } from "./systems/Pickup.js";
@@ -47,7 +45,6 @@ export class Game {
   private entityManager: EntityManager;
   private areaManager: AreaManager;
   private mode: GameMode;
-  private trading: Trading;
 
   constructor(bus: Bus) {
     this.bus = bus;
@@ -58,7 +55,6 @@ export class Game {
     this.mode = new GameMode();
     this.entityManager = new EntityManager(this.bus, this.terrain);
     this.areaManager = new AreaManager(this.bus, this.terrain,);
-    this.trading = new Trading(bus)
     this.handleSubscriptions();
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
@@ -66,7 +62,6 @@ export class Game {
   handleSubscriptions() {
     this.entityManager.handleSubscriptions();
     this.areaManager.handleSubscriptions();
-    this.trading.handleSubscriptions();
   }
 
   get entities() {
@@ -85,23 +80,15 @@ export class Game {
     };
   }
 
-  runMainLoop(action: ACTION_EXECUTED_PAYLOAD) {
-    this.turn++;
-    if (action.key === KEYS.Space) {
-      Debug.log(`Game mode toggled ${this.mode}`);
-      Talk.run(this.entities, this.mode)
-    }
+  runMainLoop(action: ACTION) {
+    Talk.run(action, this.entities, this.mode)
+    Trading.run(action)
 
-    if (this.mode.isDialog()) return;
+    if (!this.mode.isDialog())
 
-    if (action.key === KEYS.Click) {
-      const { x, y } = action;
-      Shooting.run(this.bus, this.logger, this.entities, x, y);
-      Death.run(this.entities, this.entityManager);
-    }
-
-    Pickup.run(this.entities, action, this.entityManager)
-    KeyboardControl.run(this.entities, action);
+    Shooting.run(action, this.bus, this.logger, this.entities);
+    KeyboardControl.run(action, this.entities);
+    Pickup.run(action, this.entities, this.entityManager)
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
@@ -111,5 +98,6 @@ export class Game {
     Combat.run(this.bus, this.logger, this.entities);
     AnomalyDiscovery.run(this.entities)
     Death.run(this.entities, this.entityManager);
+    this.turn++;
   }
 }

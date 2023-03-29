@@ -1,4 +1,4 @@
-import { EVENTS } from "../events.js";
+import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
 import { isAdjacent, isOver } from "../util/index.js";
 
