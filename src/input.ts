@@ -15,16 +15,13 @@ export enum KEYS {
   Click = "Click",
 };
 
-export const isInputKey = (code): KEYS => KEYS[code];
-
 export const handleInput = (bus) => {
   window.addEventListener("keydown", (event) => {
-    if (!isInputKey(event.code)) return
     event.preventDefault();
 
     const { code } = event
     const actionEvent = EVENTS.ACTION_EXECUTED
-
+    console.log(code)
     if (code === KEYS.E) bus.emit(actionEvent, { name: ACTION_NAME.PICKUP })
     if (code === KEYS.Space) bus.emit(actionEvent, { name: ACTION_NAME.TALK })
     if (code === KEYS.W || code === KEYS.ArrowUp) bus.emit(actionEvent, { name: ACTION_NAME.MOVE, payload: { direction: "north" } as MOVE_PAYLOAD })
