@@ -38,8 +38,10 @@ class InventorySystem {
   handleSubscriptions() {
     this.bus.subscribe(EVENTS.ITEM_TRANSFERED, ({ item, from, to, quantity }: ITEM_TRANSFERED) => {
       const sourceItem = from.inventory.content.find(({ name }) => name === item.name) as Item
-      if(sourceItem.quantity - quantity === 0 ){
-        from.inventory.content.filter(({ id }) => id === item.id)
+      sourceItem.quantity -= quantity
+
+      if(sourceItem.quantity === 0 ){
+        from.inventory.content = from.inventory.content.filter(({ id }) => id !== item.id)
       } 
 
       const itemAlreadyInInventory = to.inventory.content.find(({ name }) => name === item.name)

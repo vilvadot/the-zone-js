@@ -18,6 +18,8 @@ export class ContextualDialog {
       const merchant = findAdjacent(player, entities); // TODO: this every render sounds overkill
       const merchantColumn = $container.querySelector("#merchant .items") as HTMLDivElement;
 
+      playerColumn.innerHTML = ""
+      console.log(player.inventory.content)
       player.inventory.content.forEach((item) => {
         const text = `${item.name} - ${item.quantity}`;
         const row = playerColumn.querySelector(`#${item.id}`);
