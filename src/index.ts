@@ -31,7 +31,6 @@ export const loadGame = () => {
   };
 
   handleInput(bus);
-
   bus.subscribe(EVENTS.MOUSE_MOVED, (mousePosition) => {
     mouse = mousePosition;
   });
@@ -49,6 +48,7 @@ export const loadGame = () => {
     animations.add(new ShootAnimation(origin, target));
   });
 
+  ui.update(game.state);
   runFrame();
 };
 

@@ -19,14 +19,13 @@ export class ContextualDialog {
       const merchantColumn = $container.querySelector("#merchant .items") as HTMLDivElement;
 
       playerColumn.innerHTML = ""
-      console.log(player.inventory.content)
       player.inventory.content.forEach((item) => {
         const text = `${item.name} - ${item.quantity}`;
         const row = playerColumn.querySelector(`#${item.id}`);
         if (!row) {
           const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
           newRow?.addEventListener("click", () => {
-            bus.emit(EVENTS.ITEM_TRANSFERED, { from: player, to: merchant, item: item, quantity: 1 } as ITEM_TRANSFERED)
+            bus.emit(EVENTS.ITEM_TRANSFERED, { from: player, to: merchant, item, quantity: 1 } as ITEM_TRANSFERED)
           })
           playerColumn.appendChild(newRow);
         } else {
@@ -35,14 +34,14 @@ export class ContextualDialog {
       });
 
 
-
+      merchantColumn.innerHTML = ""
       merchant.inventory.content.forEach((item) => {
         const text = `${item.name} - ${item.quantity}`;
         const row = merchantColumn.querySelector(`#${item.id}`);
         if (!row) {
           const newRow = createNode({ type: "p", content: text, id: item.id, className: "item"});
           newRow?.addEventListener("click", () => {
-            bus.emit(EVENTS.ITEM_TRANSFERED, { from: merchant, to: player, item: item, quantity: 1 } as ITEM_TRANSFERED)
+            bus.emit(EVENTS.ITEM_TRANSFERED, { from: merchant, to: player, item, quantity: 1 } as ITEM_TRANSFERED)
           })
           merchantColumn.appendChild(newRow);
         } else {

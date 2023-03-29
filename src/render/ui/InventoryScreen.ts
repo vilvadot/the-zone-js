@@ -7,6 +7,7 @@ export class InventoryScreen {
       "#inventory .ui_panel--content"
     ) as HTMLDivElement;
 
+    $container.innerHTML = ""
     playerInventory.content.forEach((item) => {
       const text = `${item.name} - ${item.quantity}`;
       const row = $container.querySelector(`#${item.id}`);

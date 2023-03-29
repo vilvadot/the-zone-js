@@ -6,6 +6,7 @@ import {
   Movement,
   Collision,
   Targetting,
+  Trading,
   Travel,
   Shooting,
   AnomalyDiscovery
@@ -18,41 +19,14 @@ import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
 import { KEYS } from "./input.js";
-import { ACTION_EXECUTED_PAYLOAD, EVENTS, ITEM_TRANSFERED } from "./events.js";
+import { ACTION_EXECUTED_PAYLOAD } from "./events.js";
 import { Debug } from "./infra/debug.js";
 import { Talk } from "./systems/Talk.js";
 import { GameMode } from "./GameMode.js";
 import { Pickup } from "./systems/Pickup.js";
-import { Item } from "./entities/items/index.js";
-import { Entities, Entity } from "./entities/index.js";
+import { Entities } from "./entities/index.js";
 import { GlobalCoordinates } from "./GlobalCoordinates.js";
 import { Player } from "./entities/Player.js";
-
-class InventorySystem {
-  bus: Bus;
-
-  constructor(bus) {
-    this.bus = bus;
-  }
-
-  handleSubscriptions() {
-    this.bus.subscribe(EVENTS.ITEM_TRANSFERED, ({ item, from, to, quantity }: ITEM_TRANSFERED) => {
-      const sourceItem = from.inventory.content.find(({ name }) => name === item.name) as Item
-      sourceItem.quantity -= quantity
-
-      if(sourceItem.quantity === 0 ){
-        from.inventory.content = from.inventory.content.filter(({ id }) => id !== item.id)
-      } 
-
-      const itemAlreadyInInventory = to.inventory.content.find(({ name }) => name === item.name)
-      if (itemAlreadyInInventory) {
-        itemAlreadyInInventory.quantity = itemAlreadyInInventory.quantity + quantity
-      } else {
-        to.inventory.content.push(item)
-      }
-    })
-  }
-}
 
 export interface GameState {
   fov: FOVIndex,
@@ -73,7 +47,7 @@ export class Game {
   private entityManager: EntityManager;
   private areaManager: AreaManager;
   private mode: GameMode;
-  private inventory: InventorySystem;
+  private trading: Trading;
 
   constructor(bus: Bus) {
     this.bus = bus;
@@ -84,7 +58,7 @@ export class Game {
     this.mode = new GameMode();
     this.entityManager = new EntityManager(this.bus, this.terrain);
     this.areaManager = new AreaManager(this.bus, this.terrain,);
-    this.inventory = new InventorySystem(bus)
+    this.trading = new Trading(bus)
     this.handleSubscriptions();
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
@@ -92,7 +66,7 @@ export class Game {
   handleSubscriptions() {
     this.entityManager.handleSubscriptions();
     this.areaManager.handleSubscriptions();
-    this.inventory.handleSubscriptions();
+    this.trading.handleSubscriptions();
   }
 
   get entities() {
