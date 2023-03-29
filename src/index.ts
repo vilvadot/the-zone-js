@@ -1,7 +1,7 @@
 import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
 import { handleInput } from "./input.js";
-import { EVENTS, MOUSE_MOVED } from "./events.js";
+import { EVENTS, MOUSE_POSITION } from "./events.js";
 import { AnimationQueue, HitAnimation } from "./animations/index.js";
 import { FPS_CAP, isTextMode } from "./config.js";
 import { ShootAnimation } from "./animations/animations.js";
@@ -16,7 +16,7 @@ export const loadGame = () => {
   const game = new Game(bus);
   const ui = new UIRenderer(bus);
   const animations = new AnimationQueue();
-  let mouse: MOUSE_MOVED = { x: undefined, y: undefined};
+  let mouse: MOUSE_POSITION = { x: undefined, y: undefined};
 
   const runFrame = () => {
     if (isTextMode()) {
@@ -24,31 +24,21 @@ export const loadGame = () => {
     } else {
       TileRenderer.run(display, game.state, animations, mouse);
     }
-  
-    ui.update(game.state);
 
     setTimeout(() => {
       requestAnimationFrame(runFrame);
     }, 1000 / FPS_CAP);
   };
 
+  handleInput(bus);
 
   bus.subscribe(EVENTS.MOUSE_MOVED, (mousePosition) => {
     mouse = mousePosition;
   });
   
-  handleInput(bus);
-  handleSubscriptions(bus, game, animations);
-  runFrame();
-};
-
-const handleSubscriptions = (
-  bus: Bus,
-  game: Game,
-  animations: AnimationQueue,
-) => {
   bus.subscribe(EVENTS.ACTION_EXECUTED, (action) => {
     game.runMainLoop(action);
+    ui.update(game.state);
   });
 
   bus.subscribe(EVENTS.HIT, ({ x, y }) => { // Responsability of the glyph renderer
@@ -58,7 +48,8 @@ const handleSubscriptions = (
   bus.subscribe(EVENTS.SHOT_FIRED, ({ origin, target }) => {
     animations.add(new ShootAnimation(origin, target));
   });
-  
+
+  runFrame();
 };
 
 window.onload = () => loadGame();

@@ -17,7 +17,7 @@ export enum EVENTS {
   AREA_CREATED = "AREA_CREATED",
 }
 
-export type MOUSE_MOVED = { x: number | undefined, y: number | undefined}
+export type MOUSE_POSITION = { x: number | undefined, y: number | undefined}
 export type AREA_CREATED_PAYLOAD = { area: Area}
 export type ITEM_TRANSFERED = { item: Item, from: Merchant | Player, to: Merchant | Player, quantity: number}
 export type ACTION_EXECUTED_PAYLOAD = { key: KEYS, x?: number, y?: number}
