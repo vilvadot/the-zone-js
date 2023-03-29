@@ -81,7 +81,6 @@ export class Game {
   }
 
   runMainLoop(action: ACTION) {
-    console.log(action)
     Talk.run(action, this.entities, this.mode)
     Trading.run(action)
 

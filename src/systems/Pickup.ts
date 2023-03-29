@@ -7,8 +7,6 @@ export class Pickup {
   static run(action: ACTION, entities: Entities, entityManager: EntityManager) {
     if (action.name !== ACTION_NAME.PICKUP) return
     
-    console.log('pickup!')
-
     const player = entities.find(({ isPlayer }) => isPlayer) as Player;
     const itemId = player.collision.areas.overlap[0];
     const item = entityManager.get(itemId)
