@@ -14,7 +14,5 @@ export class Talk {
     if (!target?.isTalkable) return;
 
     gameMode.toggleDialog();
-
-    console.log("talking to", target.name);
   }
 }

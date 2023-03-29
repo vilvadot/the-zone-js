@@ -1,23 +1,22 @@
-import { KEYS } from "../input.js";
+import { ACTION } from "../actions.js";
+import { Entities } from "../entities/index.js";
 
 export class Targetting {
-  static run(entities, action?) {
+  static run(entities: Entities, action?: ACTION) {
     for (const { position, target, collision } of entities) {
       if (!position || !target || !collision) continue;
-
       if (!action) continue;
 
-      const { key } = action;
-      const { ArrowRight, ArrowLeft, ArrowUp, ArrowDown, A, W, S, D } = KEYS
+      const { direction } = action.payload;
 
       // Todo: Decouple from key input
-      if (key === ArrowRight || key === D) {
+      if (direction === 'east') {
         target.id = collision.areas.east[0];
-      } else if (key === ArrowLeft || key === A) {
+      } else if (direction === 'west') {
         target.id = collision.areas.west[0];
-      } else if (key === ArrowUp || key === W) {
+      } else if (direction === 'north') {
         target.id = collision.areas.north[0];
-      } else if (key === ArrowDown || key === S) {
+      } else if (direction === 'south') {
         target.id = collision.areas.south[0];
       }
     }

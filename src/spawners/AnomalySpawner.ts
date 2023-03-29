@@ -11,7 +11,6 @@ export class AnomalySpawner {
     new ROT.Map.Cellular()
       .randomize(filled)
       .create((x: number, y: number, isFilled: boolean) => {
-        console.log(isFilled)
         if (!isFilled) return
 
         result.push(new Anomaly(x, y));
