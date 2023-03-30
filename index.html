@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="static/styles/reset.css" />
   <link rel="stylesheet" href="static/styles/main.css" />
   <link rel="stylesheet" href="static/styles/ui.css" />
-  <link rel="stylesheet" href="static/styles/contextual.css" />
+  <link rel="stylesheet" href="static/styles/dialog.css" />
   <link rel="icon" type="image/png" href="static/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,14 +13,16 @@
   <script src="dist/index.js" type="module"></script>
 
   <figure id="game-container">
-    <div id="board"></div>
+    <div id="board">
+      <div id="trade-dialog" class="overlay"></div>
+    </div>
     <div id="sidebar">
-      <div id="health" class="ui_panel"></div>
-      <div id="inventory" class="ui_panel"></div>
+      <div id="health" class="panel"></div>
+      <div id="inventory" class="panel"></div>
     </div>
     <div id="bottom-bar">
-      <div id="logs" class="ui_panel"></div>
+      <div id="logs" class="panel"></div>
     </div>
-    <div id="trading-dialog" class="overlay"></div>
   </figure>
+
 </body>

@@ -1,0 +1,32 @@
+.dialog {
+    height: 400px;
+    width: 500px;
+    display: flex;
+    background: black;
+    border: 1px solid white;
+    justify-content: space-between;
+    z-index: 2;
+    padding: 24px;
+}
+
+.dialog h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+    font-weight: bold;
+}
+
+.dialog > div {
+    padding: 25px;
+    border: 1px solid white;
+}
+
+.dialog a{
+    display:block;
+    margin-bottom: 4px;
+}
+
+.dialog a:hover{
+    cursor: pointer;
+    color: red;
+}
+

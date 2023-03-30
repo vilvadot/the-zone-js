@@ -1,3 +1,5 @@
+/* Main Layout */
+
 #game-container{
   height: 100%;
   display: grid;
@@ -33,29 +35,25 @@
   height: 100%;
 }
 
-#bottom-bar .ui_panel{
+.overlay {
+  width: 100%;
   height: 100%;
+  grid-column: 1;
+  grid-row: 1;
+  position: absolute;
+  visibility: hidden;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.ui_panel{
+.panel{
+  height: 100%;
   width: 100%;
   border: 1px solid white;
 }
 
-.ui_panel--content{
-  padding:10px;
-  overflow: hidden;
-}
-
-#log_messages{
-  max-height: 100px;
-}
-
-.ui_log--message{
-  padding: 4px;
-}
-
-.ui_panel--title{
+.panel--title{
   font-size: 16px;
   padding: 3px;
   display: inline-block;
@@ -63,4 +61,9 @@
   background: black;
   margin-top: -10px;
   font-weight: bold;
+}
+
+.panel--content{
+  padding:10px;
+  overflow: hidden;
 }

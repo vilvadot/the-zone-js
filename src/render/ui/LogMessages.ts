@@ -9,7 +9,7 @@ export class LogMessages {
   }
 
   update(message, color) {
-    const $container = this.node.querySelector(".ui_panel--content")!;
+    const $container = this.node.querySelector(".panel--content")!;
     console.log(this.node)
     const $message = createNode({
       type: "p",
@@ -23,8 +23,8 @@ export class LogMessages {
 
   create() {
     this.node.innerHTML = `
-      <h2 class="ui_panel--title">Messages</h2>
-        <div class="ui_panel--content">
+      <h2 class="panel--title">Messages</h2>
+        <div class="panel--content" style="max-height: 140px;">
       </div>
         `
   }

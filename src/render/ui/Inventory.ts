@@ -13,7 +13,7 @@ export class Inventory implements UIComponent {
   update(gameState: GameState) {
     this.create()
 
-    const $container = this.node.querySelector(".ui_panel--content")!;
+    const $container = this.node.querySelector(".panel--content")!;
     const inventory = gameState.player.inventory.content;
     inventory.forEach((item) => {
       const text = `${item.name} - ${item.quantity}`;
@@ -25,8 +25,8 @@ export class Inventory implements UIComponent {
 
   create() {
     this.node.innerHTML = `
-    <h2 class="ui_panel--title">Inventory</h2>
-      <div class="ui_panel--content">
+    <h2 class="panel--title">Inventory</h2>
+      <div class="panel--content">
     </div>
     `
   }

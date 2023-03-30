@@ -24,8 +24,8 @@ export class Health implements UIComponent {
 
   create() {
     this.node.innerHTML = `
-      <h2 class="ui_panel--title">Health</h2>
-      <div class="ui_panel--content">
+      <h2 class="panel--title">Health</h2>
+      <div class="panel--content">
         <span id="health-bar"></span>
       </div>`
   }

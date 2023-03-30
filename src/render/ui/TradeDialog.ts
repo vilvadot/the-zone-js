@@ -13,24 +13,22 @@ export class TradeDialog implements UIComponent {
 
   constructor(bus: Bus) {
     this.bus = bus;
-    this.node = document.querySelector("#trading-dialog")!;
+    this.node = document.querySelector("#trade-dialog")!;
     this.create()
   }
 
   create() {
     this.node.innerHTML = `
-      <div class="contextual_container">
-        <div class="floating_window">
-          <div class="column">
+        <div class="dialog">
+          <div>
             <h2>Player's inventory</h2>
-            <div id="player"></div>
+            <div id="sender"></div>
           </div>
-          <div class="column">
+          <div>
             <h2>Merchant's inventory</h2>
-            <div id="merchant"></div>
+            <div id="receiver"></div>
           </div>
         </div>
-      </div>
       `
   }
 
@@ -49,14 +47,14 @@ export class TradeDialog implements UIComponent {
     this.show()
 
     const merchant = findAdjacent(player, entities); // TODO: This shouldnt be here but in the game core
-    this.createItemList(player, merchant, "player");
-    this.createItemList(merchant, player, 'merchant');
+    this.createItemList(player, merchant, "sender");
+    this.createItemList(merchant, player, 'receiver');
   }
 
   private createItemList(sender: Player | Merchant, receiver: Player | Merchant, id: string) {
     sender.inventory.content.forEach((item) => {
       const text = `${item.name} - ${item.quantity}`;
-      const row = createNode({ type: "p", content: text, id: item.id, className: "item" });
+      const row = createNode({ type: "a", content: text, id: item.id, className: "item" });
 
       row.addEventListener("click", () => {
         const action = {
@@ -72,7 +70,7 @@ export class TradeDialog implements UIComponent {
         this.bus.emit(EVENTS.ACTION_EXECUTED, action);
       });
 
-      const $container = this.node.querySelector(`#trading-dialog #${id}`) as HTMLDivElement;
+      const $container = this.node.querySelector(`#${id}`) as HTMLDivElement;
       $container.appendChild(row);
     });
   }
