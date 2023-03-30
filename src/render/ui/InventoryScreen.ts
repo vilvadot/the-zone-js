@@ -1,7 +1,8 @@
 import { GameState } from "../../Game.js";
 import { createNode } from "../../util/index.js";
+import { UIComponent } from "../UIComponent.js";
 
-export class InventoryScreen {
+export class InventoryScreen implements UIComponent {
   constructor() {
     this.create()
   }

@@ -8,10 +8,7 @@ import { GlobalCoordinates } from "../GlobalCoordinates.js";
 import { ContextualDialog } from "./ui/ContextualDialog.js";
 import { InventoryScreen } from "./ui/InventoryScreen.js";
 import { GameState } from "../Game.js";
-
-interface UIComponent {
-  update: (gameState: GameState) => void,
-}
+import { UIComponent } from "./UIComponent";
 
 export class UIRenderer {
   bus: Bus;
@@ -22,6 +19,7 @@ export class UIRenderer {
     this._asyncSubscriptions();
     this.components = [
       new InventoryScreen(),
+      new HealthBar(),
     ]
   }
 
@@ -36,7 +34,6 @@ export class UIRenderer {
 
     AreaCoordinates.update(coordinates);
     TurnsCounter.update(turn);
-    HealthBar.update(player.health.value, player.health.maxValue);
     ContextualDialog.update(mode, this.bus, player, entities);
 
     this.components.forEach(component => component.update(gameState))
