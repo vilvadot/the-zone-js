@@ -32,6 +32,14 @@ But you are still alive today. The grind never ends. Maybe tomorrow. Take care s
 | Pickup objects | E            |
 
 
+## Debugging Flags
+
+You have a few debug flags that can be used for debugging by setting the parameter in the url like so: `/game?flag=true`
+
+- **text**: Activates text mode
+- **debug**: Removes Field of View. Shows anomalies
+
+
 ## How to use it
 
 1. Run `npm install`
