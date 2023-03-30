@@ -82,7 +82,7 @@ export class Game {
 
   runMainLoop(action: ACTION) {
     Talk.run(action, this.entities, this.mode)
-    Trading.run(action)
+    Trading.run(action, this.logger)
 
     if (this.mode.isDialog()) return
 

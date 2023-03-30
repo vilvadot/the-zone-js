@@ -58,9 +58,8 @@ export class TradeDialog implements UIComponent {
     transaction: "sell" | "buy"
   ) {
     const inventory = transaction === "sell" ? player.inventory : merchant.inventory;
-    const itemsWithoutAmmo = inventory.content.filter((item) => item.name !== "Ammo");
 
-    itemsWithoutAmmo.forEach((item) => {
+    inventory.content.forEach((item) => {
       const price = transaction === "sell" ? PRICES[item.name].buy : PRICES[item.name].sell
       const row = createNode({ type: "a" });
       row.innerHTML = `

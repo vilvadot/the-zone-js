@@ -2,9 +2,10 @@ import { ACTION, TRADE_PAYLOAD } from "../actions.js";
 import { Inventory } from "../components/index.js";
 import { Item } from "../entities/items/index.js";
 import { PRICES } from "../entities/items/prices.js";
+import { Logger } from "../infra/logger.js";
 
 export class Trading {
-  static run(action: ACTION) {
+  static run(action: ACTION, logger: Logger) {
     if(action.name !== 'trade') return
     const { item, player, merchant, quantity, transaction } = action.payload as TRADE_PAYLOAD;
     
@@ -23,7 +24,10 @@ export class Trading {
     }
 
     const buyerAmmo = findAmmo(to.inventory)!.quantity
-    if(buyerAmmo - (quantity * price) < 0) return
+    if(buyerAmmo - (quantity * price) < 0) {
+      logger.log(`You don't have enough Ammo to buy that!`, "yellow");
+      return
+    }
 
     findAmmo(from.inventory)!.quantity += (price * quantity)
     findAmmo(to.inventory)!.quantity -= (price * quantity)
