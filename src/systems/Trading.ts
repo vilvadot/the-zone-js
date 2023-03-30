@@ -7,12 +7,19 @@ import { Logger } from "../infra/logger.js";
 export class Trading {
   static run(action: ACTION, logger: Logger) {
     if(action.name !== 'trade') return
+
+    // TODO: Refactor
+      // action does not need all those entities
+      // price selection is a trainwreck
+      // cleanup the rest
     const { item, player, merchant, quantity, transaction } = action.payload as TRADE_PAYLOAD;
+    
+
     
     let to;
     let from;
     let price;
-    // Exchange ammo
+    
     if(transaction === 'buy'){
       to = player;
       from = merchant
