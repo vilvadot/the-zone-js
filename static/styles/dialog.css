@@ -1,10 +1,10 @@
 .dialog {
-    height: 400px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     display: flex;
     background: black;
     border: 1px solid white;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 2;
     padding: 24px;
 }
@@ -21,7 +21,8 @@
 }
 
 .dialog a{
-    display:block;
+    display:flex;
+    justify-content: space-between;
     margin-bottom: 4px;
 }
 

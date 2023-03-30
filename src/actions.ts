@@ -23,6 +23,6 @@ export enum ACTION_NAME {
 
 export type MOVE_PAYLOAD = { direction: "north" | "south" | "east" | "west" }
 export type CLICK_PAYLOAD = { x: number, y: number }
-export type TRADE_PAYLOAD = { from: Player | Merchant, to: Player | Merchant, item: Item, quantity: number }
+export type TRADE_PAYLOAD = { player: Player, merchant: Merchant, item: Item, quantity: number, transaction: "sell" | "buy" }
 
 export type ACTION = { name: ACTION_NAME, payload: any }

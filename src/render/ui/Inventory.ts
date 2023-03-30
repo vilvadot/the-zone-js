@@ -16,7 +16,7 @@ export class Inventory implements UIComponent {
     const $container = this.node.querySelector(".panel--content")!;
     const inventory = gameState.player.inventory.content;
     inventory.forEach((item) => {
-      const text = `${item.name} - ${item.quantity}`;
+      const text = `${item.name} (${item.quantity})`;
       const row = createNode({ type: "p", content: text, id: item.id });
 
       $container.appendChild(row);

@@ -6,7 +6,6 @@ import { Entity } from "./entities/index.js";
 import { ACTION_NAME, EVENTS } from "./actions.js";
 import { Game } from "./Game.js";
 import { Bus } from "./infra/bus.js";
-import { KEYS } from "./input.js";
 import { Terrain } from "./terrain/Terrain.js";
 import { repeat } from "./util/index.js";
 
