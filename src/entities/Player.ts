@@ -38,6 +38,6 @@ export class Player {
     this.velocity = new Velocity(0, 0);
     this.collision = new Collision();
     this.keyboardControlled = true;
-    this.inventory = new Inventory([new Ammo(10), new Artifact(1)]);
+    this.inventory = new Inventory([new Ammo(10)]);
   }
 }
