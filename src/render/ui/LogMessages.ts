@@ -1,9 +1,16 @@
 import { createNode } from "../../util/index.js";
 
 export class LogMessages {
-  static update(message, color) {
-    const $logs = document.querySelector("#log_messages");
+  node: HTMLElement;
 
+  constructor() {
+    this.node = document.querySelector("#logs") as HTMLElement;
+    this.create()
+  }
+
+  update(message, color) {
+    const $container = this.node.querySelector(".ui_panel--content")!;
+    console.log(this.node)
     const $message = createNode({
       type: "p",
       className: "ui_log--message",
@@ -11,6 +18,14 @@ export class LogMessages {
       content: message,
     });
 
-    $logs?.prepend($message);
+    $container.prepend($message);
+  }
+
+  create() {
+    this.node.innerHTML = `
+      <h2 class="ui_panel--title">Messages</h2>
+        <div class="ui_panel--content">
+      </div>
+        `
   }
 }

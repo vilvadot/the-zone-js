@@ -1,8 +1,11 @@
 import { GameState } from "../../Game";
-import { UIComponent } from "../UIComponent";
+import { UIComponent } from "./UIComponent";
 
-export class HealthBar implements UIComponent {
+export class Health implements UIComponent {
+  node: HTMLElement;
+
   constructor() {
+    this.node = document.querySelector("#health") as HTMLDivElement;
     this.create()
   }
 
@@ -20,8 +23,7 @@ export class HealthBar implements UIComponent {
   }
 
   create() {
-    const component = document.querySelector("#health") as HTMLDivElement;
-    component.innerHTML = `
+    this.node.innerHTML = `
       <h2 class="ui_panel--title">Health</h2>
       <div class="ui_panel--content">
         <span id="health-bar"></span>
