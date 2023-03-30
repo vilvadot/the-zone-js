@@ -9,45 +9,60 @@ import { findAdjacent } from "../../util/entities.js";
 export class ContextualDialog {
   static update(mode: GameMode, bus: Bus, player: Player, entities: Entities) {
 
-    const $container = document.querySelector("#contextual-layer") as HTMLDivElement;
-
+    const $container = document.querySelector("#trading-layer") as HTMLDivElement;
+    
+    const merchant = findAdjacent(player, entities); // TODO: this shouldnt be done here but in the core
+    
+    $container.innerHTML = `<div class="contextual_container">
+    <div class="floating_window">
+    <div id="player" class="column">
+    <h2>Player's inventory</h2>
+    <div class="items"></div>
+    </div>
+    <div id="merchant" class="column">
+    <h2>${merchant.name}'s inventory</h2>
+    <div class="items"></div>
+    </div>
+    </div>
+    </div>`
+    
     if (mode.isDialog()) {
-      $container.style.visibility = "visible";
+      
+        $container.style.visibility = "visible";
+        const playerColumn = $container.querySelector("#player .items") as HTMLDivElement;
+        const merchant = findAdjacent(player, entities); // TODO: this every render sounds overkill
+        const merchantColumn = $container.querySelector("#merchant .items") as HTMLDivElement;
 
-      const playerColumn = $container.querySelector("#player .items") as HTMLDivElement;
-      const merchant = findAdjacent(player, entities); // TODO: this every render sounds overkill
-      const merchantColumn = $container.querySelector("#merchant .items") as HTMLDivElement;
-
-      playerColumn.innerHTML = ""
-      player.inventory.content.forEach((item) => {
-        const text = `${item.name} - ${item.quantity}`;
-        const row = playerColumn.querySelector(`#${item.id}`);
-        if (!row) {
-          const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
-          newRow?.addEventListener("click", () => {
-            bus.emit(EVENTS.ACTION_EXECUTED, { name: ACTION_NAME.TRADE, payload: { from: player, to: merchant, item, quantity: 1 } as TRADE_PAYLOAD })
-          })
-          playerColumn.appendChild(newRow);
-        } else {
-          row.innerHTML = text;
-        }
-      });
+        playerColumn.innerHTML = ""
+        player.inventory.content.forEach((item) => {
+          const text = `${item.name} - ${item.quantity}`;
+          const row = playerColumn.querySelector(`#${item.id}`);
+          if (!row) {
+            const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
+            newRow?.addEventListener("click", () => {
+              bus.emit(EVENTS.ACTION_EXECUTED, { name: ACTION_NAME.TRADE, payload: { from: player, to: merchant, item, quantity: 1 } as TRADE_PAYLOAD })
+            })
+            playerColumn.appendChild(newRow);
+          } else {
+            row.innerHTML = text;
+          }
+        });
 
 
-      merchantColumn.innerHTML = ""
-      merchant.inventory.content.forEach((item) => {
-        const text = `${item.name} - ${item.quantity}`;
-        const row = merchantColumn.querySelector(`#${item.id}`);
-        if (!row) {
-          const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
-          newRow?.addEventListener("click", () => {
-            bus.emit(EVENTS.ACTION_EXECUTED, { name:  ACTION_NAME.TRADE, payload: { from: merchant, to: player, item, quantity: 1 } as TRADE_PAYLOAD })
-          })
-          merchantColumn.appendChild(newRow);
-        } else {
-          row.innerHTML = text;
-        }
-      });
+        merchantColumn.innerHTML = ""
+        merchant.inventory.content.forEach((item) => {
+          const text = `${item.name} - ${item.quantity}`;
+          const row = merchantColumn.querySelector(`#${item.id}`);
+          if (!row) {
+            const newRow = createNode({ type: "p", content: text, id: item.id, className: "item" });
+            newRow?.addEventListener("click", () => {
+              bus.emit(EVENTS.ACTION_EXECUTED, { name:  ACTION_NAME.TRADE, payload: { from: merchant, to: player, item, quantity: 1 } as TRADE_PAYLOAD })
+            })
+            merchantColumn.appendChild(newRow);
+          } else {
+            row.innerHTML = text;
+          }
+        });
     } else {
       $container.style.visibility = "hidden";
     }

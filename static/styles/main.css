@@ -12,21 +12,17 @@ html {
 
 * {
   box-sizing: border-box;
+  font-family: 'Courier Prime', monospace !important;
+  font-size: 16px;
 }
 
-*:hover, p:hover, div:hover {
+
+*:hover,
+p:hover,
+div:hover {
   cursor: default;
 }
 
-.container {
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-#game {
-  position: relative;
-}
 
 canvas {
   position: relative;

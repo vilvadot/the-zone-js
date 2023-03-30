@@ -1,22 +1,38 @@
-import { Inventory } from "../../components/index.js";
+import { GameState } from "../../Game.js";
 import { createNode } from "../../util/index.js";
 
 export class InventoryScreen {
-  static update(playerInventory: Inventory) {
+  constructor() {
+    this.create()
+  }
+
+  update(gameState: GameState) {
     const $container = document.querySelector(
       "#inventory .ui_panel--content"
     ) as HTMLDivElement;
 
-    $container.innerHTML = ""
-    playerInventory.content.forEach((item) => {
+    this.reset($container)
+
+    const inventory = gameState.player.inventory.content;
+
+    inventory.forEach((item) => {
       const text = `${item.name} - ${item.quantity}`;
-      const row = $container.querySelector(`#${item.id}`);
-      if (!row) {
-        const newRow = createNode({ type: "p", content: text, id: item.id });
-        $container.appendChild(newRow);
-      } else {
-        row.innerHTML = text;
-      }
+      const row = createNode({ type: "p", content: text, id: item.id });
+
+      $container.appendChild(row);
     });
+  }
+
+  reset($container: HTMLElement) {
+    $container.innerHTML = "";
+  }
+
+  create() {
+    const component = document.querySelector('#inventory')!
+    component.innerHTML = `
+    <h2 class="ui_panel--title">Inventory</h2>
+      <div class="ui_panel--content">
+    </div>
+    `
   }
 }

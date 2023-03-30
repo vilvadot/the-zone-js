@@ -134,6 +134,6 @@ const findEntity = (entities: Entity[], name: string) => {
 
 const createFakeGameNode = () => {
   const game = document.createElement("div");
-  game.id = "game";
+  game.id = "board";
   document.body.appendChild(game);
 };

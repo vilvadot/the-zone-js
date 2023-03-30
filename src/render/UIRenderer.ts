@@ -9,12 +9,20 @@ import { ContextualDialog } from "./ui/ContextualDialog.js";
 import { InventoryScreen } from "./ui/InventoryScreen.js";
 import { GameState } from "../Game.js";
 
+interface UIComponent {
+  update: (gameState: GameState) => void,
+}
+
 export class UIRenderer {
   bus: Bus;
+  components: Array<UIComponent>;
 
   constructor(bus) {
     this.bus = bus;
     this._asyncSubscriptions();
+    this.components = [
+      new InventoryScreen(),
+    ]
   }
 
   _asyncSubscriptions() {
@@ -29,8 +37,9 @@ export class UIRenderer {
     AreaCoordinates.update(coordinates);
     TurnsCounter.update(turn);
     HealthBar.update(player.health.value, player.health.maxValue);
-    InventoryScreen.update(player.inventory);
     ContextualDialog.update(mode, this.bus, player, entities);
+
+    this.components.forEach(component => component.update(gameState))
   }
 }
 

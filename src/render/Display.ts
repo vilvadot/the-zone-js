@@ -30,7 +30,7 @@ export class Display {
   constructor() {
     this.display = new ROT.Display(OPTIONS);
 
-    const canvas = document.getElementById("game");
+    const canvas = document.getElementById("board");
     canvas!.appendChild(this.display.getContainer());
   }
 

@@ -12,10 +12,8 @@
     rel="stylesheet">
   <script src="dist/index.js" type="module"></script>
 
-  <div class="container">
-    <div id="game_section">
-      <div id="game"></div>
-    </div>
+  <figure id="game-container">
+    <div id="board"></div>
     <div id="sidebar">
       <div id="stats" class="ui_panel">
         <h2 class="ui_panel--title">Stats</h2>
@@ -24,11 +22,7 @@
           <span id="ui_healthBar"></span>
         </div>
       </div>
-      <div id="inventory" class="ui_panel  full-height">
-        <h2 class="ui_panel--title">Inventory</h2>
-        <div class="ui_panel--content">
-        </div>
-      </div>
+      <div id="inventory" class="ui_panel full-height"></div>
     </div>
     <div id="bottom-bar">
       <div id="messages" class="ui_panel">
@@ -37,18 +31,6 @@
         </div>
       </div>
     </div>
-    <div id="contextual-layer">
-      <div class="contextual_container">
-        <div class="floating_window">
-          <div id="player" class="column">
-            <h2>Player's inventory</h2>
-            <div class="items"></div>
-          </div>
-          <div id="merchant" class="column">
-            <h2>Merchant's inventory</h2>
-            <div class="items"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="trading-layer" class="overlay"></div>
+  </figure>
 </body>
