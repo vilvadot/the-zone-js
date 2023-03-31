@@ -10,7 +10,7 @@ export class ArtifactSpawner {
       const x = randomInteger(WIDTH, 0);
       const y = randomInteger(HEIGHT, 0);
       
-      result.push(new Artifact(x, y));
+      result.push(new Artifact(1, x, y));
     });
 
     return result;

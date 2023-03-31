@@ -78,7 +78,7 @@ export class EntityManager {
   private spawnArtifacts(coordinates: GlobalCoordinates) {
     if (coordinates.isOrigin()) return;
 
-    Chance.withProbability(80, () => {
+    Chance.withProbability(100, () => {
       const artifacts = ArtifactSpawner.spawn(1);
 
       this.add(artifacts, coordinates);

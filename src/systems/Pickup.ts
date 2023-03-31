@@ -11,9 +11,9 @@ export class Pickup {
     const itemId = player.collision.areas.overlap[0];
     const item = entityManager.get(itemId)
 
-    if (!item?.inventoryVersion) return;
+    if (!item) return;
 
     entityManager.remove(item)
-    player.inventory.content.push(item.inventoryVersion);
+    player.inventory.content.push(item);
   }
 }

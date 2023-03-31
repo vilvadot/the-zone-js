@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { ACTION_NAME } from '../actions';
 import { Inventory } from '../components';
-import { Ammo, Artifact } from '../entities/items';
+import { Artifact } from '../entities/Artifact';
 import { PRICES } from '../entities/items/prices';
 import { Merchant } from '../entities/Merchant';
 import { Player } from '../entities/Player';

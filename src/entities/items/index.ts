@@ -19,9 +19,3 @@ export class Ammo extends Item {
     super("Ammo", quantity);
   }
 }
-
-export class Artifact extends Item {
-  constructor(quantity = 1) {
-    super("Artifact", quantity);
-  }
-}
