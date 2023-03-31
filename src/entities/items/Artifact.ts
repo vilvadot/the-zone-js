@@ -1,15 +1,7 @@
 import { Position, Sprite } from "../../components/index.js";
-import { uid } from "../../util/index.js";
+import {uid} from '../../util/index.js'
 
-export type ItemName = string;
-
-export interface Item {
-  name: ItemName;
-  id: string;
-  quantity: number;
-}
-
-export class Ammo implements Item{
+export class Artifact{
   id: string;
   quantity: number;
   name: string;
@@ -18,11 +10,12 @@ export class Ammo implements Item{
   isWalkable: boolean;
 
   constructor(quantity: number = 1, x?: number, y?: number) {
-    this.id = `ammo-${uid()}`;
+    this.id = `anomaly-${uid()}`;
     this.quantity = quantity;
-    this.name = "Ammo";
-    this.sprite = new Sprite('bullet');
+    this.name = "Artifact";
+    this.sprite = new Sprite('flame');
     this.position = new Position(x, y);
     this.isWalkable = true;
   }
 }
+

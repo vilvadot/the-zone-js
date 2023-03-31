@@ -53,7 +53,7 @@ export class Trading {
     if (!!ownedItemOfSameKind) {
       ownedItemOfSameKind.quantity += quantity;
     } else {
-      const itemCopy = new Item(item.name, quantity);
+      const itemCopy = item;
       to.inventory.content.push(itemCopy);
     }
   }
