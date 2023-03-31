@@ -4,7 +4,7 @@ import { createNode } from "../../util/dom.js";
 import { findAdjacent } from "../../util/entities.js";
 import { GameState } from "../../Game.js";
 import { Player } from "../../entities/Player.js";
-import { Merchant, PriceTable } from "../../entities/Merchant.js";
+import { Merchant } from "../../entities/Merchant.js";
 import { UIComponent } from "./UIComponent.js";
 import { PRICES } from "../../entities/items/prices.js";
 

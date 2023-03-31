@@ -5,11 +5,16 @@ import { Ammo, Artifact } from '../entities/items';
 import { PRICES } from '../entities/items/prices';
 import { Merchant } from '../entities/Merchant';
 import { Player } from '../entities/Player';
+import { Bus } from '../infra/bus';
+import { Logger } from '../infra/logger';
 import { Trading } from './Trading';
 
 // Both entities own ammo straight away
 
 describe("Trading system", () => {
+    const bus = new Bus()    
+    const logger = new Logger(bus)
+
     it("trades items from two entities", () => {
         const player = new Player()
         const artifact = new Artifact(1);
@@ -27,7 +32,7 @@ describe("Trading system", () => {
             }
         }
 
-        Trading.run(action);
+        Trading.run(action, logger);
 
         const merchantItems = getItemsName(merchant.inventory)
         expect(merchantItems).toEqual([...originalMerchantInventory, "Artifact"])
@@ -51,7 +56,7 @@ describe("Trading system", () => {
             }
         }
 
-        Trading.run(action);
+        Trading.run(action, logger);
 
         const merchantItems = itemsLength(merchant.inventory)
         expect(merchantItems).toEqual(originalMerchantItems)
@@ -78,7 +83,7 @@ describe("Trading system", () => {
             }
         }
 
-        Trading.run(action);
+        Trading.run(action, logger);
 
         expect(itemsLength(player.inventory)).toEqual(1)
         const playerAmmo = countAmmo(player.inventory)
@@ -104,7 +109,7 @@ describe("Trading system", () => {
             }
         }
 
-        Trading.run(action);
+        Trading.run(action, logger);
 
         expect(itemsLength(player.inventory)).toEqual(2)
         const playerAmmo = countAmmo(player.inventory)
@@ -129,7 +134,7 @@ describe("Trading system", () => {
             }
         }
 
-        Trading.run(action);
+        Trading.run(action, logger);
 
         const playerAmmo = countAmmo(player.inventory)
         expect(playerAmmo).toEqual(originalPlayertAmmo)
