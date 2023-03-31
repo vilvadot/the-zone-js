@@ -20,7 +20,7 @@ describe("Death system", () => {
 
     Death.run([aliveEntity], entityManager);
 
-    expect(entityManager.kill).not.toHaveBeenCalled();
+    expect(entityManager.remove).not.toHaveBeenCalled();
   });
 
   it("kills an with health bellow alive threshold", () => {
@@ -29,7 +29,7 @@ describe("Death system", () => {
 
     Death.run([deadEntity], entityManager);
 
-    expect(entityManager.kill).toHaveBeenCalledWith(deadEntity);
+    expect(entityManager.remove).toHaveBeenCalledWith(deadEntity);
   });
 });
 
@@ -42,9 +42,3 @@ class Entity {
     this.health = new Health(health);
   }
 }
-
-const entityManagerStub = () => {
-  return {
-    kill: vi.fn(),
-  };
-};

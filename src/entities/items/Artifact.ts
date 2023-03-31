@@ -1,7 +1,8 @@
 import { Position, Sprite } from "../../components/index.js";
 import {uid} from '../../util/index.js'
+import { Item } from "./index.js";
 
-export class Artifact{
+export class Artifact implements Item{
   id: string;
   quantity: number;
   name: string;

@@ -32,7 +32,7 @@ export class EntityManager {
     return this.player;
   }
 
-  get(entityId: string){
+  get(entityId: string) {
     return this.entities.find(entity => entity.id === entityId)
   }
 
@@ -40,13 +40,12 @@ export class EntityManager {
     return [this.player, ...this.entities];
   }
 
-  remove(entity: Entity){
+  remove(entity: Entity) {
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
   }
 
-  kill(entity: Entity) {
-    this.remove(entity);
-    this.entities.push(new Corpse(entity));
+  add(entity: Entity) {
+    this.entities.push(entity)
   }
 
   handleSubscriptions() {
@@ -70,7 +69,7 @@ export class EntityManager {
     );
   }
 
-  private add(entities: Entities, coordinates: GlobalCoordinates) {
+  private addMultiple(entities: Entities, coordinates: GlobalCoordinates) {
     this.entities = [...this.entities, ...entities];
     this.cache.push(coordinates.toString(), this.entities);
   }
@@ -81,7 +80,7 @@ export class EntityManager {
     Chance.withProbability(100, () => {
       const artifacts = ArtifactSpawner.spawn(1);
 
-      this.add(artifacts, coordinates);
+      this.addMultiple(artifacts, coordinates);
     });
   }
 
@@ -91,7 +90,7 @@ export class EntityManager {
     Chance.withProbability(100, () => {
       const artifacts = AnomalySpawner.spawn();
 
-      this.add(artifacts, coordinates);
+      this.addMultiple(artifacts, coordinates);
     });
   }
 
@@ -102,14 +101,14 @@ export class EntityManager {
       const enemySeed = `${coordinates.x + coordinates.y}${coordinates.y}`;
       const enemies = EnemySpawner.spawn(enemySeed);
 
-      this.add(enemies, coordinates);
+      this.addMultiple(enemies, coordinates);
     });
   }
 
   private spawnNPCs(coordinates: GlobalCoordinates) {
     if (!coordinates.isOrigin()) return;
 
-    this.add(NPCSpawner.spawn(), coordinates);
+    this.addMultiple(NPCSpawner.spawn(), coordinates);
   }
 
   private reset() {
