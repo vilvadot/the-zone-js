@@ -1,5 +1,6 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import { PseudoDog, Snake } from "../entities/enemies/Enemy.js";
+import { Snake } from "../entities/enemies/Enemy.js";
+import { PseudoDog } from "../entities/enemies/PseudoDog";
 import { EnemySpawner } from "./EnemySpawner.js";
 
 describe("EnemySpawner", () => {

@@ -13,7 +13,7 @@ export class Pickup {
 
     if (!item) return;
 
-    entityManager.remove(item)
+    entityManager.remove(item) // TODO: Remove from cache or it gets duped
     player.inventory.content.push(item);
   }
 }

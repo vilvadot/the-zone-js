@@ -1,4 +1,5 @@
-import { Snake, Enemy, PseudoDog, ENEMY } from "../entities/enemies/Enemy.js";
+import { Snake, Enemy, ENEMY } from "../entities/enemies/Enemy.js";
+import { PseudoDog } from "../entities/enemies/PseudoDog.js";
 import { repeat, pickRandom } from "../util/index.js";
 import { ENEMIES } from "../colors.js";
 

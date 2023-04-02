@@ -10,6 +10,14 @@ export class Death {
       if (health.value <= 0) {
         if(entity.isPlayer) window.location.reload()
         
+        const inventory = entity.inventory
+        if(inventory){
+          inventory.content.forEach((item) => {
+            item.position = entity.position;
+            entityManager.add(item)
+          })
+        }
+
         entityManager.remove(entity);
       }
 

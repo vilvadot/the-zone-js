@@ -1,5 +1,4 @@
 import { Cache } from "../Cache.js";
-import { Corpse } from "./Corpse.js";
 import { Player } from "./Player.js";
 import { Entities, Entity } from "./index.js";
 import { EVENTS } from "../actions.js";

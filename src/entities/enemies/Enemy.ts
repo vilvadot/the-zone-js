@@ -47,22 +47,3 @@ export class Snake extends Enemy {
     this.velocity = new Velocity(0, 0);
   }
 }
-
-export class PseudoDog extends Enemy {
-  name: string;
-  id: string;
-  health: Health;
-  damage: Damage;
-  sprite: Sprite;
-  velocity: Velocity;
-
-  constructor(x, y) {
-    super(x, y)
-    this.name = "pseudo dog";
-    this.id = `dog-${uid()}`;
-    this.health = new Health(3);
-    this.damage = new Damage(.5);
-    this.sprite = new Sprite('dog');
-    this.velocity = new Velocity(0, 0);
-  }
-}
