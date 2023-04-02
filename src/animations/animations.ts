@@ -20,7 +20,7 @@ export class ShootAnimation extends Animation {
     super();
     this.frames = [];
 
-    const line = drawLine(origin, target);
+    const line = drawLine(origin, target, 5);
     for (const point of line.slice(1)) {
       const frame = new Matrix().setValue(point.x, point.y, TILES.bullet);
       this.frames.push(frame);

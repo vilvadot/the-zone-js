@@ -1,13 +1,20 @@
 # TODO
 
 - README
-    - Explain how to play
+    x Explain how to play
+
+- Look
+    - Hover on entities to see details
 
 - Inventory
     - Stack items on pickup
+    - Use items (sausages recover health)
 
 - Trade
     - Find a better interface for the action (no need to pass Player and Merchant)
+
+- Anomaly
+    - Anomalies get detected on a range
 
 - Shooting
     - Bug: Death happens one turn offseted so corpse moves one tile
