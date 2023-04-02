@@ -10,7 +10,6 @@ export class LogMessages {
 
   update(message, color) {
     const $container = this.node.querySelector(".panel--content")!;
-    console.log(this.node)
     const $message = createNode({
       type: "p",
       className: "ui_log--message",

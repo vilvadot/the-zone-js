@@ -13,7 +13,7 @@ export class UIRenderer {
     this.renderAsyncComponents();
 
     this.components = [
-      new Inventory(),
+      new Inventory(this.bus),
       new Health(),
       new TradeDialog(this.bus)
     ]

@@ -25,6 +25,7 @@ import { Pickup } from "./systems/Pickup.js";
 import { Entities } from "./entities/index.js";
 import { GlobalCoordinates } from "./GlobalCoordinates.js";
 import { Player } from "./entities/Player.js";
+import { UseItem } from "./systems/UseItem.js";
 
 export interface GameState {
   fov: FOVIndex,
@@ -83,17 +84,18 @@ export class Game {
   runMainLoop(action: ACTION) {
     Talk.run(action, this.entities, this.mode)
     Trading.run(action, this.logger)
+    UseItem.run(action, this.logger, this.entities)
 
     if (this.mode.isDialog()) return
 
     Shooting.run(action, this.bus, this.logger, this.entities);
     KeyboardControl.run(action, this.entities);
+    Pathfinding.run(this.entities, this.terrain);
     Pickup.run(action, this.entities, this.entityManager)
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
     Targetting.run(this.entities, action);
-    Pathfinding.run(this.entities, this.terrain);
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);
     AnomalyDiscovery.run(this.entities)

@@ -67,3 +67,8 @@
   padding:10px;
   overflow: hidden;
 }
+
+.interactive:hover{
+  color: red;
+  cursor:pointer;
+}

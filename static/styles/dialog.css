@@ -25,9 +25,3 @@
     justify-content: space-between;
     margin-bottom: 4px;
 }
-
-.dialog a:hover{
-    cursor: pointer;
-    color: red;
-}
-

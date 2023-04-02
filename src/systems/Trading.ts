@@ -1,6 +1,5 @@
 import { ACTION, TRADE_PAYLOAD } from "../actions.js";
-import { Inventory } from "../components/index.js";
-import { Item } from "../entities/items/index.js";
+import { duplicateEntity, findAmmo, findItemOfSameType, removeFromInventory } from "../entities/helpers.js";
 import { PRICES } from "../entities/items/prices.js";
 import { Logger } from "../infra/logger.js";
 
@@ -13,8 +12,6 @@ export class Trading {
       // price selection is a trainwreck
       // cleanup the rest
     const { item, player, merchant, quantity, transaction } = action.payload as TRADE_PAYLOAD;
-    
-
     
     let to;
     let from;
@@ -39,26 +36,17 @@ export class Trading {
     findAmmo(from.inventory)!.quantity += (price * quantity)
     findAmmo(to.inventory)!.quantity -= (price * quantity)
 
-
     // Send item
-    if (item.quantity - quantity <= 0) {
-      from.inventory.content = from.inventory.content.filter((inventoryItem) => inventoryItem.id !== item.id)
-    } else {
-      item.quantity -= quantity;
-    }
+    removeFromInventory(from.inventory, item, quantity)
 
     // Receive item
-    const ownedItemOfSameKind = to.inventory.content.find(({ name }) => name === item.name);
-
-    if (!!ownedItemOfSameKind) {
-      ownedItemOfSameKind.quantity += quantity;
+    const ownedItem = findItemOfSameType(to.inventory, item)
+    if (!!ownedItem) {
+      ownedItem.quantity += quantity;
     } else {
-      const itemCopy = item;
+      var itemCopy = duplicateEntity(item);
+      itemCopy.quantity = quantity;
       to.inventory.content.push(itemCopy);
     }
   }
-}
-
-const findAmmo = (inventory: Inventory) => {
-  return inventory.content.find((item) => item.name === "Ammo")
 }

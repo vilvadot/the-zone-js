@@ -6,6 +6,7 @@ const sprite = (x:number, y: number) => [x * TILE_SIZE, y * TILE_SIZE]
 export const SPRITES = {
   anomaly: sprite(17, 2),
   bullet: sprite(15, 2),
+  cheese: sprite(7,6),
   corpse: sprite(8, 18),
   dirt: sprite(8, 2),
   dog: sprite(6, 8),

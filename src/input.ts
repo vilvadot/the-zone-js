@@ -51,7 +51,7 @@ export const handleInput = (bus) => {
     });
   });
 
-  window.addEventListener("click", (event) => {
+  canvas.addEventListener("click", (event) => {
     bus.emit(EVENTS.ACTION_EXECUTED, {
       name: ACTION_NAME.SHOOT,
       payload: { // @ts-ignore

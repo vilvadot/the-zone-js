@@ -1,12 +1,16 @@
+import { ACTION_NAME, EVENTS } from "../../actions.js";
 import { GameState } from "../../Game.js";
+import { Bus } from "../../infra/bus.js";
 import { createNode } from "../../util/index.js";
 import { UIComponent } from "./UIComponent.js";
 
 export class Inventory implements UIComponent {
   node: HTMLElement;
+  bus: Bus;
 
-  constructor() {
+  constructor(bus) {
     this.node = document.querySelector("#inventory") as HTMLDivElement;
+    this.bus = bus;
     this.create()
   }
 
@@ -17,7 +21,11 @@ export class Inventory implements UIComponent {
     const inventory = gameState.player.inventory.content;
     inventory.forEach((item) => {
       const text = `${item.name} (${item.quantity})`;
-      const row = createNode({ type: "p", content: text, id: item.id });
+      const row = createNode({ type: "a", content: text, id: item.id, className: "interactive", style: "display: block;" });
+      row.addEventListener('click', () => {
+        console.log("click!")
+        this.bus.emit(EVENTS.ACTION_EXECUTED, { name: ACTION_NAME.USE, payload: { item } })
+      })
 
       $container.appendChild(row);
     });

@@ -1,7 +1,8 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { ACTION_NAME } from '../actions';
 import { Inventory } from '../components';
 import { Artifact } from '../entities/Artifact';
+import { Ammo } from '../entities/items/Ammo';
 import { PRICES } from '../entities/items/prices';
 import { Merchant } from '../entities/Merchant';
 import { Player } from '../entities/Player';
@@ -12,14 +13,21 @@ import { Trading } from './Trading';
 // Both entities own ammo straight away
 
 describe("Trading system", () => {
-    const bus = new Bus()    
+    const bus = new Bus()
     const logger = new Logger(bus)
+    let player;
+    let merchant;
+
+    beforeEach(() => {
+        player = new Player()
+        player.inventory = new Inventory([new Ammo(100)])
+        merchant = new Merchant(0, 0)
+        merchant.inventory = new Inventory([new Ammo(100)])
+    })
 
     it("trades items from two entities", () => {
-        const player = new Player()
         const artifact = new Artifact(1);
         player.inventory.content.push(artifact)
-        const merchant = new Merchant(0, 0)
         const originalMerchantInventory = getItemsName(merchant.inventory)
         const action = {
             name: ACTION_NAME.TRADE,
@@ -40,8 +48,6 @@ describe("Trading system", () => {
     });
 
     it("stacks items of same type", () => {
-        const player = new Player()
-        const merchant = new Merchant(0, 0)
         merchant.inventory.content.push(new Artifact(1))
         const item = new Artifact(1)
         const originalMerchantItems = itemsLength(merchant.inventory)
@@ -60,7 +66,8 @@ describe("Trading system", () => {
 
         const merchantItems = itemsLength(merchant.inventory)
         expect(merchantItems).toEqual(originalMerchantItems)
-        expect(merchant.inventory.content[1].quantity).toEqual(2)
+        const artifacts = merchant.inventory.content[1]
+        expect(artifacts.quantity).toEqual(2)
     });
 
     it.todo("ammo can be traded?")
@@ -68,9 +75,7 @@ describe("Trading system", () => {
     it("items are sold for Ammo", () => {
         const buyPrice = PRICES.Artifact.buy;
         const item = new Artifact(1)
-        const player = new Player()
         player.inventory.content.push(item)
-        const merchant = new Merchant(0, 0)
         const originalPlayertAmmo = countAmmo(player.inventory)
         const action = {
             name: ACTION_NAME.TRADE,
@@ -92,10 +97,8 @@ describe("Trading system", () => {
 
     it("items are bought for Ammo", () => {
         const sellPrice = PRICES.Artifact.sell
-        const merchant = new Merchant(0, 0)
         const item = new Artifact(1)
         merchant.inventory.content.push(item)
-        const player = new Player()
         const originalPlayertAmmo = 1000;
         findAmmo(player.inventory)!.quantity = originalPlayertAmmo;
         const action = {
@@ -118,10 +121,8 @@ describe("Trading system", () => {
 
     it("only does trade if buyer has enough ammo", () => {
         const item = new Artifact(1)
-        const player = new Player()
         const originalPlayertAmmo = 0;
         findAmmo(player.inventory)!.quantity = originalPlayertAmmo;
-        const merchant = new Merchant(0, 0)
         merchant.inventory.content.push(item)
         const action = {
             name: ACTION_NAME.TRADE,

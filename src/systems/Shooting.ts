@@ -1,5 +1,5 @@
 import { Point } from "../data-structures/Point.js";
-import { Ammo } from "../entities/items/index.js";
+import { Ammo } from "../entities/items/Ammo.js";
 import { Player } from "../entities/Player.js";
 import { ACTION, CLICK_PAYLOAD, EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";

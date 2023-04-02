@@ -1,28 +1,15 @@
 import { Position, Sprite } from "../../components/index.js";
-import { uid } from "../../util/index.js";
 
 export type ItemName = string;
 
-export interface Item {
-  name: ItemName;
-  id: string;
-  quantity: number;
-}
+export interface Effect { name: string, amount: number}
 
-export class Ammo implements Item{
+export interface Item {
   id: string;
+  name: ItemName;
   quantity: number;
-  name: string;
   sprite: Sprite;
   position: Position;
   isWalkable: boolean;
-
-  constructor(quantity: number = 1, x?: number, y?: number) {
-    this.id = `ammo-${uid()}`;
-    this.quantity = quantity;
-    this.name = "Ammo";
-    this.sprite = new Sprite('bullet');
-    this.position = new Position(x, y);
-    this.isWalkable = true;
-  }
+  effect?: Effect;
 }
