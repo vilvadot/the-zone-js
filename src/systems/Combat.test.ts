@@ -1,12 +1,18 @@
-import { describe, expect, it, beforeEach } from 'vitest'
-import { Damage, Health, Position, Sprite, TargetManual } from "../components/index.js";
-import { Bus } from '../infra/bus.js';
-import { Logger } from '../infra/logger.js';
+import { describe, expect, it, beforeEach } from "vitest";
+import {
+  Damage,
+  Health,
+  Position,
+  Sprite,
+  TargetManual,
+} from "../components/index.js";
+import { Bus } from "../infra/bus.js";
+import { Logger } from "../infra/logger.js";
 import { Combat } from "./Combat.js";
 
 describe("Combat system", () => {
-  const bus = new Bus()
-  const logger = new Logger(bus)
+  const bus = new Bus();
+  const logger = new Logger(bus);
 
   it("an attacker hits a victim in range", () => {
     const attacker = new Attacker(10, new Position(0, 0));
@@ -50,7 +56,7 @@ class Victim {
     this.health = new Health(health);
     this.damage = new Damage(1);
     this.position = position;
-    this.sprite = new Sprite()
+    this.sprite = new Sprite();
   }
 }
 

@@ -8,8 +8,8 @@ export class TownGenerator extends TerrainGenerator {
     super();
     this.operations = [
       new GenearteDirt(width, height),
-      new GenerateGrass(width, height, .6),
-      new GenerateBuildings()
+      new GenerateGrass(width, height, 0.6),
+      new GenerateBuildings(),
     ];
   }
 }

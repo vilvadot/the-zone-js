@@ -15,7 +15,7 @@ export class Merchant {
     this.position = new Position(x, y);
     this.name = "merchant";
     this.id = `merchant-${uid()}`;
-    this.sprite = new Sprite('man')
+    this.sprite = new Sprite("man");
     this.isTalkable = true;
     this.inventory = new Inventory([new Ammo(10000), new Cheese(10)]);
   }

@@ -9,7 +9,7 @@ export class WilderNessGenerator extends TerrainGenerator {
     this.operations = [
       new GenearteDirt(width, height),
       new GenerateRocks(width, height),
-      new GenerateGrass(width, height, .2),
+      new GenerateGrass(width, height, 0.2),
     ];
   }
 }

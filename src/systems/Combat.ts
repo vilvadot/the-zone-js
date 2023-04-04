@@ -12,8 +12,10 @@ export class Combat {
       });
       if (!targetEntity) continue;
 
-      if(name === "Anomaly") { // TODO: Extract to own system ??
-        if(isOver(targetEntity.position, position)) this._attack(name, targetEntity, damage.value, bus, logger);
+      if (name === "Anomaly") {
+        // TODO: Extract to own system ??
+        if (isOver(targetEntity.position, position))
+          this._attack(name, targetEntity, damage.value, bus, logger);
         continue;
       }
 
@@ -24,10 +26,10 @@ export class Combat {
 
   static _attack(name, target, damage, bus, logger) {
     target.health.value -= damage;
-    bus.emit(EVENTS.HIT, {x: target.position.x, y: target.position.y})
+    bus.emit(EVENTS.HIT, { x: target.position.x, y: target.position.y });
     logger.log(
       `"${name}" Attacked "${target.name}" for ${damage} damage`,
-      'red'
+      "red"
     );
   }
 }

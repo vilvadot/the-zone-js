@@ -3,7 +3,7 @@ import { Animation } from "./Animation.js";
 
 export class AnimationQueue {
   animations: Array<Animation>;
-  
+
   constructor() {
     this.animations = [];
   }

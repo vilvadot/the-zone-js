@@ -5,7 +5,7 @@ type TileSelectorCallback = (isFilled: boolean, originalTile: string) => void;
 
 export class CellularGenerator {
   // @ts-ignore
-  engine: ROT.Map.Cellular
+  engine: ROT.Map.Cellular;
 
   generate(
     result: Matrix,

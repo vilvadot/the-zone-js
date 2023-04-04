@@ -4,10 +4,10 @@ import { Point } from "../data-structures/Point.js";
 
 export const drawLine = (start: Point, end: Point, steps = 3): Point[] => {
   const result: Point[] = [];
-  const distance = Math.sqrt((end.x - start.x) ** 2 + (end.y - start.y) ** 2)
+  const distance = Math.sqrt((end.x - start.x) ** 2 + (end.y - start.y) ** 2);
   const defaultSteps = Math.floor(distance);
   const STEPS = steps || defaultSteps;
-  
+
   for (let step = 1; step < STEPS; step++) {
     const time = step / STEPS;
 

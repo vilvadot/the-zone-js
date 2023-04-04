@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from "vitest";
 import { Matrix } from "./Matrix.js";
 
 describe("Matrix", () => {
@@ -59,12 +59,12 @@ describe("Matrix", () => {
 
     const result = matrix.getBorder();
 
-    expect(result.getValue(1,1)).toBeUndefined();
-    expect(result.getValue(0,0)).toEqual(null);
-    expect(result.getValue(0,1)).toEqual(null);
-    expect(result.getValue(0,2)).toEqual(null);
-    expect(result.getValue(1,0)).toEqual(null);
-    expect(result.getValue(1,2)).toEqual(null);
-    expect(result.getValue(2,2)).toEqual(null);
+    expect(result.getValue(1, 1)).toBeUndefined();
+    expect(result.getValue(0, 0)).toEqual(null);
+    expect(result.getValue(0, 1)).toEqual(null);
+    expect(result.getValue(0, 2)).toEqual(null);
+    expect(result.getValue(1, 0)).toEqual(null);
+    expect(result.getValue(1, 2)).toEqual(null);
+    expect(result.getValue(2, 2)).toEqual(null);
   });
 });

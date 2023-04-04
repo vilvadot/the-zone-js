@@ -6,9 +6,10 @@ export class AnomalyDiscovery {
 
     const playerCollisions = player.collision.areas;
     for (const areaName in playerCollisions) {
-
-      const area = playerCollisions[areaName]
-      const anomalyFound = area.find(entityName => entityName.includes("anomaly"));
+      const area = playerCollisions[areaName];
+      const anomalyFound = area.find((entityName) =>
+        entityName.includes("anomaly")
+      );
 
       if (!anomalyFound) continue;
 

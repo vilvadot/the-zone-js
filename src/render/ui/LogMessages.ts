@@ -5,7 +5,7 @@ export class LogMessages {
 
   constructor() {
     this.node = document.querySelector("#logs") as HTMLElement;
-    this.create()
+    this.create();
   }
 
   update(message, color) {
@@ -25,6 +25,6 @@ export class LogMessages {
       <h2 class="panel--title">Messages</h2>
         <div class="panel--content" style="max-height: 105px;">
       </div>
-        `
+        `;
   }
 }

@@ -6,14 +6,16 @@ export class TurnsCounter implements UIComponent {
 
   constructor() {
     this.node = document.querySelector("#turns") as HTMLDivElement;
-    this.create()
+    this.create();
   }
 
   update(gameState: GameState) {
     const { turn } = gameState;
 
-    const $container = document.querySelector("#turns-counter") as HTMLDivElement;
-    $container.innerHTML = `${turn}`
+    const $container = document.querySelector(
+      "#turns-counter"
+    ) as HTMLDivElement;
+    $container.innerHTML = `${turn}`;
   }
 
   create() {
@@ -21,6 +23,6 @@ export class TurnsCounter implements UIComponent {
       <h2 class="panel--title">Turn</h2>
       <div class="panel--content">
         <span id="turns-counter"></span>
-      </div>`
+      </div>`;
   }
 }

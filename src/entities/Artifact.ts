@@ -1,7 +1,7 @@
 import { Position, Sprite } from "../components/index.js";
-import {uid} from '../util/index.js'
+import { uid } from "../util/index.js";
 
-export class Artifact{
+export class Artifact {
   id: string;
   quantity: number;
   name: string;
@@ -13,9 +13,8 @@ export class Artifact{
     this.id = `anomaly-${uid()}`;
     this.quantity = quantity;
     this.name = "Artifact";
-    this.sprite = new Sprite('flame');
+    this.sprite = new Sprite("flame");
     this.position = new Position(x, y);
     this.isWalkable = true;
   }
 }
-

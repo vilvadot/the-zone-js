@@ -10,7 +10,7 @@ describe("AnimationQueue", () => {
 
     const nextFrame = queue.composeNextFrame();
 
-    expect(nextFrame.getValue(0,0)).toBeDefined()
+    expect(nextFrame.getValue(0, 0)).toBeDefined();
   });
 
   it("combines multiple animations", () => {
@@ -22,8 +22,8 @@ describe("AnimationQueue", () => {
 
     const nextFrame = queue.composeNextFrame();
 
-    expect(nextFrame.getValue(0,0)).toBeDefined()
-    expect(nextFrame.getValue(1,0)).toBeDefined()
-    expect(nextFrame.getValue(2,0)).toBeUndefined()
+    expect(nextFrame.getValue(0, 0)).toBeDefined();
+    expect(nextFrame.getValue(1, 0)).toBeDefined();
+    expect(nextFrame.getValue(2, 0)).toBeUndefined();
   });
 });

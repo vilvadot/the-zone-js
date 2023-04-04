@@ -1,6 +1,14 @@
 import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
-import { TradeDialog, Health, LogMessages, Inventory, UIComponent, TurnsCounter, GameMode } from "./ui/index.js";
+import {
+  TradeDialog,
+  Health,
+  LogMessages,
+  Inventory,
+  UIComponent,
+  TurnsCounter,
+  GameMode,
+} from "./ui/index.js";
 import { GameState } from "../Game.js";
 import { InspectTooltip } from "./ui/InspectTooltip.js";
 import { MousePosition } from "../index.js";
@@ -19,8 +27,8 @@ export class UIRenderer {
       new TurnsCounter(),
       new Inventory(this.bus),
       new GameMode(),
-      new TradeDialog(this.bus)
-    ]
+      new TradeDialog(this.bus),
+    ];
   }
 
   private renderAsyncComponents() {
@@ -32,7 +40,7 @@ export class UIRenderer {
   }
 
   update(gameState: GameState, mouse: MousePosition) {
-    this.components.forEach(component => component.update(gameState))
-    new InspectTooltip().update(gameState, mouse)
+    this.components.forEach((component) => component.update(gameState));
+    new InspectTooltip().update(gameState, mouse);
   }
 }

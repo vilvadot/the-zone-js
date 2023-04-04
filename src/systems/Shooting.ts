@@ -9,7 +9,7 @@ const BULLET_DAMAGE = 1;
 
 export class Shooting {
   static run(action: ACTION, bus: Bus, logger: Logger, entities) {
-    if (action.name !== ACTION_NAME.TARGET) return
+    if (action.name !== ACTION_NAME.TARGET) return;
 
     const { x, y } = action.payload as CLICK_PAYLOAD;
 
@@ -17,8 +17,8 @@ export class Shooting {
     const target = entities.find((entity) => {
       return entity.position.x === x && entity.position.y === y;
     });
-    const ammo = player.inventory.content.find(item => item instanceof Ammo)
-    if (!ammo || ammo.quantity === 0 || target?.isPlayer) return
+    const ammo = player.inventory.content.find((item) => item instanceof Ammo);
+    if (!ammo || ammo.quantity === 0 || target?.isPlayer) return;
 
     bus.emit(EVENTS.SHOT_FIRED, {
       origin: new Point(player.position.x, player.position.y),
@@ -26,11 +26,11 @@ export class Shooting {
     });
 
     // TODO: test
-    ammo.quantity--
+    ammo.quantity--;
 
     if (!target?.health) return;
 
-    bus.emit(EVENTS.HIT, { x: target.position.x, y: target.position.y })
+    bus.emit(EVENTS.HIT, { x: target.position.x, y: target.position.y });
 
     target.health.value -= BULLET_DAMAGE;
 

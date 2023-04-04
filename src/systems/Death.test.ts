@@ -1,14 +1,14 @@
-import { describe, expect, it, afterEach, vi } from 'vitest'
+import { describe, expect, it, afterEach, vi } from "vitest";
 import { Health, Sprite } from "../components/index.js";
-import { EntityManager } from '../entities/entity-manager.js';
-import { Bus } from '../infra/bus.js';
-import { Terrain } from '../terrain/Terrain.js';
+import { EntityManager } from "../entities/entity-manager.js";
+import { Bus } from "../infra/bus.js";
+import { Terrain } from "../terrain/Terrain.js";
 import { Death } from "./Death.js";
 
-vi.mock('../entities/entity-manager.js')
+vi.mock("../entities/entity-manager.js");
 
 describe("Death system", () => {
-  const entityManager = new EntityManager(new Bus(), new Terrain(1, 1))
+  const entityManager = new EntityManager(new Bus(), new Terrain(1, 1));
 
   afterEach(() => {
     vi.clearAllMocks();

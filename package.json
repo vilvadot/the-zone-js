@@ -7,12 +7,14 @@
     "dev": "tsc -w",
     "build": "tsc",
     "test": "vitest --config ./src/vitest.config.ts",
-    "preview": "live-server ."
+    "preview": "live-server .",
+    "format": "prettier  --write ."
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "typescript": "^4.6.4",
     "jsdom": "^20.0.1",
+    "live-server": "^1.2.2",
+    "prettier": "2.8.7",
+    "typescript": "^4.6.4",
     "vitest": "^0.24.3"
   }
 }

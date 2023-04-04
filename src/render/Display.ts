@@ -1,6 +1,6 @@
 import ROT from "../lib/rot.js";
 import { WIDTH, HEIGHT, isTextMode, TILE_SIZE } from "../config.js";
-import { spriteSheet, SPRITES } from '../sprites.js'
+import { spriteSheet, SPRITES } from "../sprites.js";
 
 export const loadedTiles = document.createElement("img");
 loadedTiles.src = spriteSheet;
@@ -13,7 +13,7 @@ export const OPTIONS_TILEMODE = {
   tileHeight: TILE_SIZE,
   tileColorize: true,
   tileSet: loadedTiles,
-  tileMap: SPRITES
+  tileMap: SPRITES,
 };
 
 export const OPTIONS_TEXTMODE = {
@@ -38,7 +38,7 @@ export class Display {
     this.display.draw(...params);
   }
 
-  clear(){
+  clear() {
     this.display.clear();
   }
 }

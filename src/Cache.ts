@@ -1,6 +1,6 @@
 export class Cache {
   cache: {};
-  
+
   constructor() {
     this.cache = {};
   }

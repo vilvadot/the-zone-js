@@ -9,7 +9,7 @@ import {
   Trading,
   Travel,
   Shooting,
-  AnomalyDiscovery
+  AnomalyDiscovery,
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
@@ -28,13 +28,13 @@ import { Player } from "./entities/Player.js";
 import { UseItem } from "./systems/UseItem.js";
 
 export interface GameState {
-  fov: FOVIndex,
-  terrain: Terrain,
-  player: Player,
-  turn: number,
-  entities: Entities,
-  mode: GameMode,
-  coordinates: GlobalCoordinates,
+  fov: FOVIndex;
+  terrain: Terrain;
+  player: Player;
+  turn: number;
+  entities: Entities;
+  mode: GameMode;
+  coordinates: GlobalCoordinates;
 }
 
 export class Game {
@@ -55,7 +55,7 @@ export class Game {
     this.fov = new FOVIndex();
     this.mode = new GameMode();
     this.entityManager = new EntityManager(this.bus, this.terrain);
-    this.areaManager = new AreaManager(this.bus, this.terrain,);
+    this.areaManager = new AreaManager(this.bus, this.terrain);
     this.handleSubscriptions();
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
@@ -82,27 +82,28 @@ export class Game {
   }
 
   runMainLoop(action: ACTION) {
-    if(action.name === ACTION_NAME.TARGET && this.mode.name !== Mode.aiming)return
-    
-    Talk.run(action, this.entities, this.mode)
-    Trading.run(action, this.logger)
-    UseItem.run(action, this.logger, this.entities)
+    if (action.name === ACTION_NAME.TARGET && this.mode.name !== Mode.aiming)
+      return;
+
+    Talk.run(action, this.entities, this.mode);
+    Trading.run(action, this.logger);
+    UseItem.run(action, this.logger, this.entities);
     KeyboardControl.run(action, this.entities, this.mode, this.logger);
 
-    if (this.mode.isDialog()) return
+    if (this.mode.isDialog()) return;
 
-    if(this.mode.name === Mode.aiming){
+    if (this.mode.name === Mode.aiming) {
       Shooting.run(action, this.bus, this.logger, this.entities);
     }
     Pathfinding.run(this.entities, this.terrain);
-    Pickup.run(action, this.entities, this.entityManager)
+    Pickup.run(action, this.entities, this.entityManager);
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
     Targetting.run(this.entities, action);
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);
-    AnomalyDiscovery.run(this.entities)
+    AnomalyDiscovery.run(this.entities);
     Death.run(this.entities, this.entityManager);
     this.turn++;
   }

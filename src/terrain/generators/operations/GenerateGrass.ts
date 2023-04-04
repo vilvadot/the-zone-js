@@ -13,7 +13,8 @@ export class GenerateGrass extends CellularGenerator {
   }
 
   run(result: Matrix) {
-    return super.generate(result, this.density, (isFilled, originalTile) => isFilled ? TILES.grass : originalTile
+    return super.generate(result, this.density, (isFilled, originalTile) =>
+      isFilled ? TILES.grass : originalTile
     );
   }
 }

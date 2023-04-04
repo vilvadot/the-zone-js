@@ -6,28 +6,28 @@ export class GameMode implements UIComponent {
 
   constructor() {
     this.node = document.querySelector("#mode-indicator") as HTMLDivElement;
-    this.create()
+    this.create();
   }
 
   update(gameState: GameState) {
-    this.reset()
+    this.reset();
 
     const { mode } = gameState;
 
-    if(!mode.isAiming()) return
+    if (!mode.isAiming()) return;
 
     this.node.innerHTML = `${mode.name}`;
   }
 
-  reset(){
-    this.node.innerHTML = ``
+  reset() {
+    this.node.innerHTML = ``;
   }
 
   create() {
-    this.reset()
-    this.node.style.position = `absolute`
-    this.node.style.bottom = `0`
-    this.node.style.right = `10`
-    this.node.style.zIndex = `2`
+    this.reset();
+    this.node.style.position = `absolute`;
+    this.node.style.bottom = `0`;
+    this.node.style.right = `10`;
+    this.node.style.zIndex = `2`;
   }
 }

@@ -5,16 +5,15 @@ import { Player } from "../entities/Player.js";
 
 export class Pickup {
   static run(action: ACTION, entities: Entities, entityManager: EntityManager) {
-    if (action.name !== ACTION_NAME.PICKUP) return
-    
+    if (action.name !== ACTION_NAME.PICKUP) return;
+
     const player = entities.find(({ isPlayer }) => isPlayer) as Player;
     const itemId = player.collision.areas.overlap[0];
-    const item = entityManager.get(itemId)
+    const item = entityManager.get(itemId);
 
     if (!item) return;
 
-    
-    entityManager.remove(item) // TODO: Remove from cache or it gets duped
+    entityManager.remove(item); // TODO: Remove from cache or it gets duped
     player.inventory.content.push(item);
   }
 }

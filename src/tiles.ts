@@ -1,11 +1,11 @@
 export const BLOCKING_TILES = {
   rock: "rock",
   woodWall: "wood_wall",
-}
+};
 
 export const isBlockingTile = (tile) => {
-  return Object.values(BLOCKING_TILES).includes(tile)
-}
+  return Object.values(BLOCKING_TILES).includes(tile);
+};
 
 export const TILES = {
   ...BLOCKING_TILES,
@@ -18,6 +18,5 @@ export const TILES = {
   enemy: "enemy",
   plank: "plank",
   hit: "hit",
-  bullet: "bullet"
+  bullet: "bullet",
 };
-

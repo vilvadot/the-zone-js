@@ -10,7 +10,8 @@ export class GenearteDirt extends CellularGenerator {
   }
 
   run(result: Matrix) {
-    return super.generate(result, 0.5, (isFilled) => isFilled ? TILES.dirt : TILES.empty
+    return super.generate(result, 0.5, (isFilled) =>
+      isFilled ? TILES.dirt : TILES.empty
     );
   }
 }

@@ -6,7 +6,7 @@ import { GameMode } from "../GameMode.js";
 
 export class Talk {
   static run(action, entities: Entities, gameMode: GameMode) {
-    if (action.name !== "talk") return
+    if (action.name !== "talk") return;
 
     const player = entities.find((entity) => entity.isPlayer);
     const target = findAdjacent(player, entities);

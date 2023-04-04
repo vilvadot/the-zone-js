@@ -1,6 +1,6 @@
 /* Main Layout */
 
-#game-container{
+#game-container {
   height: 100%;
   display: grid;
   grid-template-columns: 1105px 1fr;
@@ -11,7 +11,7 @@
   padding: 5px;
 }
 
-#game-container > div{
+#game-container > div {
   padding: 5px;
 }
 
@@ -19,7 +19,7 @@
   position: relative;
 }
 
-#sidebar{
+#sidebar {
   grid-column: 2;
   grid-row: 1/3;
   width: 100%;
@@ -28,7 +28,7 @@
   flex-direction: column;
 }
 
-#bottom-bar{
+#bottom-bar {
   grid-column: 1;
   grid-row: 2;
   width: 100%;
@@ -41,18 +41,18 @@
   height: 100%;
   position: absolute;
   visibility: hidden;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.panel{
+.panel {
   height: 100%;
   width: 100%;
   border: 1px solid white;
 }
 
-.panel--title{
+.panel--title {
   font-size: 16px;
   padding: 3px;
   display: inline-block;
@@ -62,14 +62,14 @@
   font-weight: bold;
 }
 
-.panel--content{
-  padding:10px;
+.panel--content {
+  padding: 10px;
   overflow: hidden;
 }
 
-.interactive:hover{
+.interactive:hover {
   color: red;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 /* Dialog */
@@ -97,17 +97,17 @@
   border: 1px solid white;
 }
 
-.dialog a{
-  display:flex;
+.dialog a {
+  display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
 }
 
-.dialog .column{
+.dialog .column {
   min-width: 300px;
 }
 
-#inspect-tooltip{
+#inspect-tooltip {
   position: absolute;
   max-height: 160px;
   max-width: 160px;
@@ -120,6 +120,6 @@
   font-size: 16px;
 }
 
-#inspect-tooltip h1{
+#inspect-tooltip h1 {
   font-weight: bold;
 }

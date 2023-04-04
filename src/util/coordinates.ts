@@ -11,8 +11,8 @@ export const tileCoordinates = (canvasCoordinates) => {
 };
 
 export const calculateDistance = (pointA: Point, pointB: Point) => {
-  return Math.sqrt((pointA.x - pointB.x!) ** 2 + (pointA.y - pointB.y!) ** 2)
-}
+  return Math.sqrt((pointA.x - pointB.x!) ** 2 + (pointA.y - pointB.y!) ** 2);
+};
 
 export const isOver = (positionA, positionB) => {
   const distanceX = Math.abs(positionA.x - positionB.x);

@@ -10,13 +10,13 @@ export class Targetting {
       const { direction } = action.payload;
 
       // Todo: Decouple from key input
-      if (direction === 'east') {
+      if (direction === "east") {
         target.id = collision.areas.east[0];
-      } else if (direction === 'west') {
+      } else if (direction === "west") {
         target.id = collision.areas.west[0];
-      } else if (direction === 'north') {
+      } else if (direction === "north") {
         target.id = collision.areas.north[0];
-      } else if (direction === 'south') {
+      } else if (direction === "south") {
         target.id = collision.areas.south[0];
       }
     }

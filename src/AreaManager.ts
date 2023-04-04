@@ -37,7 +37,7 @@ export class AreaManager {
   }
 
   handleSubscriptions() {
-    this.createNewArea(BIOME.town) // TODO: Remove this. Makes no sense here
+    this.createNewArea(BIOME.town); // TODO: Remove this. Makes no sense here
 
     this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
       this.coordinates.move(direction);
@@ -57,7 +57,6 @@ export class AreaManager {
     };
   }
 
-
   private getCurrentAreaId() {
     return this.coordinates.toString();
   }
@@ -67,7 +66,7 @@ export class AreaManager {
     const cachedSeed = this.areas.retrieve(id);
 
     if (cachedSeed) {
-      Debug.log(`Recovering cached area: ${id}. seed: ${cachedSeed}`)
+      Debug.log(`Recovering cached area: ${id}. seed: ${cachedSeed}`);
       return cachedSeed;
     }
 

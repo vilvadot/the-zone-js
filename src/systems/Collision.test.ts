@@ -1,6 +1,6 @@
-import { describe, expect, it, beforeEach } from 'vitest'
+import { describe, expect, it, beforeEach } from "vitest";
 import { Collision as CollisionSystem } from "../systems/index.js";
-import { Position, Collision} from "../components/index.js";
+import { Position, Collision } from "../components/index.js";
 
 describe("Collision system", () => {
   it("ignores itself", () => {
@@ -62,12 +62,12 @@ describe("Collision system", () => {
 
     CollisionSystem.run([anEntity, overlap]);
 
-    expect(anEntity.collision.areas.overlap).toContain(overlap.id)
-    
+    expect(anEntity.collision.areas.overlap).toContain(overlap.id);
+
     overlap.position.x = 2;
     CollisionSystem.run([anEntity, overlap]);
 
-    expect(anEntity.collision.areas.overlap).toHaveLength(0)
+    expect(anEntity.collision.areas.overlap).toHaveLength(0);
   });
 });
 
@@ -75,7 +75,7 @@ class Entity {
   collision: Collision;
   id: string;
   position: Position;
-  
+
   constructor(id, x, y) {
     this.id = id;
     this.position = new Position(x, y);

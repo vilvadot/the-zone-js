@@ -19,7 +19,7 @@ describe("E2E Game test", () => {
 
   it("there are no enemies on starting coordinates", () => {
     const game = new Game(bus);
-    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west"}}
+    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west" } };
 
     game.runMainLoop(moveWest);
 
@@ -32,7 +32,7 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     const { player } = game.state;
     const { x, y } = player.position;
-    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east"}}
+    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east" } };
 
     game.runMainLoop(moveEast);
 
@@ -42,7 +42,7 @@ describe("E2E Game test", () => {
   it("player can travel east", () => {
     const game = new Game(bus);
     forceClearTerrain(game);
-    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east"}}
+    const moveEast = { name: ACTION_NAME.MOVE, payload: { direction: "east" } };
 
     repeat(WIDTH, () => {
       game.runMainLoop(moveEast);
@@ -57,7 +57,7 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     forceClearTerrain(game);
     forcePlayerInCenter(game);
-    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west"}}
+    const moveWest = { name: ACTION_NAME.MOVE, payload: { direction: "west" } };
 
     repeat(WIDTH, () => {
       game.runMainLoop(moveWest);
@@ -72,7 +72,10 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     forcePlayerInCenter(game);
     forceClearTerrain(game);
-    const moveNorth = { name: ACTION_NAME.MOVE, payload: { direction: "north"}}
+    const moveNorth = {
+      name: ACTION_NAME.MOVE,
+      payload: { direction: "north" },
+    };
 
     repeat(HEIGHT, () => {
       game.runMainLoop(moveNorth);
@@ -87,7 +90,10 @@ describe("E2E Game test", () => {
     const game = new Game(bus);
     forcePlayerInCenter(game);
     forceClearTerrain(game);
-    const moveSouth = { name: ACTION_NAME.MOVE, payload: { direction: "south"}}
+    const moveSouth = {
+      name: ACTION_NAME.MOVE,
+      payload: { direction: "south" },
+    };
 
     repeat(HEIGHT, () => {
       game.runMainLoop(moveSouth);
@@ -105,8 +111,8 @@ describe("E2E Game test", () => {
     forceClearTerrain(game);
     const shotX = 1;
     const shotY = 10;
-    const aim = { name: ACTION_NAME.AIM}
-    const shoot = { name: ACTION_NAME.TARGET, payload: { x: shotX, y: shotY}}
+    const aim = { name: ACTION_NAME.AIM };
+    const shoot = { name: ACTION_NAME.TARGET, payload: { x: shotX, y: shotY } };
 
     game.runMainLoop(aim);
     game.runMainLoop(shoot);

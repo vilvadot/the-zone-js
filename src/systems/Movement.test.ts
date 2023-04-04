@@ -5,7 +5,7 @@ import { Movement } from "./Movement.js";
 
 describe("Movement system", () => {
   it("moves entity according to its velocity", () => {
-    const terrain = stubTerrainNeverBlocked()
+    const terrain = stubTerrainNeverBlocked();
     const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
 
     Movement.run([entity], terrain);
@@ -15,7 +15,7 @@ describe("Movement system", () => {
   });
 
   it("resets velocity after moving", () => {
-    const terrain = stubTerrainNeverBlocked()
+    const terrain = stubTerrainNeverBlocked();
     const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
 
     Movement.run([entity], terrain);
@@ -25,7 +25,7 @@ describe("Movement system", () => {
   });
 
   it("wont move if tile is blocked", () => {
-    const terrain = stubTerrainAlwaysBlocked()
+    const terrain = stubTerrainAlwaysBlocked();
     const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
 
     Movement.run([entity], terrain);
@@ -35,7 +35,7 @@ describe("Movement system", () => {
   });
 
   it("wont move if tile is occupied by another entity", () => {
-    const terrain = stubTerrainNeverBlocked()
+    const terrain = stubTerrainNeverBlocked();
     const entity = new Entity(new Position(0, 0), new Velocity(0, 1));
     const blocker = new Entity(new Position(0, 1), new Velocity(0, 0));
 

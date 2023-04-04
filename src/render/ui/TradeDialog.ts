@@ -15,7 +15,7 @@ export class TradeDialog implements UIComponent {
   constructor(bus: Bus) {
     this.bus = bus;
     this.node = document.querySelector("#trade-dialog")!;
-    this.create()
+    this.create();
   }
 
   create() {
@@ -30,26 +30,26 @@ export class TradeDialog implements UIComponent {
             <div id="buy"></div>
           </div>
         </div>
-      `
+      `;
   }
 
   private hide() {
-    this.node.style.visibility = 'hidden';
+    this.node.style.visibility = "hidden";
   }
 
   private show() {
-    this.create()
-    this.node.style.visibility = 'visible';
+    this.create();
+    this.node.style.visibility = "visible";
   }
 
   update({ mode, player, entities }: GameState) {
-    if (!mode.isDialog()) return this.hide()
+    if (!mode.isDialog()) return this.hide();
 
-    this.show()
+    this.show();
 
     const merchant = findAdjacent(player, entities); // TODO: This shouldnt be here but in the game core
     this.createItemList(player, merchant, "sell");
-    this.createItemList(player, merchant, 'buy');
+    this.createItemList(player, merchant, "buy");
   }
 
   private createItemList(
@@ -57,16 +57,20 @@ export class TradeDialog implements UIComponent {
     merchant: Merchant,
     transaction: "sell" | "buy"
   ) {
-    const inventory = transaction === "sell" ? player.inventory : merchant.inventory;
-    const inventoryWithoutAmmo = inventory.content.filter((item) => item.name !== "Ammo" )
+    const inventory =
+      transaction === "sell" ? player.inventory : merchant.inventory;
+    const inventoryWithoutAmmo = inventory.content.filter(
+      (item) => item.name !== "Ammo"
+    );
 
     inventoryWithoutAmmo.forEach((item) => {
-      const price = transaction === "sell" ? PRICES[item.name].buy : PRICES[item.name].sell
-      const row = createNode({ type: "a", className: "interactive"});
+      const price =
+        transaction === "sell" ? PRICES[item.name].buy : PRICES[item.name].sell;
+      const row = createNode({ type: "a", className: "interactive" });
       row.innerHTML = `
         <span>${item.name} (${item.quantity})</span>
         <span style="color: orange;">${price} ⚬</span>
-      `
+      `;
 
       row.addEventListener("click", () => {
         const action = {
@@ -76,14 +80,16 @@ export class TradeDialog implements UIComponent {
             merchant,
             item,
             transaction,
-            quantity: 1
-          } as TRADE_PAYLOAD
-        }
+            quantity: 1,
+          } as TRADE_PAYLOAD,
+        };
 
         this.bus.emit(EVENTS.ACTION_EXECUTED, action);
       });
 
-      const $container = this.node.querySelector(`#${transaction}`) as HTMLDivElement;
+      const $container = this.node.querySelector(
+        `#${transaction}`
+      ) as HTMLDivElement;
       $container.appendChild(row);
     });
   }

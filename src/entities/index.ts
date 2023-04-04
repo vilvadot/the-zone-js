@@ -6,6 +6,6 @@ import { Player } from "./Player.js";
 
 export type Entity = Player | Enemy | Artifact | Corpse;
 export type Entities = any[];
-export { findPlayer } from './helpers.js';
+export { findPlayer } from "./helpers.js";
 
 export default { Enemy, Player, Artifact, Corpse, EntityManager };

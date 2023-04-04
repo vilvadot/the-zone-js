@@ -11,7 +11,12 @@ import { GlyphRenderer } from "./render/GlyphRenderer.js";
 import { TileRenderer } from "./render/TileRenderer.js";
 import { InspectTooltip } from "./render/ui/index.js";
 
-export interface MousePosition { x: number | undefined, y: number | undefined, tileX: number | undefined, tileY: number | undefined }
+export interface MousePosition {
+  x: number | undefined;
+  y: number | undefined;
+  tileX: number | undefined;
+  tileY: number | undefined;
+}
 
 export const loadGame = () => {
   const bus = new Bus();
@@ -19,7 +24,12 @@ export const loadGame = () => {
   const game = new Game(bus);
   const ui = new UIRenderer(bus);
   const animations = new AnimationQueue();
-  let mouse: MousePosition = { x: undefined, y: undefined, tileX: undefined, tileY: undefined };
+  let mouse: MousePosition = {
+    x: undefined,
+    y: undefined,
+    tileX: undefined,
+    tileY: undefined,
+  };
 
   const runFrame = () => {
     if (isTextMode()) {
@@ -35,7 +45,7 @@ export const loadGame = () => {
 
   handleInput(bus);
 
-  const inspectionTooltip = new InspectTooltip()
+  const inspectionTooltip = new InspectTooltip();
 
   bus.subscribe(EVENTS.MOUSE_MOVED, (mousePosition) => {
     mouse = mousePosition;
@@ -47,7 +57,8 @@ export const loadGame = () => {
     ui.update(game.state, mouse);
   });
 
-  bus.subscribe(EVENTS.HIT, ({ x, y }) => { // Responsability of the glyph renderer
+  bus.subscribe(EVENTS.HIT, ({ x, y }) => {
+    // Responsability of the glyph renderer
     animations.add(new HitAnimation(x, y));
   });
 

@@ -5,26 +5,25 @@ const DEBUG_COLOR = "red";
 
 export class GlyphRenderer {
   static run(display, gameState) {
-    const { fov, terrain, entities } = gameState
+    const { fov, terrain, entities } = gameState;
     display.clear();
     fov.forEach((x, y, { isBlocked }) => {
-      const { glyph, color } = getGlyph(entities, terrain, x, y, isBlocked)
+      const { glyph, color } = getGlyph(entities, terrain, x, y, isBlocked);
 
       display.draw(x, y, glyph, color || DEBUG_COLOR);
     });
   }
 }
 
-const EMPTY_GLYPH = { glyph: "", color: "black" }
+const EMPTY_GLYPH = { glyph: "", color: "black" };
 
 const getGlyph = (entities, terrain, x, y, isBlocked) => {
-  if (isBlocked && !DEBUG_ENABLED) return EMPTY_GLYPH
+  if (isBlocked && !DEBUG_ENABLED) return EMPTY_GLYPH;
   const entityGlyph = getEntityGlyph(entities, x, y);
   if (entityGlyph.glyph) return entityGlyph;
 
-
-  return getTerrainGlyph(terrain, x, y)
-}
+  return getTerrainGlyph(terrain, x, y);
+};
 
 const getEntityGlyph = (entities, x, y) => {
   const entity = entities.find(
@@ -32,7 +31,7 @@ const getEntityGlyph = (entities, x, y) => {
   );
   const sprite = entity?.sprite?.name;
 
-  const isInvisible = entity?.isInvisible && !DEBUG_ENABLED
+  const isInvisible = entity?.isInvisible && !DEBUG_ENABLED;
   const glyph = !isInvisible ? GLYPHS[sprite] : "";
   const color = GLYPH_COLORS[sprite];
 

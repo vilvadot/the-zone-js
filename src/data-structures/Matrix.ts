@@ -1,7 +1,7 @@
 import { Coordinate } from "../Coordinate.js";
 import { pickRandom, randomInteger } from "../util/random.js";
 
-type MultidimensionalMatrix = any[][]
+type MultidimensionalMatrix = any[][];
 
 export class Matrix {
   data: MultidimensionalMatrix;
@@ -20,11 +20,11 @@ export class Matrix {
   }
 
   setValue(x: number, y: number, value: any) {
-    const intX = Math.floor(x)
-    const intY = Math.floor(y)
+    const intX = Math.floor(x);
+    const intY = Math.floor(y);
     if (!this.data[intX]) this.data[intX] = [];
     this.data[intX][intY] = value;
-    return this
+    return this;
   }
 
   getValue(x: number, y: number) {
@@ -55,16 +55,16 @@ export class Matrix {
     return this;
   }
 
-   mergeAt(matrix: Matrix, [startX, startY]: Coordinate) {
-    this.iterate((x: number, y:number) => {
-      if(x < startX) return
-      if(x > startX + matrix.rows - 1) return
-      if(y < startY) return
-      if(y > startY + matrix.columns -1) return
+  mergeAt(matrix: Matrix, [startX, startY]: Coordinate) {
+    this.iterate((x: number, y: number) => {
+      if (x < startX) return;
+      if (x > startX + matrix.rows - 1) return;
+      if (y < startY) return;
+      if (y > startY + matrix.columns - 1) return;
 
-      const value = matrix.getValue(x - startX, y - startY)
-      this.setValue(x,y, value)
-    })
+      const value = matrix.getValue(x - startX, y - startY);
+      this.setValue(x, y, value);
+    });
 
     return this;
   }
@@ -78,5 +78,4 @@ export class Matrix {
   }
 }
 
-type IteratorCallback = (x: number, y: number, element: any) => void
-
+type IteratorCallback = (x: number, y: number, element: any) => void;

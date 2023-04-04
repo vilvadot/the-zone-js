@@ -1,6 +1,6 @@
 # The Zone JS
 
-Lightweight Roguelike built using [Rotjs](https://ondras.github.io/rot/hp/). 
+Lightweight Roguelike built using [Rotjs](https://ondras.github.io/rot/hp/).
 
 ⚠️ This is very much a work in progress
 
@@ -16,14 +16,14 @@ You come back to sell the little you can find to Sidorovich. You spend most of y
 
 You dream of venturing far away, to the virgin lands where few stalkers had the courage to step on. Where the artifacts pile on every corner waiting to be discovered. Where the mutants haven't been decimated and rarely eat. But not today.
 
-You must survive to live another day. Every few night blowouts happen, the camp is secure, but The Zone changes. Anomalies switch place, herds of mutants appear out of nowhere, comrades unlucky enough to be caught out there disappear to never be seen again. 
+You must survive to live another day. Every few night blowouts happen, the camp is secure, but The Zone changes. Anomalies switch place, herds of mutants appear out of nowhere, comrades unlucky enough to be caught out there disappear to never be seen again.
 
 But you are still alive today. The grind never ends. Maybe tomorrow. Take care stalker
 
 ## Controls
 
 | Action         | Keys         |
-|----------------|--------------|
+| -------------- | ------------ |
 | Move up        | W/Arrow up   |
 | Move down      | D/Arrow down |
 | Move left      | A/Arrow left |
@@ -32,14 +32,12 @@ But you are still alive today. The grind never ends. Maybe tomorrow. Take care s
 | Talk           | Space        |
 | Pickup objects | E            |
 
-
 ## Debugging Flags
 
 You have a few debug flags that can be used for debugging by setting the parameter in the url like so: `/game?flag=true`
 
 - **text**: Activates text mode
 - **debug**: Removes Field of View. Shows anomalies
-
 
 ## How to use it
 

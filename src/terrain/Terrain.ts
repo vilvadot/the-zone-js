@@ -39,8 +39,8 @@ export class Terrain {
   chooseGenerator(biome: string, seed: string) {
     const GENERATORS = {
       [BIOME.town]: new TownGenerator(this.width, this.height),
-      [BIOME.wilderness]: new WilderNessGenerator(this.width, this.height)
-    }
+      [BIOME.wilderness]: new WilderNessGenerator(this.width, this.height),
+    };
 
     return GENERATORS[biome].withSeed(seed);
   }

@@ -9,7 +9,7 @@ import { ACTION_NAME } from "../actions.js";
 describe("Shooting system", () => {
   const bus = new Bus();
   const logger = new Logger(bus);
-  const player = new Player()
+  const player = new Player();
 
   afterEach(() => {
     vi.clearAllMocks();
@@ -21,12 +21,7 @@ describe("Shooting system", () => {
     const initialHealth = 10;
     const target = new Entity(initialHealth, entityX, entityY);
 
-    Shooting.run(
-      shotAction(entityX, entityY),
-      bus,
-      logger,
-      [target, player],
-    );
+    Shooting.run(shotAction(entityX, entityY), bus, logger, [target, player]);
 
     expect(target.health.value).toBeLessThan(initialHealth);
   });
@@ -37,12 +32,7 @@ describe("Shooting system", () => {
     const initialHealth = 10;
     const target = new Entity(initialHealth, entityX, entityY);
 
-    Shooting.run(
-      shotAction(0, entityY),
-      bus,
-      logger,
-      [target, player],
-    );
+    Shooting.run(shotAction(0, entityY), bus, logger, [target, player]);
 
     expect(target.health.value).toEqual(initialHealth);
   });
@@ -50,23 +40,18 @@ describe("Shooting system", () => {
   it("ignores player", () => {
     const targetX = 10;
     const targetY = 0;
-    const target = new Player()
+    const target = new Player();
     const initialHealth = 10;
-    target.health = new Health(initialHealth)
-    target.position = new Position(targetX, targetY)
+    target.health = new Health(initialHealth);
+    target.position = new Position(targetX, targetY);
 
-    Shooting.run(
-      shotAction(targetX, targetY),
-      bus,
-      logger,
-      [target],
-    );
+    Shooting.run(shotAction(targetX, targetY), bus, logger, [target]);
 
     expect(target.health.value).toEqual(initialHealth);
   });
 });
 
-const shotAction = (x, y) => ({ name: ACTION_NAME.TARGET, payload: { x, y } })
+const shotAction = (x, y) => ({ name: ACTION_NAME.TARGET, payload: { x, y } });
 
 class Entity {
   health: Health;

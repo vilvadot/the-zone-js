@@ -4,12 +4,12 @@ export class GameMode {
   constructor() {
     this.name = Mode.movement;
   }
-  
-  set(name: Mode){
+
+  set(name: Mode) {
     this.name = name;
   }
 
-  isAiming(){
+  isAiming() {
     return this.name === Mode.aiming;
   }
 
@@ -22,8 +22,7 @@ export class GameMode {
   }
 
   toggleDialog() {
-    if (this.name === Mode.dialog)
-      return (this.name = Mode.movement);
+    if (this.name === Mode.dialog) return (this.name = Mode.movement);
     this.name = Mode.dialog;
   }
 }

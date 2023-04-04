@@ -32,7 +32,7 @@ export class EntityManager {
   }
 
   get(entityId: string) {
-    return this.entities.find(entity => entity.id === entityId)
+    return this.entities.find((entity) => entity.id === entityId);
   }
 
   getAllEntities(): Entity[] {
@@ -44,28 +44,25 @@ export class EntityManager {
   }
 
   add(entity: Entity) {
-    this.entities.push(entity)
+    this.entities.push(entity);
   }
 
   handleSubscriptions() {
-    this.bus.subscribe(
-      EVENTS.AREA_CREATED,
-      ({ area }) => {
-        const coordinates = area.coordinates;
-        this.reset();
+    this.bus.subscribe(EVENTS.AREA_CREATED, ({ area }) => {
+      const coordinates = area.coordinates;
+      this.reset();
 
-        const isCached = this.isCached(coordinates);
-        if (isCached) {
-          Debug.log("Entities loaded from cache")
-          return this.loadFromCache(coordinates)
-        };
-
-        this.spawnNPCs(coordinates);
-        this.spawnEnemies(coordinates);
-        this.spawnArtifacts(coordinates);
-        this.spawnAnomalies(coordinates);
+      const isCached = this.isCached(coordinates);
+      if (isCached) {
+        Debug.log("Entities loaded from cache");
+        return this.loadFromCache(coordinates);
       }
-    );
+
+      this.spawnNPCs(coordinates);
+      this.spawnEnemies(coordinates);
+      this.spawnArtifacts(coordinates);
+      this.spawnAnomalies(coordinates);
+    });
   }
 
   private addMultiple(entities: Entities, coordinates: GlobalCoordinates) {

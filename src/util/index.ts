@@ -8,7 +8,7 @@ export const capitalize = (string) => {
   return `${string[0].toUpperCase()}${string.slice(1)}`;
 };
 
-export * from './dom.js'
-export * from './random.js'
-export * from './coordinates.js'
-export * from './Chance.js'
+export * from "./dom.js";
+export * from "./random.js";
+export * from "./coordinates.js";
+export * from "./Chance.js";

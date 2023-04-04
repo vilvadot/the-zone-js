@@ -20,12 +20,18 @@ export enum ACTION_NAME {
   WAIT = "wait",
   TALK = "talk",
   TRADE = "trade",
-  USE = 'use'
+  USE = "use",
 }
 
-export type MOVE_PAYLOAD = { direction: "north" | "south" | "east" | "west" }
-export type CLICK_PAYLOAD = { x: number, y: number }
-export type TRADE_PAYLOAD = { player: Player, merchant: Merchant, item: Item, quantity: number, transaction: "sell" | "buy" }
-export type USE_PAYLOAD = { item: Item }
+export type MOVE_PAYLOAD = { direction: "north" | "south" | "east" | "west" };
+export type CLICK_PAYLOAD = { x: number; y: number };
+export type TRADE_PAYLOAD = {
+  player: Player;
+  merchant: Merchant;
+  item: Item;
+  quantity: number;
+  transaction: "sell" | "buy";
+};
+export type USE_PAYLOAD = { item: Item };
 
-export type ACTION = { name: ACTION_NAME, payload?: any }
+export type ACTION = { name: ACTION_NAME; payload?: any };

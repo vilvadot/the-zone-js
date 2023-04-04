@@ -15,7 +15,7 @@ export class Collision {
       };
 
       entities.forEach((entity) => {
-        if(entity.id === id) return;
+        if (entity.id === id) return;
 
         const isSameX = entity.position.x === position.x;
         const isSameY = entity.position.y === position.y;
@@ -36,7 +36,7 @@ export class Collision {
           collisions.overlap.push(entity.id);
         }
 
-        collision.areas = {...collisions}
+        collision.areas = { ...collisions };
       });
     }
   }

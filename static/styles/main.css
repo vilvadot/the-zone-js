@@ -11,17 +11,15 @@ html {
 
 * {
   box-sizing: border-box;
-  font-family: 'Courier Prime', monospace !important;
+  font-family: "Courier Prime", monospace !important;
   font-size: 16px;
 }
-
 
 *:hover,
 p:hover,
 div:hover {
   cursor: default;
 }
-
 
 canvas {
   position: relative;

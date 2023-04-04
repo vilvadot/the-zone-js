@@ -6,7 +6,7 @@ export class Health implements UIComponent {
 
   constructor() {
     this.node = document.querySelector("#health") as HTMLDivElement;
-    this.create()
+    this.create();
   }
 
   update(gameState: GameState) {
@@ -14,12 +14,12 @@ export class Health implements UIComponent {
     const remainingHealth = player.health.value;
     const totalHealth = player.health.maxValue;
 
-    const currentHealth = Math.ceil(remainingHealth)
-    const health = "■".repeat(currentHealth)
-    const damage = "◻︎".repeat(totalHealth - currentHealth)
+    const currentHealth = Math.ceil(remainingHealth);
+    const health = "■".repeat(currentHealth);
+    const damage = "◻︎".repeat(totalHealth - currentHealth);
 
     const $container = document.querySelector("#health-bar") as HTMLDivElement;
-    $container.innerHTML = `${health}${damage}`
+    $container.innerHTML = `${health}${damage}`;
   }
 
   create() {
@@ -27,6 +27,6 @@ export class Health implements UIComponent {
       <h2 class="panel--title">Health</h2>
       <div class="panel--content">
         <span id="health-bar"></span>
-      </div>`
+      </div>`;
   }
 }

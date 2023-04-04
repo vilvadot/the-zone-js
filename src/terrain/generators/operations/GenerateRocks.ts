@@ -10,7 +10,8 @@ export class GenerateRocks extends CellularGenerator {
   }
 
   run(result: Matrix) {
-    return super.generate(result, 0.25, (isFilled, originalTile) => isFilled ? TILES.rock : originalTile
+    return super.generate(result, 0.25, (isFilled, originalTile) =>
+      isFilled ? TILES.rock : originalTile
     );
   }
 }

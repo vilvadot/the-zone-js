@@ -1,5 +1,5 @@
 import { Coordinate } from "../../Coordinate.js";
-import ROT from '../../lib/rot.js'
+import ROT from "../../lib/rot.js";
 
 export class AStarPathfinder {
   static calculateNextStep(id, origin, target, terrain) {
@@ -14,13 +14,12 @@ export class AStarPathfinder {
     });
 
     engine.compute(origin.x, origin.y, (x, y) => {
-      const position: Coordinate = [x, y]
+      const position: Coordinate = [x, y];
       path.push(position);
     });
 
     const firstPathStep = path[1];
-    if (!firstPathStep)
-      return;
+    if (!firstPathStep) return;
 
     return { x: firstPathStep[0], y: firstPathStep[1] };
   }

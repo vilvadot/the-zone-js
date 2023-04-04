@@ -10,4 +10,4 @@ export const COLORS = {
   background: "LightCoral",
 };
 
-export const ENEMIES = ['thistle', 'gold', 'darkcyan']
+export const ENEMIES = ["thistle", "gold", "darkcyan"];

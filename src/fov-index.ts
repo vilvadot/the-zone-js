@@ -13,14 +13,14 @@ export class FOVIndex {
   }
 
   update(player: Player, terrain: Terrain) {
-    this.reset()
+    this.reset();
 
     const VIEW_RADIUS = 30;
 
     const canLightPass = (x, y) => {
       if (terrain.isBlocked(x, y)) return false;
       return true;
-    }
+    };
     const fov = new ROT.FOV.PreciseShadowcasting(canLightPass);
 
     // Add visible tiles
@@ -35,13 +35,14 @@ export class FOVIndex {
 
     // Add blocked tiles
     terrain.data.iterate((x, y) => {
-      const distance = calculateDistance(new Point(player.position.x!, player.position.y!), new Point(x, y))
-      if (this.index[`${x},${y}`]) return
+      const distance = calculateDistance(
+        new Point(player.position.x!, player.position.y!),
+        new Point(x, y)
+      );
+      if (this.index[`${x},${y}`]) return;
       this.addBlockedTile(x, y, distance);
-    })
+    });
   }
-
-
 
   forEach(callback) {
     for (const coordinate in this.index) {
@@ -64,10 +65,10 @@ export class FOVIndex {
   }
 
   private addBlockedTile(x: number, y: number, distance: number): void {
-    this.index[`${x},${y}`] = { distance, isBlocked: true }
+    this.index[`${x},${y}`] = { distance, isBlocked: true };
   }
 
   private addFreeTile(x: number, y: number, distance: number): void {
-    this.index[`${x},${y}`] = { distance, isBlocked: false }
+    this.index[`${x},${y}`] = { distance, isBlocked: false };
   }
 }

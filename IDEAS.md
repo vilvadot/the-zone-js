@@ -10,25 +10,27 @@ You come back to sell the little you can find to Sidorovich. You spend most of y
 
 You dream of venturing far away, to the virgin lands where few stalkers had the courage to step on. Where the artifacts pile on every corner waiting to be discovered. Where the mutants haven't been decimated and rarely eat. But not today.
 
-You must survive to live another day. Every few night blowouts happen, the camp is secure, but The Zone changes. Anomalies switch place, herds of mutants appear out of nowhere, comrades unlucky enough to be caught out there disappear to never be seen again. 
+You must survive to live another day. Every few night blowouts happen, the camp is secure, but The Zone changes. Anomalies switch place, herds of mutants appear out of nowhere, comrades unlucky enough to be caught out there disappear to never be seen again.
 
 But you are still alive today. The grind never ends. Maybe tomorrow. Take care stalker
-
 
 ## Ideas 💡
 
 - Player starts in safe camp
 - When you venture in any direction you visit a random map
-    - Maps persist during a whole cycle
+
+  - Maps persist during a whole cycle
 
 - You can reset a cycle by sleeping in the camp
-    - Sleeping restores all of your health
-    - Sleeping restores your bolt count
-    - With each reset you have a chance of a blowout.
+
+  - Sleeping restores all of your health
+  - Sleeping restores your bolt count
+  - With each reset you have a chance of a blowout.
 
 - There might be anomalies on maps. An anomaly is invisible until you step on it
-    - You can trigger it, or part of it by throwing a bolt
-    - Limited number of bolts
+
+  - You can trigger it, or part of it by throwing a bolt
+  - Limited number of bolts
 
 - You can find loot around the maps
 
@@ -37,7 +39,8 @@ But you are still alive today. The grind never ends. Maybe tomorrow. Take care s
 - You can view the path you already walked on a map (useful to traverse anomalies)
 
 - Blowouts
-    - Reset known maps / paths
+
+  - Reset known maps / paths
 
 - You can return at any time to the camp to sell the stuff you found
-    - You can buy upgrades / gear with the coin you get
+  - You can buy upgrades / gear with the coin you get

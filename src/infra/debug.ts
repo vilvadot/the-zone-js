@@ -2,7 +2,7 @@ import { DEBUG_ENABLED } from "../config.js";
 
 export class Debug {
   static log(value) {
-    const style = 'color: DarkTurquoise'
+    const style = "color: DarkTurquoise";
     if (!DEBUG_ENABLED) return;
     console.log(`%c${value}`, style);
   }

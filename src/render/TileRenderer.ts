@@ -11,10 +11,9 @@ export class TileRenderer {
     display: Display,
     gameState: GameState,
     animations: AnimationQueue,
-    mouse,
+    mouse
   ) {
-
-    const { fov, terrain, entities } = gameState
+    const { fov, terrain, entities } = gameState;
     display.clear();
     const animation = animations.composeNextFrame();
 
@@ -32,7 +31,7 @@ export class TileRenderer {
     const base = getTerrainSprite(terrain, x, y);
     const entity = getEntitySprite(entities, x, y);
     const animationTile = animation?.getValue(x, y);
-    
+
     if (base) stack.push(base);
     if (entity) stack.push(entity);
     if (animationTile) stack.push(animationTile);
@@ -42,9 +41,9 @@ export class TileRenderer {
 }
 
 const getTint = (distance, isBlocked, isMouseHover) => {
-  if (isMouseHover) return `rgba(255,255,255, .3)`
-  if (FOV_ENABLED && isBlocked) return `rgba(0,0,255, .3)`
-  if (isBlocked && !DEBUG_ENABLED) return `rgba(0,0,0, 1)`
+  if (isMouseHover) return `rgba(255,255,255, .3)`;
+  if (FOV_ENABLED && isBlocked) return `rgba(0,0,255, .3)`;
+  if (isBlocked && !DEBUG_ENABLED) return `rgba(0,0,0, 1)`;
 
   const opacity = 1 - shadowMagnitude(distance);
   return `rgba(0,0,0, ${opacity})`;
@@ -55,8 +54,8 @@ const getEntitySprite = (entities, x, y) => {
     ({ position }) => position.x === x && position.y === y
   );
 
-  const isInvisible = entity?.isInvisible && !DEBUG_ENABLED
-  if (isInvisible) return ""
+  const isInvisible = entity?.isInvisible && !DEBUG_ENABLED;
+  if (isInvisible) return "";
 
   return entity?.sprite?.name;
 };
