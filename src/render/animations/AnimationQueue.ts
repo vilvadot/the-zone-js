@@ -1,4 +1,4 @@
-import { Matrix } from "../data-structures/Matrix.js";
+import { Matrix } from "../../data-structures/Matrix.js";
 import { Animation } from "./Animation.js";
 
 export class AnimationQueue {

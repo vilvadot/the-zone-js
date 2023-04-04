@@ -1,4 +1,4 @@
-import { AnimationQueue } from "../animations/index.js";
+import { AnimationQueue } from "./animations/index.js";
 import { DEBUG_ENABLED, FOV_ENABLED } from "../config.js";
 import { GameState } from "../Game.js";
 import { Debug } from "../infra/debug.js";
