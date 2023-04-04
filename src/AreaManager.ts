@@ -4,7 +4,7 @@ import { Bus } from "./infra/bus.js";
 import { EVENTS } from "./actions.js";
 import { BIOME } from "./terrain/Terrain.js";
 import { randomInteger } from "./util/index.js";
-import { Cache } from "./Cache.js";
+import { Cache } from "./data-structures/Cache.js";
 import { Debug } from "./infra/debug.js";
 
 export interface Area {

@@ -1,3 +1,7 @@
+import { SpriteName } from "./sprites";
+
+type Glyphs = Record<SpriteName, string>;
+
 export const GLYPHS = {
   wood_wall: "#",
   knight: "@",
@@ -11,6 +15,17 @@ export const GLYPHS = {
   man: "M",
   anomaly: "+",
   dog: "d",
+  bullet: "",
+  cheese: "",
+  flame: "",
+  hit: "",
+  leather: "",
+  wallBottomLeft: "",
+  wallBottomRight: "",
+  wallHorizontal: "",
+  wallTopLeft: "",
+  wallTopRight: "",
+  wallVertical: "",
 };
 
 export const GLYPH_COLORS = {
@@ -25,4 +40,16 @@ export const GLYPH_COLORS = {
   dog: "brown",
   anomaly: "lightblue",
   grass: "lightgreen",
+  bullet: "",
+  cheese: "",
+  flame: "",
+  hit: "",
+  man: "",
+  leather: "",
+  wallBottomLeft: "",
+  wallBottomRight: "",
+  wallHorizontal: "",
+  wallTopLeft: "",
+  wallTopRight: "",
+  wallVertical: "",
 };

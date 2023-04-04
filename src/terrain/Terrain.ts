@@ -3,7 +3,7 @@ import { WilderNessGenerator } from "./generators/WilderNessGenerator.js";
 import { TerrainGenerator } from "./generators/TerrainGenerator.js";
 import { Matrix } from "../data-structures/Matrix.js";
 import { randomInteger } from "../util/index.js";
-import { Cache } from "../Cache.js";
+import { Cache } from "../data-structures/Cache.js";
 import { TownGenerator } from "./generators/TownGenerator.js";
 
 export enum BIOME {

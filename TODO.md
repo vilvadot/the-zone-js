@@ -7,17 +7,20 @@
   x Hover on entities to see details
 
 - Inventory
+
   - Stack items on pickup
-  x Use items (sausages recover health)
+    x Use items (sausages recover health)
 
 - Trade
 
   - Find a better interface for the action (no need to pass Player and Merchant)
 
 - Anomaly
+
   - Anomalies get detected on a range
 
 - Artifacts
+
   - Bug: Artifacts can spawn over a rock or over an anomaly
 
 - Shooting

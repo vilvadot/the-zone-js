@@ -1,4 +1,4 @@
-import { Cache } from "../Cache.js";
+import { Cache } from "../data-structures/Cache.js";
 import { Player } from "./Player.js";
 import { Entities, Entity } from "./index.js";
 import { EVENTS } from "../actions.js";

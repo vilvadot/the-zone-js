@@ -1,5 +1,4 @@
 import { TILE_SIZE } from "./config.js";
-import { Coordinate } from "./Coordinate.js";
 
 const sprite = (x: number, y: number) => [x * TILE_SIZE, y * TILE_SIZE];
 
@@ -27,6 +26,8 @@ export const SPRITES = {
   wallTopRight: sprite(2, 16),
   wallVertical: sprite(12, 16),
 };
+
+export type SpriteName = keyof typeof SPRITES;
 
 export const spriteSheet = "./static/tiles24x24.png";
 
