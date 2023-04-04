@@ -82,16 +82,16 @@ export class Game {
   }
 
   runMainLoop(action: ACTION) {
-    if(action.name === ACTION_NAME.TARGET && this.mode.mode !== Mode.aiming)return
+    if(action.name === ACTION_NAME.TARGET && this.mode.name !== Mode.aiming)return
     
     Talk.run(action, this.entities, this.mode)
     Trading.run(action, this.logger)
     UseItem.run(action, this.logger, this.entities)
     KeyboardControl.run(action, this.entities, this.mode, this.logger);
 
-    if (this.mode.isTalking()) return
+    if (this.mode.isDialog()) return
 
-    if(this.mode.mode === Mode.aiming){
+    if(this.mode.name === Mode.aiming){
       Shooting.run(action, this.bus, this.logger, this.entities);
     }
     Pathfinding.run(this.entities, this.terrain);

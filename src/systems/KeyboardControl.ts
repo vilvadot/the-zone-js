@@ -12,20 +12,20 @@ export class KeyboardControl {
 
 class HandleAim {
   static do(gameMode: GameMode, action: ACTION, logger: Logger) {
-    if (gameMode.mode === Mode.aiming && action.name === ACTION_NAME.AIM) {
+    if (gameMode.name === Mode.aiming && action.name === ACTION_NAME.AIM) {
       logger.log("You lower your weapon");
-      gameMode.mode = Mode.movement;
+      gameMode.name = Mode.movement;
       return;
     }
 
-    if (gameMode.mode === Mode.aiming && action.name !== ACTION_NAME.TARGET) {
-      gameMode.mode = Mode.movement;
+    if (gameMode.name === Mode.aiming && action.name !== ACTION_NAME.TARGET) {
+      gameMode.name = Mode.movement;
       logger.log("You lower your weapon");
     }
 
     if (action.name === ACTION_NAME.AIM) {
       logger.log("You ready your weapon aim through the sights...click on a target to shoot");
-      gameMode.mode = Mode.aiming;
+      gameMode.name = Mode.aiming;
     }
   }
 }

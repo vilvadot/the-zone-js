@@ -1,6 +1,6 @@
 import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
-import { TradeDialog, Health, LogMessages, Inventory, UIComponent, TurnsCounter } from "./ui/index.js";
+import { TradeDialog, Health, LogMessages, Inventory, UIComponent, TurnsCounter, GameMode } from "./ui/index.js";
 import { GameState } from "../Game.js";
 import { InspectTooltip } from "./ui/InspectTooltip.js";
 import { MousePosition } from "../index.js";
@@ -18,6 +18,7 @@ export class UIRenderer {
       new Health(),
       new TurnsCounter(),
       new Inventory(this.bus),
+      new GameMode(),
       new TradeDialog(this.bus)
     ]
   }

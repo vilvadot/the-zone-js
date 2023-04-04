@@ -1,18 +1,26 @@
 export class GameMode {
-  mode: Mode;
+  name: Mode;
 
   constructor() {
-    this.mode = Mode.movement;
+    this.name = Mode.movement;
   }
 
-  isTalking() {
-    return this.mode === Mode.dialog;
+  isAiming(){
+    return this.name === Mode.aiming;
+  }
+
+  isMovement() {
+    return this.name === Mode.movement;
+  }
+
+  isDialog() {
+    return this.name === Mode.dialog;
   }
 
   toggleDialog() {
-    if (this.mode === Mode.dialog)
-      return (this.mode = Mode.movement);
-    this.mode = Mode.dialog;
+    if (this.name === Mode.dialog)
+      return (this.name = Mode.movement);
+    this.name = Mode.dialog;
   }
 }
 

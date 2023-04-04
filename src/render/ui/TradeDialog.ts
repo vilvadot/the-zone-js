@@ -21,11 +21,11 @@ export class TradeDialog implements UIComponent {
   create() {
     this.node.innerHTML = `
         <div class="dialog">
-          <div>
+          <div class="column">
             <h2>Player's inventory</h2>
             <div id="sell"></div>
           </div>
-          <div>
+          <div class="column">
             <h2>Merchant's inventory</h2>
             <div id="buy"></div>
           </div>
@@ -43,7 +43,7 @@ export class TradeDialog implements UIComponent {
   }
 
   update({ mode, player, entities }: GameState) {
-    if (!mode.isTalking()) return this.hide()
+    if (!mode.isDialog()) return this.hide()
 
     this.show()
 

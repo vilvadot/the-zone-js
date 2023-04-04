@@ -9,7 +9,7 @@ import { Bus } from '../infra/bus.js';
 
 describe("KeyboardControl system", () => {
   const gameMode = new GameMode()
-  gameMode.mode = Mode.movement;
+  gameMode.name = Mode.movement;
   const logger = new Logger(new Bus())
 
   it("accelerates entity to the right", () => {
