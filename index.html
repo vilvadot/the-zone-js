@@ -1,28 +1,31 @@
-<body>
-  <base href="./">
-  <title>The Zone JS</title>
-  <link rel="stylesheet" href="static/styles/reset.css" />
-  <link rel="stylesheet" href="static/styles/main.css" />
-  <link rel="stylesheet" href="static/styles/ui.css" />
-  <link rel="stylesheet" href="static/styles/dialog.css" />
-  <link rel="icon" type="image/png" href="static/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
-    rel="stylesheet">
-  <script src="dist/index.js" type="module"></script>
+<html style="background: black;">
+  <body>
+    <base href="./">
+    <title>The Zone JS</title>
+    <link rel="stylesheet" href="static/styles/reset.css" />
+    <link rel="stylesheet" href="static/styles/main.css" />
+    <link rel="stylesheet" href="static/styles/ui.css" />
+    <link rel="icon" type="image/png" href="static/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet">
+    <script src="dist/index.js" type="module"></script>
 
-  <figure id="game-container">
-    <div id="board">
-      <div id="trade-dialog" class="overlay"></div>
-    </div>
-    <div id="sidebar">
-      <div id="health" class="panel"></div>
-      <div id="inventory" class="panel"></div>
-    </div>
-    <div id="bottom-bar">
-      <div id="logs" class="panel"></div>
-    </div>
-  </figure>
+    <figure id="game-container">
+      <div id="board">
+        <div id="trade-dialog" class="overlay"></div>
+        <div id="inspect-tooltip" class="tooltip"></div>
+      </div>
+      <div id="sidebar">
+        <div id="turns" class="panel"></div>
+        <div id="health" class="panel"></div>
+        <div id="inventory" class="panel"></div>
+      </div>
+      <div id="bottom-bar">
+        <div id="logs" class="panel"></div>
+      </div>
+    </figure>
 
-</body>
+  </body>
+</html>

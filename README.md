@@ -27,6 +27,7 @@ But you are still alive today. The grind never ends. Maybe tomorrow. Take care s
 | Move up        | W/Arrow up   |
 | Move down      | D/Arrow down |
 | Move left      | A/Arrow left |
+| Aim            | T            |
 | Shoot          | Mouse click  |
 | Talk           | Space        |
 | Pickup objects | E            |

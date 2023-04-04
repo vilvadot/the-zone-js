@@ -1,12 +1,12 @@
 import { ACTION_NAME, EVENTS, TRADE_PAYLOAD } from "../../actions.js";
 import { Bus } from "../../infra/bus.js";
 import { createNode } from "../../util/dom.js";
-import { findAdjacent } from "../../util/entities.js";
 import { GameState } from "../../Game.js";
 import { Player } from "../../entities/Player.js";
 import { Merchant } from "../../entities/Merchant.js";
 import { UIComponent } from "./UIComponent.js";
 import { PRICES } from "../../entities/items/prices.js";
+import { findAdjacent } from "../../entities/helpers.js";
 
 export class TradeDialog implements UIComponent {
   bus: Bus;
@@ -43,7 +43,7 @@ export class TradeDialog implements UIComponent {
   }
 
   update({ mode, player, entities }: GameState) {
-    if (!mode.isDialog()) return this.hide()
+    if (!mode.isTalking()) return this.hide()
 
     this.show()
 

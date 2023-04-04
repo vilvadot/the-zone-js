@@ -105,8 +105,10 @@ describe("E2E Game test", () => {
     forceClearTerrain(game);
     const shotX = 1;
     const shotY = 10;
-    const shoot = { name: ACTION_NAME.SHOOT, payload: { x: shotX, y: shotY}}
+    const aim = { name: ACTION_NAME.AIM}
+    const shoot = { name: ACTION_NAME.TARGET, payload: { x: shotX, y: shotY}}
 
+    game.runMainLoop(aim);
     game.runMainLoop(shoot);
 
     expect(bus.emit).toHaveBeenCalledWith(EVENTS.SHOT_FIRED, {

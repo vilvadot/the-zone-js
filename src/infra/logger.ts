@@ -8,7 +8,7 @@ export class Logger {
         this.bus = bus;
     }
 
-    log(message, color){
+    log(message, color = "white"){
         this.bus.emit(EVENTS.LOG_EMITTED, { level: "log", message, color })
     }
 }

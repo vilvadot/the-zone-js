@@ -13,8 +13,9 @@ export enum EVENTS {
 }
 
 export enum ACTION_NAME {
+  TARGET = "target",
+  AIM = "aim",
   MOVE = "move",
-  SHOOT = "shoot",
   PICKUP = "pickup",
   WAIT = "wait",
   TALK = "talk",
@@ -27,4 +28,4 @@ export type CLICK_PAYLOAD = { x: number, y: number }
 export type TRADE_PAYLOAD = { player: Player, merchant: Merchant, item: Item, quantity: number, transaction: "sell" | "buy" }
 export type USE_PAYLOAD = { item: Item }
 
-export type ACTION = { name: ACTION_NAME, payload: any }
+export type ACTION = { name: ACTION_NAME, payload?: any }

@@ -23,7 +23,7 @@ export class LogMessages {
   create() {
     this.node.innerHTML = `
       <h2 class="panel--title">Messages</h2>
-        <div class="panel--content" style="max-height: 140px;">
+        <div class="panel--content" style="max-height: 105px;">
       </div>
         `
   }

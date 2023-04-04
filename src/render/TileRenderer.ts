@@ -19,13 +19,8 @@ export class TileRenderer {
     const animation = animations.composeNextFrame();
 
     fov.forEach((x, y, { distance, isBlocked }) => {
-      const isMouseHover = x === mouse?.x && y === mouse?.y;
+      const isMouseHover = x === mouse?.tileX && y === mouse?.tileY;
       const stack = this.generateTileStack(x, y, terrain, entities, animation);
-
-      if (isMouseHover) {
-        Debug.log(`${x}, ${y}, ${distance}, ${isBlocked}, ${stack}`)
-      };
-
       const tint = getTint(distance, isBlocked, isMouseHover);
       display.draw(x, y, stack, tint);
     });
@@ -37,7 +32,7 @@ export class TileRenderer {
     const base = getTerrainSprite(terrain, x, y);
     const entity = getEntitySprite(entities, x, y);
     const animationTile = animation?.getValue(x, y);
-
+    
     if (base) stack.push(base);
     if (entity) stack.push(entity);
     if (animationTile) stack.push(animationTile);

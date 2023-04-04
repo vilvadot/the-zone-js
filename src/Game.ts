@@ -18,9 +18,9 @@ import { Terrain } from "./terrain/index.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
-import { ACTION } from "./actions.js";
+import { ACTION, ACTION_NAME } from "./actions.js";
 import { Talk } from "./systems/Talk.js";
-import { GameMode } from "./GameMode.js";
+import { GameMode, Mode } from "./GameMode.js";
 import { Pickup } from "./systems/Pickup.js";
 import { Entities } from "./entities/index.js";
 import { GlobalCoordinates } from "./GlobalCoordinates.js";
@@ -82,14 +82,18 @@ export class Game {
   }
 
   runMainLoop(action: ACTION) {
+    if(action.name === ACTION_NAME.TARGET && this.mode.mode !== Mode.aiming)return
+    
     Talk.run(action, this.entities, this.mode)
     Trading.run(action, this.logger)
     UseItem.run(action, this.logger, this.entities)
+    KeyboardControl.run(action, this.entities, this.mode, this.logger);
 
-    if (this.mode.isDialog()) return
+    if (this.mode.isTalking()) return
 
-    Shooting.run(action, this.bus, this.logger, this.entities);
-    KeyboardControl.run(action, this.entities);
+    if(this.mode.mode === Mode.aiming){
+      Shooting.run(action, this.bus, this.logger, this.entities);
+    }
     Pathfinding.run(this.entities, this.terrain);
     Pickup.run(action, this.entities, this.entityManager)
     Travel.run(this.entities, this.bus);

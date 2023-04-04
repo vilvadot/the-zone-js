@@ -1,6 +1,6 @@
+import { findAdjacent } from "../entities/helpers.js";
 import { Entities } from "../entities/index.js";
 import { GameMode } from "../GameMode.js";
-import { findAdjacent } from "../util/entities.js";
 
 // TODO: test
 

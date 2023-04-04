@@ -66,7 +66,7 @@ describe("Shooting system", () => {
   });
 });
 
-const shotAction = (x, y) => ({ name: ACTION_NAME.SHOOT, payload: { x, y } })
+const shotAction = (x, y) => ({ name: ACTION_NAME.TARGET, payload: { x, y } })
 
 class Entity {
   health: Health;

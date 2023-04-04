@@ -12,6 +12,7 @@ export enum KEYS {
   W = "KeyW",
   S = "KeyS",
   D = "KeyD",
+  T = "KeyT",
   Period = "Period"
 };
 
@@ -27,6 +28,7 @@ export const handleInput = (bus) => {
     const actionEvent = EVENTS.ACTION_EXECUTED
 
     if (code === KEYS.E) bus.emit(actionEvent, { name: ACTION_NAME.PICKUP })
+    if (code === KEYS.T) bus.emit(actionEvent, { name: ACTION_NAME.AIM })
     if (code === KEYS.Space) bus.emit(actionEvent, { name: ACTION_NAME.TALK })
     if (code === KEYS.W || code === KEYS.ArrowUp) bus.emit(actionEvent, { name: ACTION_NAME.MOVE, payload: { direction: "north" } as MOVE_PAYLOAD })
     if (code === KEYS.S || code === KEYS.ArrowDown) bus.emit(actionEvent, { name: ACTION_NAME.MOVE, payload: { direction: "south" } as MOVE_PAYLOAD })
@@ -39,8 +41,10 @@ export const handleInput = (bus) => {
 
   canvas.addEventListener("mousemove", (event: MouseEvent) => {
     bus.emit(EVENTS.MOUSE_MOVED, { // @ts-ignore
-      x: tileCoordinates(event.layerX), // @ts-ignore
-      y: tileCoordinates(event.layerY),
+      x: event.layerX, // @ts-ignore
+      y: event.layerY, // @ts-ignore
+      tileX: tileCoordinates(event.layerX), // @ts-ignore
+      tileY: tileCoordinates(event.layerY),
     });
   });
 
@@ -53,7 +57,7 @@ export const handleInput = (bus) => {
 
   canvas.addEventListener("click", (event) => {
     bus.emit(EVENTS.ACTION_EXECUTED, {
-      name: ACTION_NAME.SHOOT,
+      name: ACTION_NAME.TARGET,
       payload: { // @ts-ignore
         x: tileCoordinates(event.layerX), // @ts-ignore
         y: tileCoordinates(event.layerY),

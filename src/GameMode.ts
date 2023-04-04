@@ -5,7 +5,7 @@ export class GameMode {
     this.mode = Mode.movement;
   }
 
-  isDialog() {
+  isTalking() {
     return this.mode === Mode.dialog;
   }
 
@@ -18,5 +18,6 @@ export class GameMode {
 
 export enum Mode {
   dialog = "DIALOG",
-  movement = "MOVEMENT"
+  aiming = "AIMING",
+  movement = "MOVEMENT",
 }

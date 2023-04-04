@@ -1,7 +1,7 @@
 import { Point } from "../data-structures/Point.js";
 import { Ammo } from "../entities/items/Ammo.js";
 import { Player } from "../entities/Player.js";
-import { ACTION, CLICK_PAYLOAD, EVENTS } from "../actions.js";
+import { ACTION, ACTION_NAME, CLICK_PAYLOAD, EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
 import { Logger } from "../infra/logger.js";
 
@@ -9,7 +9,7 @@ const BULLET_DAMAGE = 1;
 
 export class Shooting {
   static run(action: ACTION, bus: Bus, logger: Logger, entities) {
-    if (action.name !== "shoot") return
+    if (action.name !== ACTION_NAME.TARGET) return
 
     const { x, y } = action.payload as CLICK_PAYLOAD;
 
@@ -36,7 +36,7 @@ export class Shooting {
 
     logger.log(
       `"${player.name}" shot at "${target.name}" for ${BULLET_DAMAGE} damage!`,
-      "blue"
+      "lightblue"
     );
   }
 }

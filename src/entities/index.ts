@@ -4,8 +4,7 @@ import { Enemy } from "./enemies/Enemy.js";
 import { EntityManager } from "./entity-manager.js";
 import { Player } from "./Player.js";
 
-
-export type Entity = Enemy | Player | Artifact | Corpse;
+export type Entity = Player | Enemy | Artifact | Corpse;
 export type Entities = any[];
 export { findPlayer } from './helpers.js';
 
