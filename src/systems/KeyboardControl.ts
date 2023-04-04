@@ -3,29 +3,31 @@ import { ACTION, ACTION_NAME, MOVE_PAYLOAD } from "../actions.js";
 import { Logger } from "../infra/logger.js";
 import { GameMode, Mode } from "../GameMode.js";
 
+// TODO: The name seems not appropiate
 export class KeyboardControl {
-  static run(action: ACTION, entities: Entities, gameMode: GameMode, logger: Logger) {
-    HandleAim.do(gameMode, action, logger)
+  static run(action: ACTION, entities: Entities, mode: GameMode, logger: Logger) {
+    HandleAim.do(mode, action, logger)
     HandleMove.do(action, entities);
   }
 }
 
+// TODO: Not sure this belongs here
 class HandleAim {
-  static do(gameMode: GameMode, action: ACTION, logger: Logger) {
-    if (gameMode.name === Mode.aiming && action.name === ACTION_NAME.AIM) {
+  static do(mode: GameMode, action: ACTION, logger: Logger) {
+    if (mode.isAiming() && action.name === ACTION_NAME.AIM) {
       logger.log("You lower your weapon");
-      gameMode.name = Mode.movement;
+      mode.set(Mode.movement)
       return;
     }
 
-    if (gameMode.name === Mode.aiming && action.name !== ACTION_NAME.TARGET) {
-      gameMode.name = Mode.movement;
+    if (mode.isAiming() && action.name !== ACTION_NAME.TARGET) {
+      mode.set(Mode.movement)
       logger.log("You lower your weapon");
     }
 
     if (action.name === ACTION_NAME.AIM) {
       logger.log("You ready your weapon aim through the sights...click on a target to shoot");
-      gameMode.name = Mode.aiming;
+      mode.set(Mode.aiming)
     }
   }
 }

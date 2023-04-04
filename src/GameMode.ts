@@ -4,6 +4,10 @@ export class GameMode {
   constructor() {
     this.name = Mode.movement;
   }
+  
+  set(name: Mode){
+    this.name = name;
+  }
 
   isAiming(){
     return this.name === Mode.aiming;
