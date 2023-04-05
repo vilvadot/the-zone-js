@@ -64,13 +64,13 @@ export class EntityManager {
         return this.loadFromCache();
       }
 
-      this.spawnNPCs();
-
-      if (this.coordinates.isOrigin()) return;
-
-      this.spawnEnemies();
-      this.spawnArtifacts();
-      this.spawnAnomalies();
+      if (this.coordinates.isOrigin()) {
+        this.spawnNPCs();
+      }else{
+        this.spawnEnemies();
+        this.spawnArtifacts();
+        this.spawnAnomalies();
+      }
     });
   }
 
