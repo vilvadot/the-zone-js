@@ -49,17 +49,17 @@ export class Game {
   private coordinates: GlobalCoordinates;
 
   constructor(bus: Bus) {
+    this.turn = 0;
     this.bus = bus;
     this.terrain = new Terrain(WIDTH, HEIGHT);
-    this.turn = 0;
     this.logger = new Logger(bus);
-    this.fov = new FOVIndex();
     this.mode = new GameMode();
     this.coordinates = new GlobalCoordinates();
     this.entityManager = new EntityManager(this.bus, this.terrain, this.coordinates);
     this.areaManager = new AreaManager(this.bus, this.terrain, this.coordinates);
+    this.fov = new FOVIndex(this.player, this.terrain);
+
     this.handleSubscriptions();
-    this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }
 
   handleSubscriptions() {
@@ -71,11 +71,15 @@ export class Game {
     return this.entityManager.getAllEntities();
   }
 
+  get player(){
+    return this.entityManager.getPlayer();
+  }
+
   get state(): GameState {
     return {
       fov: this.fov,
       terrain: this.terrain,
-      player: this.entityManager.getPlayer(),
+      player: this.player,
       turn: this.turn,
       entities: this.entities,
       mode: this.mode,
@@ -101,7 +105,7 @@ export class Game {
     Pickup.run(action, this.entities, this.entityManager, this.logger);
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
-    this.fov.update(this.entityManager.getPlayer(), this.terrain);
+    this.fov.update(this.player, this.terrain);
     Targetting.run(this.entities, action);
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);

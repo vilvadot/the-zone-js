@@ -8,8 +8,9 @@ import { Point } from "./data-structures/Point.js";
 export class FOVIndex {
   index: {};
 
-  constructor() {
+  constructor(player: Player, terrain: Terrain) {
     this.index = {};
+    this.update(player, terrain);
   }
 
   update(player: Player, terrain: Terrain) {
