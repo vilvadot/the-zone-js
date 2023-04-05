@@ -27,7 +27,6 @@ export class Combat {
 
   private static attack(name, target, damage, bus, logger) {
     target.health.value -= damage;
-    console.log({ x: target.position.x, y: target.position.y });
     bus.emit(EVENTS.HIT, { x: target.position.x, y: target.position.y });
 
     logger.log(
