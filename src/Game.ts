@@ -102,12 +102,13 @@ export class Game {
     Pickup.run(action, this.entities, this.entityManager, this.logger);
     Travel.run(this.entities, this.bus, this.coordinates);
     Movement.run(this.entities, this.terrain);
-    this.fov.update(this.player, this.terrain);
     Targetting.run(this.entities, action);
     Collision.run(this.entities);
     Combat.run(this.bus, this.logger, this.entities);
     AnomalyDiscovery.run(this.entities);
     Death.run(this.entities, this.entityManager);
+    
+    this.fov.update(this.player, this.terrain);
     this.turn++;
   }
 }
