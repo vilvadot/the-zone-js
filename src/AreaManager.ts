@@ -24,6 +24,8 @@ export class AreaManager {
     this.terrain = terrain;
     this.areas = new Cache();
     this.coordinates = coordinates;
+    
+    this.createNewArea(BIOME.town);
   }
 
   createNewArea(biome: BIOME) {
@@ -35,8 +37,6 @@ export class AreaManager {
   }
 
   handleSubscriptions() {
-    this.createNewArea(BIOME.town); // TODO: Remove this. Makes no sense here
-
     this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
       this.coordinates.move(direction);
       this.createNewArea(BIOME.wilderness);
