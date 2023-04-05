@@ -12,18 +12,18 @@ import { Debug } from "../infra/debug.js";
 import { AnomalySpawner } from "../spawners/AnomalySpawner.js";
 
 export class EntityManager {
-  bus: Bus;
   cache: Cache;
   entities: Entities;
   player: Player;
   coordinates: GlobalCoordinates;
 
-  constructor(bus: Bus, coordinates: GlobalCoordinates) {
-    this.bus = bus;
+  constructor(coordinates: GlobalCoordinates) {
     this.cache = new Cache();
     this.player = new Player();
     this.entities = [];
-    this.coordinates =  coordinates;
+    this.coordinates = coordinates;
+
+    if (this.coordinates.isOrigin()) this.spawnNPCs();
   }
 
   getPlayer(): Player {
@@ -40,37 +40,27 @@ export class EntityManager {
 
   remove(entity: Entity) {
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
-    this.refreshCache()
+    this.refreshCache();
   }
 
   add(entities: Entity | Entities) {
-    if(Array.isArray(entities)) {
+    if (Array.isArray(entities)) {
       this.entities = [...this.entities, ...entities];
-    }else{
+    } else {
       this.entities = [...this.entities, entities];
     }
 
-    this.refreshCache()
+    this.refreshCache();
   }
 
-  handleSubscriptions() {
-    this.bus.subscribe(EVENTS.AREA_CREATED, () => {
-      this.reset();
+  spawnEntities() {
+    this.reset();
 
-      const isCached = this.isCached();
-      if (isCached) {
-        Debug.log("Entities loaded from cache");
-        return this.loadFromCache();
-      }
+    if (this.isCached()) return this.loadFromCache();
 
-      if (this.coordinates.isOrigin()) {
-        this.spawnNPCs();
-      }else{
-        this.spawnEnemies();
-        this.spawnArtifacts();
-        this.spawnAnomalies();
-      }
-    });
+    this.spawnEnemies();
+    this.spawnArtifacts();
+    this.spawnAnomalies();
   }
 
   private refreshCache() {
@@ -82,7 +72,7 @@ export class EntityManager {
     Chance.withProbability(100, () => {
       const artifacts = ArtifactSpawner.spawn(1);
 
-      this.add(artifacts)
+      this.add(artifacts);
     });
   }
 
@@ -96,7 +86,9 @@ export class EntityManager {
 
   private spawnEnemies() {
     Chance.withProbability(100, () => {
-      const enemySeed = `${this.coordinates.x + this.coordinates.y}${this.coordinates.y}`;
+      const enemySeed = `${this.coordinates.x + this.coordinates.y}${
+        this.coordinates.y
+      }`;
       const enemies = EnemySpawner.spawn(enemySeed);
 
       this.add(enemies);

@@ -43,7 +43,7 @@ export const loadGame = () => {
     }, 1000 / FPS_CAP);
   };
 
-  handleInput(bus);
+  handleInput(bus, game.state);
 
   const inspectionTooltip = new InspectTooltip();
 

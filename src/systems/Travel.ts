@@ -3,28 +3,33 @@ import { HEIGHT, WIDTH } from "../config.js";
 import { Entities } from "../entities/index.js";
 import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
+import { DIRECTION, GlobalCoordinates } from "../GlobalCoordinates.js";
 
 export class Travel {
-  static run(entities: Entities, bus: Bus) {
+  static run(entities: Entities, bus: Bus, coordinates: GlobalCoordinates) {
     for (const { position, velocity, isPlayer } of entities) {
       if (!isPlayer) continue;
 
       if (isAtScreenEdge("left", position) && isMoving("left", velocity)) {
+        coordinates.move(DIRECTION.west)
         bus.emit(EVENTS.TRAVELED, { direction: "west" });
         position.x = WIDTH;
       }
 
       if (isAtScreenEdge("right", position) && isMoving("right", velocity)) {
+        coordinates.move(DIRECTION.east)
         bus.emit(EVENTS.TRAVELED, { direction: "east" });
         position.x = -1;
       }
 
       if (isAtScreenEdge("bottom", position) && isMoving("down", velocity)) {
+        coordinates.move(DIRECTION.south)
         bus.emit(EVENTS.TRAVELED, { direction: "south" });
         position.y = -1;
       }
 
       if (isAtScreenEdge("top", position) && isMoving("up", velocity)) {
+        coordinates.move(DIRECTION.north)
         bus.emit(EVENTS.TRAVELED, { direction: "north" });
         position.y = HEIGHT;
       }

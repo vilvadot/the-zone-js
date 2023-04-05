@@ -4,11 +4,13 @@ import { Player } from "../entities/Player.js";
 import { ACTION, ACTION_NAME, CLICK_PAYLOAD, EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
 import { LOG_LEVEL, Logger } from "../infra/logger.js";
+import { GameMode } from "../GameMode.js";
 
 const BULLET_DAMAGE = 1;
 
 export class Shooting {
-  static run(action: ACTION, bus: Bus, logger: Logger, entities) {
+  static run(action: ACTION, bus: Bus, logger: Logger, entities, mode:GameMode) {
+    if(!mode.isAiming()) return;
     if (action.name !== ACTION_NAME.TARGET) return;
 
     const { x, y } = action.payload as CLICK_PAYLOAD;

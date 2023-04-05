@@ -14,33 +14,22 @@ export interface Area {
 }
 
 export class AreaManager {
-  bus: Bus;
   terrain: Terrain;
   coordinates: GlobalCoordinates;
   private areas: Cache;
 
-  constructor(bus: Bus, terrain: Terrain, coordinates: GlobalCoordinates) {
-    this.bus = bus;
+  constructor(terrain: Terrain, coordinates: GlobalCoordinates) {
     this.terrain = terrain;
     this.areas = new Cache();
     this.coordinates = coordinates;
     
     this.createNewArea(BIOME.town);
   }
-
-  createNewArea(biome: BIOME) {
+  
+  createNewArea(biome: BIOME = BIOME.wilderness) {
     const seed = this.getCurrentAreaSeed();
     this.areas.push(this.getCurrentAreaId(), seed);
     this.terrain.generate(seed, biome);
-
-    this.bus.emit(EVENTS.AREA_CREATED);
-  }
-
-  handleSubscriptions() {
-    this.bus.subscribe(EVENTS.TRAVELED, ({ direction }) => {
-      this.coordinates.move(direction);
-      this.createNewArea(BIOME.wilderness);
-    });
   }
 
   private getCurrentAreaId() {

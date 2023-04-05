@@ -9,7 +9,6 @@ export enum EVENTS {
   HIT = "HIT",
   SHOT_FIRED = "SHOT_FIRED",
   TRAVELED = "TRAVELED",
-  AREA_CREATED = "AREA_CREATED",
 }
 
 export enum ACTION_NAME {

@@ -1,3 +1,4 @@
+import { GameState } from "./Game.js";
 import { EVENTS, ACTION_NAME, MOVE_PAYLOAD, CLICK_PAYLOAD } from "./actions.js";
 import { tileCoordinates } from "./util/index.js";
 
@@ -18,7 +19,7 @@ export enum KEYS {
 
 const inputIsControlled = (code) => Object.values(KEYS).includes(code);
 
-export const handleInput = (bus) => {
+export const handleInput = (bus, gameState: GameState) => {
   window.addEventListener("keydown", (event) => {
     const { code } = event;
 
@@ -73,6 +74,8 @@ export const handleInput = (bus) => {
   });
 
   canvas.addEventListener("click", (event) => {
+    if(!gameState.mode.isAiming()) return;
+    
     bus.emit(EVENTS.ACTION_EXECUTED, {
       name: ACTION_NAME.TARGET,
       payload: {

@@ -18,7 +18,7 @@ import { Terrain } from "./terrain/index.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
 import { AreaManager } from "./AreaManager.js";
-import { ACTION, ACTION_NAME } from "./actions.js";
+import { ACTION, ACTION_NAME, EVENTS } from "./actions.js";
 import { Talk } from "./systems/Talk.js";
 import { GameMode, Mode } from "./GameMode.js";
 import { Pickup } from "./systems/Pickup.js";
@@ -55,23 +55,25 @@ export class Game {
     this.logger = new Logger(bus);
     this.mode = new GameMode();
     this.coordinates = new GlobalCoordinates();
-    this.entityManager = new EntityManager(this.bus, this.coordinates);
-    this.areaManager = new AreaManager(this.bus, this.terrain, this.coordinates);
+    this.entityManager = new EntityManager(this.coordinates);
+    this.areaManager = new AreaManager(this.terrain, this.coordinates);
     this.fov = new FOVIndex(this.player, this.terrain);
 
-    this.handleSubscriptions();
+    this.handleAsyncEvents();
   }
 
-  handleSubscriptions() {
-    this.entityManager.handleSubscriptions();
-    this.areaManager.handleSubscriptions();
-  }
+  handleAsyncEvents = () => {
+    this.bus.subscribe(EVENTS.TRAVELED, () => {
+      this.areaManager.createNewArea();
+      this.entityManager.spawnEntities();
+    });
+  };
 
   get entities() {
     return this.entityManager.getAllEntities();
   }
 
-  get player(){
+  get player() {
     return this.entityManager.getPlayer();
   }
 
@@ -88,9 +90,6 @@ export class Game {
   }
 
   runMainLoop(action: ACTION) {
-    if (action.name === ACTION_NAME.TARGET && this.mode.name !== Mode.aiming)
-      return;
-
     Talk.run(action, this.entities, this.mode);
     Trading.run(action, this.logger);
     UseItem.run(action, this.logger, this.entities);
@@ -98,12 +97,10 @@ export class Game {
 
     if (this.mode.isDialog()) return;
 
-    if (this.mode.name === Mode.aiming) {
-      Shooting.run(action, this.bus, this.logger, this.entities);
-    }
+    Shooting.run(action, this.bus, this.logger, this.entities, this.mode);
     Pathfinding.run(this.entities, this.terrain);
     Pickup.run(action, this.entities, this.entityManager, this.logger);
-    Travel.run(this.entities, this.bus);
+    Travel.run(this.entities, this.bus, this.coordinates);
     Movement.run(this.entities, this.terrain);
     this.fov.update(this.player, this.terrain);
     Targetting.run(this.entities, action);

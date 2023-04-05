@@ -5,11 +5,14 @@ import { Shooting } from "./Shooting";
 import { Bus } from "../infra/bus.js";
 import { Logger } from "../infra/logger.js";
 import { ACTION_NAME } from "../actions.js";
+import { GameMode, Mode } from "../GameMode.js";
 
 describe("Shooting system", () => {
   const bus = new Bus();
   const logger = new Logger(bus);
   const player = new Player();
+  const mode = new GameMode()
+  mode.set(Mode.aiming);
 
   afterEach(() => {
     vi.clearAllMocks();
@@ -21,7 +24,7 @@ describe("Shooting system", () => {
     const initialHealth = 10;
     const target = new Entity(initialHealth, entityX, entityY);
 
-    Shooting.run(shotAction(entityX, entityY), bus, logger, [target, player]);
+    Shooting.run(shotAction(entityX, entityY), bus, logger, [target, player], mode);
 
     expect(target.health.value).toBeLessThan(initialHealth);
   });
@@ -32,7 +35,7 @@ describe("Shooting system", () => {
     const initialHealth = 10;
     const target = new Entity(initialHealth, entityX, entityY);
 
-    Shooting.run(shotAction(0, entityY), bus, logger, [target, player]);
+    Shooting.run(shotAction(0, entityY), bus, logger, [target, player], mode);
 
     expect(target.health.value).toEqual(initialHealth);
   });
@@ -45,7 +48,7 @@ describe("Shooting system", () => {
     target.health = new Health(initialHealth);
     target.position = new Position(targetX, targetY);
 
-    Shooting.run(shotAction(targetX, targetY), bus, logger, [target]);
+    Shooting.run(shotAction(targetX, targetY), bus, logger, [target], mode);
 
     expect(target.health.value).toEqual(initialHealth);
   });
