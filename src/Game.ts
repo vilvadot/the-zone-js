@@ -63,7 +63,7 @@ export class Game {
   }
 
   handleAsyncEvents = () => {
-    this.bus.subscribe(EVENTS.TRAVELED, () => {
+    this.bus.subscribe(EVENTS.AREA_CHANGED, () => {
       this.areaManager.createNewArea();
       this.entityManager.spawnEntities();
     });
@@ -92,11 +92,11 @@ export class Game {
   runMainLoop(action: ACTION) {
     Talk.run(action, this.entities, this.mode);
     Trading.run(action, this.logger);
+    
+    if (this.mode.isDialog()) return;
+    
     UseItem.run(action, this.logger, this.entities);
     KeyboardControl.run(action, this.entities, this.mode, this.logger);
-
-    if (this.mode.isDialog()) return;
-
     Shooting.run(action, this.bus, this.logger, this.entities, this.mode);
     Pathfinding.run(this.entities, this.terrain);
     Pickup.run(action, this.entities, this.entityManager, this.logger);
@@ -107,7 +107,7 @@ export class Game {
     Combat.run(this.bus, this.logger, this.entities);
     AnomalyDiscovery.run(this.entities);
     Death.run(this.entities, this.entityManager);
-    
+
     this.fov.update(this.player, this.terrain);
     this.turn++;
   }

@@ -8,7 +8,7 @@ export enum EVENTS {
   MOUSE_MOVED = "MOUSE_MOVED",
   HIT = "HIT",
   SHOT_FIRED = "SHOT_FIRED",
-  TRAVELED = "TRAVELED",
+  AREA_CHANGED = "AREA_CHANGED",
 }
 
 export enum ACTION_NAME {
