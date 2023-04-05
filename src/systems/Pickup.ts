@@ -10,7 +10,7 @@ export class Pickup {
 
     const player = entities.find(({ isPlayer }) => isPlayer) as Player;
     const itemId = player.collision.areas.overlap[0];
-    const item = entityManager.get(itemId);
+    const item = entities.find((item) => item.id === itemId)
 
     if (!item) return;
 

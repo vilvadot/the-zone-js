@@ -9,10 +9,7 @@ vi.mock("../entities/entity-manager.js");
 
 describe("Death system", () => {
   const coordinates = new GlobalCoordinates(0, 0);
-  const entityManager = new EntityManager(
-    new Bus(),
-    coordinates
-  );
+  const entityManager = new EntityManager(coordinates);
 
   afterEach(() => {
     vi.clearAllMocks();

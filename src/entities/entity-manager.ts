@@ -1,27 +1,31 @@
 import { Cache } from "../data-structures/Cache.js";
 import { Player } from "./Player.js";
 import { Entities, Entity } from "./index.js";
-import { EVENTS } from "../actions.js";
-import { Bus } from "../infra/bus.js";
 import { EnemySpawner } from "../spawners/EnemySpawner.js";
 import { GlobalCoordinates } from "../GlobalCoordinates.js";
 import { ArtifactSpawner } from "../spawners/ArtifactSpawner.js";
-import { Chance } from "../util/index.js";
 import { NPCSpawner } from "../spawners/NPCSpawner.js";
-import { Debug } from "../infra/debug.js";
 import { AnomalySpawner } from "../spawners/AnomalySpawner.js";
+import { Spawner } from "../spawners/index.js";
+import { Chance } from "../util/Chance.js";
 
-export class EntityManager {
+export class EntityManager { // TODO: Entities should be a collection with find methods etc... and the spawn logic should be in a separate class?
   cache: Cache;
   entities: Entities;
   player: Player;
   coordinates: GlobalCoordinates;
+  spawners: Spawner<Entity>[];
 
   constructor(coordinates: GlobalCoordinates) {
     this.cache = new Cache();
     this.player = new Player();
     this.entities = [];
     this.coordinates = coordinates;
+    this.spawners = [
+      new ArtifactSpawner(),
+      new EnemySpawner(),
+      new AnomalySpawner(),
+    ]
 
     if (this.coordinates.isOrigin()) this.spawnNPCs();
   }
@@ -58,9 +62,12 @@ export class EntityManager {
 
     if (this.isCached()) return this.loadFromCache();
 
-    this.spawnEnemies();
-    this.spawnArtifacts();
-    this.spawnAnomalies();
+    this.spawners.forEach(( spawner ) => {
+      Chance.withProbability(100, () => {
+        const entities = spawner.spawn() 
+        this.add(entities)
+      })
+    })
   }
 
   private refreshCache() {
@@ -68,35 +75,9 @@ export class EntityManager {
     this.cache.push(key, this.entities);
   }
 
-  private spawnArtifacts() {
-    Chance.withProbability(100, () => {
-      const artifacts = ArtifactSpawner.spawn(1);
-
-      this.add(artifacts);
-    });
-  }
-
-  private spawnAnomalies() {
-    Chance.withProbability(100, () => {
-      const artifacts = AnomalySpawner.spawn();
-
-      this.add(artifacts);
-    });
-  }
-
-  private spawnEnemies() {
-    Chance.withProbability(100, () => {
-      const enemySeed = `${this.coordinates.x + this.coordinates.y}${
-        this.coordinates.y
-      }`;
-      const enemies = EnemySpawner.spawn(enemySeed);
-
-      this.add(enemies);
-    });
-  }
-
   private spawnNPCs() {
-    this.add(NPCSpawner.spawn());
+    const spawner = new NPCSpawner()
+    this.add(spawner.spawn());
   }
 
   private reset() {

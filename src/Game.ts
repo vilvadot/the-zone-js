@@ -69,6 +69,30 @@ export class Game {
     });
   };
 
+
+  runMainLoop(action: ACTION) {
+    Talk.run(action, this.entities, this.mode);
+    Trading.run(action, this.logger);
+    
+    if (this.mode.isDialog()) return;
+    
+    UseItem.run(action, this.logger, this.entities);
+    KeyboardControl.run(action, this.entities, this.mode, this.logger);
+    Shooting.run(action, this.bus, this.logger, this.entities, this.mode);
+    Pickup.run(action, this.entities, this.entityManager, this.logger);
+    Pathfinding.run(this.entities, this.terrain);
+    Travel.run(this.entities, this.bus, this.coordinates);
+    Movement.run(this.entities, this.terrain);
+    Targetting.run(this.entities, action);
+    Collision.run(this.entities);
+    Combat.run(this.bus, this.logger, this.entities);
+    AnomalyDiscovery.run(this.entities);
+    Death.run(this.entities, this.entityManager);
+
+    this.fov.update(this.player, this.terrain);
+    this.turn++;
+  }
+
   get entities() {
     return this.entityManager.getAllEntities();
   }
@@ -87,28 +111,5 @@ export class Game {
       mode: this.mode,
       coordinates: this.coordinates,
     };
-  }
-
-  runMainLoop(action: ACTION) {
-    Talk.run(action, this.entities, this.mode);
-    Trading.run(action, this.logger);
-    
-    if (this.mode.isDialog()) return;
-    
-    UseItem.run(action, this.logger, this.entities);
-    KeyboardControl.run(action, this.entities, this.mode, this.logger);
-    Shooting.run(action, this.bus, this.logger, this.entities, this.mode);
-    Pathfinding.run(this.entities, this.terrain);
-    Pickup.run(action, this.entities, this.entityManager, this.logger);
-    Travel.run(this.entities, this.bus, this.coordinates);
-    Movement.run(this.entities, this.terrain);
-    Targetting.run(this.entities, action);
-    Collision.run(this.entities);
-    Combat.run(this.bus, this.logger, this.entities);
-    AnomalyDiscovery.run(this.entities);
-    Death.run(this.entities, this.entityManager);
-
-    this.fov.update(this.player, this.terrain);
-    this.turn++;
   }
 }

@@ -3,7 +3,7 @@ import { Artifact } from "../entities/Artifact.js";
 import { HEIGHT, WIDTH } from "../config.js";
 
 export class ArtifactSpawner {
-  static spawn(quantity = 1) {
+  spawn(quantity = 1) {
     const result: Artifact[] = [];
 
     repeat(quantity, () => {

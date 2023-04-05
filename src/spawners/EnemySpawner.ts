@@ -1,37 +1,30 @@
+import { HEIGHT, WIDTH } from "../config.js";
 import { Snake, Enemy, ENEMY } from "../entities/enemies/Enemy.js";
 import { PseudoDog } from "../entities/enemies/PseudoDog.js";
-import { repeat, pickRandom } from "../util/index.js";
-import { ENEMIES } from "../colors.js";
+import { repeat, pickRandom, randomInteger } from "../util/index.js";
+import { Spawner } from "./index.js";
 
 class EnemyFactory {
-  static generate(mob) {
-    if (mob === ENEMY.dog) return new PseudoDog(10, 10);
-    return new Snake(5, 5);
+  static generate(type: ENEMY) {
+    const x = randomInteger(WIDTH)
+    const y = randomInteger(HEIGHT)
+
+    if (type === ENEMY.dog) return new PseudoDog(x, y);
+    return new Snake(x, y);
   }
 }
 
-export class EnemySpawner {
-  static spawn(seed: string) {
+export class EnemySpawner implements Spawner<Enemy> {
+  spawn(quantity = 10) {
     const result: Enemy[] = [];
-    const { quantity, mobType } = this.parseSeed(seed);
-
+    
     repeat(quantity, () => {
+      const mobType = pickRandom([ENEMY.dog, ENEMY.snake])
       const enemy = EnemyFactory.generate(mobType);
+      
       result.push(enemy);
     });
 
     return result;
-  }
-
-  private static parseSeed(seed) {
-    const cleanSeed = seed.replace("-", "");
-    const quantity = Number(cleanSeed[0]) || 1;
-    const mobType = Number(cleanSeed[1]) % 2 === 0 ? ENEMY.snake : ENEMY.dog;
-
-    return { quantity, mobType };
-  }
-
-  static _generateColor() {
-    return pickRandom(ENEMIES);
   }
 }

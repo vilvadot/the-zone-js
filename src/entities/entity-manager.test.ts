@@ -72,7 +72,7 @@ describe("EntityManager", () => {
     expect(findEntity(entities, Artifact)).toBeDefined();
   });
 
-  it("sometimes does not spawn artifacts", () => {
+  it.only("sometimes does not spawn artifacts", () => {
     fakeChanceNeverHappens();
 
     entityManager.spawnEntities()

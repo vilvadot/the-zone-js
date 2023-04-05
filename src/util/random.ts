@@ -4,7 +4,7 @@ export const randomFloat = (min, max) => {
 
 export const randomInteger = (max = 0, min = 0) => {
   const randomNumber = Math.random() * (max - min + 1) + min;
-  return parseInt(randomNumber.toString());
+  return Math.round(randomNumber);
 };
 
 export const randomSign = (value) => {
@@ -15,7 +15,9 @@ export const randomSign = (value) => {
 export const uid = () => Math.random().toString().replace(".", "");
 
 export const pickRandom = (collection: any[] = []) => {
-  const index = randomInteger(0, collection.length);
+  if(!collection.length) return collection[0];
+  const index = randomInteger(0, collection.length) - 1;
+
   return collection[index];
 };
 

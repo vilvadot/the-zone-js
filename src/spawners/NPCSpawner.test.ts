@@ -3,8 +3,7 @@ import { NPCSpawner } from "./NPCSpawner.js";
 
 describe("NPCSpawner", () => {
   it("spawns a merchant", () => {
-    const seed = "12";
-    const enemies = NPCSpawner.spawn();
+    const enemies = new NPCSpawner().spawn();
 
     expect(enemies[0].name).toEqual("merchant");
   });

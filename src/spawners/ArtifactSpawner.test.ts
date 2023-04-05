@@ -6,7 +6,7 @@ describe("ArtifactSpawner", () => {
   it("spawns anomalies", () => {
     const quantity = 3;
 
-    const anomalies = ArtifactSpawner.spawn(quantity);
+    const anomalies = new ArtifactSpawner().spawn(quantity);
 
     expect(anomalies).toHaveLength(quantity);
     expect(anomalies[0]).toBeInstanceOf(Artifact);
