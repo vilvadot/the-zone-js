@@ -15,7 +15,7 @@ export const randomSign = (value) => {
 export const uid = () => Math.random().toString().replace(".", "");
 
 export const pickRandom = (collection: any[] = []) => {
-  if(!collection.length) return collection[0];
+  if (!collection.length) return collection[0];
   const index = randomInteger(0, collection.length) - 1;
 
   return collection[index];

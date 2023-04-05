@@ -53,7 +53,7 @@ class Victim {
 
   constructor(health, position) {
     this.id = "victim";
-    this.name = 'victim';
+    this.name = "victim";
     this.target = new TargetManual();
     this.health = new Health(health);
     this.damage = new Damage(1);
@@ -72,7 +72,7 @@ class Attacker {
 
   constructor(health, position) {
     this.id = "attacker";
-    this.name = 'attacker';
+    this.name = "attacker";
     this.target = new TargetManual("victim");
     this.health = new Health(health);
     this.damage = new Damage(1);

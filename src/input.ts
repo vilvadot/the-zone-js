@@ -74,8 +74,8 @@ export const handleInput = (bus, gameState: GameState) => {
   });
 
   canvas.addEventListener("click", (event) => {
-    if(!gameState.mode.isAiming()) return;
-    
+    if (!gameState.mode.isAiming()) return;
+
     bus.emit(EVENTS.ACTION_EXECUTED, {
       name: ACTION_NAME.TARGET,
       payload: {

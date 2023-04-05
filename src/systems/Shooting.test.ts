@@ -11,7 +11,7 @@ describe("Shooting system", () => {
   const bus = new Bus();
   const logger = new Logger(bus);
   const player = new Player();
-  const mode = new GameMode()
+  const mode = new GameMode();
   mode.set(Mode.aiming);
 
   afterEach(() => {
@@ -24,7 +24,13 @@ describe("Shooting system", () => {
     const initialHealth = 10;
     const target = new Entity(initialHealth, entityX, entityY);
 
-    Shooting.run(shotAction(entityX, entityY), bus, logger, [target, player], mode);
+    Shooting.run(
+      shotAction(entityX, entityY),
+      bus,
+      logger,
+      [target, player],
+      mode
+    );
 
     expect(target.health.value).toBeLessThan(initialHealth);
   });

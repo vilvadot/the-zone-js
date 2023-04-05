@@ -19,7 +19,8 @@ export class KeyboardControl {
 // TODO: Not sure this belongs here
 class HandleAim {
   static do(mode: GameMode, action: ACTION, logger: Logger) {
-    const noLongerAimingMessage = "You lower your weapon. You are no longer aiming.";
+    const noLongerAimingMessage =
+      "You lower your weapon. You are no longer aiming.";
 
     if (mode.isAiming() && action.name === ACTION_NAME.AIM) {
       logger.log(noLongerAimingMessage, LOG_LEVEL.explanation);
@@ -34,7 +35,8 @@ class HandleAim {
 
     if (action.name === ACTION_NAME.AIM) {
       logger.log(
-        "You ready your weapon, aiming through the sights you wait for the perfect moment to shoot at your target...", LOG_LEVEL.explanation
+        "You ready your weapon, aiming through the sights you wait for the perfect moment to shoot at your target...",
+        LOG_LEVEL.explanation
       );
       mode.set(Mode.aiming);
     }

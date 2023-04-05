@@ -35,7 +35,7 @@ describe("EntityManager", () => {
   it("spawns enemies when area is created", () => {
     fakeChanceAlwaysHappens();
 
-    entityManager.spawnEntities()
+    entityManager.spawnEntities();
 
     const entities = entityManager.getAllEntities();
     expect(findEntity(entities, Enemy)).toBeDefined();
@@ -46,18 +46,18 @@ describe("EntityManager", () => {
 
     coordinates.x = 1;
     coordinates.y = 1;
-    entityManager.spawnEntities()
+    entityManager.spawnEntities();
     const initialEntities = entityManager.getAllEntities();
 
     coordinates.x = 0;
     coordinates.y = 0;
-    entityManager.spawnEntities()
+    entityManager.spawnEntities();
     const secondAreaEntities = entityManager.getAllEntities();
     expect(secondAreaEntities).not.toEqual(initialEntities);
 
     coordinates.x = 1;
     coordinates.y = 1;
-    entityManager.spawnEntities()
+    entityManager.spawnEntities();
     const initialEntitiesAgain = entityManager.getAllEntities();
 
     expect(initialEntitiesAgain).toEqual(initialEntities);
@@ -66,7 +66,7 @@ describe("EntityManager", () => {
   it("spawns artifacts when area is created", () => {
     fakeChanceAlwaysHappens();
 
-    entityManager.spawnEntities()
+    entityManager.spawnEntities();
 
     const entities = entityManager.getAllEntities();
     expect(findEntity(entities, Artifact)).toBeDefined();
@@ -75,7 +75,7 @@ describe("EntityManager", () => {
   it.only("sometimes does not spawn artifacts", () => {
     fakeChanceNeverHappens();
 
-    entityManager.spawnEntities()
+    entityManager.spawnEntities();
 
     const entities = entityManager.getAllEntities();
     expect(findEntity(entities, Artifact)).toBeUndefined();

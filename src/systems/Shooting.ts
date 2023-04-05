@@ -9,8 +9,14 @@ import { GameMode } from "../GameMode.js";
 const BULLET_DAMAGE = 1;
 
 export class Shooting {
-  static run(action: ACTION, bus: Bus, logger: Logger, entities, mode:GameMode) {
-    if(!mode.isAiming()) return;
+  static run(
+    action: ACTION,
+    bus: Bus,
+    logger: Logger,
+    entities,
+    mode: GameMode
+  ) {
+    if (!mode.isAiming()) return;
     if (action.name !== ACTION_NAME.TARGET) return;
 
     const { x, y } = action.payload as CLICK_PAYLOAD;

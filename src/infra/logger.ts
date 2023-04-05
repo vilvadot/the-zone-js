@@ -10,7 +10,11 @@ export class Logger {
   }
 
   log(message, color = LOG_LEVEL.info) {
-    this.bus.emit(EVENTS.LOG_EMITTED, { level: "log", message: capitalize(message), color });
+    this.bus.emit(EVENTS.LOG_EMITTED, {
+      level: "log",
+      message: capitalize(message),
+      color,
+    });
   }
 }
 
@@ -19,4 +23,4 @@ export const LOG_LEVEL = {
   warning: "yellow",
   info: "white",
   explanation: "DarkOrchid",
-}
+};

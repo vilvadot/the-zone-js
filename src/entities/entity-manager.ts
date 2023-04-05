@@ -9,7 +9,8 @@ import { AnomalySpawner } from "../spawners/AnomalySpawner.js";
 import { Spawner } from "../spawners/index.js";
 import { Chance } from "../util/Chance.js";
 
-export class EntityManager { // TODO: Entities should be a collection with find methods etc... and the spawn logic should be in a separate class?
+export class EntityManager {
+  // TODO: Entities should be a collection with find methods etc... and the spawn logic should be in a separate class?
   cache: Cache;
   entities: Entities;
   player: Player;
@@ -25,7 +26,7 @@ export class EntityManager { // TODO: Entities should be a collection with find 
       new ArtifactSpawner(),
       new EnemySpawner(),
       new AnomalySpawner(),
-    ]
+    ];
 
     if (this.coordinates.isOrigin()) this.spawnNPCs();
   }
@@ -62,12 +63,12 @@ export class EntityManager { // TODO: Entities should be a collection with find 
 
     if (this.isCached()) return this.loadFromCache();
 
-    this.spawners.forEach(( spawner ) => {
+    this.spawners.forEach((spawner) => {
       Chance.withProbability(100, () => {
-        const entities = spawner.spawn() 
-        this.add(entities)
-      })
-    })
+        const entities = spawner.spawn();
+        this.add(entities);
+      });
+    });
   }
 
   private refreshCache() {
@@ -76,7 +77,7 @@ export class EntityManager { // TODO: Entities should be a collection with find 
   }
 
   private spawnNPCs() {
-    const spawner = new NPCSpawner()
+    const spawner = new NPCSpawner();
     this.add(spawner.spawn());
   }
 

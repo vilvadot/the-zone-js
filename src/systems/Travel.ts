@@ -11,25 +11,25 @@ export class Travel {
       if (!isPlayer) continue;
 
       if (isAtScreenEdge("left", position) && isMoving("left", velocity)) {
-        coordinates.move(DIRECTION.west)
+        coordinates.move(DIRECTION.west);
         bus.emit(EVENTS.AREA_CHANGED, { direction: "west" });
         position.x = WIDTH;
       }
 
       if (isAtScreenEdge("right", position) && isMoving("right", velocity)) {
-        coordinates.move(DIRECTION.east)
+        coordinates.move(DIRECTION.east);
         bus.emit(EVENTS.AREA_CHANGED, { direction: "east" });
         position.x = -1;
       }
 
       if (isAtScreenEdge("bottom", position) && isMoving("down", velocity)) {
-        coordinates.move(DIRECTION.south)
+        coordinates.move(DIRECTION.south);
         bus.emit(EVENTS.AREA_CHANGED, { direction: "south" });
         position.y = -1;
       }
 
       if (isAtScreenEdge("top", position) && isMoving("up", velocity)) {
-        coordinates.move(DIRECTION.north)
+        coordinates.move(DIRECTION.north);
         bus.emit(EVENTS.AREA_CHANGED, { direction: "north" });
         position.y = HEIGHT;
       }

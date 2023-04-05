@@ -69,13 +69,12 @@ export class Game {
     });
   };
 
-
   runMainLoop(action: ACTION) {
     Talk.run(action, this.entities, this.mode);
     Trading.run(action, this.logger);
-    
+
     if (this.mode.isDialog()) return;
-    
+
     UseItem.run(action, this.logger, this.entities);
     KeyboardControl.run(action, this.entities, this.mode, this.logger);
     Shooting.run(action, this.bus, this.logger, this.entities, this.mode);

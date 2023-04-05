@@ -5,12 +5,17 @@ import { Player } from "../entities/Player.js";
 import { LOG_LEVEL, Logger } from "../infra/logger.js";
 
 export class Pickup {
-  static run(action: ACTION, entities: Entities, entityManager: EntityManager, logger: Logger) {
+  static run(
+    action: ACTION,
+    entities: Entities,
+    entityManager: EntityManager,
+    logger: Logger
+  ) {
     if (action.name !== ACTION_NAME.PICKUP) return;
 
     const player = entities.find(({ isPlayer }) => isPlayer) as Player;
     const itemId = player.collision.areas.overlap[0];
-    const item = entities.find((item) => item.id === itemId)
+    const item = entities.find((item) => item.id === itemId);
 
     if (!item) return;
 

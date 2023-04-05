@@ -6,8 +6,8 @@ import { Spawner } from "./index.js";
 
 class EnemyFactory {
   static generate(type: ENEMY) {
-    const x = randomInteger(WIDTH)
-    const y = randomInteger(HEIGHT)
+    const x = randomInteger(WIDTH);
+    const y = randomInteger(HEIGHT);
 
     if (type === ENEMY.dog) return new PseudoDog(x, y);
     return new Snake(x, y);
@@ -17,11 +17,11 @@ class EnemyFactory {
 export class EnemySpawner implements Spawner<Enemy> {
   spawn(quantity = 10) {
     const result: Enemy[] = [];
-    
+
     repeat(quantity, () => {
-      const mobType = pickRandom([ENEMY.dog, ENEMY.snake])
+      const mobType = pickRandom([ENEMY.dog, ENEMY.snake]);
       const enemy = EnemyFactory.generate(mobType);
-      
+
       result.push(enemy);
     });
 

@@ -22,10 +22,10 @@ export class AreaManager {
     this.terrain = terrain;
     this.areas = new Cache();
     this.coordinates = coordinates;
-    
+
     this.createNewArea(BIOME.town);
   }
-  
+
   createNewArea(biome: BIOME = BIOME.wilderness) {
     const seed = this.getCurrentAreaSeed();
     this.areas.push(this.getCurrentAreaId(), seed);
