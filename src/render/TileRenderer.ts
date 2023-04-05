@@ -32,8 +32,8 @@ export class TileRenderer {
     const animationTile = animation?.getValue(x, y);
 
     if (base) stack.push(base);
-    if (animationTile) stack.push(animationTile);
     if (entity) stack.push(entity);
+    if (animationTile) stack.push(animationTile);
 
     return stack;
   }

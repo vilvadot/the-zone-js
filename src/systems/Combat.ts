@@ -1,6 +1,6 @@
 import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
-import { isAdjacent, isOver } from "../util/index.js";
+import { capitalize, isAdjacent, isOver } from "../util/index.js";
 
 export class Combat {
   static run(bus: Bus, logger, entities) {
@@ -15,20 +15,22 @@ export class Combat {
       if (name === "Anomaly") {
         // TODO: Extract to own system ??
         if (isOver(targetEntity.position, position))
-          this._attack(name, targetEntity, damage.value, bus, logger);
+          this.attack(name, targetEntity, damage.value, bus, logger);
         continue;
       }
 
       if (isAdjacent(targetEntity.position, position))
-        this._attack(name, targetEntity, damage.value, bus, logger);
+        this.attack(name, targetEntity, damage.value, bus, logger);
     }
   }
 
-  static _attack(name, target, damage, bus, logger) {
+  private static attack(name, target, damage, bus, logger) {
     target.health.value -= damage;
+    console.log({ x: target.position.x, y: target.position.y })
     bus.emit(EVENTS.HIT, { x: target.position.x, y: target.position.y });
+
     logger.log(
-      `"${name}" Attacked "${target.name}" for ${damage} damage`,
+      `"${capitalize(name)}" Attacked "${capitalize(target.name)}" for ${damage} damage`,
       "red"
     );
   }
