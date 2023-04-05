@@ -2,7 +2,6 @@ import { describe, expect, it, afterEach, vi } from "vitest";
 import { Health, Sprite } from "../components/index.js";
 import { EntityManager } from "../entities/entity-manager.js";
 import { Bus } from "../infra/bus.js";
-import { Terrain } from "../terrain/Terrain.js";
 import { Death } from "./Death.js";
 import { GlobalCoordinates } from "../GlobalCoordinates.js";
 
@@ -12,7 +11,6 @@ describe("Death system", () => {
   const coordinates = new GlobalCoordinates(0, 0);
   const entityManager = new EntityManager(
     new Bus(),
-    new Terrain(1, 1),
     coordinates
   );
 

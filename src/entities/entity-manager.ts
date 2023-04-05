@@ -14,14 +14,12 @@ import { AnomalySpawner } from "../spawners/AnomalySpawner.js";
 
 export class EntityManager {
   bus: Bus;
-  terrain: Terrain;
   cache: Cache;
   entities: Entities;
   player: Player;
   coordinates: GlobalCoordinates;
 
-  constructor(bus: Bus, terrain: Terrain, coordinates: GlobalCoordinates) {
-    this.terrain = terrain;
+  constructor(bus: Bus, coordinates: GlobalCoordinates) {
     this.bus = bus;
     this.cache = new Cache();
     this.player = new Player();

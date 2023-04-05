@@ -3,7 +3,6 @@ import { Entities } from ".";
 import { EVENTS } from "../actions";
 import { Bus } from "../infra/bus";
 import { GlobalCoordinates } from "../GlobalCoordinates";
-import { Terrain } from "../terrain";
 import {
   fakeChanceAlwaysHappens,
   fakeChanceNeverHappens,
@@ -16,7 +15,6 @@ import { Player } from "./Player";
 
 describe("EntityManager", () => {
   const bus = new Bus();
-  const terrain = new Terrain(10, 10);
   let entityManager;
   let coordinates;
 
@@ -24,7 +22,6 @@ describe("EntityManager", () => {
     coordinates = new GlobalCoordinates(1, 1);
     entityManager = new EntityManager(
       bus,
-      terrain,
       coordinates
     );
     entityManager.handleSubscriptions();
@@ -35,7 +32,6 @@ describe("EntityManager", () => {
     const homeCoordinates = new GlobalCoordinates(0, 0);
     const manager = new EntityManager(
       bus,
-      terrain,
       homeCoordinates
     );
     manager.handleSubscriptions();

@@ -55,7 +55,7 @@ export class Game {
     this.logger = new Logger(bus);
     this.mode = new GameMode();
     this.coordinates = new GlobalCoordinates();
-    this.entityManager = new EntityManager(this.bus, this.terrain, this.coordinates);
+    this.entityManager = new EntityManager(this.bus, this.coordinates);
     this.areaManager = new AreaManager(this.bus, this.terrain, this.coordinates);
     this.fov = new FOVIndex(this.player, this.terrain);
 
