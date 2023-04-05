@@ -46,6 +46,7 @@ export class Game {
   private entityManager: EntityManager;
   private areaManager: AreaManager;
   private mode: GameMode;
+  private coordinates: GlobalCoordinates;
 
   constructor(bus: Bus) {
     this.bus = bus;
@@ -54,8 +55,9 @@ export class Game {
     this.logger = new Logger(bus);
     this.fov = new FOVIndex();
     this.mode = new GameMode();
-    this.entityManager = new EntityManager(this.bus, this.terrain);
-    this.areaManager = new AreaManager(this.bus, this.terrain);
+    this.coordinates = new GlobalCoordinates();
+    this.entityManager = new EntityManager(this.bus, this.terrain, this.coordinates);
+    this.areaManager = new AreaManager(this.bus, this.terrain, this.coordinates);
     this.handleSubscriptions();
     this.fov.update(this.entityManager.getPlayer(), this.terrain);
   }

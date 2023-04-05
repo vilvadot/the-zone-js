@@ -19,11 +19,11 @@ export class AreaManager {
   coordinates: GlobalCoordinates;
   private areas: Cache;
 
-  constructor(bus: Bus, terrain: Terrain) {
+  constructor(bus: Bus, terrain: Terrain, coordinates: GlobalCoordinates) {
     this.bus = bus;
     this.terrain = terrain;
     this.areas = new Cache();
-    this.coordinates = new GlobalCoordinates();
+    this.coordinates = coordinates;
   }
 
   createNewArea(biome: BIOME) {
@@ -31,9 +31,7 @@ export class AreaManager {
     this.areas.push(this.getCurrentAreaId(), seed);
     this.terrain.generate(seed, biome);
 
-    this.bus.emit(EVENTS.AREA_CREATED, {
-      area: this.currentArea,
-    });
+    this.bus.emit(EVENTS.AREA_CREATED);
   }
 
   handleSubscriptions() {

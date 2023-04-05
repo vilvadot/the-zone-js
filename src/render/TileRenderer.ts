@@ -1,7 +1,6 @@
 import { AnimationQueue } from "./animations/index.js";
 import { DEBUG_ENABLED, FOV_ENABLED } from "../config.js";
 import { GameState } from "../Game.js";
-import { Debug } from "../infra/debug.js";
 import { TILES } from "../tiles.js";
 import { Display } from "./Display.js";
 import { shadowMagnitude } from "./shadowMagnitude.js";
@@ -19,7 +18,7 @@ export class TileRenderer {
 
     fov.forEach((x, y, { distance, isBlocked }) => {
       const isMouseHover = x === mouse?.tileX && y === mouse?.tileY;
-      const stack = this.generateTileStack(x, y, terrain, entities, animation);
+      let stack = this.generateTileStack(x, y, terrain, entities, animation);
       const tint = getTint(distance, isBlocked, isMouseHover);
       display.draw(x, y, stack, tint);
     });
@@ -33,8 +32,8 @@ export class TileRenderer {
     const animationTile = animation?.getValue(x, y);
 
     if (base) stack.push(base);
-    if (entity) stack.push(entity);
     if (animationTile) stack.push(animationTile);
+    if (entity) stack.push(entity);
 
     return stack;
   }

@@ -18,13 +18,15 @@ export class EntityManager {
   cache: Cache;
   entities: Entities;
   player: Player;
+  coordinates: GlobalCoordinates;
 
-  constructor(bus: Bus, terrain: Terrain) {
+  constructor(bus: Bus, terrain: Terrain, coordinates: GlobalCoordinates) {
     this.terrain = terrain;
     this.bus = bus;
     this.cache = new Cache();
     this.player = new Player();
     this.entities = [];
+    this.coordinates =  coordinates;
   }
 
   getPlayer(): Player {
@@ -41,81 +43,82 @@ export class EntityManager {
 
   remove(entity: Entity) {
     this.entities = this.entities.filter(({ id }) => id !== entity.id);
+    this.refreshCache()
   }
 
-  add(entity: Entity) {
-    this.entities.push(entity);
+  add(entities: Entity | Entities) {
+    if(Array.isArray(entities)) {
+      this.entities = [...this.entities, ...entities];
+    }else{
+      this.entities = [...this.entities, entities];
+    }
+
+    this.refreshCache()
   }
 
   handleSubscriptions() {
-    this.bus.subscribe(EVENTS.AREA_CREATED, ({ area }) => {
-      const coordinates = area.coordinates;
+    this.bus.subscribe(EVENTS.AREA_CREATED, () => {
       this.reset();
 
-      const isCached = this.isCached(coordinates);
+      const isCached = this.isCached();
       if (isCached) {
         Debug.log("Entities loaded from cache");
-        return this.loadFromCache(coordinates);
+        return this.loadFromCache();
       }
 
-      this.spawnNPCs(coordinates);
-      this.spawnEnemies(coordinates);
-      this.spawnArtifacts(coordinates);
-      this.spawnAnomalies(coordinates);
+      this.spawnNPCs();
+
+      if (this.coordinates.isOrigin()) return;
+
+      this.spawnEnemies();
+      this.spawnArtifacts();
+      this.spawnAnomalies();
     });
   }
 
-  private addMultiple(entities: Entities, coordinates: GlobalCoordinates) {
-    this.entities = [...this.entities, ...entities];
-    this.cache.push(coordinates.toString(), this.entities);
+  private refreshCache() {
+    const key = this.coordinates.toString();
+    this.cache.push(key, this.entities);
   }
 
-  private spawnArtifacts(coordinates: GlobalCoordinates) {
-    if (coordinates.isOrigin()) return;
-
+  private spawnArtifacts() {
     Chance.withProbability(100, () => {
       const artifacts = ArtifactSpawner.spawn(1);
 
-      this.addMultiple(artifacts, coordinates);
+      this.add(artifacts)
     });
   }
 
-  private spawnAnomalies(coordinates: GlobalCoordinates) {
-    if (coordinates.isOrigin()) return;
-
+  private spawnAnomalies() {
     Chance.withProbability(100, () => {
       const artifacts = AnomalySpawner.spawn();
 
-      this.addMultiple(artifacts, coordinates);
+      this.add(artifacts);
     });
   }
 
-  private spawnEnemies(coordinates: GlobalCoordinates) {
-    if (coordinates.isOrigin()) return;
-
+  private spawnEnemies() {
     Chance.withProbability(100, () => {
-      const enemySeed = `${coordinates.x + coordinates.y}${coordinates.y}`;
+      const enemySeed = `${this.coordinates.x + this.coordinates.y}${this.coordinates.y}`;
       const enemies = EnemySpawner.spawn(enemySeed);
 
-      this.addMultiple(enemies, coordinates);
+      this.add(enemies);
     });
   }
 
-  private spawnNPCs(coordinates: GlobalCoordinates) {
-    if (!coordinates.isOrigin()) return;
-
-    this.addMultiple(NPCSpawner.spawn(), coordinates);
+  private spawnNPCs() {
+    this.add(NPCSpawner.spawn());
   }
 
   private reset() {
     this.entities = [];
   }
 
-  private loadFromCache(coordinates: GlobalCoordinates) {
-    this.entities = this.cache.retrieve(coordinates);
+  private loadFromCache() {
+    this.entities = this.cache.retrieve(this.coordinates);
   }
 
-  private isCached(coordinates: GlobalCoordinates) {
-    return !!this.cache.retrieve(coordinates.toString());
+  private isCached() {
+    return !!this.cache.retrieve(this.coordinates.toString());
   }
 }

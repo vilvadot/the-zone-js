@@ -18,6 +18,7 @@ export class PseudoDogSkin implements Item {
   sprite: Sprite;
   position: Position;
   isWalkable: boolean;
+  keyboardControlled: boolean;
 
   constructor(quantity: number = 1, x?: number, y?: number) {
     this.quantity = quantity;
@@ -26,6 +27,7 @@ export class PseudoDogSkin implements Item {
     this.sprite = new Sprite("leather");
     this.position = new Position(x, y);
     this.isWalkable = true;
+    this.keyboardControlled = true;
   }
 }
 

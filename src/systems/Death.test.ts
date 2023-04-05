@@ -4,11 +4,17 @@ import { EntityManager } from "../entities/entity-manager.js";
 import { Bus } from "../infra/bus.js";
 import { Terrain } from "../terrain/Terrain.js";
 import { Death } from "./Death.js";
+import { GlobalCoordinates } from "../GlobalCoordinates.js";
 
 vi.mock("../entities/entity-manager.js");
 
 describe("Death system", () => {
-  const entityManager = new EntityManager(new Bus(), new Terrain(1, 1));
+  const coordinates = new GlobalCoordinates(0, 0);
+  const entityManager = new EntityManager(
+    new Bus(),
+    new Terrain(1, 1),
+    coordinates
+  );
 
   afterEach(() => {
     vi.clearAllMocks();

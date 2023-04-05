@@ -18,7 +18,7 @@ Anomaly
 
 Items
   - Bug: Artifacts can spawn over a rock or over an anomaly
-  - Bug: Once collected items reappear uppon visiting an area (cached)
+  x Bug: Once collected items reappear uppon visiting an area (cached)
 
 Shooting
   - Bug: Death happens one turn offseted so corpse moves one tile
