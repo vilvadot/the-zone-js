@@ -98,7 +98,7 @@ export class Game {
       Shooting.run(action, this.bus, this.logger, this.entities);
     }
     Pathfinding.run(this.entities, this.terrain);
-    Pickup.run(action, this.entities, this.entityManager);
+    Pickup.run(action, this.entities, this.entityManager, this.logger);
     Travel.run(this.entities, this.bus);
     Movement.run(this.entities, this.terrain);
     this.fov.update(this.entityManager.getPlayer(), this.terrain);

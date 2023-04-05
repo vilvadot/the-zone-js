@@ -2,7 +2,7 @@ import { ACTION, ACTION_NAME, TRADE_PAYLOAD } from "../actions.js";
 import { removeFromInventory } from "../entities/helpers.js";
 import { Entities, findPlayer } from "../entities/index.js";
 import { Player } from "../entities/Player.js";
-import { Logger } from "../infra/logger.js";
+import { LOG_LEVEL, Logger } from "../infra/logger.js";
 
 export class UseItem {
   static run(action: ACTION, logger: Logger, entities: Entities) {
@@ -19,7 +19,7 @@ export class UseItem {
     }
 
     removeFromInventory(player.inventory, item, 1);
-    logger.log(message, "purple");
+    logger.log(message, LOG_LEVEL.info);
   }
 }
 

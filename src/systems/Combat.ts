@@ -1,5 +1,6 @@
 import { EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
+import { LOG_LEVEL } from "../infra/logger.js";
 import { capitalize, isAdjacent, isOver } from "../util/index.js";
 
 export class Combat {
@@ -26,12 +27,14 @@ export class Combat {
 
   private static attack(name, target, damage, bus, logger) {
     target.health.value -= damage;
-    console.log({ x: target.position.x, y: target.position.y })
+    console.log({ x: target.position.x, y: target.position.y });
     bus.emit(EVENTS.HIT, { x: target.position.x, y: target.position.y });
 
     logger.log(
-      `"${capitalize(name)}" Attacked "${capitalize(target.name)}" for ${damage} damage`,
-      "red"
+      `${capitalize(name)} Attacked ${capitalize(
+        target.name
+      )} for ${damage} damage`,
+      LOG_LEVEL.danger
     );
   }
 }

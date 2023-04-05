@@ -6,7 +6,7 @@ import {
   removeFromInventory,
 } from "../entities/helpers.js";
 import { PRICES } from "../entities/items/prices.js";
-import { Logger } from "../infra/logger.js";
+import { LOG_LEVEL, Logger } from "../infra/logger.js";
 
 export class Trading {
   static run(action: ACTION, logger: Logger) {
@@ -35,7 +35,7 @@ export class Trading {
 
     const buyerAmmo = findAmmo(to.inventory)!.quantity;
     if (buyerAmmo - quantity * price < 0) {
-      logger.log(`You don't have enough Ammo to buy that!`, "yellow");
+      logger.log(`You don't have enough Ammo to buy that!`, LOG_LEVEL.warning);
       return;
     }
 

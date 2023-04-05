@@ -3,7 +3,7 @@ import { Ammo } from "../entities/items/Ammo.js";
 import { Player } from "../entities/Player.js";
 import { ACTION, ACTION_NAME, CLICK_PAYLOAD, EVENTS } from "../actions.js";
 import { Bus } from "../infra/bus.js";
-import { Logger } from "../infra/logger.js";
+import { LOG_LEVEL, Logger } from "../infra/logger.js";
 
 const BULLET_DAMAGE = 1;
 
@@ -35,8 +35,8 @@ console.log('shot', { x: target.position.x, y: target.position.y })
     target.health.value -= BULLET_DAMAGE;
 
     logger.log(
-      `"${player.name}" shot at "${target.name}" for ${BULLET_DAMAGE} damage!`,
-      "lightblue"
+      `${player.name} shot at ${target.name} for ${BULLET_DAMAGE} damage!`,
+      LOG_LEVEL.danger
     );
   }
 }

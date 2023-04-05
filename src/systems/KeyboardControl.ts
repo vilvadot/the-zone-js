@@ -1,6 +1,6 @@
 import { Entities } from "../entities/index.js";
 import { ACTION, ACTION_NAME, MOVE_PAYLOAD } from "../actions.js";
-import { Logger } from "../infra/logger.js";
+import { LOG_LEVEL, Logger } from "../infra/logger.js";
 import { GameMode, Mode } from "../GameMode.js";
 
 // TODO: The name seems not appropiate
@@ -19,20 +19,22 @@ export class KeyboardControl {
 // TODO: Not sure this belongs here
 class HandleAim {
   static do(mode: GameMode, action: ACTION, logger: Logger) {
+    const noLongerAimingMessage = "You lower your weapon. You are no longer aiming.";
+
     if (mode.isAiming() && action.name === ACTION_NAME.AIM) {
-      logger.log("You lower your weapon");
+      logger.log(noLongerAimingMessage, LOG_LEVEL.explanation);
       mode.set(Mode.movement);
       return;
     }
 
     if (mode.isAiming() && action.name !== ACTION_NAME.TARGET) {
       mode.set(Mode.movement);
-      logger.log("You lower your weapon");
+      logger.log(noLongerAimingMessage, LOG_LEVEL.explanation);
     }
 
     if (action.name === ACTION_NAME.AIM) {
       logger.log(
-        "You ready your weapon aim through the sights...click on a target to shoot"
+        "You ready your weapon, aiming through the sights you wait for the perfect moment to shoot at your target...", LOG_LEVEL.explanation
       );
       mode.set(Mode.aiming);
     }
