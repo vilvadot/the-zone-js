@@ -83,7 +83,7 @@ export class Game {
       turn: this.turn,
       entities: this.entities,
       mode: this.mode,
-      coordinates: this.areaManager.getCurrentCoordinates(),
+      coordinates: this.coordinates,
     };
   }
 

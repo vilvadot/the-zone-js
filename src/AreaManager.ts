@@ -43,18 +43,6 @@ export class AreaManager {
     });
   }
 
-  getCurrentCoordinates() {
-    return this.coordinates;
-  }
-
-  private get currentArea(): Area {
-    return {
-      id: this.getCurrentAreaId(),
-      seed: this.getCurrentAreaSeed(),
-      coordinates: this.coordinates,
-    };
-  }
-
   private getCurrentAreaId() {
     return this.coordinates.toString();
   }
