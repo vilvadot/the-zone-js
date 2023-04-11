@@ -1,7 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Entities } from ".";
-import { EVENTS } from "../actions";
-import { Bus } from "../infra/bus";
 import { GlobalCoordinates } from "../GlobalCoordinates";
 import {
   fakeChanceAlwaysHappens,
@@ -13,11 +11,14 @@ import { EntityManager } from "./entity-manager";
 import { Merchant } from "./Merchant";
 import { Player } from "./Player";
 
+vi.mock('../util/Chance');
+
 describe("EntityManager", () => {
   let entityManager;
   let coordinates;
 
   beforeEach(() => {
+    vi.restoreAllMocks()
     coordinates = new GlobalCoordinates(1, 1);
     entityManager = new EntityManager(coordinates);
   });
@@ -72,7 +73,7 @@ describe("EntityManager", () => {
     expect(findEntity(entities, Artifact)).toBeDefined();
   });
 
-  it.only("sometimes does not spawn artifacts", () => {
+  it("sometimes does not spawn artifacts", () => {
     fakeChanceNeverHappens();
 
     entityManager.spawnEntities();

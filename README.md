@@ -38,6 +38,8 @@ You have a few debug flags that can be used for debugging by setting the paramet
 
 - **text**: Activates text mode
 - **debug**: Removes Field of View. Shows anomalies
+- **x**: Sets initial area X location
+- **y**: Sets initial area Y location
 
 ## How to use it
 

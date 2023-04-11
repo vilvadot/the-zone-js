@@ -13,7 +13,7 @@ import {
 } from "./systems/index.js";
 import { Logger } from "./infra/logger.js";
 import { FOVIndex } from "./fov-index.js";
-import { HEIGHT, WIDTH } from "./config.js";
+import { HEIGHT, STARTING_LOCATION, WIDTH } from "./config.js";
 import { Terrain } from "./terrain/index.js";
 import { Bus } from "./infra/bus.js";
 import { EntityManager } from "./entities/entity-manager.js";
@@ -54,7 +54,7 @@ export class Game {
     this.terrain = new Terrain(WIDTH, HEIGHT);
     this.logger = new Logger(bus);
     this.mode = new GameMode();
-    this.coordinates = new GlobalCoordinates();
+    this.coordinates = new GlobalCoordinates(STARTING_LOCATION.x, STARTING_LOCATION.y);
     this.entityManager = new EntityManager(this.coordinates);
     this.areaManager = new AreaManager(this.terrain, this.coordinates);
     this.fov = new FOVIndex(this.player, this.terrain);

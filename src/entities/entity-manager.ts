@@ -28,7 +28,7 @@ export class EntityManager {
       new AnomalySpawner(),
     ];
 
-    if (this.coordinates.isOrigin()) this.spawnNPCs();
+    this.spawnInitialEntities();
   }
 
   getPlayer(): Player {
@@ -69,6 +69,12 @@ export class EntityManager {
         this.add(entities);
       });
     });
+  }
+
+  private spawnInitialEntities() {
+    if (this.coordinates.isOrigin()) return this.spawnNPCs();
+
+    this.spawnEntities();
   }
 
   private refreshCache() {

@@ -13,6 +13,10 @@ export const TILE_SIZE = 24;
 export const WIDTH = Math.ceil(1100 / TILE_SIZE);
 export const HEIGHT = Math.ceil(600 / TILE_SIZE);
 
+export const X_DEBUG = Number(urlParams.get("x"));
+export const Y_DEBUG = Number(urlParams.get("y"));
+export const STARTING_LOCATION = { x: X_DEBUG || 0, y: Y_DEBUG || 0 };
+
 export const FPS_CAP = 30;
 
 export const LIMIT = {

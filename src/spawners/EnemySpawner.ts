@@ -15,7 +15,7 @@ class EnemyFactory {
 }
 
 export class EnemySpawner implements Spawner<Enemy> {
-  spawn(quantity = 10) {
+  spawn(quantity = 1) {
     const result: Enemy[] = [];
 
     repeat(quantity, () => {

@@ -23,13 +23,18 @@ export class AreaManager {
     this.areas = new Cache();
     this.coordinates = coordinates;
 
-    this.createNewArea(BIOME.town);
+    this.createInitialArea()
   }
 
   createNewArea(biome: BIOME = BIOME.wilderness) {
     const seed = this.getCurrentAreaSeed();
     this.areas.push(this.getCurrentAreaId(), seed);
     this.terrain.generate(seed, biome);
+  }
+
+  private createInitialArea() {
+    if(this.coordinates.isOrigin()) return this.createNewArea(BIOME.town);
+    this.createNewArea(BIOME.wilderness)
   }
 
   private getCurrentAreaId() {
